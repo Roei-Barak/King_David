@@ -16,8 +16,8 @@
   --accent2: #c44a00;
   --border: #d4cfc8;
   --sidebar-w: 280px;
-  --font-body: "David", "Times New Roman", serif;
-  --font-ui: "Segoe UI", "Arial Hebrew", Arial, sans-serif;
+  --font-body: Arial, "Arial Hebrew", "Segoe UI", sans-serif;
+  --font-ui: Arial, "Arial Hebrew", "Segoe UI", sans-serif;
 }
 [data-theme="dark"] {
   --bg: #18160f;
@@ -139,22 +139,22 @@ body {
 .view.active { display: block; }
 
 /* ── SCENES VIEW ── */
-#view-scenes { padding: 24px 32px; max-width: 860px; margin: 0 auto; }
+#view-scenes { padding: 14px 20px; max-width: 820px; margin: 0 auto; }
 
 .scene-article {
   background: var(--bg);
   border: 1px solid var(--border);
-  border-radius: 12px;
-  margin-bottom: 32px;
+  border-radius: 8px;
+  margin-bottom: 14px;
   overflow: hidden;
-  scroll-margin-top: 20px;
+  scroll-margin-top: 10px;
 }
 .scene-article.hidden { display: none; }
 .scene-header {
   background: var(--bg2);
   border-bottom: 1px solid var(--border);
-  padding: 14px 20px 10px;
-  display: flex; flex-direction: column; gap: 6px;
+  padding: 8px 14px 7px;
+  display: flex; flex-direction: column; gap: 3px;
 }
 .scene-title {
   font-size: 1.25rem;
@@ -197,33 +197,36 @@ body {
 .btn-icon:hover { background: var(--border); }
 
 .scene-content {
-  padding: 24px 28px;
-  line-height: 1.85;
-  font-size: 1rem;
+  padding: 16px 24px;
+  line-height: 1.65;
+  font-size: .97rem;
+  text-align: right;
 }
 .md-h1,.md-h2,.md-h3,.md-h4,.md-h5,.md-h6 {
-  color: var(--accent); margin: 1.2em 0 .5em;
+  color: var(--accent); margin: .9em 0 .35em;
   font-family: var(--font-body);
+  text-align: right;
 }
-.md-h1 { font-size: 1.5rem; }
-.md-h2 { font-size: 1.3rem; }
-.md-h3 { font-size: 1.15rem; }
-.md-h4 { font-size: 1rem; }
-.md-p { margin: .4em 0; }
+.md-h1 { font-size: 1.35rem; }
+.md-h2 { font-size: 1.18rem; }
+.md-h3 { font-size: 1.05rem; }
+.md-h4 { font-size: .97rem; }
+.md-p { margin: .25em 0; text-align: right; }
 .md-blockquote {
   border-right: 3px solid var(--accent);
-  padding: .3em 1em;
-  margin: .6em 0;
+  padding: .25em .8em;
+  margin: .4em 0;
   color: var(--fg2);
   font-style: italic;
   background: var(--bg2);
   border-radius: 0 6px 6px 0;
+  text-align: right;
 }
-.md-li { margin: .2em 0 .2em 1.5em; list-style: none; }
-.md-li::before { content: "•"; margin-left: .5em; color: var(--accent); }
-.md-hr { border: none; border-top: 1px solid var(--border); margin: 1.2em 0; }
-.md-table-row { color: var(--fg2); font-size: .9rem; margin: .2em 0; }
-.spacer { height: .4em; }
+.md-li { margin: .15em 0 .15em 1em; list-style: none; text-align: right; }
+.md-li::before { content: "•"; margin-left: .4em; color: var(--accent); }
+.md-hr { border: none; border-top: 1px solid var(--border); margin: .7em 0; }
+.md-table-row { color: var(--fg2); font-size: .88rem; margin: .15em 0; text-align: right; }
+.spacer { height: .15em; }
 code { background: var(--bg3); padding: 0 4px; border-radius: 3px; font-size: .85em; }
 
 /* highlight search */
@@ -289,7 +292,7 @@ mark { background: #ffd70088; color: var(--fg); border-radius: 2px; }
   transition: filter .15s;
 }
 .person-node:hover rect { filter: brightness(1.15); }
-.person-name { font-family: "David", serif; font-size: 14px; }
+.person-name { font-family: Arial, sans-serif; font-size: 14px; }
 .person-role { font-family: Arial, sans-serif; font-size: 10px; opacity: .7; }
 .tree-edge { stroke-dasharray: none; }
 #tree-tooltip {
@@ -8161,19 +8164,19 @@ mark { background: #ffd70088; color: var(--fg); border-radius: 2px; }
         <text x="605" y="25" text-anchor="middle" font-family="Arial" font-size="11" fill="#374151">⑤ סיום</text>
         <!-- Play moments -->
         <circle cx="95" cy="185" r="5" fill="#2563eb"/>
-        <text x="95" y="205" text-anchor="middle" font-family="David,serif" font-size="10" fill="#333">משיחת דוד</text>
+        <text x="95" y="205" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#333">משיחת דוד</text>
         <circle cx="185" cy="155" r="5" fill="#16a34a"/>
-        <text x="185" y="245" text-anchor="middle" font-family="David,serif" font-size="10" fill="#333">ברית יונתן</text>
+        <text x="185" y="245" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#333">ברית יונתן</text>
         <circle cx="268" cy="90" r="5" fill="#2563eb"/>
-        <text x="268" y="250" text-anchor="middle" font-family="David,serif" font-size="10" fill="#333">המלכת דוד</text>
+        <text x="268" y="250" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#333">המלכת דוד</text>
         <circle cx="350" cy="40" r="7" fill="#8b2500"/>
-        <text x="350" y="255" text-anchor="middle" font-family="David,serif" font-size="10" fill="#8b2500" font-weight="bold">בת-שבע/אוריה</text>
+        <text x="350" y="255" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#8b2500" font-weight="bold">בת-שבע/אוריה</text>
         <circle cx="430" cy="90" r="5" fill="#be123c"/>
-        <text x="430" y="245" text-anchor="middle" font-family="David,serif" font-size="10" fill="#333">מרד אבשלום</text>
+        <text x="430" y="245" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#333">מרד אבשלום</text>
         <circle cx="515" cy="145" r="5" fill="#374151"/>
-        <text x="515" y="250" text-anchor="middle" font-family="David,serif" font-size="10" fill="#333">מות אבשלום</text>
+        <text x="515" y="250" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#333">מות אבשלום</text>
         <circle cx="605" cy="185" r="5" fill="#047857"/>
-        <text x="605" y="205" text-anchor="middle" font-family="David,serif" font-size="10" fill="#333">צוואה/שלמה</text>
+        <text x="605" y="205" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#333">צוואה/שלמה</text>
       </svg>
     </div>
 
