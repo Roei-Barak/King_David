@@ -26,6 +26,7 @@ BOOK = [
     ("חלק ב'", "מַעֲרָכָה ב — הַמֶּלֶךְ", None, None),
     (None, None, "scene-06-lament.md", "הקינה"),
     (None, None, "scene-07-brothers-war.md", "מלחמת האחים"),
+    (None, None, "scene-ishbosheth.md", "מות איש-בשת"),
     (None, None, "scene-08-dance.md", "הריקוד"),
     (None, None, "scene-09-not-you.md", "לא אתה"),
     (None, None, "scene-chr25-singers.md", "288 המשוררים"),
@@ -976,6 +977,7 @@ mark {{ background: #ffd70088; color: var(--fg); border-radius: 2px; }}
           <tr><td>שמ"א לא (גלבוע)</td><td>scene-gilboa</td><td>חלק א</td></tr>
           <tr><td>שמ"ב א (קינת דוד)</td><td>scene-06-lament</td><td>חלק ב</td></tr>
           <tr><td>שמ"ב ב–ג (מלחמת האחים)</td><td>scene-07-brothers-war</td><td>חלק ב</td></tr>
+          <tr><td>שמ"ב ד (מות איש-בשת)</td><td>scene-ishbosheth</td><td>חלק ב</td></tr>
           <tr><td>שמ"ב ו (הריקוד לפני הארון)</td><td>scene-08-dance</td><td>חלק ב</td></tr>
           <tr><td>שמ"ב ז (לא אתה תבנה)</td><td>scene-09-not-you</td><td>חלק ב</td></tr>
           <tr><td>דה"א כה (288 המשוררים)</td><td>scene-chr25-singers</td><td>חלק ב</td></tr>
