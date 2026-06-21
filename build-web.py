@@ -936,20 +936,64 @@ mark {{ background: #ffd70088; color: var(--fg); border-radius: 2px; }}
           <tr><th>#</th><th>תמונה</th><th>רגש מרכזי</th><th>מזמור</th><th>מקביל בעולם</th></tr>
         </thead>
         <tbody>
-          <tr><td>א</td><td>המשיחה + גלית</td><td>תמימות ואמונה</td><td>כג</td><td>Simba born / Jean Valjean released</td></tr>
-          <tr><td>ב</td><td>יונתן + ברית</td><td>אהבה לא-רומנטית</td><td>נז</td><td>Hamlet & Horatio / Frodo & Sam</td></tr>
-          <tr><td>ג</td><td>בריחה מפני שאול</td><td>בדידות ואמונה</td><td>לד</td><td>Les Mis Act I / Hamlet exile</td></tr>
-          <tr><td>ד</td><td>מות שאול + קינה</td><td>אבל על אויב</td><td>יח</td><td>Lear over Cordelia / "No good deed"</td></tr>
-          <tr><td>ה</td><td>מלחמת האחים</td><td>מחיר הכוח</td><td>—</td><td>Richard III rising / Henry IV civil war</td></tr>
-          <tr><td>ו</td><td>הריקוד ומיכל</td><td>אקסטזה מול בושה</td><td>כד</td><td>Eliza Doolittle dancing / Defying Gravity</td></tr>
-          <tr class="highlight-row"><td>ז</td><td>"לא אתה תבנה"</td><td>קבלת מגבלה = חירות</td><td>קלה</td><td>אין מקביל ישיר — ייחוד מזמור לדוד</td></tr>
-          <tr><td>ח</td><td>בת-שבע ואוריה</td><td>תאווה ופשע</td><td>נא</td><td>Macbeth / Othello jealousy / Scar's plot</td></tr>
-          <tr><td>ט</td><td>אמנון + תמר</td><td>פשע ודממה</td><td>—</td><td>Titus Andronicus / Rigoletto</td></tr>
-          <tr><td>י</td><td>מרד אבשלום</td><td>קרע אב-בן</td><td>ג</td><td>King Lear / The Lion King (Scar)</td></tr>
-          <tr><td>יא</td><td>מות אבשלום</td><td>אבל הגדול ביותר</td><td>—</td><td>Lear/Cordelia; Hamlet/Ophelia</td></tr>
-          <tr><td>יב</td><td>שיבה לירושלים</td><td>תיקון חלקי</td><td>קכו</td><td>Jean Valjean returns / The Return of the King</td></tr>
-          <tr><td>יג</td><td>הללויה + שיר</td><td>כפרה דרך שיר</td><td>יח</td><td>Finale — "Do you hear?" / "Circle of Life"</td></tr>
-          <tr><td>יד</td><td>הצוואה</td><td>ירושה מורכבת</td><td>עב</td><td>Henry IV Part 2 / Lion King epilogue</td></tr>
+          <tr><td>א</td><td>המשיחה + גלית</td><td>תמימות ואמונה</td><td>כג</td><td>המילטון: "Alexander Hamilton" · ישעיה מב: "עבדי ישראל" · ספר בראשית: ביוגרפיה גיבור · Simba born</td></tr>
+          <tr><td>ב</td><td>יונתן + ברית</td><td>אהבה לא-רומנטית</td><td>נז</td><td>המילטון: "Young, Scrappy and Hungry" · לה מיזרבל: "Look Down" · ספר ג'ונגל: "I Just Can't Wait to Be King" · Frodo &amp; Sam</td></tr>
+          <tr><td>ג</td><td>בריחה מפני שאול</td><td>בדידות ואמונה</td><td>לד</td><td>המלט: קלאודיוס ועמלט · אריה מלך: סימבה וסקאר · ריצ'רד השלישי: עלייה ושפל · Les Mis Act I</td></tr>
+          <tr><td>ד</td><td>מות שאול + קינה</td><td>אבל על אויב</td><td>יח</td><td>אביזר (Wicked): "For Good" · מרילי וי רול אלונג: "Old Friends" · ברוכמן לאב: "I'll Cover You" · Lear/Cordelia</td></tr>
+          <tr><td>ה</td><td>מלחמת האחים</td><td>מחיר הכוח</td><td>—</td><td>המילטון: "The Battle of Yorktown" · לה מיזרבל: "One Day More" · ספרטקוס: מרד העבדים · Richard III rising</td></tr>
+          <tr><td>ו</td><td>הריקוד ומיכל</td><td>אקסטזה מול בושה</td><td>כד</td><td>אביזר: "Defying Gravity" · מלך ואני: "Shall We Dance" · אריה מלך: "Circle of Life" · Eliza Doolittle dancing</td></tr>
+          <tr class="highlight-row"><td>ז</td><td>"לא אתה תבנה"</td><td>קבלת מגבלה = חירות</td><td>קלה</td><td>המילטון: "The Room Where It Happens" · ריצ'רד השני: מלך מודח · המלך ואני: "A Puzzlement" · ייחוד מזמור לדוד</td></tr>
+          <tr><td>ח</td><td>בת-שבע ואוריה</td><td>תאווה ופשע</td><td>נא</td><td>המלט: אופליה ופולוניוס · מקבת: עלילת הרצח · דון ג'ובאני: פיתוי ומוות · Othello jealousy</td></tr>
+          <tr><td>ט</td><td>אמנון + תמר</td><td>פשע ודממה</td><td>—</td><td>ריגולטו: "Caro nome" · תיטוס אנדרוניקוס · פנטום האופרה: אובססיה ואלימות · Titus Andronicus</td></tr>
+          <tr><td>י</td><td>מרד אבשלום</td><td>קרע אב-בן</td><td>ג</td><td>המלט: נקמת לארטס · ליר: קורדליה ולאיר · אריה מלך: שיבת סימבה · King Lear</td></tr>
+          <tr><td>יא</td><td>מות אבשלום</td><td>אבל הגדול ביותר</td><td>—</td><td>ליר: "Blow, winds" + מות קורדליה · המילטון: "It's Quiet Uptown" · סוויני טוד: אובדן · Hamlet/Ophelia</td></tr>
+          <tr><td>יב</td><td>שיבה לירושלים</td><td>תיקון חלקי</td><td>קכו</td><td>המילטון: "The Election of 1800" · לה מיזרבל: "Do You Hear the People Sing" · ז'אן ולז'אן חוזר · Return of the King</td></tr>
+          <tr><td>יג</td><td>הללויה + שיר</td><td>כפרה דרך שיר</td><td>יח</td><td>המילטון: "Who Lives Who Dies Who Tells Your Story" · לה מיזרבל: "Do You Hear the People Sing" · אביזר: "For Good"</td></tr>
+          <tr><td>יד</td><td>הצוואה</td><td>ירושה מורכבת</td><td>עב</td><td>המילטון: "That Would Be Enough" + "Legacy" · הנרי הרביעי ח"ב · המלט: "The rest is silence"</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="arc-comparison" style="margin-top:2rem">
+      <h3>כיסוי פרקי התנ"ך במחזמר</h3>
+      <table class="compare-table">
+        <thead>
+          <tr><th>פרק תנ"ך</th><th>שם הסצנה</th><th>חלק במחזמר</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>ישעיה טז, מזמור עח</td><td>פרולוג</td><td>פרולוג</td></tr>
+          <tr><td>שמ"א א–ה (נעורים, שמואל, גוליית, חצר שאול)</td><td>scene-01-05-full</td><td>חלק א</td></tr>
+          <tr><td>שמ"א כג (פרידת יונתן)</td><td>scene-jonathan-farewell</td><td>חלק א</td></tr>
+          <tr><td>שמ"א כא (דוד בגת)</td><td>scene-gath-madness</td><td>חלק א</td></tr>
+          <tr><td>שמ"א כב (טבח נוב)</td><td>scene-nob-massacre</td><td>חלק א</td></tr>
+          <tr><td>שמ"א כד (מערת עין גדי)</td><td>scene-04-the-cave</td><td>חלק א</td></tr>
+          <tr><td>שמ"א כג–כו (המדבר)</td><td>scene-04b-wilderness-additions</td><td>חלק א</td></tr>
+          <tr><td>שמ"א כה (נבל ואביגיל)</td><td>scene-nabal-abigail</td><td>חלק א</td></tr>
+          <tr><td>שמ"א כד/כו (המערה והגבעה)</td><td>scene-cave-hill</td><td>חלק א</td></tr>
+          <tr><td>שמ"א כח (אוב עין דור)</td><td>scene-05b-witch-endor</td><td>חלק א</td></tr>
+          <tr><td>שמ"א כז, ל (צקלג)</td><td>scene-ziklag</td><td>חלק א</td></tr>
+          <tr><td>שמ"א כט (פלשתים דוחים)</td><td>scene-philistines-reject</td><td>חלק א</td></tr>
+          <tr><td>שמ"א לא (גלבוע)</td><td>scene-gilboa</td><td>חלק א</td></tr>
+          <tr><td>שמ"ב א (קינת דוד)</td><td>scene-06-lament</td><td>חלק ב</td></tr>
+          <tr><td>שמ"ב ב–ג (מלחמת האחים)</td><td>scene-07-brothers-war</td><td>חלק ב</td></tr>
+          <tr><td>שמ"ב ו (הריקוד לפני הארון)</td><td>scene-08-dance</td><td>חלק ב</td></tr>
+          <tr><td>שמ"ב ז (לא אתה תבנה)</td><td>scene-09-not-you</td><td>חלק ב</td></tr>
+          <tr><td>דה"א כה (288 המשוררים)</td><td>scene-chr25-singers</td><td>חלק ב</td></tr>
+          <tr><td>שמ"ב ט (מפיבושת)</td><td>scene-10-mephibosheth</td><td>חלק ב</td></tr>
+          <tr><td>שמ"ב י (מלחמת עמון)</td><td>scene-10b-ammon-war</td><td>חלק ב</td></tr>
+          <tr><td>שמ"ב יא–יב (בת-שבע ואוריה)</td><td>scene-bathsheba-uriah</td><td>חלק ב</td></tr>
+          <tr><td>שמ"ב יא (בית המרחץ — מדרש)</td><td>bathhouse</td><td>חלק ב</td></tr>
+          <tr><td>שמ"ב יג (אמנון ותמר)</td><td>scene-13b-amnon-tamar</td><td>חלק ב</td></tr>
+          <tr><td>שמ"ב יד (שיבת אבשלום)</td><td>scene-13e-absalom-return</td><td>חלק ב</td></tr>
+          <tr><td>שמ"ב טו–יז (מרד אבשלום)</td><td>scene-13c-revolt</td><td>חלק ב</td></tr>
+          <tr><td>שמ"ב יח (מות אבשלום)</td><td>scene-13d-absalom</td><td>חלק ב</td></tr>
+          <tr><td>שמ"ב יט (שיבת דוד)</td><td>scene-13f-david-return</td><td>חלק ב</td></tr>
+          <tr><td>שמ"ב כא (רצפה בת איה)</td><td>scene-13g-rizpah</td><td>חלק ב</td></tr>
+          <tr><td>שמ"ב כג (שפיכת המים)</td><td>scene-water-libation</td><td>חלק ב</td></tr>
+          <tr><td>שמ"ב כב (שיר דוד)</td><td>scene-14-hallelujah</td><td>חלק ב</td></tr>
+          <tr><td>שמ"ב כב–כג (שיר ומגיבורים)</td><td>scene-22-23-david-song</td><td>חלק ב</td></tr>
+          <tr><td>מל"א א–ב (הצוואה)</td><td>scene-15-testament</td><td>אפילוג</td></tr>
+          <tr><td>תת-עלילה (בני צרויה)</td><td>scene-tzruya-david</td><td>תת-עלילה</td></tr>
         </tbody>
       </table>
     </div>
