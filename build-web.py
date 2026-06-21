@@ -39,6 +39,7 @@ BOOK = [
     (None, None, "scene-13c-revolt.md", "המרד"),
     (None, None, "scene-13d-absalom.md", "מות אבשלום"),
     (None, None, "scene-13f-david-return.md", "שיבת דוד"),
+    (None, None, "scene-sheva-bichri.md", "מרד שבע בן בכרי"),
     (None, None, "scene-13g-rizpah.md", "רצפה"),
     (None, None, "scene-water-libation.md", "ניסוך המים"),
     (None, None, "scene-14-hallelujah.md", "הללויה"),
@@ -989,7 +990,8 @@ mark {{ background: #ffd70088; color: var(--fg); border-radius: 2px; }}
           <tr><td>שמ"ב יד (שיבת אבשלום)</td><td>scene-13e-absalom-return</td><td>חלק ב</td></tr>
           <tr><td>שמ"ב טו–יז (מרד אבשלום)</td><td>scene-13c-revolt</td><td>חלק ב</td></tr>
           <tr><td>שמ"ב יח (מות אבשלום)</td><td>scene-13d-absalom</td><td>חלק ב</td></tr>
-          <tr><td>שמ"ב יט (שיבת דוד)</td><td>scene-13f-david-return</td><td>חלק ב</td></tr>
+          <tr><td>שמ"ב יט (שיבת דוד + ריב יהודה-ישראל)</td><td>scene-13f-david-return</td><td>חלק ב</td></tr>
+          <tr><td>שמ"ב כ (מרד שבע בן בכרי)</td><td>scene-sheva-bichri</td><td>חלק ב</td></tr>
           <tr><td>שמ"ב כא (רצפה בת איה)</td><td>scene-13g-rizpah</td><td>חלק ב</td></tr>
           <tr><td>שמ"ב כג (שפיכת המים)</td><td>scene-water-libation</td><td>חלק ב</td></tr>
           <tr><td>שמ"ב כב (שיר דוד)</td><td>scene-14-hallelujah</td><td>חלק ב</td></tr>
