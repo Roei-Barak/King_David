@@ -636,6 +636,70 @@ mark {{ background: #ffd70088; color: var(--fg); border-radius: 2px; }}
   background: var(--bg3);
 }}
 
+/* ── RELATIONS VIEW ── */
+#view-relations {{
+  padding: 16px;
+  min-height: 100%;
+  background: var(--bg);
+}}
+#view-relations h2 {{
+  font-size: 1.3rem;
+  color: var(--accent);
+  margin-bottom: 10px;
+  text-align: center;
+}}
+#rel-legend {{
+  display: flex; gap: 10px; justify-content: center;
+  margin-bottom: 12px; flex-wrap: wrap;
+  font-family: var(--font-ui); font-size: .75rem; color: var(--fg2);
+}}
+.rel-legend-item {{
+  display: flex; align-items: center; gap: 4px;
+  background: var(--bg2); border: 1px solid var(--border);
+  border-radius: 10px; padding: 2px 8px;
+}}
+.rel-legend-dot {{
+  width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0;
+}}
+#rel-scroll {{
+  overflow: auto;
+  background: var(--bg2);
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  padding: 12px;
+}}
+.rel-node {{ cursor: pointer; }}
+.rel-node circle {{ transition: r .15s, filter .15s; }}
+.rel-node:hover circle {{ filter: brightness(1.2); }}
+#rel-tooltip {{
+  position: fixed;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-family: var(--font-ui);
+  font-size: .85rem;
+  color: var(--fg);
+  z-index: 300;
+  max-width: 280px;
+  min-width: 180px;
+  display: none;
+  direction: rtl;
+  box-shadow: 0 4px 20px rgba(0,0,0,.2);
+  line-height: 1.5;
+}}
+.rel-filter-bar {{
+  display: flex; gap: 6px; justify-content: center;
+  margin-bottom: 10px; flex-wrap: wrap;
+  font-family: var(--font-ui); font-size: .78rem;
+}}
+.rel-filter-btn {{
+  padding: 3px 10px; border-radius: 12px; border: 1px solid;
+  cursor: pointer; font-family: var(--font-ui); font-size: .76rem;
+  transition: opacity .15s;
+}}
+.rel-filter-btn.off {{ opacity: .3; }}
+
 /* ── SCROLLBAR ── */
 #sidebar::-webkit-scrollbar, #main::-webkit-scrollbar {{ width: 6px; }}
 #sidebar::-webkit-scrollbar-track, #main::-webkit-scrollbar-track {{ background: transparent; }}
@@ -652,6 +716,7 @@ mark {{ background: #ffd70088; color: var(--fg); border-radius: 2px; }}
   <button class="topbar-btn" onclick="showViewWrapped('scenes')">📜 סצנות</button>
   <button class="topbar-btn" onclick="showViewWrapped('tree')">🌳 אילן יוחסין</button>
   <button class="topbar-btn" onclick="showViewWrapped('structure')">🎭 מבנה דרמטי</button>
+  <button class="topbar-btn" onclick="showViewWrapped('relations')">🕸 גרף קשרים</button>
   <button class="topbar-btn" onclick="toggleCharFilter()">🎭 דמויות</button>
   <button class="topbar-btn" onclick="toggleTheme()">🌙</button>
   <button class="topbar-btn" onclick="exportAnnotations()">💾 ייצוא הערות</button>
@@ -879,8 +944,26 @@ mark {{ background: #ffd70088; color: var(--fg); border-radius: 2px; }}
 </main>
 </div>
 
+  <!-- RELATIONS VIEW -->
+  <div id="view-relations" class="view">
+    <h2>גרף קשרים — רגשות בין דמויות</h2>
+    <div class="rel-filter-bar" id="rel-filter-bar"></div>
+    <div id="rel-legend"></div>
+    <div id="rel-scroll">
+      <svg id="rel-svg" xmlns="http://www.w3.org/2000/svg"
+           style="display:block;min-width:1100px;height:720px;"></svg>
+    </div>
+    <p style="text-align:center;color:var(--fg3);font-size:.76rem;margin-top:8px;font-family:var(--font-ui)">
+      לחץ על דמות לפרטים · לחץ על סוג קשר לסינון
+    </p>
+  </div>
+
+</main>
+</div>
+
 <!-- TOOLTIP -->
 <div id="tree-tooltip"></div>
+<div id="rel-tooltip"></div>
 
 <script>
 // ── DATA ──
@@ -1324,7 +1407,331 @@ const _origShowView = showView;
 function showViewWrapped(name) {{
   _origShowView(name);
   if (name === 'tree') drawTree();
+  if (name === 'relations') {{ if (!relDrawn) drawRelations(); relDrawn=true; }}
 }}
+
+// ── RELATIONS GRAPH ──
+let relDrawn = false;
+let activeRelTypes = new Set();
+
+const REL_TYPES = {{
+  'אהבה':         {{color:'#ec4899', emoji:'💗'}},
+  'אהבת אב':      {{color:'#8b5cf6', emoji:'💜'}},
+  'ידידות':       {{color:'#3b82f6', emoji:'🤝'}},
+  'קנאה':         {{color:'#f97316', emoji:'🔶'}},
+  'שנאה':         {{color:'#dc2626', emoji:'🔴'}},
+  'נקמה':         {{color:'#7f1d1d', emoji:'💢'}},
+  'בגידה':        {{color:'#111827', emoji:'🖤'}},
+  'כבוד':         {{color:'#d97706', emoji:'🌟'}},
+  'אשמה':         {{color:'#7c3aed', emoji:'😔'}},
+  'תאווה':        {{color:'#db2777', emoji:'🔥'}},
+  'הכרת טובה':   {{color:'#10b981', emoji:'🙏'}},
+  'נאמנות':       {{color:'#047857', emoji:'🛡'}},
+  'כעס':          {{color:'#b91c1c', emoji:'😠'}},
+  'תלות':         {{color:'#92400e', emoji:'⛓'}},
+  'ביקורת':       {{color:'#4338ca', emoji:'⚡'}},
+  'אבל':          {{color:'#6b7280', emoji:'😢'}},
+  'בוז':          {{color:'#78716c', emoji:'👎'}},
+  'תאווה→שנאה':  {{color:'#9f1239', emoji:'💔'}},
+}};
+
+const RNODES = [
+  // ring:-1=center, ring:0=inner(r=210), ring:1=outer(r=340)
+  {{id:'david',        name:'דוד',       c:'#1d4ed8', ring:-1}},
+  {{id:'nathan',       name:'נתן',       c:'#4338ca', ring:0, a:270}},
+  {{id:'saul',         name:'שאול',      c:'#dc2626', ring:0, a:315}},
+  {{id:'jonathan',     name:'יונתן',     c:'#16a34a', ring:0, a:0}},
+  {{id:'michal',       name:'מיכל',      c:'#9333ea', ring:0, a:45}},
+  {{id:'absalom',      name:'אבשלום',    c:'#be123c', ring:0, a:90}},
+  {{id:'joab',         name:'יואב',      c:'#92400e', ring:0, a:135}},
+  {{id:'ahithophel',   name:'אחיתופל',   c:'#1f2937', ring:0, a:180}},
+  {{id:'abigail',      name:'אביגיל',    c:'#ea580c', ring:0, a:225}},
+  {{id:'bathsheba',    name:'בת-שבע',    c:'#0891b2', ring:1, a:330}},
+  {{id:'uriah',        name:'אוריה',     c:'#44403c', ring:1, a:290}},
+  {{id:'amnon',        name:'אמנון',     c:'#854d0e', ring:1, a:30}},
+  {{id:'tamar',        name:'תמר',       c:'#86198f', ring:1, a:70}},
+  {{id:'mephibosheth', name:'מפיבושת',   c:'#065f46', ring:1, a:355}},
+  {{id:'shimei',       name:'שמעי',      c:'#78350f', ring:1, a:155}},
+  {{id:'rizpah',       name:'רצפה',      c:'#be185d', ring:1, a:200}},
+];
+
+// dir: 'fwd'=arrow from→to, 'bwd'=arrow to→from, 'both'=bidirectional, 'none'=undirected
+const REDGES = [
+  {{f:'david',      t:'jonathan',     type:'אהבה',        dir:'both', note:'ידידות עמוקה; יונתן ויתר על כתרו; "נפלאתה אהבתך לי"'}},
+  {{f:'david',      t:'saul',         type:'כבוד',         dir:'fwd',  note:'דוד לא נגע במשיח ה\' גם כשיכל להורגו'}},
+  {{f:'saul',       t:'david',        type:'קנאה',         dir:'fwd',  note:'"שאול הכה באלפיו ודוד ברבבותיו" — הקנאה הרסה את שאול'}},
+  {{f:'david',      t:'michal',       type:'אהבה',         dir:'fwd',  note:'אהבה ראשונה; היא הצילה אותו מחלון; הוחזרה בכפייה'}},
+  {{f:'michal',     t:'david',        type:'בוז',          dir:'fwd',  note:'"ותבז לו בלבה" — בזה לו הרוקד לפני הארון; מתה עקרה'}},
+  {{f:'david',      t:'bathsheba',    type:'תאווה',        dir:'fwd',  note:'ראה אותה רוחצת; שלח ולקחה; "ותבוא אליו" — כפייה?'}},
+  {{f:'david',      t:'uriah',        type:'אשמה',         dir:'fwd',  note:'שלח בידיו את גזר דינו; "הדבר אשר עשה דוד רע"'}},
+  {{f:'uriah',      t:'david',        type:'נאמנות',       dir:'fwd',  note:'"לא ארד אל ביתי" — נאמן לחיל בעוד דוד בוגד בו'}},
+  {{f:'david',      t:'absalom',      type:'אהבת אב',      dir:'fwd',  note:'"בני בני אבשלום! מי יתן מותי אני תחתיך"'}},
+  {{f:'absalom',    t:'david',        type:'כעס',          dir:'fwd',  note:'2 שנים לא ראה פני המלך; שרף שדה יואב; מרד'}},
+  {{f:'david',      t:'joab',         type:'תלות',         dir:'fwd',  note:'יואב עשה את המלאכה המלוכלכת שדוד לא יכל לעשות'}},
+  {{f:'joab',       t:'david',        type:'נאמנות',       dir:'fwd',  note:'נאמנות קרה ומניפולטיבית — "אני מגן עליך גם ממך"'}},
+  {{f:'david',      t:'nathan',       type:'כבוד',         dir:'fwd',  note:'קיבל את ה"אתה האיש" בתשובה ולא בכעס'}},
+  {{f:'nathan',     t:'david',        type:'ביקורת',       dir:'fwd',  note:'משל האיש העני — ביקורת נבואית ישירה'}},
+  {{f:'david',      t:'abigail',      type:'אהבה',         dir:'both', note:'ראה בה חכמה; היא עצרה אותו מרצח; הוא שלח לה מייד'}},
+  {{f:'david',      t:'mephibosheth', type:'הכרת טובה',   dir:'fwd',  note:'חסד לזכר יונתן: "ויאכל תמיד על שולחן המלך"'}},
+  {{f:'mephibosheth',t:'david',       type:'הכרת טובה',   dir:'fwd',  note:'"כמלאך האלהים" — הכרת טובה עמוקה ויראה'}},
+  {{f:'saul',       t:'jonathan',     type:'כעס',          dir:'fwd',  note:'"בן נעוות המרדות!" — כעס על בחירת יונתן בדוד'}},
+  {{f:'jonathan',   t:'saul',         type:'אהבה',         dir:'fwd',  note:'אהב את אביו אבל בחר בדוד; מרד שקט מתוך אמונה'}},
+  {{f:'amnon',      t:'tamar',        type:'תאווה→שנאה',  dir:'fwd',  note:'"שנאה גדולה מאד" — אחרי האונס; מנגנון בושה'}},
+  {{f:'absalom',    t:'amnon',        type:'נקמה',         dir:'fwd',  note:'שתק שנתיים, הרג בחגיגת הגזזים; "כי אמנון שנא את תמר"'}},
+  {{f:'absalom',    t:'tamar',        type:'אהבת אב',      dir:'fwd',  note:'קרא לבתו תמר; "ישב שמם" — שמר עליה בביתו'}},
+  {{f:'ahithophel', t:'david',        type:'בגידה',        dir:'fwd',  note:'עבר לאבשלום; "עצת אחיתופל כשאל ה\'"'}},
+  {{f:'shimei',     t:'david',        type:'שנאה',         dir:'fwd',  note:'קילל, האבין, ואמר "צא צא איש הדמים"'}},
+  {{f:'david',      t:'shimei',       type:'כבוד',         dir:'fwd',  note:'"ה\' אמר לו קלל" — קיבל את הקללה כגזרת שמים'}},
+  {{f:'joab',       t:'absalom',      type:'בוז',          dir:'fwd',  note:'הרג אותו בניגוד לפקודה; לא חשב לו לחטא'}},
+  {{f:'rizpah',     t:'saul',         type:'אהבה',         dir:'fwd',  note:'שמרה על גופות בניה — אהבת אם ופילגש; 5 חודשי שמירה'}},
+  {{f:'david',      t:'rizpah',       type:'אבל',          dir:'fwd',  note:'שמע על מסירותה ונרגש לקבור את שאול ויונתן'}},
+];
+
+function rNodeById(id) {{ return RNODES.find(n => n.id===id); }}
+
+function drawRelations() {{
+  const svg = document.getElementById('rel-svg');
+  svg.innerHTML = '';
+  const ns = 'http://www.w3.org/2000/svg';
+  const W=1100, H=720, CX=550, CY=360, R0=210, R1=340;
+  svg.setAttribute('viewBox', `0 0 ${{W}} ${{H}}`);
+
+  // Compute node positions
+  RNODES.forEach(n => {{
+    if (n.ring===-1) {{ n.cx=CX; n.cy=CY; }}
+    else {{
+      const r = n.ring===0 ? R0 : R1;
+      const rad = (n.a-90)*Math.PI/180;
+      n.cx = Math.round(CX + r*Math.cos(rad));
+      n.cy = Math.round(CY + r*Math.sin(rad));
+    }}
+  }});
+
+  function mkEl(tag, attrs) {{
+    const e = document.createElementNS(ns, tag);
+    Object.entries(attrs).forEach(([k,v]) => e.setAttribute(k,v));
+    return e;
+  }}
+
+  // Build legend + filter buttons
+  const legend = document.getElementById('rel-legend');
+  const filterBar = document.getElementById('rel-filter-bar');
+  legend.innerHTML = '';
+  filterBar.innerHTML = '';
+  const typeSet = new Set(REDGES.map(e=>e.type));
+  typeSet.forEach(type => {{
+    const info = REL_TYPES[type] || {{color:'#888', emoji:'•'}};
+    activeRelTypes.add(type);
+    // legend
+    const li = document.createElement('span');
+    li.className = 'rel-legend-item';
+    li.innerHTML = `<span class="rel-legend-dot" style="background:${{info.color}}"></span>${{info.emoji}} ${{type}}`;
+    legend.appendChild(li);
+    // filter button
+    const btn = document.createElement('button');
+    btn.className = 'rel-filter-btn';
+    btn.textContent = info.emoji + ' ' + type;
+    btn.style.borderColor = info.color;
+    btn.style.color = info.color;
+    btn.style.background = info.color + '15';
+    btn.dataset.type = type;
+    btn.onclick = () => {{
+      if (activeRelTypes.has(type)) activeRelTypes.delete(type);
+      else activeRelTypes.add(type);
+      btn.classList.toggle('off', !activeRelTypes.has(type));
+      updateEdgeVisibility();
+    }};
+    filterBar.appendChild(btn);
+  }});
+
+  // Track edge pairs for curve offset (to separate bidirectional)
+  const pairCurve = {{}};
+
+  // Draw edges
+  REDGES.forEach((edge, i) => {{
+    const a = rNodeById(edge.f), b = rNodeById(edge.t);
+    if (!a || !b) return;
+    const info = REL_TYPES[edge.type] || {{color:'#888'}};
+    const key = [a.id,b.id].sort().join('|');
+    if (!pairCurve[key]) pairCurve[key] = 0;
+    const curveDir = pairCurve[key] % 2 === 0 ? 1 : -1;
+    pairCurve[key]++;
+
+    const dx = b.cx-a.cx, dy = b.cy-a.cy;
+    const len = Math.sqrt(dx*dx+dy*dy);
+    const nx = -dy/len, ny = dx/len;
+    const curve = curveDir * Math.min(40, len*0.25);
+    const mx = (a.cx+b.cx)/2 + nx*curve;
+    const my = (a.cy+b.cy)/2 + ny*curve;
+
+    // Path (quadratic bezier)
+    const path = mkEl('path', {{
+      d:`M ${{a.cx}} ${{a.cy}} Q ${{mx}} ${{my}} ${{b.cx}} ${{b.cy}}`,
+      stroke: info.color,
+      'stroke-width': '2.2',
+      fill: 'none',
+      opacity: '0.75',
+      'marker-end': edge.dir!=='bwd' ? `url(#arr-${{CSS.escape(edge.type)}})` : 'none',
+      'marker-start': edge.dir==='both' ? `url(#arr-rev-${{CSS.escape(edge.type)}})` : 'none',
+    }});
+    path.setAttribute('data-type', edge.type);
+    path.setAttribute('class', 'rel-edge');
+
+    // Label at midpoint
+    const label = mkEl('text', {{
+      x: Math.round((a.cx+b.cx)/2 + nx*curve*0.5 + nx*12),
+      y: Math.round((a.cy+b.cy)/2 + ny*curve*0.5 + ny*12),
+      'text-anchor': 'middle',
+      'font-family': 'Arial,sans-serif',
+      'font-size': '9.5',
+      fill: info.color,
+      'data-type': edge.type,
+      class: 'rel-edge-label',
+    }}, edge.type);
+
+    // Hover for note
+    const g = mkEl('g', {{'data-type': edge.type, class:'rel-edge-grp'}});
+    // Invisible fat line for easier hover
+    const hitLine = mkEl('path', {{
+      d:`M ${{a.cx}} ${{a.cy}} Q ${{mx}} ${{my}} ${{b.cx}} ${{b.cy}}`,
+      stroke:'transparent', 'stroke-width':'14', fill:'none',
+      style:'cursor:pointer'
+    }});
+    hitLine.addEventListener('mouseenter', (evt) => showRelTooltip(edge, info, evt));
+    hitLine.addEventListener('mouseleave', () => {{
+      document.getElementById('rel-tooltip').style.display='none';
+    }});
+    g.appendChild(path);
+    g.appendChild(label);
+    g.appendChild(hitLine);
+    svg.appendChild(g);
+  }});
+
+  // Arrow markers
+  typeSet.forEach(type => {{
+    const info = REL_TYPES[type] || {{color:'#888'}};
+    const defs = svg.querySelector('defs') || (() => {{
+      const d = mkEl('defs',{{}}); svg.insertBefore(d, svg.firstChild); return d;
+    }})();
+    // Forward arrow
+    const m = mkEl('marker', {{
+      id:`arr-${{type}}`, markerWidth:'8', markerHeight:'8',
+      refX:'6', refY:'3', orient:'auto'
+    }});
+    const poly = mkEl('polygon', {{points:'0 0, 6 3, 0 6', fill:info.color}});
+    m.appendChild(poly); defs.appendChild(m);
+    // Reverse arrow
+    const m2 = mkEl('marker', {{
+      id:`arr-rev-${{type}}`, markerWidth:'8', markerHeight:'8',
+      refX:'0', refY:'3', orient:'auto-start-reverse'
+    }});
+    const poly2 = mkEl('polygon', {{points:'0 0, 6 3, 0 6', fill:info.color}});
+    m2.appendChild(poly2); defs.appendChild(m2);
+  }});
+
+  // Draw section ring labels
+  svg.appendChild((() => {{
+    const t = mkEl('text', {{x:CX, y:CY-R0-12, 'text-anchor':'middle',
+      'font-family':'Arial,sans-serif','font-size':'10',fill:'#bbb','font-style':'italic'}});
+    t.textContent='טבעת פנימית — דמויות מרכזיות';
+    return t;
+  }})());
+
+  // Draw nodes (on top of edges)
+  RNODES.forEach(n => {{
+    const g = mkEl('g', {{class:'rel-node', cursor:'pointer'}});
+    const isMain = n.ring===-1;
+    const r = isMain ? 38 : (n.ring===0 ? 30 : 26);
+    const circle = mkEl('circle', {{
+      cx:n.cx, cy:n.cy, r, fill:n.c,
+      stroke: isMain ? '#fff' : n.c,
+      'stroke-width': isMain ? '3' : '1'
+    }});
+    g.appendChild(circle);
+    // Name (split if long)
+    const words = n.name.split('-');
+    if (words.length > 1) {{
+      words.forEach((w,i) => {{
+        const t = mkEl('text', {{
+          x:n.cx, y:n.cy-5+(i*13),
+          'text-anchor':'middle','font-family':'Arial,sans-serif',
+          'font-size': isMain?'13':'11', fill:'#fff','font-weight':'bold'
+        }});
+        t.textContent=w;
+        g.appendChild(t);
+      }});
+    }} else {{
+      const t = mkEl('text', {{
+        x:n.cx, y:n.cy+4,
+        'text-anchor':'middle','font-family':'Arial,sans-serif',
+        'font-size': isMain?'14':'12', fill:'#fff','font-weight':'bold'
+      }});
+      t.textContent=n.name;
+      g.appendChild(t);
+    }}
+    g.addEventListener('click', (e) => {{ e.stopPropagation(); showNodeRelations(n, e); }});
+    svg.appendChild(g);
+  }});
+}}
+
+function updateEdgeVisibility() {{
+  document.querySelectorAll('.rel-edge-grp').forEach(g => {{
+    const type = g.getAttribute('data-type');
+    g.style.display = activeRelTypes.has(type) ? '' : 'none';
+  }});
+}}
+
+function showRelTooltip(edge, info, evt) {{
+  const tt = document.getElementById('rel-tooltip');
+  const a = rNodeById(edge.f), b = rNodeById(edge.t);
+  const arrow = edge.dir==='both' ? '⟷' : edge.dir==='bwd' ? '←' : '→';
+  tt.innerHTML = `
+    <div style="font-weight:bold;color:${{info.color}};margin-bottom:4px">
+      ${{info.emoji}} ${{edge.type}}
+    </div>
+    <div style="font-size:.82rem;margin-bottom:6px">
+      ${{a?.name}} ${{arrow}} ${{b?.name}}
+    </div>
+    <div style="font-size:.85rem;line-height:1.5">${{edge.note}}</div>
+  `;
+  tt.style.display='block';
+  posTooltip(tt, evt);
+}}
+
+function showNodeRelations(n, evt) {{
+  const tt = document.getElementById('rel-tooltip');
+  const rels = REDGES.filter(e => e.f===n.id || e.t===n.id);
+  const lines = rels.map(e => {{
+    const info = REL_TYPES[e.type]||{{color:'#888',emoji:'•'}};
+    const other = rNodeById(e.f===n.id ? e.t : e.f);
+    const arrow = e.f===n.id ? '→' : '←';
+    return `<div style="font-size:.8rem;margin:3px 0">
+      <span style="color:${{info.color}}">${{info.emoji}} ${{e.type}}</span>
+      <span style="color:var(--fg2)"> ${{arrow}} ${{other?.name}}</span>
+    </div>`;
+  }}).join('');
+  tt.innerHTML = `
+    <div style="font-weight:bold;color:${{n.c}};font-size:1rem;margin-bottom:8px">${{n.name}}</div>
+    ${{lines || '<div style="color:var(--fg3)">אין קשרים מוגדרים</div>'}}
+  `;
+  tt.style.display='block';
+  posTooltip(tt, evt);
+}}
+
+function posTooltip(tt, evt) {{
+  const margin=16;
+  let top = (evt?.clientY||300)+12;
+  let left = (evt?.clientX||300)-150;
+  if (left<margin) left=margin;
+  if (left+300>window.innerWidth-margin) left=window.innerWidth-300-margin;
+  if (top+250>window.innerHeight-margin) top=(evt?.clientY||300)-260;
+  tt.style.top=top+'px'; tt.style.left=left+'px'; tt.style.right='auto';
+}}
+
+document.addEventListener('click', e => {{
+  if (!e.target.closest('.rel-node') && !e.target.closest('#rel-tooltip') && !e.target.closest('.rel-edge-grp'))
+    document.getElementById('rel-tooltip').style.display='none';
+}});
 
 // ── SCROLL SPY ──
 const observer = new IntersectionObserver((entries) => {{
