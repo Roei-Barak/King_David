@@ -48,21 +48,21 @@ BOOK = [
 ]
 
 CHARACTERS = {
-    "דוד": {"color": "#2563eb", "scenes": []},
-    "שאול": {"color": "#dc2626", "scenes": []},
-    "יונתן": {"color": "#16a34a", "scenes": []},
-    "מיכל": {"color": "#9333ea", "scenes": []},
-    "יואב": {"color": "#92400e", "scenes": []},
-    "אביגיל": {"color": "#ea580c", "scenes": []},
-    "בת-שבע": {"color": "#0891b2", "scenes": []},
-    "נתן": {"color": "#4338ca", "scenes": []},
-    "אבשלום": {"color": "#be123c", "scenes": []},
-    "אמנון": {"color": "#854d0e", "scenes": []},
-    "תמר": {"color": "#86198f", "scenes": []},
-    "מפיבושת": {"color": "#065f46", "scenes": []},
-    "שמואל": {"color": "#1e3a5f", "scenes": []},
-    "אוריה": {"color": "#374151", "scenes": []},
-    "רצפה": {"color": "#be185d", "scenes": []},
+    "דוד": {"color": "#2563eb", "story": "רועה צאן שנמשח למלך על ידי שמואל הנביא, לוחם וסופר מזמורי תהילים. עלה לגדולה בעקבות ניצחונו על גוליית, ונס מפני שאול שנים רבות. מלך על כל ישראל ויהודה, ידוע כ\"חביב ה'\" אך נפל בחטא בת-שבע ואוריה.", "scenes": []},
+    "שאול": {"color": "#dc2626", "story": "המלך הראשון על ישראל, נבחר בגלל מראהו המלכותי. נדחה מהמלוכה בגלל חטאיו, ורדף אחרי דוד מתוך קנאה ופחד. נפל בגלבוע יחד עם שלושת בניו.", "scenes": []},
+    "יונתן": {"color": "#16a34a", "story": "בן שאול ואוהב נפש של דוד, אחד הלוחמים האמיצים ביותר. כרת ברית אהבה עם דוד שגברה על נאמנותו לאביו. נפל יחד עם אביו בגלבוע.", "scenes": []},
+    "מיכל": {"color": "#9333ea", "story": "בת שאול ואשתו הראשונה של דוד, שאהבה אותו. הצילה אותו מידי שאול אך נפרדה ממנו ונישאה לאחר. ביקרה את דוד בריקודו לפני הארון ומתה ללא ילדים.", "scenes": []},
+    "יואב": {"color": "#92400e", "story": "אחיין דוד ומפקד צבאו הנאמן אך הקשה. הרג את אבנר ועשהאל ואבשלום בניגוד לציווי דוד. גיבור מלחמה חסר רחמים שסייע לדוד בעלייתו ובמרד אבשלום.", "scenes": []},
+    "אביגיל": {"color": "#ea580c", "story": "אשה חכמה ויפה, אשתו של נבל הנבל. מנעה מדוד לשפוך דם בכעסו ולאחר מות נבל נשאה דוד לאשה. סמלה של חוכמה ומניעת מלחמת אחים.", "scenes": []},
+    "בת-שבע": {"color": "#0891b2", "story": "אשתו של אוריה החתי שדוד ראה רוחצת וחטא בגללה. לאחר מות אוריה נישאה לדוד, ובנה שלמה ירש את המלוכה. נביאת חסד ואם חכמה.", "scenes": []},
+    "נתן": {"color": "#4338ca", "story": "הנביא הגדול בחצר דוד, שהוכיח אותו על חטא בת-שבע במשל כבשת הרש. הבטיח לדוד בית נאמן לעולם (נבואת נתן). עמד לצד שלמה בהמלכתו.", "scenes": []},
+    "אבשלום": {"color": "#be123c", "story": "בן דוד היפה ביותר, שמרד באביו לאחר שדוד לא ענישו על אונס תמר. מרד כמעט הצליח אך נתלה בשיערו באלה ונהרג בידי יואב. דוד קונן עליו: \"בני אבשלום.\"", "scenes": []},
+    "אמנון": {"color": "#854d0e", "story": "בכור דוד שאנס את אחותו תמר מאוהבה. דוד לא ענשו ואבשלום נקם את דמה ורצח אותו. מותו הוא שורש המשבר המשפחתי ומרד אבשלום.", "scenes": []},
+    "תמר": {"color": "#86198f", "story": "בת דוד ואחות אבשלום, קורבן האונס של אמנון. ישבה שוממה בבית אחיה לאחר שדוד שתק. קולה הוא קול הדממה — \"אל תשלחני!\"", "scenes": []},
+    "מפיבושת": {"color": "#065f46", "story": "בן יונתן שנפגע ברגליו בילדותו בבריחה מגלבוע. דוד הושיבו לשולחנו לכבוד ברית יונתן. עמד בניסיון כשעבדו ציבא הכפיש אותו, ועמד אמין לדוד.", "scenes": []},
+    "שמואל": {"color": "#1e3a5f", "story": "הנביא האחרון מימי השופטים, שמשח את שאול ואחר כך את דוד. דחה את שאול מהמלוכה בשם ה'. מותו ציין קץ עידן השופטים.", "scenes": []},
+    "אוריה": {"color": "#374151", "story": "הלוחם החתי, בעלה של בת-שבע, לוחם אמיץ ונאמן לדוד. סרב לשוב לביתו בזמן שאחיו במלחמה. דוד שלחו לחזית להיהרג — חטא דוד הגדול.", "scenes": []},
+    "רצפה": {"color": "#be185d", "story": "פילגש שאול, שבניה הוצאו להורג ביד הגבעונים בתביעת נקם. שמרה על גופות בניה חודשים, יומם ולילה, עד שדוד שמע ולקחם לקבורה. סמל אהבת אם.", "scenes": []},
 }
 
 def md_to_html(text):
@@ -704,6 +704,15 @@ mark {{ background: #ffd70088; color: var(--fg); border-radius: 2px; }}
 #sidebar::-webkit-scrollbar, #main::-webkit-scrollbar {{ width: 6px; }}
 #sidebar::-webkit-scrollbar-track, #main::-webkit-scrollbar-track {{ background: transparent; }}
 #sidebar::-webkit-scrollbar-thumb, #main::-webkit-scrollbar-thumb {{ background: var(--border); border-radius: 3px; }}
+
+/* ── CHARACTERS VIEW ── */
+.char-grid {{ display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; padding: 16px; }}
+.char-card {{ background: var(--bg2); border-radius: 12px; padding: 20px; border-left: 4px solid var(--accent); cursor: pointer; transition: transform .15s; }}
+.char-card:hover {{ transform: translateY(-2px); box-shadow: 0 4px 16px rgba(0,0,0,.15); }}
+.char-card h3 {{ margin: 0 0 8px; font-size: 1.3rem; }}
+.char-card p {{ margin: 0 0 10px; font-size: .88rem; color: var(--fg2); line-height: 1.6; }}
+.char-scenes-label {{ font-size: .75rem; color: var(--fg3); }}
+.char-scenes-label span {{ display: inline-block; background: var(--bg3,#e5e7eb); border-radius: 4px; padding: 1px 6px; margin: 2px; font-size: .7rem; }}
 </style>
 </head>
 <body>
@@ -717,6 +726,7 @@ mark {{ background: #ffd70088; color: var(--fg); border-radius: 2px; }}
   <button class="topbar-btn" onclick="showViewWrapped('tree')">🌳 אילן יוחסין</button>
   <button class="topbar-btn" onclick="showViewWrapped('structure')">🎭 מבנה דרמטי</button>
   <button class="topbar-btn" onclick="showViewWrapped('relations')">🕸 גרף קשרים</button>
+  <button class="topbar-btn" onclick="showViewWrapped('chars')">👤 כרטיסי דמויות</button>
   <button class="topbar-btn" onclick="toggleCharFilter()">🎭 דמויות</button>
   <button class="topbar-btn" onclick="toggleTheme()">🌙</button>
   <button class="topbar-btn" onclick="exportAnnotations()">💾 ייצוא הערות</button>
@@ -941,8 +951,11 @@ mark {{ background: #ffd70088; color: var(--fg); border-radius: 2px; }}
     </div>
   </div>
 
-</main>
-</div>
+  <!-- CHARACTERS VIEW -->
+  <div id="view-chars" class="view">
+    <h2 style="padding: 16px 16px 0; color: var(--accent);">דמויות המחזמר</h2>
+    <div class="char-grid" id="char-cards-grid"></div>
+  </div>
 
   <!-- RELATIONS VIEW -->
   <div id="view-relations" class="view">
@@ -1006,6 +1019,7 @@ function buildSidebar() {{
     nav.appendChild(a);
   }});
   buildCharFilter();
+  buildCharCards();
 }}
 
 function buildCharFilter() {{
@@ -1025,6 +1039,29 @@ function buildCharFilter() {{
   clear.textContent = 'הצג הכל';
   clear.onclick = clearFilter;
   bar.appendChild(clear);
+}}
+
+function buildCharCards() {{
+  const grid = document.getElementById('char-cards-grid');
+  Object.entries(CHARS).forEach(([name, data]) => {{
+    const card = document.createElement('div');
+    card.className = 'char-card';
+    card.style.borderLeftColor = data.color;
+    const scenes = data.scenes || [];
+    const scenePills = scenes.length
+      ? scenes.map(s => `<span>${{s}}</span>`).join("")
+      : "<span>—</span>";
+    card.innerHTML = `<h3 style="color:${{data.color}}">${{name}}</h3><p>${{data.story || ""}}</p><div class="char-scenes-label">סצנות: ${{scenePills}}</div>`;
+    card.onclick = () => {{
+      showView('scenes');
+      document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('on'));
+      const chip = Array.from(document.querySelectorAll('.filter-chip')).find(c => c.textContent === name);
+      if (chip) chip.classList.add('on');
+      activeChar = name;
+      applyCharFilter();
+    }};
+    grid.appendChild(card);
+  }});
 }}
 
 // ── NAVIGATION ──
