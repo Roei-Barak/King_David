@@ -447,48 +447,53 @@ mark {{ background: #ffd70088; color: var(--fg); border-radius: 2px; }}
 
 /* ── FAMILY TREE VIEW ── */
 #view-tree {{
-  padding: 20px;
+  padding: 16px;
   overflow: auto;
   min-height: 100%;
+  background: var(--bg);
 }}
 #view-tree h2 {{
-  font-size: 1.4rem;
+  font-size: 1.3rem;
   color: var(--accent);
-  margin-bottom: 16px;
+  margin-bottom: 10px;
   text-align: center;
 }}
-#tree-svg-container {{
-  overflow: auto;
+#tree-legend {{
+  display: flex; gap: 20px; justify-content: center;
+  margin-bottom: 12px; flex-wrap: wrap;
+  font-family: var(--font-ui); font-size: .8rem; color: var(--fg2);
+}}
+.legend-item {{ display: flex; align-items: center; gap: 6px; }}
+.legend-solid {{ display: inline-block; width: 30px; height: 2px; background: #888; }}
+.legend-dashed {{ display: inline-block; width: 30px; height: 2px; border-top: 2px dashed #9333ea; }}
+.legend-dotted {{ display: inline-block; width: 30px; height: 2px; border-top: 2px dotted #888; }}
+#tree-scroll {{
+  overflow-x: auto;
+  overflow-y: auto;
   background: var(--bg2);
-  border-radius: 12px;
+  border-radius: 10px;
   border: 1px solid var(--border);
-  padding: 20px;
+  padding: 12px;
 }}
-.person-node {{
-  cursor: pointer;
-}}
-.person-node rect {{
-  rx: 8; ry: 8;
-  transition: filter .15s;
-}}
-.person-node:hover rect {{ filter: brightness(1.15); }}
-.person-name {{ font-family: Arial, sans-serif; font-size: 14px; }}
-.person-role {{ font-family: Arial, sans-serif; font-size: 10px; opacity: .7; }}
-.tree-edge {{ stroke-dasharray: none; }}
+.person-node {{ cursor: pointer; }}
+.person-node rect {{ transition: filter .15s; }}
+.person-node:hover rect {{ filter: brightness(1.2); }}
 #tree-tooltip {{
   position: fixed;
-  background: var(--bg2);
+  background: var(--bg);
   border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 10px 14px;
-  font-family: var(--font-body);
-  font-size: .9rem;
+  border-radius: 10px;
+  padding: 12px 16px;
+  font-family: var(--font-ui);
+  font-size: .88rem;
   color: var(--fg);
-  pointer-events: none;
-  z-index: 200;
-  max-width: 240px;
+  z-index: 300;
+  max-width: 300px;
+  min-width: 200px;
   display: none;
   direction: rtl;
+  box-shadow: 0 4px 20px rgba(0,0,0,.2);
+  line-height: 1.5;
 }}
 
 /* ── STRUCTURE VIEW ── */
@@ -644,9 +649,9 @@ mark {{ background: #ffd70088; color: var(--fg); border-radius: 2px; }}
   <button class="topbar-btn" onclick="toggleSidebar()">☰</button>
   <h1>מזמור לדוד — המחזמר המלא</h1>
   <input type="text" id="search-input" placeholder="חיפוש בטקסט..." oninput="doSearch(this.value)">
-  <button class="topbar-btn" onclick="showView('scenes')">📜 סצנות</button>
-  <button class="topbar-btn" onclick="showView('tree')">🌳 אילן יוחסין</button>
-  <button class="topbar-btn" onclick="showView('structure')">🎭 מבנה דרמטי</button>
+  <button class="topbar-btn" onclick="showViewWrapped('scenes')">📜 סצנות</button>
+  <button class="topbar-btn" onclick="showViewWrapped('tree')">🌳 אילן יוחסין</button>
+  <button class="topbar-btn" onclick="showViewWrapped('structure')">🎭 מבנה דרמטי</button>
   <button class="topbar-btn" onclick="toggleCharFilter()">🎭 דמויות</button>
   <button class="topbar-btn" onclick="toggleTheme()">🌙</button>
   <button class="topbar-btn" onclick="exportAnnotations()">💾 ייצוא הערות</button>
@@ -657,8 +662,8 @@ mark {{ background: #ffd70088; color: var(--fg); border-radius: 2px; }}
 
 <!-- SIDEBAR -->
 <nav id="sidebar">
-  <div class="sidebar-special" onclick="showView('tree')">🌳 אילן יוחסין</div>
-  <div class="sidebar-special" onclick="showView('structure')">🎭 מבנה דרמטי</div>
+  <div class="sidebar-special" onclick="showViewWrapped('tree')">🌳 אילן יוחסין</div>
+  <div class="sidebar-special" onclick="showViewWrapped('structure')">🎭 מבנה דרמטי</div>
   <div class="sidebar-divider"></div>
   <div id="sidebar-nav"></div>
 </nav>
@@ -679,191 +684,19 @@ mark {{ background: #ffd70088; color: var(--fg); border-radius: 2px; }}
   <!-- FAMILY TREE VIEW -->
   <div id="view-tree" class="view">
     <h2>אילן יוחסין — דמויות המחזמר</h2>
-    <div id="tree-svg-container">
+    <div id="tree-legend">
+      <span class="legend-item"><span class="legend-solid"></span> הורה / ילד</span>
+      <span class="legend-item"><span class="legend-dashed"></span> נישואים לדוד</span>
+      <span class="legend-item"><span class="legend-dotted"></span> נישואים קודמים</span>
+    </div>
+    <div id="tree-scroll">
       <svg id="tree-svg" xmlns="http://www.w3.org/2000/svg"
-           viewBox="0 0 1200 900" style="width:100%;min-width:900px;height:auto;">
-        <!-- EDGES -->
-        <!-- Jesse → David -->
-        <line x1="600" y1="80" x2="600" y2="160" stroke="#666" stroke-width="2" class="tree-edge"/>
-        <!-- Saul → Jonathan -->
-        <line x1="200" y1="80" x2="150" y2="160" stroke="#666" stroke-width="2"/>
-        <!-- Saul → Michal -->
-        <line x1="200" y1="80" x2="280" y2="160" stroke="#666" stroke-width="2"/>
-        <!-- David → children lines -->
-        <line x1="600" y1="210" x2="600" y2="280" stroke="#666" stroke-width="1.5"/>
-        <line x1="300" y1="280" x2="900" y2="280" stroke="#666" stroke-width="1.5"/>
-        <line x1="300" y1="280" x2="300" y2="360" stroke="#666" stroke-width="1.5"/>
-        <line x1="450" y1="280" x2="450" y2="360" stroke="#666" stroke-width="1.5"/>
-        <line x1="600" y1="280" x2="600" y2="360" stroke="#666" stroke-width="1.5"/>
-        <line x1="750" y1="280" x2="750" y2="360" stroke="#666" stroke-width="1.5"/>
-        <line x1="900" y1="280" x2="900" y2="360" stroke="#666" stroke-width="1.5"/>
-        <!-- Jonathan → Mephibosheth -->
-        <line x1="150" y1="210" x2="150" y2="480" stroke="#666" stroke-width="1.5"/>
-        <!-- David ↔ Michal (marriage) -->
-        <line x1="280" y1="185" x2="520" y2="185" stroke="#9333ea" stroke-width="1.5" stroke-dasharray="5,4"/>
-        <!-- David ↔ Bathsheba -->
-        <line x1="600" y1="210" x2="750" y2="210" stroke="#0891b2" stroke-width="1.5" stroke-dasharray="5,4"/>
-        <!-- Zeruiah → Joab,Abishai,Asahel -->
-        <line x1="900" y1="80" x2="900" y2="160" stroke="#666" stroke-width="2"/>
-        <line x1="800" y1="160" x2="1000" y2="160" stroke="#666" stroke-width="1.5"/>
-        <line x1="800" y1="160" x2="800" y2="240" stroke="#666" stroke-width="1.5"/>
-        <line x1="900" y1="160" x2="900" y2="240" stroke="#666" stroke-width="1.5"/>
-        <line x1="1000" y1="160" x2="1000" y2="240" stroke="#666" stroke-width="1.5"/>
-
-        <!-- LEGEND -->
-        <line x1="30" y1="855" x2="80" y2="855" stroke="#666" stroke-width="2"/>
-        <text x="90" y="859" font-family="Arial" font-size="11" fill="#666">קשר משפחתי</text>
-        <line x1="200" y1="855" x2="250" y2="855" stroke="#9333ea" stroke-width="2" stroke-dasharray="5,4"/>
-        <text x="260" y="859" font-family="Arial" font-size="11" fill="#9333ea">נישואים</text>
-
-        <!-- NODES -->
-        <!-- Jesse -->
-        <g class="person-node" onclick="personClick('ישי','אביו של דוד','ישי בן אובד מבית לחם, צאצא רות ובועז')">
-          <rect x="540" y="30" width="120" height="45" fill="#d4a800" rx="8"/>
-          <text x="600" y="52" text-anchor="middle" class="person-name" fill="#fff">ישי</text>
-          <text x="600" y="67" text-anchor="middle" class="person-role" fill="#fff">אבי דוד</text>
-        </g>
-        <!-- Saul -->
-        <g class="person-node" onclick="personClick('שאול','המלך הראשון','שאול בן קיש ממטה בנימין — המלך הראשון שנדחה')">
-          <rect x="140" y="30" width="120" height="45" fill="#dc2626" rx="8"/>
-          <text x="200" y="52" text-anchor="middle" class="person-name" fill="#fff">שאול</text>
-          <text x="200" y="67" text-anchor="middle" class="person-role" fill="#fff">מלך ישראל</text>
-        </g>
-        <!-- David -->
-        <g class="person-node" onclick="personClick('דוד','מלך ישראל','דוד בן ישי — הרועה שנמשח, גיבור, חוטא, מתחרט, משורר')">
-          <rect x="520" y="160" width="160" height="50" fill="#2563eb" rx="8"/>
-          <text x="600" y="183" text-anchor="middle" class="person-name" fill="#fff" font-size="16">דוד המלך</text>
-          <text x="600" y="200" text-anchor="middle" class="person-role" fill="#fff">מלך יהודה וישראל</text>
-        </g>
-        <!-- Jonathan -->
-        <g class="person-node" onclick="personClick('יונתן','בן שאול','יונתן בן שאול — אוהב דוד, בחר בברית על חשבון יורשתו')">
-          <rect x="90" y="160" width="120" height="45" fill="#16a34a" rx="8"/>
-          <text x="150" y="182" text-anchor="middle" class="person-name" fill="#fff">יונתן</text>
-          <text x="150" y="197" text-anchor="middle" class="person-role" fill="#fff">בן שאול</text>
-        </g>
-        <!-- Michal -->
-        <g class="person-node" onclick="personClick('מיכל','בת שאול, אשת דוד','מיכל אהבה את דוד, הצילה אותו, הוחזרה בכוח ומתה עקרה')">
-          <rect x="220" y="160" width="120" height="45" fill="#9333ea" rx="8"/>
-          <text x="280" y="182" text-anchor="middle" class="person-name" fill="#fff">מיכל</text>
-          <text x="280" y="197" text-anchor="middle" class="person-role" fill="#fff">בת שאול, אשת דוד</text>
-        </g>
-        <!-- Bathsheba -->
-        <g class="person-node" onclick="personClick('בת-שבע','אשת אוריה ואח״כ דוד','בת-שבע — אשת אוריה החתי, נלקחה על ידי דוד, ילדה את שלמה')">
-          <rect x="700" y="160" width="130" height="45" fill="#0891b2" rx="8"/>
-          <text x="765" y="182" text-anchor="middle" class="person-name" fill="#fff">בת-שבע</text>
-          <text x="765" y="197" text-anchor="middle" class="person-role" fill="#fff">אם שלמה</text>
-        </g>
-        <!-- Children of David -->
-        <!-- Amnon -->
-        <g class="person-node" onclick="personClick('אמנון','בכור דוד מאחינועם','אמנון — אנס את תמר אחותו, נהרג ע״י אבשלום')">
-          <rect x="250" y="360" width="110" height="45" fill="#854d0e" rx="8"/>
-          <text x="305" y="382" text-anchor="middle" class="person-name" fill="#fff">אמנון</text>
-          <text x="305" y="397" text-anchor="middle" class="person-role" fill="#fff">בכור דוד</text>
-        </g>
-        <!-- Tamar -->
-        <g class="person-node" onclick="personClick('תמר','בת דוד ומעכה','תמר — בת דוד, נאנסה ע״י אמנון, חיה שוממה בבית אבשלום')">
-          <rect x="395" y="360" width="110" height="45" fill="#86198f" rx="8"/>
-          <text x="450" y="382" text-anchor="middle" class="person-name" fill="#fff">תמר</text>
-          <text x="450" y="397" text-anchor="middle" class="person-role" fill="#fff">בת דוד</text>
-        </g>
-        <!-- Absalom -->
-        <g class="person-node" onclick="personClick('אבשלום','בן דוד ומעכה','אבשלום — יפה תואר, נקם בגלל תמר, מרד, נהרג ע״י יואב')">
-          <rect x="540" y="360" width="120" height="45" fill="#be123c" rx="8"/>
-          <text x="600" y="382" text-anchor="middle" class="person-name" fill="#fff">אבשלום</text>
-          <text x="600" y="397" text-anchor="middle" class="person-role" fill="#fff">בן דוד</text>
-        </g>
-        <!-- Solomon -->
-        <g class="person-node" onclick="personClick('שלמה','בן דוד ובת-שבע','שלמה — יורש המלכות, בנה את בית המקדש שדוד חלם עליו')">
-          <rect x="695" y="360" width="120" height="45" fill="#047857" rx="8"/>
-          <text x="755" y="382" text-anchor="middle" class="person-name" fill="#fff">שלמה</text>
-          <text x="755" y="397" text-anchor="middle" class="person-role" fill="#fff">יורש המלכות</text>
-        </g>
-        <!-- Adonijah -->
-        <g class="person-node" onclick="personClick('אדוניה','בן דוד מחגית','אדוניה — התמרד ורצה למלוך, הודח לטובת שלמה')">
-          <rect x="850" y="360" width="110" height="45" fill="#374151" rx="8"/>
-          <text x="905" y="382" text-anchor="middle" class="person-name" fill="#fff">אדוניה</text>
-          <text x="905" y="397" text-anchor="middle" class="person-role" fill="#fff">בן דוד מחגית</text>
-        </g>
-        <!-- Mephibosheth -->
-        <g class="person-node" onclick="personClick('מפיבושת','בן יונתן','מפיבושת — נכה, בן יונתן, הוזמן לשולחן דוד לכל ימיו')">
-          <rect x="90" y="480" width="120" height="45" fill="#065f46" rx="8"/>
-          <text x="150" y="502" text-anchor="middle" class="person-name" fill="#fff">מפיבושת</text>
-          <text x="150" y="517" text-anchor="middle" class="person-role" fill="#fff">בן יונתן</text>
-        </g>
-        <!-- Zeruiah (David's sister) -->
-        <g class="person-node" onclick="personClick('צרויה','אחות דוד','צרויה — אחות דוד, אם יואב אבישי ועשהאל')">
-          <rect x="840" y="30" width="120" height="45" fill="#6b7280" rx="8"/>
-          <text x="900" y="52" text-anchor="middle" class="person-name" fill="#fff">צרויה</text>
-          <text x="900" y="67" text-anchor="middle" class="person-role" fill="#fff">אחות דוד</text>
-        </g>
-        <!-- Joab -->
-        <g class="person-node" onclick="personClick('יואב','שר צבא דוד','יואב בן צרויה — שר הצבא החזק, הסיר את \"הדם החף\" מדוד')">
-          <rect x="740" y="240" width="120" height="45" fill="#92400e" rx="8"/>
-          <text x="800" y="262" text-anchor="middle" class="person-name" fill="#fff">יואב</text>
-          <text x="800" y="277" text-anchor="middle" class="person-role" fill="#fff">שר צבא</text>
-        </g>
-        <!-- Abishai -->
-        <g class="person-node" onclick="personClick('אבישי','אח יואב','אבישי בן צרויה — נאמן לדוד, רצה לשחוט את שמעי')">
-          <rect x="870" y="240" width="110" height="45" fill="#78716c" rx="8"/>
-          <text x="925" y="262" text-anchor="middle" class="person-name" fill="#fff">אבישי</text>
-          <text x="925" y="277" text-anchor="middle" class="person-role" fill="#fff">בן צרויה</text>
-        </g>
-        <!-- Asahel -->
-        <g class="person-node" onclick="personClick('עשהאל','אח יואב','עשהאל — קל ברגליים, נהרג ע״י אבנר; מותו גרם ליואב לנקום')">
-          <rect x="990" y="240" width="110" height="45" fill="#a8a29e" rx="8"/>
-          <text x="1045" y="262" text-anchor="middle" class="person-name" fill="#fff">עשהאל</text>
-          <text x="1045" y="277" text-anchor="middle" class="person-role" fill="#fff">בן צרויה</text>
-        </g>
-        <!-- Nathan -->
-        <g class="person-node" onclick="personClick('נתן','הנביא','נתן הנביא — שגר לדוד את משל האיש העני, מלך שלמה')">
-          <rect x="60" y="600" width="120" height="45" fill="#4338ca" rx="8"/>
-          <text x="120" y="622" text-anchor="middle" class="person-name" fill="#fff">נתן</text>
-          <text x="120" y="637" text-anchor="middle" class="person-role" fill="#fff">הנביא</text>
-        </g>
-        <!-- Samuel -->
-        <g class="person-node" onclick="personClick('שמואל','שופט ונביא','שמואל — משח את שאול ואח״כ את דוד; מוזג האל לעולם')">
-          <rect x="200" y="600" width="120" height="45" fill="#1e3a5f" rx="8"/>
-          <text x="260" y="622" text-anchor="middle" class="person-name" fill="#fff">שמואל</text>
-          <text x="260" y="637" text-anchor="middle" class="person-role" fill="#fff">הנביא</text>
-        </g>
-        <!-- Abigail -->
-        <g class="person-node" onclick="personClick('אביגיל','אשת נבל ואחר כן דוד','אביגיל — חכמה ויפה, עצרה את דוד מלשפוך דם נבל')">
-          <rect x="350" y="600" width="120" height="45" fill="#ea580c" rx="8"/>
-          <text x="410" y="622" text-anchor="middle" class="person-name" fill="#fff">אביגיל</text>
-          <text x="410" y="637" text-anchor="middle" class="person-role" fill="#fff">אשת דוד</text>
-        </g>
-        <!-- Uriah -->
-        <g class="person-node" onclick="personClick('אוריה','החתי, בעל בת-שבע','אוריה החתי — לוחם נאמן, נשלח למות על ידי דוד שרצה את אשתו')">
-          <rect x="500" y="600" width="120" height="45" fill="#374151" rx="8"/>
-          <text x="560" y="622" text-anchor="middle" class="person-name" fill="#fff">אוריה</text>
-          <text x="560" y="637" text-anchor="middle" class="person-role" fill="#fff">החתי</text>
-        </g>
-        <!-- Rizpah -->
-        <g class="person-node" onclick="personClick('רצפה','פילגש שאול','רצפה בת איה — שמרה על גופות בניה חמישה חודשים')">
-          <rect x="650" y="600" width="120" height="45" fill="#be185d" rx="8"/>
-          <text x="710" y="622" text-anchor="middle" class="person-name" fill="#fff">רצפה</text>
-          <text x="710" y="637" text-anchor="middle" class="person-role" fill="#fff">פילגש שאול</text>
-        </g>
-        <!-- Shimei -->
-        <g class="person-node" onclick="personClick('שמעי','בן גרא הבנימיני','שמעי — קילל את דוד בברחו, בקש סליחה, נהרג ע״פ צוואת דוד')">
-          <rect x="800" y="600" width="120" height="45" fill="#78350f" rx="8"/>
-          <text x="860" y="622" text-anchor="middle" class="person-name" fill="#fff">שמעי</text>
-          <text x="860" y="637" text-anchor="middle" class="person-role" fill="#fff">בן גרא</text>
-        </g>
-        <!-- Ahithophel -->
-        <g class="person-node" onclick="personClick('אחיתופל','יועץ שפנה לאבשלום','אחיתופל — יועץ דוד שבגד ועבר לאבשלום; התאבד כשלא שמעו לעצתו')">
-          <rect x="950" y="600" width="120" height="45" fill="#1f2937" rx="8"/>
-          <text x="1010" y="622" text-anchor="middle" class="person-name" fill="#fff">אחיתופל</text>
-          <text x="1010" y="637" text-anchor="middle" class="person-role" fill="#fff">היועץ הבוגד</text>
-        </g>
-
-        <!-- Annotations lines for secondary -->
-        <text x="120" y="590" text-anchor="middle" font-family="Arial" font-size="9" fill="#666">נביאים ויועצים</text>
-        <text x="600" y="590" text-anchor="middle" font-family="Arial" font-size="9" fill="#666">דמויות צדדיות</text>
+           style="display:block;min-width:2060px;height:660px;">
+        <!-- drawn by drawTree() in JS -->
       </svg>
     </div>
-    <p style="text-align:center;color:var(--fg3);font-size:.8rem;margin-top:12px;font-family:var(--font-ui)">
-      לחץ על דמות לפרטים ולסצנות שבהן היא מופיעה
+    <p style="text-align:center;color:var(--fg3);font-size:.78rem;margin-top:8px;font-family:var(--font-ui)">
+      לחץ על כל דמות לסיפור קצר ולסצנות שבהן היא מופיעה
     </p>
   </div>
 
@@ -1271,37 +1104,227 @@ function loadTheme() {{
   if (t === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
 }}
 
-// ── FAMILY TREE TOOLTIP ──
-function personClick(name, role, desc) {{
+// ── FAMILY TREE ──
+const TNODES = [
+  // Row 0 — ancestors y=55
+  {{id:'saul',    name:'שאול',      role:'מלך ישראל הראשון', cx:160,  cy:55,  c:'#dc2626', desc:'שאול בן קיש ממטה בנימין. נמשח ע"י שמואל, נדחה בגלל אי-ציות. רדף את דוד שנים רבות ונפל בגלבוע יחד עם יונתן בניו.'}},
+  {{id:'jesse',   name:'ישי',       role:'אבי דוד',           cx:830,  cy:55,  c:'#b45309', desc:'ישי בן עובד מבית לחם, מזרע רות ובועז. אבי שמונה בנים — דוד הצעיר נמשח למלך כאשר שמואל דחה את כולם לפניו.'}},
+  // Row 1 — main generation y=195
+  {{id:'jonathan',  name:'יונתן',    role:'בן שאול',                  cx:55,   cy:195, c:'#16a34a', desc:'יונתן בן שאול — יורש העצר שויתר על כתרו. כרת ברית אהבה עם דוד, ואמר לו: "ואתה תמלוך". נפל בגלבוע עם אביו. דוד קינן: "נפלאתה אהבתך לי מאהבת נשים".'}},
+  {{id:'michal',    name:'מיכל',     role:'בת שאול / אשת דוד',        cx:215,  cy:195, c:'#9333ea', desc:'מיכל בת שאול אהבה את דוד והצילה אותו דרך החלון. הוחזרה לדוד בכפייה, תוך שפלטיאל בעלה בוכה. בזה לדוד הרוקד לפני הארון — ומתה עקרה.'}},
+  {{id:'ishbosh',   name:'אישבושת',  role:'בן שאול',                  cx:375,  cy:195, c:'#64748b', desc:'אישבושת (מלכי-בושת) בן שאול. מלך על ישראל 7 שנים בתמיכת אבנר, עד שנרצח על ידי בענה ורכב. דוד לא ידע על הרצח, ועינה את הרוצחים.'}},
+  {{id:'merab',     name:'מרב',      role:'בת שאול',                  cx:525,  cy:195, c:'#78716c', desc:'מרב בת שאול — הובטחה לדוד אחרי גלית, אך נישאה לעדריאל המחלתי. חמישה מבניה נמסרו לגבעונים כפדיון דם.'}},
+  {{id:'rizpah',    name:'רצפה',     role:'פילגש שאול',               cx:670,  cy:195, c:'#be185d', desc:'רצפה בת איה, פילגש שאול. שמרה על גופות שני בניה שנמסרו לגבעונים — מיממת הגשמים של ניסן עד ירידת הגשמים. מעשה זה הרגיש את דוד לקבור את שאול ויונתן.'}},
+  {{id:'david',     name:'דוד המלך', role:'מלך יהודה וישראל',        cx:830,  cy:195, c:'#1d4ed8', desc:'דוד בן ישי — רועה שנמשח, גיבור, חוטא, מתחרט, משורר. מלך 40 שנה. כתב מזמורי תהילים מתוך כל שעה בחייו. חוט זהב: "כל עצירת יד מולידה כינור".',  main:true}},
+  {{id:'zeruiah',   name:'צרויה',    role:'אחות דוד',                 cx:1000, cy:195, c:'#6b7280', desc:'צרויה אחות דוד ואם שלושת הגיבורים — יואב, אבישי ועשהאל. דוד אמר "קשים בני צרויה ממני" — היא מייצגת את הכוח שדוד לא יכול לרסן.'}},
+  {{id:'ahinoam',   name:'אחינועם', role:'אשת דוד (א)',              cx:1180, cy:195, c:'#7c3aed', desc:'אחינועם היזרעאלית — אשתו הראשונה של דוד לאחר מיכל. ילדה לו את אמנון הבכור. הייתה עמו בגלות בגת ובצקלג.'}},
+  {{id:'abigail',   name:'אביגיל',  role:'אשת דוד (ב)',              cx:1360, cy:195, c:'#ea580c', desc:'אביגיל אשת נבל הכרמלי — חכמה, יפה, ובעלת לשון. עצרה את דוד מלשפוך דם נבל. לאחר מותו נישאה לדוד. "ברוך ה׳ אלהי ישראל אשר שלחך היום".'}},
+  {{id:'maacah',    name:'מעכה',    role:'אשת דוד (ג)',              cx:1550, cy:195, c:'#c026d3', desc:'מעכה בת תלמי מלך גשור, אשת דוד. ילדה לו את אבשלום ואת תמר. קשרי הנישואים לגשור אפשרו לאבשלום לברוח לשם אחרי רצח אמנון.'}},
+  {{id:'haggith',   name:'חגית',    role:'אשת דוד (ד)',              cx:1730, cy:195, c:'#b45309', desc:'חגית אשת דוד, אם אדוניה. כמעט בנה אדוניה מלך לפני שלמה — אך בת-שבע ונתן הנביא הקדימו אותו אצל דוד הזקן.'}},
+  {{id:'bathsheba', name:'בת-שבע',  role:'אשת דוד (ה)',              cx:1940, cy:195, c:'#0891b2', desc:'בת-שבע אשת אוריה החתי. נלקחה על ידי דוד שלח את אוריה למות. ילדה ארבעה בנים, מהם שלמה. נתן הנביא: "אתה האיש".'}},
+  // Row 2 — grandchildren/nephews y=370
+  {{id:'mephib',    name:'מפיבושת', role:'בן יונתן',                 cx:55,   cy:370, c:'#065f46', desc:'מפיבושת בן יונתן — נכה בשתי רגליו בגלל נפילה כשהיה בן חמש. דוד הזמינו לשלחנו לכל ימיו לזכות ברית יונתן. "ויאכל תמיד על שולחן המלך".'}},
+  {{id:'joab',      name:'יואב',    role:'שר הצבא',                  cx:930,  cy:370, c:'#92400e', desc:'יואב בן צרויה — שר הצבא החזק. הרג את אבנר נקמה, את אבשלום בניגוד לפקודה. דוד: "ה׳ ישיב דמו בראשו" — ציוה לשלמה להרגו.'}},
+  {{id:'abishai',   name:'אבישי',   role:'אח יואב',                  cx:1080, cy:370, c:'#78716c', desc:'אבישי בן צרויה — נאמן לדוד. רצה לשחוט את שמעי שקילל את דוד, אך דוד עצר אותו. הצילו מהפלשתי שרצה להכותו.'}},
+  {{id:'asahel',    name:'עשהאל',   role:'אח יואב',                  cx:1230, cy:370, c:'#a8a29e', desc:'עשהאל בן צרויה — קל ברגליים כצבי. רדף אחרי אבנר ונהרג על ידו. מותו הצית את נקמת יואב שהרג את אבנר שנים לאחר מכן.'}},
+  // Row 3 — David's children y=500
+  {{id:'amnon',     name:'אמנון',   role:'בכור דוד (מאחינועם)',      cx:1180, cy:500, c:'#854d0e', desc:'אמנון בכור דוד מאחינועם. אנס את תמר אחותו למחצה ואחר כן שנאה שנאה גדולה. אבשלום נקם את כבוד תמר ורצח אותו שנתיים לאחר מכן.'}},
+  {{id:'chileab',   name:'כלאב',    role:'בן דוד (מאביגיל)',         cx:1360, cy:500, c:'#7c6d5a', desc:'כלאב (דניאל בדה"א) בן דוד ואביגיל. כמעט לא מוזכר בכתוב — כנראה מת צעיר, או שהצניעות הגנה עליו מהמעורבות במאבקי הירושה.'}},
+  {{id:'absalom',   name:'אבשלום',  role:'בן דוד (ממעכה)',           cx:1510, cy:500, c:'#be123c', desc:'אבשלום בן דוד ומעכה — יפה תואר. נקם את תמר אחותו, גלה, חזר, מרד ושכב עם פילגשי דוד על הגג. נהרג ע"י יואב. דוד: "בני בני אבשלום! מי יתן מותי אני תחתיך".'}},
+  {{id:'tamar',     name:'תמר',     role:'בת דוד (ממעכה)',           cx:1660, cy:500, c:'#86198f', desc:'תמר בת דוד ומעכה — אחות אבשלום. נאנסה ע"י אמנון ואחר כך "ישבה שוממה בבית אבשלום אחיה". קולה נדם. אבשלום קרא לבתו "תמר" לזכרה.'}},
+  {{id:'adonijah',  name:'אדוניה',  role:'בן דוד (מחגית)',           cx:1800, cy:500, c:'#374151', desc:'אדוניה בן דוד מחגית, יפה תואר אחרי אבשלום. ניסה למלוך לפני שלמה, אך שלמה הומלך תחתיו. לאחר מכן ביקש את אבישג ונהרג ע"י שלמה.'}},
+  {{id:'solomon',   name:'שלמה',    role:'יורש המלכות (מבת-שבע)',    cx:1940, cy:500, c:'#047857', desc:'שלמה בן דוד ובת-שבע — יורש, בונה המקדש, המלך החכם. נתן הנביא קראו "ידידיה". שלמה = שלם = שלום. בנה את הבית שדוד חלם לבנות ולא הורשה.'}},
+  // Row 4 — secondary figures y=590
+  {{id:'samuel',    name:'שמואל',   role:'הנביא הגדול',              cx:150,  cy:590, c:'#1e3a5f', desc:'שמואל בן אלקנה — נביא ושופט. משח את שאול ואחר כך את דוד. ייצג את המעבר משופטים למלוכה. אפילו לאחר מותו קם מהאוב לנבא לשאול בעין-דור.'}},
+  {{id:'nathan',    name:'נתן',     role:'הנביא',                    cx:330,  cy:590, c:'#4338ca', desc:'נתן הנביא — שלח לדוד את משל האיש העני ואמר "אתה האיש". ייצג הצפן המוסרי של המחזמר. גם מינה את שלמה וסייע לבת-שבע.'}},
+  {{id:'doeg',      name:'דואג',    role:'עבד שאול / מלשין',         cx:505,  cy:590, c:'#7f1d1d', desc:'דואג האדומי, ראש רועי שאול. הלשין לשאול על אחימלך כהן נוב. שחט 85 כהנים. דוד כתב עליו תהילים נב: "מה תתהלל ברעה הגיבור — חסד ה׳ כל היום".'}},
+  {{id:'shimei',    name:'שמעי',    role:'בן גרא הבנימיני',          cx:680,  cy:590, c:'#78350f', desc:'שמעי בן גרא ממשפחת שאול. קילל את דוד ואבק אבנים בו בשעת הבריחה. דוד: "ה׳ אמר לו קלל". סלח לו בשובו — אך בצוואה ציוה לשלמה לשלם לו.'}},
+  {{id:'ahithophel',name:'אחיתופל',role:'היועץ הבוגד',               cx:1510, cy:590, c:'#1f2937', desc:'אחיתופל היועץ הנאמן שעבר לצד אבשלום. עצותיו נחשבו "כשאול ה׳". כשלא שמעו לו תלה עצמו. דוד ידע שבגד ואמר: "גם אתה אחיתופל" (תהילים נה).'}},
+  {{id:'uriah',     name:'אוריה',   role:'החתי / בעל בת-שבע',       cx:1940, cy:590, c:'#44403c', desc:'אוריה החתי — לוחם נאמן ומסור. סירב לישון עם אשתו בשעה שהחיל במדינה. דוד שלח בידיו את גזר דינו. "נפלו מעבדי דוד — ויגוע גם אוריה החתי".'}}
+];
+
+const TEDGES = [
+  // Saul → children (branch at y=125)
+  {{t:'branch', from:'saul',      branch_y:125, children:['jonathan','michal','ishbosh','merab','rizpah']}},
+  // Jesse → David + Zeruiah (branch at y=125)
+  {{t:'branch', from:'jesse',     branch_y:125, children:['david','zeruiah']}},
+  // Jonathan → Mephibosheth
+  {{t:'parent', from:'jonathan', to:'mephib'}},
+  // David ↔ Michal (marriage, dashed purple)
+  {{t:'marriage', from:'michal', to:'david', color:'#9333ea'}},
+  // David → wives (dashed from David up to each wife via line at y=155)
+  {{t:'wives', david_cx:830, wives:['ahinoam','abigail','maacah','haggith','bathsheba'], bar_y:155}},
+  // Zeruiah → sons
+  {{t:'branch', from:'zeruiah', branch_y:283, children:['joab','abishai','asahel']}},
+  // Children from each wife
+  {{t:'parent', from:'ahinoam',   to:'amnon'}},
+  {{t:'parent', from:'abigail',   to:'chileab'}},
+  {{t:'branch', from:'maacah',    branch_y:430, children:['absalom','tamar']}},
+  {{t:'parent', from:'haggith',   to:'adonijah'}},
+  {{t:'parent', from:'bathsheba', to:'solomon'}},
+];
+
+function nodeById(id) {{ return TNODES.find(n => n.id===id); }}
+
+function drawTree() {{
+  const svg = document.getElementById('tree-svg');
+  svg.innerHTML = '';
+  const ns = 'http://www.w3.org/2000/svg';
+  const W = 2060, H = 650;
+  svg.setAttribute('viewBox', `0 0 ${{W}} ${{H}}`);
+
+  function el(tag, attrs, text) {{
+    const e = document.createElementNS(ns, tag);
+    Object.entries(attrs).forEach(([k,v]) => e.setAttribute(k, v));
+    if (text !== undefined) e.textContent = text;
+    return e;
+  }}
+  function line(x1,y1,x2,y2,col,w,dash) {{
+    const l = el('line', {{x1,y1,x2,y2,stroke:col||'#888','stroke-width':w||1.5}});
+    if (dash) l.setAttribute('stroke-dasharray', dash);
+    svg.appendChild(l);
+  }}
+
+  // Draw edges first (behind nodes)
+  TEDGES.forEach(edge => {{
+    if (edge.t === 'branch') {{
+      const from = nodeById(edge.from);
+      if (!from) return;
+      const cxs = edge.children.map(id => nodeById(id)?.cx).filter(Boolean);
+      if (!cxs.length) return;
+      const minX = Math.min(...cxs), maxX = Math.max(...cxs);
+      // Stem from parent down to branch_y
+      line(from.cx, from.cy+22, from.cx, edge.branch_y, '#888', 2);
+      // Horizontal bar
+      line(minX, edge.branch_y, maxX, edge.branch_y, '#888', 1.5);
+      // Down to each child
+      edge.children.forEach(id => {{
+        const ch = nodeById(id);
+        if (ch) line(ch.cx, edge.branch_y, ch.cx, ch.cy-22, '#888', 1.5);
+      }});
+    }} else if (edge.t === 'parent') {{
+      const from = nodeById(edge.from), to = nodeById(edge.to);
+      if (!from || !to) return;
+      if (from.cx === to.cx) {{
+        line(from.cx, from.cy+22, to.cx, to.cy-22, '#888', 1.5);
+      }} else {{
+        // Elbow
+        const midY = (from.cy+22 + to.cy-22) / 2;
+        line(from.cx, from.cy+22, from.cx, midY, '#888', 1.5);
+        line(from.cx, midY, to.cx, midY, '#888', 1.5);
+        line(to.cx, midY, to.cx, to.cy-22, '#888', 1.5);
+      }}
+    }} else if (edge.t === 'marriage') {{
+      const a = nodeById(edge.from), b = nodeById(edge.to);
+      if (!a || !b) return;
+      const x1 = Math.min(a.cx,b.cx)+60, x2 = Math.max(a.cx,b.cx)-60;
+      const y = Math.min(a.cy,b.cy);
+      const l = el('line', {{x1,y1:y,x2,y2:y,stroke:edge.color||'#9333ea','stroke-width':2}});
+      l.setAttribute('stroke-dasharray','6,4');
+      svg.appendChild(l);
+    }} else if (edge.t === 'wives') {{
+      // Horizontal bar at bar_y, from David right to last wife
+      const lastWife = nodeById(edge.wives[edge.wives.length-1]);
+      if (!lastWife) return;
+      // Line from David top up to bar_y
+      line(edge.david_cx, 195-22, edge.david_cx, edge.bar_y, '#0891b2', 1.5, '6,4');
+      // Horizontal bar
+      const wL = el('line', {{x1:edge.david_cx, y1:edge.bar_y, x2:lastWife.cx, y2:edge.bar_y, stroke:'#0891b2','stroke-width':1.5}});
+      wL.setAttribute('stroke-dasharray','6,4');
+      svg.appendChild(wL);
+      // Down from bar to each wife
+      edge.wives.forEach(id => {{
+        const w = nodeById(id);
+        if (w) {{
+          const d = el('line', {{x1:w.cx, y1:edge.bar_y, x2:w.cx, y2:w.cy-22, stroke:'#0891b2','stroke-width':1.5}});
+          d.setAttribute('stroke-dasharray','6,4');
+          svg.appendChild(d);
+        }}
+      }});
+    }}
+  }});
+
+  // Draw section labels
+  [['שושלת שאול', 370, 16], ['משפחת ישי', 830, 16], ['נשות דוד', 1560, 16],
+   ['נביאים ויועצים', 415, 580]].forEach(([txt, x, y]) => {{
+    svg.appendChild(el('text', {{x, y, 'text-anchor':'middle', 'font-family':'Arial,sans-serif',
+      'font-size':'11', fill:'#aaa', 'font-style':'italic'}}, txt));
+  }});
+
+  // Draw nodes
+  TNODES.forEach(n => {{
+    const g = document.createElementNS(ns, 'g');
+    g.setAttribute('class','person-node');
+    g.setAttribute('cursor','pointer');
+    const w = n.main ? 150 : 120, h = 44;
+    const rx = n.main ? 10 : 7;
+    const rect = el('rect', {{
+      x: n.cx-w/2, y: n.cy-h/2, width:w, height:h,
+      fill: n.c, rx, ry:rx
+    }});
+    if (n.main) {{
+      rect.setAttribute('stroke', '#fff');
+      rect.setAttribute('stroke-width', '2');
+    }}
+    g.appendChild(rect);
+    g.appendChild(el('text', {{
+      x:n.cx, y:n.cy-5, 'text-anchor':'middle',
+      'font-family':'Arial,sans-serif', 'font-size': n.main ? '14':'13',
+      fill:'#fff', 'font-weight':'bold'
+    }}, n.name));
+    g.appendChild(el('text', {{
+      x:n.cx, y:n.cy+11, 'text-anchor':'middle',
+      'font-family':'Arial,sans-serif', 'font-size':'10',
+      fill:'#ffffffcc'
+    }}, n.role));
+    g.addEventListener('click', (e) => {{ e.stopPropagation(); personClick(n, e); }});
+    svg.appendChild(g);
+  }});
+}}
+
+function personClick(n, evt) {{
   const tt = document.getElementById('tree-tooltip');
-  const sceneList = CHARS[name] ? CHARS[name].scenes : [];
+  if (tt.style.display==='block' && tt.dataset.person===n.id) {{
+    tt.style.display='none'; return;
+  }}
+  const sceneList = CHARS[n.name] ? CHARS[n.name].scenes : [];
   const sceneLinks = sceneList.map(id => {{
-    const s = SCENES.find(x => x.id === id);
+    const s = SCENES.find(x => x.id===id);
     return s ? `<a href="#" onclick="jumpToScene('${{id}}');return false" style="color:var(--accent)">${{s.label}}</a>` : '';
   }}).filter(Boolean).join(', ');
   tt.innerHTML = `
-    <strong>${{name}}</strong><br>
-    <span style="color:#666;font-size:.8rem">${{role}}</span><br>
-    <p style="margin:.5em 0;font-size:.85rem">${{desc}}</p>
-    ${{sceneLinks ? '<div style="font-size:.8rem;margin-top:4px"><strong>סצנות:</strong> ' + sceneLinks + '</div>' : ''}}
-    <div style="font-size:.75rem;color:#999;margin-top:6px">לחץ שוב לסגירה</div>
+    <div style="font-size:1rem;font-weight:bold;color:var(--accent);margin-bottom:4px">${{n.name}}</div>
+    <div style="font-size:.8rem;color:var(--fg3);margin-bottom:8px">${{n.role}}</div>
+    <div style="font-size:.88rem;line-height:1.55">${{n.desc}}</div>
+    ${{sceneLinks ? `<div style="font-size:.8rem;margin-top:8px;border-top:1px solid var(--border);padding-top:6px"><strong>מופיע/ה בסצנות:</strong> ${{sceneLinks}}</div>` : ''}}
+    <div style="font-size:.72rem;color:var(--fg3);margin-top:6px">לחץ שוב לסגירה</div>
   `;
-  if (tt.style.display === 'block' && tt.dataset.person === name) {{
-    tt.style.display = 'none';
-  }} else {{
-    tt.style.display = 'block';
-    tt.dataset.person = name;
-    tt.style.top = '200px';
-    tt.style.right = '300px';
-  }}
+  tt.style.display='block';
+  tt.dataset.person=n.id;
+  const margin = 16;
+  let top = (evt?.clientY || 300) + 10;
+  let left = (evt?.clientX || 400) - 150;
+  if (left < margin) left = margin;
+  if (left + 310 > window.innerWidth - margin) left = window.innerWidth - 310 - margin;
+  if (top + 250 > window.innerHeight - margin) top = (evt?.clientY || 300) - 260;
+  tt.style.top = top + 'px';
+  tt.style.left = left + 'px';
+  tt.style.right = 'auto';
 }}
 
 document.addEventListener('click', e => {{
   const tt = document.getElementById('tree-tooltip');
-  if (!e.target.closest('#tree-svg') && !e.target.closest('#tree-tooltip')) {{
+  if (!e.target.closest('.person-node') && !e.target.closest('#tree-tooltip')) {{
     tt.style.display = 'none';
   }}
 }});
+
+// Draw tree when view-tree becomes visible
+const _origShowView = showView;
+function showViewWrapped(name) {{
+  _origShowView(name);
+  if (name === 'tree') drawTree();
+}}
 
 // ── SCROLL SPY ──
 const observer = new IntersectionObserver((entries) => {{
