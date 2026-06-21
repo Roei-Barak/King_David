@@ -306,6 +306,7 @@ body {{
   font-family: var(--font-ui);
 }}
 .sidebar-special:hover {{ background: var(--bg3); }}
+.sidebar-special.active {{ background: var(--accent); color: #fff; font-weight: 600; }}
 
 /* ── MAIN ── */
 #main {{
@@ -737,7 +738,10 @@ mark {{ background: #ffd70088; color: var(--fg); border-radius: 2px; }}
 
 <!-- SIDEBAR -->
 <nav id="sidebar">
+  <div class="sidebar-special" onclick="showViewWrapped('scenes')">📜 סצנות</div>
+  <div class="sidebar-special" onclick="showViewWrapped('chars')">👤 דמויות</div>
   <div class="sidebar-special" onclick="showViewWrapped('tree')">🌳 אילן יוחסין</div>
+  <div class="sidebar-special" onclick="showViewWrapped('relations')">🕸 גרף קשרים</div>
   <div class="sidebar-special" onclick="showViewWrapped('structure')">🎭 מבנה דרמטי</div>
   <div class="sidebar-divider"></div>
   <div id="sidebar-nav"></div>
@@ -1068,6 +1072,11 @@ function buildCharCards() {{
 function showView(name) {{
   document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
   document.getElementById('view-' + name).classList.add('active');
+  document.querySelectorAll('.sidebar-special').forEach(b => b.classList.remove('active'));
+  const viewMap = {{'scenes':'📜 סצנות','chars':'👤 דמויות','tree':'🌳 אילן יוחסין','relations':'🕸 גרף קשרים','structure':'🎭 מבנה דרמטי'}};
+  document.querySelectorAll('.sidebar-special').forEach(b => {{
+    if (b.textContent.trim() === (viewMap[name]||'')) b.classList.add('active');
+  }});
 }}
 
 function jumpToScene(id) {{
