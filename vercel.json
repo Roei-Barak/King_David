@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "outputDirectory": "vercel-deploy",
+  "builds": [
+    { "src": "vercel-deploy/index.html", "use": "@vercel/static" }
+  ],
+  "routes": [
+    { "src": "/(.*)", "dest": "/vercel-deploy/index.html" }
+  ]
+}
