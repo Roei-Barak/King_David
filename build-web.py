@@ -1458,7 +1458,7 @@ const RNODES = [
 // dir: 'fwd'=arrow from→to, 'bwd'=arrow to→from, 'both'=bidirectional, 'none'=undirected
 const REDGES = [
   {{f:'david',      t:'jonathan',     type:'אהבה',        dir:'both', note:'ידידות עמוקה; יונתן ויתר על כתרו; "נפלאתה אהבתך לי"'}},
-  {{f:'david',      t:'saul',         type:'כבוד',         dir:'fwd',  note:'דוד לא נגע במשיח ה\' גם כשיכל להורגו'}},
+  {{f:'david',      t:'saul',         type:'כבוד',         dir:'fwd',  note:'דוד לא נגע במשיח ה׳ גם כשיכל להורגו'}},
   {{f:'saul',       t:'david',        type:'קנאה',         dir:'fwd',  note:'"שאול הכה באלפיו ודוד ברבבותיו" — הקנאה הרסה את שאול'}},
   {{f:'david',      t:'michal',       type:'אהבה',         dir:'fwd',  note:'אהבה ראשונה; היא הצילה אותו מחלון; הוחזרה בכפייה'}},
   {{f:'michal',     t:'david',        type:'בוז',          dir:'fwd',  note:'"ותבז לו בלבה" — בזה לו הרוקד לפני הארון; מתה עקרה'}},
@@ -1479,9 +1479,9 @@ const REDGES = [
   {{f:'amnon',      t:'tamar',        type:'תאווה→שנאה',  dir:'fwd',  note:'"שנאה גדולה מאד" — אחרי האונס; מנגנון בושה'}},
   {{f:'absalom',    t:'amnon',        type:'נקמה',         dir:'fwd',  note:'שתק שנתיים, הרג בחגיגת הגזזים; "כי אמנון שנא את תמר"'}},
   {{f:'absalom',    t:'tamar',        type:'אהבת אב',      dir:'fwd',  note:'קרא לבתו תמר; "ישב שמם" — שמר עליה בביתו'}},
-  {{f:'ahithophel', t:'david',        type:'בגידה',        dir:'fwd',  note:'עבר לאבשלום; "עצת אחיתופל כשאל ה\'"'}},
+  {{f:'ahithophel', t:'david',        type:'בגידה',        dir:'fwd',  note:'עבר לאבשלום; "עצת אחיתופל כשאל ה׳"'}},
   {{f:'shimei',     t:'david',        type:'שנאה',         dir:'fwd',  note:'קילל, האבין, ואמר "צא צא איש הדמים"'}},
-  {{f:'david',      t:'shimei',       type:'כבוד',         dir:'fwd',  note:'"ה\' אמר לו קלל" — קיבל את הקללה כגזרת שמים'}},
+  {{f:'david',      t:'shimei',       type:'כבוד',         dir:'fwd',  note:'"ה׳ אמר לו קלל" — קיבל את הקללה כגזרת שמים'}},
   {{f:'joab',       t:'absalom',      type:'בוז',          dir:'fwd',  note:'הרג אותו בניגוד לפקודה; לא חשב לו לחטא'}},
   {{f:'rizpah',     t:'saul',         type:'אהבה',         dir:'fwd',  note:'שמרה על גופות בניה — אהבת אם ופילגש; 5 חודשי שמירה'}},
   {{f:'david',      t:'rizpah',       type:'אבל',          dir:'fwd',  note:'שמע על מסירותה ונרגש לקבור את שאול ויונתן'}},
