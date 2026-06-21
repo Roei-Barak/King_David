@@ -12,7 +12,6 @@ from docx.oxml import OxmlElement
 ROOT = Path("/home/user/King_David")
 SCENES = ROOT / "scenes"
 
-# סדר הספר — לפי outline/master-version-ab.md, עם הרחבות בסדר מקראי
 BOOK = [
     ("חלק א'", "מַעֲרָכָה א — מִן הָרוֹעֶה לַמֶּלֶךְ", None),
     (None, None, "prologue.md"),
@@ -38,7 +37,7 @@ BOOK = [
     (None, None, "scene-10-mephibosheth.md"),
     (None, None, "scene-10b-ammon-war.md"),
     (None, None, "scene-bathsheba-uriah.md"),
-    (None, None, "scene-bathhouse.md"),
+    (None, None, "bathhouse.md"),
     (None, None, "scene-13b-amnon-tamar.md"),
     (None, None, "scene-13e-absalom-return.md"),
     (None, None, "scene-13c-revolt.md"),
@@ -53,56 +52,72 @@ BOOK = [
     (None, None, "scene-tzruya-david.md"),
 ]
 
+FONT = "Arial"
+
 doc = Document()
 
-# סגנון בסיס — גופן עברי, RTL
+# שוליים צרים יותר
+for section in doc.sections:
+    section.top_margin = Inches(1.0)
+    section.bottom_margin = Inches(1.0)
+    section.left_margin = Inches(1.1)
+    section.right_margin = Inches(1.1)
+
+# סגנון בסיס — Arial, RTL
 style = doc.styles["Normal"]
-style.font.name = "David"
-style.font.size = Pt(12)
-style._element.rPr.rFonts.set(qn("w:cs"), "David")
+style.font.name = FONT
+style.font.size = Pt(11)
+style._element.rPr.rFonts.set(qn("w:cs"), FONT)
+style.paragraph_format.space_before = Pt(0)
+style.paragraph_format.space_after = Pt(3)
 
 def set_rtl(p):
     pPr = p._p.get_or_add_pPr()
+    # bidi — כיוון RTL לפסקה
     bidi = OxmlElement("w:bidi")
     pPr.append(bidi)
     p.alignment = WD_ALIGN_PARAGRAPH.RIGHT
 
-def add_par(text, size=12, bold=False, italic=False, color=None, align=WD_ALIGN_PARAGRAPH.RIGHT, space_after=6):
+def add_par(text, size=11, bold=False, italic=False, color=None,
+            align=WD_ALIGN_PARAGRAPH.RIGHT, space_after=3, line_spacing=1.15):
     p = doc.add_paragraph()
     set_rtl(p)
     p.alignment = align
+    p.paragraph_format.space_before = Pt(0)
     p.paragraph_format.space_after = Pt(space_after)
+    p.paragraph_format.line_spacing = Pt(size * line_spacing * 1.3)
     run = p.add_run(text)
     run.font.size = Pt(size)
     run.bold = bold
     run.italic = italic
-    run.font.name = "David"
-    run.font._element.rPr.rFonts.set(qn("w:cs"), "David")
+    run.font.name = FONT
+    run.font._element.rPr.rFonts.set(qn("w:cs"), FONT)
     if color:
         run.font.color.rgb = color
     return p
 
 # --- עמוד שער ---
-for _ in range(6):
+for _ in range(3):
     doc.add_paragraph()
-add_par("מִזְמוֹר לְדָוִד", size=40, bold=True, align=WD_ALIGN_PARAGRAPH.CENTER, space_after=12)
-add_par("הַצַּדִּיק שֶׁכּוֹתֵב שִׁירִים", size=20, italic=True, align=WD_ALIGN_PARAGRAPH.CENTER, space_after=24)
-add_par("מחזמר במה על חיי דוד המלך", size=14, align=WD_ALIGN_PARAGRAPH.CENTER, space_after=6)
-add_par("טיוטה לקריאה והערות", size=12, italic=True, align=WD_ALIGN_PARAGRAPH.CENTER, color=RGBColor(0x80,0x80,0x80))
+add_par("מִזְמוֹר לְדָוִד", size=36, bold=True, align=WD_ALIGN_PARAGRAPH.CENTER, space_after=8)
+add_par("הַצַּדִּיק שֶׁכּוֹתֵב שִׁירִים", size=18, italic=True, align=WD_ALIGN_PARAGRAPH.CENTER, space_after=16)
+add_par("מחזמר במה על חיי דוד המלך", size=13, align=WD_ALIGN_PARAGRAPH.CENTER, space_after=4)
+add_par("טיוטה לקריאה והערות", size=11, italic=True, align=WD_ALIGN_PARAGRAPH.CENTER, color=RGBColor(0x80,0x80,0x80))
 doc.add_page_break()
 
 # --- הערת קריאה ---
-add_par("לקורא", size=18, bold=True, space_after=10)
-add_par("מסמך זה מאחד את כל הסצנות של המחזמר בסדר קריאה רציף, כספר. הסדר נקבע לפי המתווה המאוחד (outline/master-version-ab.md).", space_after=6)
-add_par("שלוש השפות במחזה: דיאלוג = פרוזה מליצית מקראית · מונולוג פנימי = שיר חופשי על דרך תהילים · שיר מוזיקלי = חרוז ומטר קבועים.", space_after=6)
-add_par("סימון [להכריע: רסיטטיב/פזמון] מציין מקום שבו טקסט מולחן הוא פסוק תהילים גולמי — וטרם הוכרע אם להלחינו כרסיטטיב או לעבדו לפזמון.", space_after=6)
-add_par("הערות בסוגריים נטויים *(כך)* הן הוראות במאי. ציטוטים מקראיים מסומנים *(ספר פרק, פסוק)*.", space_after=6)
+add_par("לקורא", size=16, bold=True, space_after=6)
+add_par("מסמך זה מאחד את כל הסצנות של המחזמר בסדר קריאה רציף, כספר.", space_after=3)
+add_par("שלוש השפות: דיאלוג = פרוזה מליצית מקראית · מונולוג פנימי = שיר חופשי על דרך תהילים · שיר מוזיקלי = חרוז ומטר קבועים.", space_after=3)
+add_par("סימון [להכריע: רסיטטיב/פזמון] — מקום שטרם הוכרע אם להלחינו כרסיטטיב או לעבדו לפזמון.", space_after=3)
+add_par("הערות *(כך)* הן הוראות במאי. ציטוטים מקראיים מסומנים *(ספר פרק, פסוק)*.", space_after=3)
 doc.add_page_break()
 
 # --- עיבוד markdown לפסקאות Word ---
 def render_md(text):
     lines = text.split("\n")
     in_code = False
+    prev_empty = False
     for raw in lines:
         line = raw.rstrip()
         if line.strip().startswith("```"):
@@ -110,9 +125,12 @@ def render_md(text):
             continue
         if in_code:
             continue
+        # שורה ריקה — מדלגים על רצפים של שורות ריקות
         if not line.strip():
+            if not prev_empty:
+                prev_empty = True
             continue
-        # טבלאות markdown — מדלגים על שורת המפריד, מנקים את צינורות
+        prev_empty = False
         if re.match(r"^\s*\|[-\s:|]+\|\s*$", line):
             continue
         # כותרות
@@ -120,35 +138,36 @@ def render_md(text):
         if m:
             level = len(m.group(1))
             txt = clean_inline(m.group(2))
-            size = {1:22,2:18,3:15,4:13,5:12,6:12}.get(level,12)
-            add_par(txt, size=size, bold=True, space_after=8 if level<=2 else 4)
+            size = {1:18,2:15,3:13,4:12,5:11,6:11}.get(level,11)
+            sa = 5 if level <= 2 else 3
+            add_par(txt, size=size, bold=True, space_after=sa)
             continue
         # ציטוט/בלוק
         if line.strip().startswith(">"):
             txt = clean_inline(line.strip()[1:].strip())
-            add_par(txt, italic=True, color=RGBColor(0x55,0x55,0x55), space_after=4)
+            add_par(txt, italic=True, color=RGBColor(0x55,0x55,0x55), space_after=2)
             continue
-        # שורת טבלה — הופכים לטקסט מופרד
+        # שורת טבלה
         if line.strip().startswith("|"):
             cells = [c.strip() for c in line.strip().strip("|").split("|")]
             txt = "  —  ".join(c for c in cells if c)
-            add_par(clean_inline(txt), size=11, space_after=2)
+            add_par(clean_inline(txt), size=10, space_after=2)
             continue
         # רשימה
         if re.match(r"^\s*[-*]\s+", line):
             txt = clean_inline(re.sub(r"^\s*[-*]\s+","",line))
-            p = add_par("•  " + txt, space_after=2)
+            add_par("•  " + txt, space_after=2)
             continue
         # מפריד
         if re.match(r"^\s*---+\s*$", line):
-            add_par("⸻", align=WD_ALIGN_PARAGRAPH.CENTER, color=RGBColor(0xAA,0xAA,0xAA), space_after=4)
+            add_par("⸻", align=WD_ALIGN_PARAGRAPH.CENTER, color=RGBColor(0xAA,0xAA,0xAA), space_after=3)
             continue
         # רגיל
-        add_par(clean_inline(line), space_after=4)
+        add_par(clean_inline(line), space_after=3)
 
 def clean_inline(s):
-    s = re.sub(r"\*\*(.+?)\*\*", r"\1", s)   # bold
-    s = re.sub(r"(?<!\*)\*(?!\*)(.+?)(?<!\*)\*(?!\*)", r"\1", s)  # italic
+    s = re.sub(r"\*\*(.+?)\*\*", r"\1", s)
+    s = re.sub(r"(?<!\*)\*(?!\*)(.+?)(?<!\*)\*(?!\*)", r"\1", s)
     s = re.sub(r"`(.+?)`", r"\1", s)
     return s
 
@@ -156,8 +175,9 @@ def clean_inline(s):
 for part, title, fname in BOOK:
     if fname is None:
         doc.add_page_break()
-        add_par(part, size=16, bold=True, align=WD_ALIGN_PARAGRAPH.CENTER, color=RGBColor(0x33,0x33,0x33), space_after=6)
-        add_par(title, size=24, bold=True, align=WD_ALIGN_PARAGRAPH.CENTER, space_after=12)
+        add_par(part, size=13, bold=True, align=WD_ALIGN_PARAGRAPH.CENTER,
+                color=RGBColor(0x55,0x55,0x55), space_after=4)
+        add_par(title, size=20, bold=True, align=WD_ALIGN_PARAGRAPH.CENTER, space_after=8)
         continue
     fpath = SCENES / fname
     if not fpath.exists():
