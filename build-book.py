@@ -32,13 +32,14 @@ BOOK = [
     (None, None, "scene-06-lament.md"),
     (None, None, "scene-07-brothers-war.md"),
     (None, None, "scene-ishbosheth.md"),
+    (None, None, "scene-jerusalem.md"),
     (None, None, "scene-08-dance.md"),
     (None, None, "scene-09-not-you.md"),
     (None, None, "scene-chr25-singers.md"),
     (None, None, "scene-10-mephibosheth.md"),
     (None, None, "scene-10b-ammon-war.md"),
     (None, None, "scene-bathsheba-uriah.md"),
-    (None, None, "bathhouse.md"),
+    (None, None, "scene-bathhouse.md"),
     (None, None, "scene-13b-amnon-tamar.md"),
     (None, None, "scene-13e-absalom-return.md"),
     (None, None, "scene-13c-revolt.md"),
@@ -204,6 +205,7 @@ COVERAGE = [
     ("שמ\"ב א — קינת דוד", "קינה", "חלק ב'"),
     ("שמ\"ב ב–ג — מלחמת האחים", "מלחמת האחים", "חלק ב'"),
     ("שמ\"ב ד — מות איש-בשת", "מות איש-בשת", "חלק ב'"),
+    ("שמ\"ב ה — כיבוש ירושלים", "עיר דוד", "חלק ב'"),
     ("שמ\"ב ו — ריקוד לפני הארון", "הריקוד ומיכל", "חלק ב'"),
     ("שמ\"ב ז — לא אתה תבנה", "לא אתה תבנה", "חלק ב'"),
     ("דה\"א כה — 288 המשוררים", "המשוררים", "חלק ב'"),
@@ -241,6 +243,24 @@ MODERN_REFS = [
     ("הללויה + שיר — כפרה דרך שיר", "המילטון: \"Who Lives, Who Dies\" · לה מיזרבל: \"Do You Hear the People Sing\" · Wicked: \"For Good\" · אביזר פינאלה"),
     ("הצוואה — ירושה מורכבת", "המילטון: \"Legacy\" · הנרי ד' חלק ב' · המלט: \"The rest is silence\" · ליאון מלך אפילוג"),
 ]
+
+# --- שירים עצמאיים (שאינם משובצים בתוך סצנה) ---
+SONGS = ROOT / "songs"
+STANDALONE_SONGS = [
+    ("song-01-opening.md", "שיר הפתיחה"),
+    ("song-14b-victory-reprise.md", "שיר הניצחון + רפריז"),
+]
+doc.add_page_break()
+add_par("נספח — שירים", size=13, bold=True, align=WD_ALIGN_PARAGRAPH.CENTER,
+        color=RGBColor(0x55,0x55,0x55), space_after=4)
+add_par("שִׁירִים עַצְמָאִיִּים", size=20, bold=True, align=WD_ALIGN_PARAGRAPH.CENTER, space_after=8)
+add_par("השירים שלהלן נכתבו כיחידות עצמאיות לשיבוץ בתמונות הרלוונטיות.", space_after=6)
+for sfname, _ in STANDALONE_SONGS:
+    sfpath = SONGS / sfname
+    if not sfpath.exists():
+        continue
+    doc.add_page_break()
+    render_md(sfpath.read_text(encoding="utf-8"))
 
 # --- Biblical coverage table ---
 doc.add_page_break()

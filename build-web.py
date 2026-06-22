@@ -27,13 +27,14 @@ BOOK = [
     (None, None, "scene-06-lament.md", "הקינה"),
     (None, None, "scene-07-brothers-war.md", "מלחמת האחים"),
     (None, None, "scene-ishbosheth.md", "מות איש-בשת"),
+    (None, None, "scene-jerusalem.md", "עיר דוד — כיבוש ירושלים"),
     (None, None, "scene-08-dance.md", "הריקוד"),
     (None, None, "scene-09-not-you.md", "לא אתה"),
     (None, None, "scene-chr25-singers.md", "288 המשוררים"),
     (None, None, "scene-10-mephibosheth.md", "מפיבושת"),
     (None, None, "scene-10b-ammon-war.md", "מלחמת עמון"),
     (None, None, "scene-bathsheba-uriah.md", "בת-שבע ואוריה"),
-    (None, None, "bathhouse.md", "בית המרחץ"),
+    (None, None, "scene-bathhouse.md", "בית המרחץ"),
     (None, None, "scene-13b-amnon-tamar.md", "אמנון ותמר"),
     (None, None, "scene-13e-absalom-return.md", "שיבת אבשלום"),
     (None, None, "scene-13c-revolt.md", "המרד"),
@@ -47,7 +48,12 @@ BOOK = [
     (None, None, "scene-15-testament.md", "הצוואה"),
     ("נספח", "נספח — תת-עלילות", None, None),
     (None, None, "scene-tzruya-david.md", "צרויה ודוד"),
+    ("שירים", "נספח — שירים עצמאיים", None, None),
+    (None, None, "song-01-opening.md", "שיר הפתיחה — ״אחת שאלתי״"),
+    (None, None, "song-14b-victory-reprise.md", "שיר הניצחון + רפריז — ״ויחי ה׳״"),
 ]
+
+SONGS = ROOT / "songs"
 
 CHARACTERS = {
     "דוד": {"color": "#2563eb", "story": "רועה צאן שנמשח למלך על ידי שמואל הנביא, לוחם וסופר מזמורי תהילים. עלה לגדולה בעקבות ניצחונו על גוליית, ונס מפני שאול שנים רבות. מלך על כל ישראל ויהודה, ידוע כ\"חביב ה'\" אך נפל בחטא בת-שבע ואוריה.", "scenes": []},
@@ -126,6 +132,8 @@ for part, title, fname, label in BOOK:
         current_part = part or title
         continue
     fpath = SCENES / fname
+    if not fpath.exists():
+        fpath = SONGS / fname
     if not fpath.exists():
         continue
     content = fpath.read_text(encoding="utf-8")
@@ -1119,6 +1127,7 @@ mark {{ background: #ffd70088; color: var(--fg); border-radius: 2px; }}
           <tr><td>שמ"ב א (קינת דוד)</td><td>scene-06-lament</td><td>חלק ב</td></tr>
           <tr><td>שמ"ב ב–ג (מלחמת האחים)</td><td>scene-07-brothers-war</td><td>חלק ב</td></tr>
           <tr><td>שמ"ב ד (מות איש-בשת)</td><td>scene-ishbosheth</td><td>חלק ב</td></tr>
+          <tr><td>שמ"ב ה (כיבוש ירושלים)</td><td>scene-jerusalem</td><td>חלק ב</td></tr>
           <tr><td>שמ"ב ו (הריקוד לפני הארון)</td><td>scene-08-dance</td><td>חלק ב</td></tr>
           <tr><td>שמ"ב ז (לא אתה תבנה)</td><td>scene-09-not-you</td><td>חלק ב</td></tr>
           <tr><td>דה"א כה (288 המשוררים)</td><td>scene-chr25-singers</td><td>חלק ב</td></tr>
