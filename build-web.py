@@ -597,6 +597,79 @@ mark {{ background: #ffd70088; color: var(--fg); border-radius: 2px; }}
   .scene-content {{ padding: 0; }}
 }}
 
+/* ── MOBILE OVERLAY BACKDROP ── */
+#sidebar-overlay {{
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.45);
+  z-index: 149;
+}}
+#sidebar-overlay.visible {{ display: block; }}
+
+/* ── MOBILE ── */
+@media (max-width: 768px) {{
+  /* Topbar: hide desktop nav buttons, keep only hamburger + title + theme */
+  #topbar {{ padding: 8px 10px; gap: 8px; }}
+  #topbar h1 {{ font-size: .95rem; }}
+  #search-input {{ display: none; }}
+  .topbar-btn-desktop {{ display: none !important; }}
+  #btn-hamburger, #btn-theme {{ display: inline-flex !important; }}
+
+  /* Sidebar: fixed overlay from right (RTL) */
+  #sidebar {{
+    position: fixed;
+    top: 0; right: 0;
+    height: 100%;
+    width: 82vw;
+    max-width: 300px;
+    z-index: 150;
+    transform: translateX(100%);
+    transition: transform .25s ease;
+    box-shadow: -4px 0 20px rgba(0,0,0,.3);
+    overflow-y: auto;
+  }}
+  #sidebar.open {{
+    transform: translateX(0);
+  }}
+
+  /* Layout: single column */
+  #layout {{ flex-direction: column; height: auto; overflow: visible; }}
+  #main {{ height: auto; overflow: visible; }}
+
+  /* Scenes */
+  #view-scenes {{ padding: 10px 12px; }}
+  .scene-content {{ padding: 10px 4px; font-size: .95rem; line-height: 1.75; }}
+  .scene-meta {{ flex-direction: column; gap: 4px; }}
+
+  /* Scrollable SVG containers */
+  .svg-scroll-wrap, #tree-scroll, #rel-scroll {{
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 8px 0;
+  }}
+
+  /* Arc grid: 1 column */
+  .arc-grid {{ grid-template-columns: 1fr !important; }}
+
+  /* Structure tables */
+  #view-structure {{ padding: 10px 8px; }}
+  #view-structure table {{ font-size: .8rem; }}
+  #view-structure th, #view-structure td {{ padding: 4px 6px; }}
+
+  /* Char grid: 1 column */
+  .char-grid {{ grid-template-columns: 1fr !important; padding: 10px 8px; }}
+
+  /* Tree/relations */
+  #view-tree, #view-relations {{ padding: 10px 8px; }}
+
+  /* Annotation box */
+  .annotation-box {{ margin: 8px 0; }}
+  textarea {{ font-size: .9rem; }}
+}}
+
 /* ── CHAR FILTER BAR ── */
 #char-filter {{
   position: sticky;
@@ -722,18 +795,19 @@ mark {{ background: #ffd70088; color: var(--fg); border-radius: 2px; }}
 
 <!-- TOP BAR -->
 <div id="topbar">
-  <button class="topbar-btn" onclick="toggleSidebar()">☰</button>
+  <button id="btn-hamburger" class="topbar-btn" onclick="toggleSidebar()">☰</button>
   <h1>מזמור לדוד — המחזמר המלא</h1>
   <input type="text" id="search-input" placeholder="חיפוש בטקסט..." oninput="doSearch(this.value)">
-  <button class="topbar-btn" onclick="showViewWrapped('scenes')">📜 סצנות</button>
-  <button class="topbar-btn" onclick="showViewWrapped('tree')">🌳 אילן יוחסין</button>
-  <button class="topbar-btn" onclick="showViewWrapped('structure')">🎭 מבנה דרמטי</button>
-  <button class="topbar-btn" onclick="showViewWrapped('relations')">🕸 גרף קשרים</button>
-  <button class="topbar-btn" onclick="showViewWrapped('chars')">👤 כרטיסי דמויות</button>
-  <button class="topbar-btn" onclick="toggleCharFilter()">🎭 דמויות</button>
-  <button class="topbar-btn" onclick="toggleTheme()">🌙</button>
-  <button class="topbar-btn" onclick="exportAnnotations()">💾 ייצוא הערות</button>
+  <button class="topbar-btn topbar-btn-desktop" onclick="showViewWrapped('scenes')">📜 סצנות</button>
+  <button class="topbar-btn topbar-btn-desktop" onclick="showViewWrapped('tree')">🌳 אילן יוחסין</button>
+  <button class="topbar-btn topbar-btn-desktop" onclick="showViewWrapped('structure')">🎭 מבנה דרמטי</button>
+  <button class="topbar-btn topbar-btn-desktop" onclick="showViewWrapped('relations')">🕸 גרף קשרים</button>
+  <button class="topbar-btn topbar-btn-desktop" onclick="showViewWrapped('chars')">👤 כרטיסי דמויות</button>
+  <button class="topbar-btn topbar-btn-desktop" onclick="toggleCharFilter()">🎭 דמויות</button>
+  <button id="btn-theme" class="topbar-btn" onclick="toggleTheme()">🌙</button>
+  <button class="topbar-btn topbar-btn-desktop" onclick="exportAnnotations()">💾 ייצוא הערות</button>
 </div>
+<div id="sidebar-overlay" onclick="closeSidebar()"></div>
 
 <!-- LAYOUT -->
 <div id="layout">
@@ -1137,9 +1211,23 @@ function jumpToScene(id) {{
 }}
 
 // ── SIDEBAR ──
+function isMobile() {{ return window.innerWidth <= 768; }}
+
 function toggleSidebar() {{
-  sidebarOpen = !sidebarOpen;
-  document.getElementById('sidebar').style.display = sidebarOpen ? '' : 'none';
+  const sb = document.getElementById('sidebar');
+  const ov = document.getElementById('sidebar-overlay');
+  if (isMobile()) {{
+    const open = sb.classList.toggle('open');
+    ov.classList.toggle('visible', open);
+  }} else {{
+    sidebarOpen = !sidebarOpen;
+    sb.style.display = sidebarOpen ? '' : 'none';
+  }}
+}}
+
+function closeSidebar() {{
+  document.getElementById('sidebar').classList.remove('open');
+  document.getElementById('sidebar-overlay').classList.remove('visible');
 }}
 
 // ── SEARCH ──
