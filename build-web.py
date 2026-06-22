@@ -1689,124 +1689,216 @@ const REL_TYPES = {{
   'תאווה→שנאה':  {{color:'#9f1239', emoji:'💔'}},
 }};
 
-// Two rings, David is just another node — no privileged center
+// Manual cluster-based positions — groups keep related chars near each other
+// Canvas: 1400 x 920
 const RNODES = [
-  // Inner ring (8 main characters) — angles 0..315 step 45
-  {{id:'david',        name:'דוד',       c:'#1d4ed8', ring:0, a:0}},
-  {{id:'saul',         name:'שאול',      c:'#dc2626', ring:0, a:45}},
-  {{id:'jonathan',     name:'יונתן',     c:'#16a34a', ring:0, a:90}},
-  {{id:'michal',       name:'מיכל',      c:'#9333ea', ring:0, a:135}},
-  {{id:'absalom',      name:'אבשלום',    c:'#be123c', ring:0, a:180}},
-  {{id:'joab',         name:'יואב',      c:'#92400e', ring:0, a:225}},
-  {{id:'nathan',       name:'נתן',       c:'#4338ca', ring:0, a:270}},
-  {{id:'samuel',       name:'שמואל',     c:'#0f766e', ring:0, a:315}},
-  // Middle ring (8) — offset 22.5 deg
-  {{id:'abigail',      name:'אביגיל',    c:'#ea580c', ring:1, a:22}},
-  {{id:'bathsheba',    name:'בת-שבע',    c:'#0891b2', ring:1, a:67}},
-  {{id:'uriah',        name:'אוריה',     c:'#44403c', ring:1, a:112}},
-  {{id:'amnon',        name:'אמנון',     c:'#854d0e', ring:1, a:157}},
-  {{id:'tamar',        name:'תמר',       c:'#86198f', ring:1, a:202}},
-  {{id:'mephibosheth', name:'מפיבושת',   c:'#065f46', ring:1, a:247}},
-  {{id:'shimei',       name:'שמעי',      c:'#78350f', ring:1, a:292}},
-  {{id:'rizpah',       name:'רצפה',      c:'#be185d', ring:1, a:337}},
-  // Outer ring (6 additional) — angles spaced 60 deg
-  {{id:'doeg',         name:'דואג',      c:'#7f1d1d', ring:2, a:0}},
-  {{id:'abner',        name:'אבנר',      c:'#1e3a5f', ring:2, a:60}},
-  {{id:'ahithophel',   name:'אחיתופל',   c:'#374151', ring:2, a:120}},
-  {{id:'abishai',      name:'אבישי',     c:'#5b21b6', ring:2, a:180}},
-  {{id:'ishbosheth',   name:'איש-בשת',   c:'#991b1b', ring:2, a:240}},
-  {{id:'bathshua',     name:'אמו של דוד', c:'#92400e', ring:2, a:300}},
+  // ── דוד — מרכז ──
+  {{id:'david',        name:'דוד',        c:'#1d4ed8', cx:690, cy:460}},
+
+  // ── בית שאול (top-right) ──
+  {{id:'saul',         name:'שאול',       c:'#dc2626', cx:1000, cy:220}},
+  {{id:'jonathan',     name:'יונתן',      c:'#16a34a', cx:1130, cy:330}},
+  {{id:'michal',       name:'מיכל',       c:'#9333ea', cx:1080, cy:130}},
+  {{id:'ishbosheth',   name:'איש-בשת',    c:'#991b1b', cx:880,  cy:120}},
+  {{id:'doeg',         name:'דואג',       c:'#7f1d1d', cx:1200, cy:180}},
+
+  // ── נביאים / יועצים (top-left) ──
+  {{id:'samuel',       name:'שמואל',      c:'#0f766e', cx:380,  cy:150}},
+  {{id:'nathan',       name:'נתן',        c:'#4338ca', cx:260,  cy:300}},
+  {{id:'ahithophel',   name:'אחיתופל',    c:'#374151', cx:430,  cy:640}},
+
+  // ── צבאי (left) ──
+  {{id:'joab',         name:'יואב',       c:'#92400e', cx:200,  cy:460}},
+  {{id:'abishai',      name:'אבישי',      c:'#5b21b6', cx:200,  cy:600}},
+  {{id:'abner',        name:'אבנר',       c:'#1e3a5f', cx:280,  cy:200}},
+
+  // ── נשות דוד / פרשת בת-שבע (right) ──
+  {{id:'bathsheba',    name:'בת-שבע',     c:'#0891b2', cx:1200, cy:460}},
+  {{id:'uriah',        name:'אוריה',      c:'#44403c', cx:1230, cy:580}},
+  {{id:'abigail',      name:'אביגיל',     c:'#ea580c', cx:1180, cy:340}},
+
+  // ── ילדי דוד (bottom-center) ──
+  {{id:'absalom',      name:'אבשלום',     c:'#be123c', cx:690,  cy:760}},
+  {{id:'amnon',        name:'אמנון',      c:'#854d0e', cx:930,  cy:760}},
+  {{id:'tamar',        name:'תמר',        c:'#86198f', cx:830,  cy:870}},
+
+  // ── שאר (bottom-left) ──
+  {{id:'mephibosheth', name:'מפיבושת',    c:'#065f46', cx:200,  cy:750}},
+  {{id:'shimei',       name:'שמעי',       c:'#78350f', cx:450,  cy:830}},
+  {{id:'rizpah',       name:'רצפה',       c:'#be185d', cx:160,  cy:160}},
 ];
 
-// dir: 'fwd'=arrow from→to, 'bwd'=from←to, 'both'=bidirectional, 'none'=undirected
 const REDGES = [
-  {{f:'david',      t:'jonathan',     type:'אהבה',        dir:'both', short:'ידידות עמוקה',
-    note:'יונתן ויתר על כתרו למען דוד. "נפלאתה אהבתך לי מאהבת נשים". ברית אישית שנשמרה גם אחרי מות יונתן — דוד חיפש את בן בנו מפיבושת לשמור חסד לזכרו.'}},
-  {{f:'david',      t:'saul',         type:'כבוד',         dir:'fwd',  short:'לא נגע במשיח ה׳',
-    note:'דוד היה יכול להרוג את שאול פעמיים — במערה ובגבעת הכיה — ונמנע. "חי ה׳ כי אם ה׳ יגפנו". ראה בו משיח ה׳ ולא אויב אישי.'}},
-  {{f:'saul',       t:'david',        type:'קנאה',         dir:'fwd',  short:'"שאול הכה באלפיו"',
-    note:'"שאול הכה באלפיו ודוד ברבבותיו" — שיר הנשים הזה שבר את שאול. הקנאה הפכה לרדיפה בלתי פוסקת שהרסה אותו מבפנים יותר מכל אויב חיצוני.'}},
-  {{f:'david',      t:'michal',       type:'אהבה',         dir:'fwd',  short:'אהבה ראשונה שהתנפצה',
-    note:'מיכל אהבה את דוד ראשונה, הצילה אותו מחלון אביה, שלחה אותו בחלון בלילה. אחרי הגלות נמסרה לפלטיאל בן ליש. דוד דרש להחזירה — אבל האהבה כבר לא הייתה.'}},
-  {{f:'michal',     t:'david',        type:'בוז',          dir:'fwd',  short:'"ותבז לו בלבה"',
-    note:'כשדוד רקד לפני הארון — מיכל ראתה ממנה "את המלך דוד מפזז ומכרכר" ובזה לו. "ולמיכל בת שאול לא היה לה ולד עד יום מותה". בזיון שסגר דלת.'}},
-  {{f:'david',      t:'bathsheba',    type:'תאווה',        dir:'fwd',  short:'ראה אותה רוחצת',
-    note:'דוד ראה מגג ביתו אישה רוחצת. "ויברא אליו" — שלח להביאה. "ותבוא אליו" — כפייה? הסכמה? השתיקה בטקסט מרעישה. החטא לא היה רק חטא אחד אלא שרשרת.'}},
-  {{f:'david',      t:'uriah',        type:'אשמה',         dir:'fwd',  short:'שלח בידיו את גזר דינו',
-    note:'אחרי שלא הצליח לגרום לאוריה לחזור הביתה, דוד שלח מכתב ביד אוריה עצמו — המכתב שגזר את מותו. "הדבר אשר עשה דוד רע בעיני ה׳".'}},
-  {{f:'uriah',      t:'david',        type:'נאמנות',       dir:'fwd',  short:'לא ארד אל ביתי',
-    note:'"הארון וישראל ויהודה ישבים בסכות... ואני אבוא אל ביתי לאכול ולשתות?" — אוריה הכיתי, הגוי, מקיים צדק גבוה יותר מהמלך היהודי שגנב את אשתו.'}},
-  {{f:'david',      t:'absalom',      type:'אהבת אב',      dir:'fwd',  short:'"בני בני אבשלום"',
-    note:'"בני בני אבשלום — מי יתן מותי אני תחתיך!" — דוד בכה על בנו שמרד בו, שניסה להרגו. אהבת האב גברה על כל פצע. יואב נאלץ לנזוף בו כדי שיקום ויחיה.'}},
-  {{f:'absalom',    t:'david',        type:'כעס',          dir:'fwd',  short:'שנתיים ללא פגישה',
-    note:'שנתיים חי אבשלום בירושלים מבלי לראות את פני המלך אביו. שרף את שדה יואב כדי לכפות פגישה. הנשיקה שקיבל בסוף לא הייתה פיוס — הייתה פורקן אגרגת של כעס ובוז.'}},
-  {{f:'david',      t:'joab',         type:'תלות',         dir:'fwd',  short:'"עשה את המלאכה המלוכלכת"',
-    note:'יואב הרג את אבנר, הרג את אבשלום, הרג את עמשא — תמיד עשה מה שדוד רצה אבל לא יכל לעשות בעצמו. דוד תלה בו ושנא אותו על זה. "מה לי ולכם בני צרויה".'}},
-  {{f:'joab',       t:'david',        type:'נאמנות',       dir:'fwd',  short:'נאמנות קרה ומניפולטיבית',
-    note:'יואב שמר על דוד מפני עצמו. כשדוד בכה על אבשלום ולא יצא אל העם, יואב נזף בו בפומבי: "קום וצא ודבר על לב עבדיך". נאמנות שהיא שליטה.'}},
-  {{f:'david',      t:'nathan',       type:'כבוד',         dir:'fwd',  short:'קיבל את "אתה האיש"',
-    note:'נתן בא אל דוד במשל האיש העני — ודוד שפט בזעם את "האיש". כשנתן אמר "אתה האיש" — דוד לא כעס, לא הרג, לא הכחיש. "חטאתי לה׳". זו גדולתו.'}},
-  {{f:'nathan',     t:'david',        type:'ביקורת',       dir:'fwd',  short:'משל האיש העני',
-    note:'נבואת נתן: "לאמר מדוע בזית את דבר ה׳?" — לא חרה פניו, לא ביקש רחמים. הציג ראי ישיר. ואחרי התשובה — "גם ה׳ העביר חטאתך". ביקורת מתוך אהבה.'}},
-  {{f:'david',      t:'abigail',      type:'אהבה',         dir:'both', short:'עצרה אותו מרצח',
-    note:'אביגיל ירדה לקראת דוד עם מזון כשהוא בא להרוג את נבל ואת כל זכר ביתו. דיבורה עצרה את ידו. "ברוך טעמך וברוכה את". מיד אחרי מות נבל שלח דוד לקחתה.'}},
-  {{f:'david',      t:'mephibosheth', type:'הכרת טובה',   dir:'fwd',  short:'"ויאכל תמיד על שולחן המלך"',
-    note:'דוד חיפש מי נשאר מבית שאול לשמור חסד לזכר יונתן. מצא את מפיבושת, בן יונתן, נכה ברגליו, מסתתר בלו-דבר. "ואת כל שדות שאול נתתי לבן אדוניך".'}},
-  {{f:'mephibosheth',t:'david',       type:'הכרת טובה',   dir:'fwd',  short:'"כמלאך האלהים"',
-    note:'"אדוני המלך כמלאך האלהים" — מפיבושת לא גידל זקנו ולא רחץ בגדיו מיום צאת המלך ועד שובו. כשחזר דוד ושאל — מפיבושת לא טען לזכויות, רק הביע הודיה.'}},
-  {{f:'saul',       t:'jonathan',     type:'כעס',          dir:'fwd',  short:'"בן נעוות המרדות!"',
-    note:'"בן נעוות המרדות! הלא ידעתי כי בחר אתה לבן ישי לבשתך!" — שאול הבין שיונתן בחר בדוד על פניו. הכעס שלו היה כעס של מלך שחושש שבנו מוסר את מלכותו.'}},
-  {{f:'jonathan',   t:'saul',         type:'אהבה',         dir:'fwd',  short:'אהב ומרד בשקט',
-    note:'יונתן אהב את אביו שאול — אבל בחר בדוד. לא מרד בפעולה אלא בנפש. הגן על דוד, התריע בפניו, כרת ברית — ונפל בגלבוע לצד האב שניסה להרוג את ידידו.'}},
-  {{f:'amnon',      t:'tamar',        type:'תאווה→שנאה',  dir:'fwd',  short:'"שנאה גדולה מאד"',
-    note:'אמנון "חלה" מ"אהבה" לתמר אחיו. אנס אותה בחדרו. "ותאמר לו: אל תעשה את הנבלה הזאת". לאחר האונס: "שנאה גדולה מאד — גדולה השנאה אשר שנאה מהאהבה". נישא הבושה הופך לשנאה.'}},
-  {{f:'absalom',    t:'amnon',        type:'נקמה',         dir:'fwd',  short:'שתק שנתיים ואז הרג',
-    note:'אבשלום לא דיבר עם אמנון לא טוב ולא רע — שתיקה של שנתיים. בחגיגת גזזת הצאן בבעל-חצור הרג את אמנון בצו מחושב. "כי אמנון שנא את תמר אחותו".'}},
-  {{f:'absalom',    t:'tamar',        type:'אהבת אב',      dir:'fwd',  short:'שמר עליה בביתו',
-    note:'אחרי האונס — "ותשב שממה בית אבשלום אחיה". אבשלום קרא לבתו תמר על שמה. שמר על אחותו, שמע את שממתה, ונשא את הנקמה בלב עד שיכל לבצעה.'}},
-  {{f:'ahithophel', t:'david',        type:'בגידה',        dir:'fwd',  short:'עבר לאבשלום',
-    note:'"עצת אחיתופל אשר יעץ בימים ההם כאשר ישאל איש בדבר האלהים" — חכם בדרגת נביא. עבר לאבשלום. יש הטוענים שהיה סבה של בת-שבע — ובגידתו הייתה נקמה אישית.'}},
-  {{f:'shimei',     t:'david',        type:'שנאה',         dir:'fwd',  short:'"צא צא איש הדמים"',
-    note:'"ויקלל וישלח אבנים" — שמעי בן גרא מבכה ביתא קילל את דוד בשעת המנוסה: "צא צא איש הדמים ואיש הבלייעל!" אבישי רצה לכרות ראשו. דוד אמר — "הניחו לו".'}},
-  {{f:'david',      t:'shimei',       type:'כבוד',         dir:'fwd',  short:'"ה׳ אמר לו קלל"',
-    note:'דוד קיבל את הקללה כגזרת שמים: "אולי יראה ה׳ בעיני ויגמל לי ה׳ טובה תחת קללתו היום הזה". כשחזר, דוד מחל לשמעי — ויחל שלמה לסיים את החשבון.'}},
-  {{f:'joab',       t:'absalom',      type:'בוז',          dir:'fwd',  short:'הרג נגד פקודה',
-    note:'דוד ציווה: "שמרו לי לנער לאבשלום". יואב שמע שאבשלום תלוי בשערות ראשו — לקח שלושה שבטים ותקע בלב אבשלום. "לא אוחיל ככה לפניך". כלכול כחוד שלטוני.'}},
-  {{f:'rizpah',     t:'saul',         type:'אהבה',         dir:'fwd',  short:'חמש חודשי שמירה',
-    note:'שבעת בני שאול נתלו על ידי הגבעונים. רצפה בת איה פרשה שק על הצור — ישבה יומם ולילה, חמישה חודשים, שמרה על הגופות מהעופות ומהחיות. דוד שמע ונרגש.'}},
-  {{f:'david',      t:'rizpah',       type:'אבל',          dir:'fwd',  short:'שמע ונקבר',
-    note:'כשדוד שמע על מעשה רצפה — נזכר בעצמות שאול ויונתן בגלעד. לקח אותן, ואסף גם את עצמות שבעת הנתלים, וקבר אותם בקבר קיש אביו. מסירות ומסירות יצרו קבורה.'}},
+  // דוד ← יונתן
+  {{f:'david',      t:'jonathan',     type:'אהבה',        dir:'both',
+    short:'ידידות עמוקה',
+    note:'יונתן ויתר על כתרו למען דוד. "נפלאתה אהבתך לי מאהבת נשים". ברית אישית שנשמרה גם אחרי מות יונתן.',
+    scenes:['scene-01-05-full','scene-04b-wilderness-additions']}},
+  {{f:'david',      t:'saul',         type:'כבוד',         dir:'fwd',
+    short:'לא נגע במשיח ה׳',
+    note:'דוד היה יכול להרוג את שאול פעמיים — במערה ובגבעת הכיה — ונמנע. "חי ה׳ כי אם ה׳ יגפנו". ראה בו משיח ה׳ ולא אויב.',
+    scenes:['scene-04-the-cave','scene-cave-hill']}},
+  {{f:'saul',       t:'david',        type:'קנאה',         dir:'fwd',
+    short:'"שאול הכה באלפיו"',
+    note:'"שאול הכה באלפיו ודוד ברבבותיו" — הקנאה הפכה לרדיפה בלתי פוסקת שהרסה את שאול מבפנים.',
+    scenes:['scene-01-05-full','scene-04-the-cave']}},
+  {{f:'david',      t:'michal',       type:'אהבה',         dir:'fwd',
+    short:'אהבה ראשונה שהתנפצה',
+    note:'מיכל אהבה את דוד ראשונה, הצילה אותו מחלון אביה, שלחה אותו בחלון. אחרי הגלות נמסרה לפלטיאל ולבסוף הוחזרה — אבל האהבה כבר נגמרה.',
+    scenes:['scene-01-05-full']}},
+  {{f:'michal',     t:'david',        type:'בוז',          dir:'fwd',
+    short:'"ותבז לו בלבה"',
+    note:'כשדוד רקד לפני הארון — מיכל ראתה אותו "מפזז ומכרכר" ובזה לו. "ולמיכל בת שאול לא היה לה ולד עד יום מותה".',
+    scenes:[]}},
+  {{f:'david',      t:'bathsheba',    type:'תאווה',        dir:'fwd',
+    short:'ראה אותה רוחצת',
+    note:'דוד ראה מגג ביתו אישה רוחצת. שלח להביאה. "ותבוא אליו" — כפייה? הסכמה? השתיקה בטקסט מרעישה. שרשרת חטאים שהחלה ברגע אחד.',
+    scenes:['scene-bathsheba-uriah']}},
+  {{f:'david',      t:'uriah',        type:'אשמה',         dir:'fwd',
+    short:'שלח בידיו את גזר דינו',
+    note:'אחרי שלא הצליח לגרום לאוריה לחזור הביתה, דוד שלח מכתב ביד אוריה עצמו — המכתב שגזר את מותו. "הדבר אשר עשה דוד רע בעיני ה׳".',
+    scenes:['scene-bathsheba-uriah']}},
+  {{f:'uriah',      t:'david',        type:'נאמנות',       dir:'fwd',
+    short:'לא ארד אל ביתי',
+    note:'"הארון וישראל ויהודה ישבים בסכות... ואני אבוא אל ביתי לאכול ולשתות?" — הגוי הנאמן מקיים צדק גבוה יותר מהמלך שגנב את אשתו.',
+    scenes:['scene-bathsheba-uriah']}},
+  {{f:'david',      t:'absalom',      type:'אהבת אב',      dir:'fwd',
+    short:'"בני בני אבשלום"',
+    note:'"בני בני אבשלום — מי יתן מותי אני תחתיך!" — דוד בכה על בנו שמרד בו. אהבת האב גברה על כל פצע. יואב נאלץ לנזוף בו כדי שיקום.',
+    scenes:['scene-13c-revolt','scene-13f-david-return','scene-absalom-return']}},
+  {{f:'absalom',    t:'david',        type:'כעס',          dir:'fwd',
+    short:'שנתיים ללא פגישה',
+    note:'שנתיים חי אבשלום בירושלים מבלי לראות את פני המלך. שרף את שדה יואב לכפות פגישה. הנשיקה שקיבל בסוף לא הייתה פיוס.',
+    scenes:['scene-absalom-return','scene-13c-revolt']}},
+  {{f:'david',      t:'joab',         type:'תלות',         dir:'fwd',
+    short:'"עשה את המלאכה המלוכלכת"',
+    note:'יואב הרג את אבנר, הרג את אבשלום, הרג את עמשא — תמיד עשה מה שדוד רצה אבל לא יכל בעצמו. "מה לי ולכם בני צרויה".',
+    scenes:['scene-13c-revolt','scene-13f-david-return','scene-sheva-bichri']}},
+  {{f:'joab',       t:'david',        type:'נאמנות',       dir:'fwd',
+    short:'נאמנות קרה ומניפולטיבית',
+    note:'יואב שמר על דוד מפני עצמו. כשדוד בכה על אבשלום ולא יצא אל העם, יואב נזף בו בפומבי. נאמנות שהיא שליטה.',
+    scenes:['scene-13f-david-return']}},
+  {{f:'david',      t:'nathan',       type:'כבוד',         dir:'fwd',
+    short:'קיבל את "אתה האיש"',
+    note:'נתן בא במשל האיש העני — ודוד שפט בזעם. כשנתן אמר "אתה האיש" — דוד לא כעס ולא הכחיש. "חטאתי לה׳". זו גדולתו.',
+    scenes:['scene-bathsheba-uriah']}},
+  {{f:'nathan',     t:'david',        type:'ביקורת',       dir:'fwd',
+    short:'משל האיש העני',
+    note:'"לאמר מדוע בזית את דבר ה׳?" — ביקורת ישירה. ואחרי התשובה — "גם ה׳ העביר חטאתך". ביקורת מתוך אהבה.',
+    scenes:['scene-bathsheba-uriah']}},
+  {{f:'david',      t:'abigail',      type:'אהבה',         dir:'both',
+    short:'עצרה אותו מרצח',
+    note:'אביגיל ירדה לקראת דוד כשבא להרוג את נבל. דיבורה עצרה את ידו. "ברוך טעמך וברוכה את". מייד אחרי מות נבל שלח דוד לקחתה.',
+    scenes:['scene-nabal-abigail']}},
+  {{f:'david',      t:'mephibosheth', type:'הכרת טובה',   dir:'fwd',
+    short:'"ויאכל תמיד על שולחן המלך"',
+    note:'דוד חיפש מי נשאר מבית שאול לשמור חסד לזכר יונתן. מצא את מפיבושת נכה ברגליו בלו-דבר. "ואת כל שדות שאול נתתי לבן אדוניך".',
+    scenes:['scene-13f-david-return']}},
+  {{f:'mephibosheth',t:'david',       type:'הכרת טובה',   dir:'fwd',
+    short:'"כמלאך האלהים"',
+    note:'"אדוני המלך כמלאך האלהים" — לא גידל זקנו ולא רחץ בגדיו מיום צאת המלך עד שובו. כשחזר דוד — מפיבושת לא טען לזכויות, רק הביע הודיה.',
+    scenes:['scene-13f-david-return']}},
+  {{f:'saul',       t:'jonathan',     type:'כעס',          dir:'fwd',
+    short:'"בן נעוות המרדות!"',
+    note:'"בן נעוות המרדות! הלא ידעתי כי בחר אתה לבן ישי לבשתך!" — שאול הבין שיונתן בחר בדוד על פניו.',
+    scenes:['scene-01-05-full']}},
+  {{f:'jonathan',   t:'saul',         type:'אהבה',         dir:'fwd',
+    short:'אהב ומרד בשקט',
+    note:'יונתן אהב את אביו — אבל בחר בדוד. לא מרד בפעולה אלא בנפש. הגן על דוד, התריע בפניו, ונפל בגלבוע לצד האב שניסה להרוג את ידידו.',
+    scenes:['scene-gilboa']}},
+  {{f:'amnon',      t:'tamar',        type:'תאווה→שנאה',  dir:'fwd',
+    short:'"שנאה גדולה מאד"',
+    note:'אמנון "חלה" מ"אהבה" לתמר אחיו. אנס אותה. "שנאה גדולה מאד — גדולה השנאה אשר שנאה מהאהבה". נישא הבושה הופך לשנאה.',
+    scenes:[]}},
+  {{f:'absalom',    t:'amnon',        type:'נקמה',         dir:'fwd',
+    short:'שתק שנתיים ואז הרג',
+    note:'אבשלום לא דיבר עם אמנון לא טוב ולא רע — שתיקה של שנתיים. בחגיגת גזזת הצאן הרג את אמנון בצו מחושב.',
+    scenes:[]}},
+  {{f:'absalom',    t:'tamar',        type:'אהבת אב',      dir:'fwd',
+    short:'שמר עליה בביתו',
+    note:'אחרי האונס — "ותשב שממה בית אבשלום אחיה". אבשלום קרא לבתו תמר על שמה. שמר עליה ונשא את הנקמה בלב.',
+    scenes:[]}},
+  {{f:'ahithophel', t:'david',        type:'בגידה',        dir:'fwd',
+    short:'עבר לאבשלום',
+    note:'"עצת אחיתופל כאשר ישאל איש בדבר האלהים" — חכם בדרגת נביא. עבר לאבשלום. יש הטוענים שהיה סבה של בת-שבע — ובגידתו הייתה נקמה אישית.',
+    scenes:['scene-13c-revolt']}},
+  {{f:'shimei',     t:'david',        type:'שנאה',         dir:'fwd',
+    short:'"צא צא איש הדמים"',
+    note:'"ויקלל וישלח אבנים" — שמעי קילל את דוד בשעת המנוסה. אבישי רצה לכרות ראשו. דוד אמר — "הניחו לו".',
+    scenes:['scene-13c-revolt','scene-13f-david-return']}},
+  {{f:'david',      t:'shimei',       type:'כבוד',         dir:'fwd',
+    short:'"ה׳ אמר לו קלל"',
+    note:'דוד קיבל את הקללה כגזרת שמים. כשחזר — מחל לשמעי. "ולא אמות ביום הזה".',
+    scenes:['scene-13f-david-return']}},
+  {{f:'joab',       t:'absalom',      type:'בוז',          dir:'fwd',
+    short:'הרג נגד פקודה',
+    note:'דוד ציווה "שמרו לי לנער לאבשלום". יואב שמע שאבשלום תלוי בשערות ראשו — לקח שלושה שבטים ותקע בלב אבשלום.',
+    scenes:['scene-13c-revolt']}},
+  {{f:'rizpah',     t:'saul',         type:'אהבה',         dir:'fwd',
+    short:'חמישה חודשי שמירה',
+    note:'שבעת בני שאול נתלו. רצפה פרשה שק על הצור — ישבה יומם ולילה, חמישה חודשים, שמרה על הגופות. דוד שמע ונרגש.',
+    scenes:['scene-rizpah']}},
+  {{f:'david',      t:'rizpah',       type:'אבל',          dir:'fwd',
+    short:'שמע ונקבר',
+    note:'כשדוד שמע על מעשה רצפה — נזכר בעצמות שאול ויונתן בגלעד. לקח אותן ואסף גם את עצמות השבעה הנתלים.',
+    scenes:['scene-rizpah']}},
   // שמואל
-  {{f:'samuel',     t:'saul',         type:'ביקורת',       dir:'fwd',  short:'חרטת המשיחה',
-    note:'"נחמתי כי המלכתי את שאול למלך כי שב מאחרי ולא הקים את דברי" — שמואל בכה על שאול כל הלילה לפני שנסע לדחותו. הביקורת שלו הייתה מלאת כאב, לא מלאת כעס.'}},
-  {{f:'samuel',     t:'david',        type:'כבוד',         dir:'fwd',  short:'משח אותו בחשאי',
-    note:'שמואל הלך לבית לחם בסוד, ראה את שבעת הבנים, ואף אחד לא היה הנבחר. "עוד שאר הקטן ורועה בצאן" — וה׳ אמר: "קום משחהו כי זה הוא". הרועה הקטן שנבחר מבין האחים.'}},
-  {{f:'david',      t:'samuel',       type:'הכרת טובה',   dir:'fwd',  short:'אבי הנבואה',
-    note:'שמואל היה הדמות שהעניקה לדוד לגיטימציה אלוהית. מותו הכה את דוד קשה — "ויתאבלו כל ישראל". דוד ירד לבקש את צלו דרך בעלת האוב בעין-דור.'}},
+  {{f:'samuel',     t:'saul',         type:'ביקורת',       dir:'fwd',
+    short:'חרטת המשיחה',
+    note:'"נחמתי כי המלכתי את שאול" — שמואל בכה על שאול כל הלילה לפני שנסע לדחותו. הביקורת שלו הייתה מלאת כאב.',
+    scenes:[]}},
+  {{f:'samuel',     t:'david',        type:'כבוד',         dir:'fwd',
+    short:'משח אותו בחשאי',
+    note:'שמואל הלך לבית לחם בסוד, ראה שבעה בנים, ואף אחד לא היה הנבחר. "עוד שאר הקטן ורועה בצאן" — "קום משחהו כי זה הוא".',
+    scenes:['scene-01-05-full']}},
+  {{f:'david',      t:'samuel',       type:'הכרת טובה',   dir:'fwd',
+    short:'אבי הנבואה',
+    note:'שמואל היה הדמות שהעניקה לדוד לגיטימציה אלוהית. מותו הכה את דוד קשה — "ויתאבלו כל ישראל".',
+    scenes:['scene-01-05-full']}},
   // דואג
-  {{f:'doeg',       t:'saul',         type:'נאמנות',       dir:'fwd',  short:'מלשין הארמי',
-    note:'דואג האדומי היה נאמן לשאול בנאמנות עיוורת. כשאף אחד מעבדי שאול לא רצה להרוג את כוהני נוב — דואג קם ועשה. "ויפן דואג האדומי ויפגע בכוהנים" — 85 כהנים בלילה אחד.'}},
-  {{f:'doeg',       t:'david',        type:'שנאה',         dir:'fwd',  short:'הלשין עליו לשאול',
-    note:'דואג ראה את אחימלך נותן לדוד את חרב גלית ולחם הפנים. הלשין לשאול. התוצאה: טבח כל עיר נוב — 85 כוהנים, נשים, ילדים ובהמות. דוד אמר: "אנכי סבותי בכל נפשות בית אביך".'}},
-  {{f:'saul',       t:'doeg',         type:'תלות',         dir:'fwd',  short:'רצח בידיים אחרות',
-    note:'שאול לא יכל לגרום לגרדמיו להרוג את הכוהנים. פנה לדואג. "ופגע אתה בכוהנים". דואג היה ידו הארוכה במה שידיו עצמן לא יכלו — או לא רצו — לעשות.'}},
+  {{f:'doeg',       t:'saul',         type:'נאמנות',       dir:'fwd',
+    short:'מלשין האדומי',
+    note:'דואג האדומי היה נאמן לשאול בנאמנות עיוורת. כשאף אחד לא רצה להרוג את כוהני נוב — דואג קם ועשה. 85 כוהנים בלילה אחד.',
+    scenes:['scene-nob-massacre']}},
+  {{f:'doeg',       t:'david',        type:'שנאה',         dir:'fwd',
+    short:'הלשין עליו לשאול',
+    note:'דואג ראה את אחימלך נותן לדוד לחם וחרב. הלשין לשאול. התוצאה: טבח כל עיר נוב. דוד אמר: "אנכי סבותי בכל נפשות בית אביך".',
+    scenes:['scene-nob-massacre']}},
+  {{f:'saul',       t:'doeg',         type:'תלות',         dir:'fwd',
+    short:'רצח בידיים אחרות',
+    note:'שאול לא יכל לגרום לגרדמיו להרוג כוהנים. פנה לדואג. דואג היה ידו הארוכה במה שידיו עצמן לא רצו לעשות.',
+    scenes:['scene-nob-massacre']}},
   // אבנר
-  {{f:'abner',      t:'saul',         type:'נאמנות',       dir:'fwd',  short:'שר הצבא הנאמן',
-    note:'אבנר בן נר היה שר הצבא של שאול ואחד מאדירי בית שאול. אחרי גלבוע — הוא שהמליך את איש-בשת, מנע קריסת הממלכה, ניסה לשמר את שושלת שאול מול עלייתו של דוד.'}},
-  {{f:'abner',      t:'david',        type:'ידידות',       dir:'fwd',  short:'הסכם שנגדע',
-    note:'אבנר פנה לדוד לאחד את ישראל תחתיו: "אקומה ואלכה ואקבצה אל אדוני המלך את כל ישראל". דוד קיבלו בשמחה ובסעודה. יואב הרגו מייד אחרי — על דם עשהאל ומתוך קנאה.'}},
-  {{f:'joab',       t:'abner',        type:'נקמה',         dir:'fwd',  short:'הרגו בשער חברון',
-    note:'יואב הרג את אבנר — "על דם עשהאל אחיו". קרא לו בצד, תקע לו בחמישי בדממה. דוד קונן: "הלא ידעתם כי שר וגדול נפל היום הזה בישראל?" אבל לא יכל להענישו.'}},
+  {{f:'abner',      t:'saul',         type:'נאמנות',       dir:'fwd',
+    short:'שר הצבא הנאמן',
+    note:'אבנר בן נר שמר על בית שאול. אחרי גלבוע — הוא שהמליך את איש-בשת, מנע קריסת הממלכה מול דוד.',
+    scenes:[]}},
+  {{f:'abner',      t:'david',        type:'ידידות',       dir:'fwd',
+    short:'הסכם שנגדע',
+    note:'אבנר פנה לדוד לאחד את ישראל: "אקומה ואלכה ואקבצה אל אדוני המלך". דוד קיבלו בשמחה ובסעודה. יואב הרגו מייד אחרי.',
+    scenes:['scene-ishbosheth']}},
+  {{f:'joab',       t:'abner',        type:'נקמה',         dir:'fwd',
+    short:'הרגו בשער חברון',
+    note:'יואב הרג את אבנר — "על דם עשהאל אחיו". קרא לו בצד, תקע לו בחמישי. דוד קונן: "שר וגדול נפל היום הזה בישראל".',
+    scenes:['scene-ishbosheth']}},
   // אבישי
-  {{f:'abishai',    t:'joab',         type:'ידידות',       dir:'both', short:'אחים בנשק',
-    note:'אבישי ויואב היו אחים — בני צרויה אחות דוד. לחמו תמיד יחד. אבישי רצה להרוג את שאול בעין, את שמעי בבריחה, ואת הגיבור הפלשתי בגיא. יואב ריסן אותו — לפעמים.'}},
-  {{f:'abishai',    t:'david',        type:'נאמנות',       dir:'fwd',  short:'השומר הנאמן',
-    note:'אבישי הציל את דוד כשנלאה בקרב עם ישבי-בנוב הרפאי: "אז נשבעו אנשי דוד לו לאמר לא תצא עוד איתנו למלחמה". לחם לצידו תמיד, גם כשדוד היה חלש.'}},
+  {{f:'abishai',    t:'joab',         type:'ידידות',       dir:'both',
+    short:'אחים בנשק',
+    note:'אבישי ויואב היו אחים — בני צרויה אחות דוד. לחמו תמיד יחד. אבישי רצה להרוג את שאול ואת שמעי. יואב ריסן אותו — לפעמים.',
+    scenes:[]}},
+  {{f:'abishai',    t:'david',        type:'נאמנות',       dir:'fwd',
+    short:'השומר הנאמן',
+    note:'אבישי הציל את דוד כשנלאה בקרב עם ישבי-בנוב. "אז נשבעו אנשי דוד לו לאמר לא תצא עוד איתנו למלחמה".',
+    scenes:[]}},
   // איש-בשת
-  {{f:'ishbosheth', t:'saul',         type:'אהבת אב',      dir:'fwd',  short:'ממשיך שאול',
-    note:'איש-בשת בן שאול הומלך על ידי אבנר — שבר הצבא — על ישראל, בעוד דוד מולך על יהודה בחברון. בן חסר כוח שהיה בובה בידי אבנר. "וַיִּרְפּוּ יָדָיו" כשנפל אבנר.'}},
-  {{f:'david',      t:'ishbosheth',   type:'כבוד',         dir:'fwd',  short:'לא נגע בו — הרוצחים נענשו',
-    note:'דוד לא פגע באיש-בשת. כשבאו רכב ובענה עם ראשו — דוד לא שמח. הוציא להורג את הרוצחים: "אנשים רשעים הרגו איש צדיק בביתו על משכבו". כיבד אויבו גם במותו.'}},
+  {{f:'ishbosheth', t:'saul',         type:'אהבת אב',      dir:'fwd',
+    short:'ממשיך שאול',
+    note:'איש-בשת הומלך על ידי אבנר על ישראל, בעוד דוד מולך על יהודה. בן חסר כוח שהיה בובה בידי אבנר. "וַיִּרְפּוּ יָדָיו" כשנפל אבנר.',
+    scenes:['scene-ishbosheth']}},
+  {{f:'david',      t:'ishbosheth',   type:'כבוד',         dir:'fwd',
+    short:'כיבד אויבו במותו',
+    note:'דוד לא פגע באיש-בשת. כשבאו רכב ובענה עם ראשו — הוציא להורג את הרוצחים: "אנשים רשעים הרגו איש צדיק בביתו על משכבו".',
+    scenes:['scene-ishbosheth']}},
 ];
 
 function rNodeById(id) {{ return RNODES.find(n => n.id===id); }}
@@ -1815,19 +1907,11 @@ function drawRelations() {{
   const svg = document.getElementById('rel-svg');
   svg.innerHTML = '';
   const ns = 'http://www.w3.org/2000/svg';
-  const W=1300, H=900, CX=650, CY=450, R0=210, R1=360, R2=490;
+  const W=1400, H=940;
   svg.setAttribute('viewBox', `0 0 ${{W}} ${{H}}`);
   svg.style.minWidth = W + 'px';
   svg.style.minHeight = H + 'px';
   svg.style.height = H + 'px';
-
-  // Compute node positions
-  RNODES.forEach(n => {{
-    const r = n.ring===0 ? R0 : n.ring===1 ? R1 : R2;
-    const rad = (n.a - 90) * Math.PI / 180;
-    n.cx = Math.round(CX + r * Math.cos(rad));
-    n.cy = Math.round(CY + r * Math.sin(rad));
-  }});
 
   function mkEl(tag, attrs) {{
     const e = document.createElementNS(ns, tag);
@@ -1835,7 +1919,7 @@ function drawRelations() {{
     return e;
   }}
 
-  // Build legend + filter buttons
+  // Legend + filter
   const legend = document.getElementById('rel-legend');
   const filterBar = document.getElementById('rel-filter-bar');
   legend.innerHTML = '';
@@ -1864,24 +1948,38 @@ function drawRelations() {{
     filterBar.appendChild(btn);
   }});
 
-  // Track edge pairs for curve offset
-  const pairCurve = {{}};
-
   // Arrow markers
   const defs = mkEl('defs', {{}});
   svg.appendChild(defs);
   typeSet.forEach(type => {{
     const info = REL_TYPES[type] || {{color:'#888'}};
-    const m = mkEl('marker', {{id:`arr-${{type}}`, markerWidth:'8', markerHeight:'8', refX:'6', refY:'3', orient:'auto'}});
+    const m = mkEl('marker', {{id:`arr-${{type}}`, markerWidth:'7', markerHeight:'7', refX:'5', refY:'3', orient:'auto'}});
     m.appendChild(mkEl('polygon', {{points:'0 0, 6 3, 0 6', fill:info.color}}));
     defs.appendChild(m);
-    const m2 = mkEl('marker', {{id:`arr-rev-${{type}}`, markerWidth:'8', markerHeight:'8', refX:'0', refY:'3', orient:'auto-start-reverse'}});
+    const m2 = mkEl('marker', {{id:`arr-rev-${{type}}`, markerWidth:'7', markerHeight:'7', refX:'0', refY:'3', orient:'auto-start-reverse'}});
     m2.appendChild(mkEl('polygon', {{points:'0 0, 6 3, 0 6', fill:info.color}}));
     defs.appendChild(m2);
   }});
 
-  // Draw edges
-  REDGES.forEach((edge) => {{
+  // Cluster zone labels
+  const zones = [
+    {{x:960, y:60,  label:'בית שאול'}},
+    {{x:250, y:100, label:'נביאים'}},
+    {{x:120, y:420, label:'צבאי'}},
+    {{x:1250,y:400, label:'נשות דוד'}},
+    {{x:820, y:830, label:'ילדי דוד'}},
+    {{x:150, y:820, label:'שאר'}},
+  ];
+  zones.forEach(z => {{
+    const t = mkEl('text', {{x:z.x, y:z.y, 'text-anchor':'middle',
+      'font-family':'Arial,sans-serif','font-size':'12',fill:'#ccc','font-style':'italic'}});
+    t.textContent = z.label;
+    svg.appendChild(t);
+  }});
+
+  // Draw edges (no text labels on them — only in popup)
+  const pairCurve = {{}};
+  REDGES.forEach(edge => {{
     const a = rNodeById(edge.f), b = rNodeById(edge.t);
     if (!a || !b) return;
     const info = REL_TYPES[edge.type] || {{color:'#888'}};
@@ -1893,126 +1991,85 @@ function drawRelations() {{
     const dx = b.cx - a.cx, dy = b.cy - a.cy;
     const len = Math.sqrt(dx*dx + dy*dy);
     const nx = -dy/len, ny = dx/len;
-    const curve = curveDir * Math.min(50, len * 0.22);
+    const curve = curveDir * Math.min(55, len * 0.2);
     const mx = (a.cx+b.cx)/2 + nx*curve;
     const my = (a.cy+b.cy)/2 + ny*curve;
 
     const pathD = `M ${{a.cx}} ${{a.cy}} Q ${{mx}} ${{my}} ${{b.cx}} ${{b.cy}}`;
 
     const path = mkEl('path', {{
-      d: pathD,
-      stroke: info.color,
-      'stroke-width': '2',
-      fill: 'none',
-      opacity: '0.7',
+      d: pathD, stroke: info.color, 'stroke-width': '1.8',
+      fill: 'none', opacity: '0.6',
       'marker-end': edge.dir!=='bwd' ? `url(#arr-${{edge.type}})` : 'none',
       'marker-start': edge.dir==='both' ? `url(#arr-rev-${{edge.type}})` : 'none',
-      class: 'rel-edge',
-      'data-type': edge.type,
+      class: 'rel-edge', 'data-type': edge.type,
     }});
 
-    const lx = Math.round((a.cx+b.cx)/2 + nx*curve*0.5 + nx*10);
-    const ly = Math.round((a.cy+b.cy)/2 + ny*curve*0.5 + ny*10);
-    const label = mkEl('text', {{
-      x: lx, y: ly,
-      'text-anchor': 'middle',
-      'font-family': 'Arial,sans-serif',
-      'font-size': '9',
-      fill: info.color,
-      'pointer-events': 'none',
-      class: 'rel-edge-label',
-    }});
-    label.textContent = edge.short || edge.type;
-
-    // Fat invisible hit area for click
     const hitLine = mkEl('path', {{
-      d: pathD,
-      stroke: 'transparent',
-      'stroke-width': '16',
-      fill: 'none',
-      style: 'cursor:pointer',
+      d: pathD, stroke: 'transparent', 'stroke-width': '18',
+      fill: 'none', style: 'cursor:pointer',
     }});
-    hitLine.addEventListener('click', (evt) => {{
+    hitLine.addEventListener('click', evt => {{
       evt.stopPropagation();
       showEdgePanel(edge, info, svg, mx, my);
     }});
 
     const g = mkEl('g', {{
-      'data-type': edge.type,
-      'data-from': edge.f,
-      'data-to': edge.t,
+      'data-type': edge.type, 'data-from': edge.f, 'data-to': edge.t,
       class: 'rel-edge-grp',
     }});
     g.appendChild(path);
-    g.appendChild(label);
     g.appendChild(hitLine);
     svg.appendChild(g);
   }});
 
-  // Ring labels
-  const ringLbl = mkEl('text', {{x:CX, y:CY-R0-14, 'text-anchor':'middle',
-    'font-family':'Arial,sans-serif','font-size':'11',fill:'#aaa','font-style':'italic'}});
-  ringLbl.textContent = 'דמויות מרכזיות — לחץ על דמות להדגשה, על קשר לפרטים';
-  svg.appendChild(ringLbl);
-
   // Draw nodes (on top)
   RNODES.forEach(n => {{
+    const isDavid = n.id === 'david';
+    const r = isDavid ? 36 : 28;
     const g = mkEl('g', {{class:'rel-node', id:'rel-node-' + n.id, cursor:'pointer'}});
-    const r = n.ring===0 ? 30 : n.ring===1 ? 26 : 22;
-    const circle = mkEl('circle', {{cx:n.cx, cy:n.cy, r, fill:n.c, stroke:'rgba(255,255,255,.25)', 'stroke-width':'1.5'}});
+    const circle = mkEl('circle', {{cx:n.cx, cy:n.cy, r, fill:n.c,
+      stroke: isDavid ? '#fff' : 'rgba(255,255,255,.2)', 'stroke-width': isDavid ? '3' : '1.5'}});
     g.appendChild(circle);
-
     const words = n.name.split('-');
     if (words.length > 1) {{
       words.forEach((w, i) => {{
-        const t = mkEl('text', {{x:n.cx, y:n.cy - 5 + i*13,
-          'text-anchor':'middle','font-family':'Arial,sans-serif',
-          'font-size': n.ring===0 ? '12': n.ring===1 ? '10':'9', fill:'#fff', 'font-weight':'bold','pointer-events':'none'}});
+        const t = mkEl('text', {{x:n.cx, y:n.cy-4+(i*13), 'text-anchor':'middle',
+          'font-family':'Arial,sans-serif', 'font-size': isDavid?'14':'11',
+          fill:'#fff', 'font-weight':'bold', 'pointer-events':'none'}});
         t.textContent = w; g.appendChild(t);
       }});
     }} else {{
-      const t = mkEl('text', {{x:n.cx, y:n.cy+4,
-        'text-anchor':'middle','font-family':'Arial,sans-serif',
-        'font-size': n.ring===0 ? '13': n.ring===1 ? '11':'9', fill:'#fff', 'font-weight':'bold','pointer-events':'none'}});
+      const t = mkEl('text', {{x:n.cx, y:n.cy+4, 'text-anchor':'middle',
+        'font-family':'Arial,sans-serif', 'font-size': isDavid?'15':'12',
+        fill:'#fff', 'font-weight':'bold', 'pointer-events':'none'}});
       t.textContent = n.name; g.appendChild(t);
     }}
-
-    g.addEventListener('click', (e) => {{ e.stopPropagation(); toggleNodeHighlight(n); }});
+    g.addEventListener('click', e => {{ e.stopPropagation(); toggleNodeHighlight(n); }});
     svg.appendChild(g);
   }});
 }}
 
 function toggleNodeHighlight(n) {{
   if (selectedRelNode && selectedRelNode.id === n.id) {{
-    clearRelHighlight();
-    return;
+    clearRelHighlight(); return;
   }}
   selectedRelNode = n;
   closeRelPanel();
-
-  // Find connected node IDs
   const connectedIds = new Set([n.id]);
   document.querySelectorAll('.rel-edge-grp').forEach(g => {{
     const from = g.getAttribute('data-from');
     const to = g.getAttribute('data-to');
-    if (from === n.id || to === n.id) {{
+    if ((from===n.id || to===n.id) && activeRelTypes.has(g.getAttribute('data-type'))) {{
       connectedIds.add(from); connectedIds.add(to);
       g.classList.remove('dimmed'); g.classList.add('highlighted');
     }} else {{
       g.classList.add('dimmed'); g.classList.remove('highlighted');
     }}
   }});
-  // Check type filter
-  document.querySelectorAll('.rel-edge-grp').forEach(g => {{
-    const type = g.getAttribute('data-type');
-    if (!activeRelTypes.has(type)) {{ g.classList.add('dimmed'); g.classList.remove('highlighted'); }}
-  }});
-
-  // Dim/show nodes
   document.querySelectorAll('.rel-node').forEach(g => {{
     const id = g.id.replace('rel-node-', '');
-    if (connectedIds.has(id)) {{ g.classList.remove('dimmed'); }}
-    else {{ g.classList.add('dimmed'); }}
+    g.classList.toggle('dimmed', !connectedIds.has(id));
     g.classList.toggle('selected', id === n.id);
   }});
 }}
@@ -2021,13 +2078,9 @@ function clearRelHighlight() {{
   selectedRelNode = null;
   document.querySelectorAll('.rel-edge-grp').forEach(g => {{
     g.classList.remove('dimmed','highlighted');
-    const type = g.getAttribute('data-type');
-    if (!activeRelTypes.has(type)) g.style.display = 'none';
-    else g.style.display = '';
+    g.style.display = activeRelTypes.has(g.getAttribute('data-type')) ? '' : 'none';
   }});
-  document.querySelectorAll('.rel-node').forEach(g => {{
-    g.classList.remove('dimmed','selected');
-  }});
+  document.querySelectorAll('.rel-node').forEach(g => g.classList.remove('dimmed','selected'));
 }}
 
 function updateEdgeVisibility() {{
@@ -2041,39 +2094,52 @@ function showEdgePanel(edge, info, svgEl, mx, my) {{
   const a = rNodeById(edge.f), b = rNodeById(edge.t);
   const arrow = edge.dir==='both' ? '⟷' : edge.dir==='bwd' ? '←' : '→';
   const panel = document.getElementById('rel-panel');
+
   document.getElementById('rel-panel-title').innerHTML =
     `<span style="color:${{info.color}}">${{info.emoji}} ${{edge.type}}</span>`;
   document.getElementById('rel-panel-chars').innerHTML = `
     <span class="rel-panel-char"><span class="rel-panel-char-dot" style="background:${{a.c}}"></span>${{a.name}}</span>
-    <span style="color:var(--fg3);font-size:1.1rem">${{arrow}}</span>
+    <span style="color:var(--fg3);font-size:1rem">${{arrow}}</span>
     <span class="rel-panel-char"><span class="rel-panel-char-dot" style="background:${{b.c}}"></span>${{b.name}}</span>
   `;
-  document.getElementById('rel-panel-body').textContent = edge.note;
+
+  // Scene links
+  let scenesHtml = '';
+  if (edge.scenes && edge.scenes.length > 0 && typeof SCENES !== 'undefined') {{
+    const matches = SCENES.filter(s => edge.scenes.includes(s.id));
+    if (matches.length > 0) {{
+      scenesHtml = `<div style="margin-top:8px;border-top:1px solid var(--border);padding-top:8px">
+        <div style="font-size:.75rem;color:var(--fg3);margin-bottom:4px">📜 סצנות יחד:</div>
+        ${{matches.map(s=>`<div style="font-size:.8rem;margin:2px 0">
+          <a href="#" onclick="event.preventDefault();jumpToScene('${{s.id}}');closeRelPanel()" 
+             style="color:var(--accent);text-decoration:none">› ${{s.label}}</a>
+        </div>`).join('')}}
+      </div>`;
+    }}
+  }}
+
+  document.getElementById('rel-panel-body').innerHTML =
+    `<div style="margin-bottom:6px">${{edge.note}}</div>${{scenesHtml}}`;
+
   panel.classList.add('open');
 
-  // Position popup near the edge midpoint, offset perpendicular to edge
+  // Position near edge midpoint
   if (svgEl && mx !== undefined && window.innerWidth > 600) {{
     const svgRect = svgEl.getBoundingClientRect();
     const vb = svgEl.viewBox.baseVal;
     const scaleX = svgRect.width / vb.width;
     const scaleY = svgRect.height / vb.height;
-
-    // Convert SVG coords to screen coords
-    const screenX = svgRect.left + (mx - vb.x) * scaleX;
-    const screenY = svgRect.top  + (my - vb.y) * scaleY;
-
-    const pw = 285, ph = 180;
-    const margin = 12;
-    let left = screenX - pw / 2;
-    let top  = screenY - ph - 16; // above midpoint
-
+    const screenX = svgRect.left + mx * scaleX;
+    const screenY = svgRect.top  + my * scaleY;
+    const pw = 290, ph = 200;
+    const margin = 14;
+    let left = screenX - pw/2;
+    let top  = screenY - ph - 20;
     left = Math.max(margin, Math.min(left, window.innerWidth - pw - margin));
     top  = Math.max(margin, Math.min(top,  window.innerHeight - ph - margin));
-
     panel.style.left = left + 'px';
     panel.style.top  = top  + 'px';
-    panel.style.bottom = 'auto';
-    panel.style.right  = 'auto';
+    panel.style.bottom = 'auto'; panel.style.right = 'auto';
   }}
 }}
 
@@ -2087,6 +2153,7 @@ document.addEventListener('click', e => {{
   if (!e.target.closest('#rel-panel') && !e.target.closest('.rel-edge-grp'))
     closeRelPanel();
 }});
+
 
 
 // ── SCROLL SPY ──
