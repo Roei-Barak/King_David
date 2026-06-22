@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj4KICA8ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImhnIiB4MT0iMCIgeTE9IjAiIHgyPSIxIiB5Mj0iMSI+CiAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjRkZENzAwIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNCODg2MEIiLz4KICA8L2xpbmVhckdyYWRpZW50PjwvZGVmcz4KICA8IS0tIE5lY2sgLS0+CiAgPHBhdGggZD0iTTIwIDg1IFExNSAzMCA0NSAxMCIgc3Ryb2tlPSJ1cmwoI2hnKSIgc3Ryb2tlLXdpZHRoPSI4IiBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICA8IS0tIFBpbGxhciAtLT4KICA8cGF0aCBkPSJNMjAgODUgUTU1IDk1IDgwIDc1IiBzdHJva2U9InVybCgjaGcpIiBzdHJva2Utd2lkdGg9IjgiIGZpbGw9Im5vbmUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogIDwhLS0gU291bmRib2FyZCAtLT4KICA8cGF0aCBkPSJNNDUgMTAgUTkwIDIwIDgwIDc1IiBzdHJva2U9InVybCgjaGcpIiBzdHJva2Utd2lkdGg9IjYiIGZpbGw9Im5vbmUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogIDwhLS0gU3RyaW5ncyAtLT4KICA8bGluZSB4MT0iNDgiIHkxPSIxNiIgeDI9Ijc4IiB5Mj0iNzAiIHN0cm9rZT0iI0ZGRTU1QyIgc3Ryb2tlLXdpZHRoPSIxLjgiLz4KICA8bGluZSB4MT0iNTIiIHkxPSIxNCIgeDI9Ijc5IiB5Mj0iNjUiIHN0cm9rZT0iI0ZGRTU1QyIgc3Ryb2tlLXdpZHRoPSIxLjgiLz4KICA8bGluZSB4MT0iNDIiIHkxPSIyMCIgeDI9Ijc2IiB5Mj0iNzUiIHN0cm9rZT0iI0I4ODYwQiIgc3Ryb2tlLXdpZHRoPSIxLjgiLz4KICA8bGluZSB4MT0iMzgiIHkxPSIyNyIgeDI9IjcyIiB5Mj0iNzgiIHN0cm9rZT0iI0I4ODYwQiIgc3Ryb2tlLXdpZHRoPSIxLjgiLz4KICA8bGluZSB4MT0iMzQiIHkxPSIzNiIgeDI9IjY3IiB5Mj0iODAiIHN0cm9rZT0iI0I4ODYwQiIgc3Ryb2tlLXdpZHRoPSIxLjgiLz4KICA8bGluZSB4MT0iMzAiIHkxPSI0OCIgeDI9IjYwIiB5Mj0iODIiIHN0cm9rZT0iI0ZGRDcwMCIgc3Ryb2tlLXdpZHRoPSIxLjgiLz4KICA8bGluZSB4MT0iMjYiIHkxPSI2MiIgeDI9IjUyIiB5Mj0iODMiIHN0cm9rZT0iI0ZGRDcwMCIgc3Ryb2tlLXdpZHRoPSIxLjgiLz4KPC9zdmc+">
 <title>מזמור לדוד — המחזמר המלא</title>
 <style>
 :root {
@@ -599,47 +600,58 @@ mark { background: #ffd70088; color: var(--fg); border-radius: 2px; }
 }
 .rel-filter-btn.off { opacity: .3; }
 
-/* ── RELATION DETAIL PANEL ── */
+/* ── RELATION DETAIL PANEL (floating popup near line) ── */
 #rel-panel {
   position: fixed;
-  bottom: 0; left: 0; right: 0;
   background: var(--bg);
-  border-top: 2px solid var(--border);
-  border-radius: 16px 16px 0 0;
-  padding: 16px 20px 24px;
+  border: 1.5px solid var(--border);
+  border-radius: 14px;
+  padding: 14px 16px 16px;
   z-index: 250;
-  transform: translateY(100%);
-  transition: transform .3s cubic-bezier(.4,0,.2,1);
-  max-height: 55vh;
-  overflow-y: auto;
+  pointer-events: auto;
+  display: none;
   direction: rtl;
   font-family: var(--font-ui);
-  box-shadow: 0 -4px 24px rgba(0,0,0,.18);
+  box-shadow: 0 6px 28px rgba(0,0,0,.22);
+  max-width: 280px;
+  min-width: 200px;
+  transition: opacity .18s;
 }
-#rel-panel.open { transform: translateY(0); }
+#rel-panel.open { display: block; }
 #rel-panel-header {
   display: flex; align-items: center; justify-content: space-between;
-  margin-bottom: 12px;
+  margin-bottom: 8px; gap: 8px;
 }
-#rel-panel-title { font-size: 1.05rem; font-weight: bold; }
+#rel-panel-title { font-size: .95rem; font-weight: bold; }
 #rel-panel-close {
   background: var(--bg3); border: none; border-radius: 50%;
-  width: 28px; height: 28px; cursor: pointer; font-size: 1rem;
+  width: 24px; height: 24px; cursor: pointer; font-size: .85rem;
   display: flex; align-items: center; justify-content: center;
   color: var(--fg); flex-shrink: 0;
 }
-#rel-panel-body { font-size: .9rem; line-height: 1.65; color: var(--fg); }
+#rel-panel-body { font-size: .82rem; line-height: 1.6; color: var(--fg); }
 #rel-panel-chars {
-  display: flex; align-items: center; gap: 10px;
-  margin-bottom: 12px; flex-wrap: wrap;
+  display: flex; align-items: center; gap: 8px;
+  margin-bottom: 10px; flex-wrap: wrap;
 }
 .rel-panel-char {
-  display: flex; align-items: center; gap: 6px;
-  background: var(--bg2); border-radius: 20px;
-  padding: 4px 12px; font-weight: bold; font-size: .9rem;
+  display: flex; align-items: center; gap: 5px;
+  background: var(--bg2); border-radius: 16px;
+  padding: 3px 10px; font-weight: bold; font-size: .82rem;
 }
 .rel-panel-char-dot {
-  width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0;
+  width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0;
+}
+/* Mobile: bottom sheet */
+@media (max-width: 600px) {
+  #rel-panel {
+    position: fixed !important;
+    bottom: 0 !important; left: 0 !important; right: 0 !important;
+    top: auto !important;
+    max-width: 100% !important;
+    border-radius: 16px 16px 0 0 !important;
+    border-bottom: none !important;
+  }
 }
 
 
@@ -9452,7 +9464,7 @@ const REL_TYPES = {
 
 // Two rings, David is just another node — no privileged center
 const RNODES = [
-  // Inner ring (8 main characters)
+  // Inner ring (8 main characters) — angles 0..315 step 45
   {id:'david',        name:'דוד',       c:'#1d4ed8', ring:0, a:0},
   {id:'saul',         name:'שאול',      c:'#dc2626', ring:0, a:45},
   {id:'jonathan',     name:'יונתן',     c:'#16a34a', ring:0, a:90},
@@ -9460,8 +9472,8 @@ const RNODES = [
   {id:'absalom',      name:'אבשלום',    c:'#be123c', ring:0, a:180},
   {id:'joab',         name:'יואב',      c:'#92400e', ring:0, a:225},
   {id:'nathan',       name:'נתן',       c:'#4338ca', ring:0, a:270},
-  {id:'ahithophel',   name:'אחיתופל',   c:'#1f2937', ring:0, a:315},
-  // Outer ring (8 secondary)
+  {id:'samuel',       name:'שמואל',     c:'#0f766e', ring:0, a:315},
+  // Middle ring (8) — offset 22.5 deg
   {id:'abigail',      name:'אביגיל',    c:'#ea580c', ring:1, a:22},
   {id:'bathsheba',    name:'בת-שבע',    c:'#0891b2', ring:1, a:67},
   {id:'uriah',        name:'אוריה',     c:'#44403c', ring:1, a:112},
@@ -9470,6 +9482,13 @@ const RNODES = [
   {id:'mephibosheth', name:'מפיבושת',   c:'#065f46', ring:1, a:247},
   {id:'shimei',       name:'שמעי',      c:'#78350f', ring:1, a:292},
   {id:'rizpah',       name:'רצפה',      c:'#be185d', ring:1, a:337},
+  // Outer ring (6 additional) — angles spaced 60 deg
+  {id:'doeg',         name:'דואג',      c:'#7f1d1d', ring:2, a:0},
+  {id:'abner',        name:'אבנר',      c:'#1e3a5f', ring:2, a:60},
+  {id:'ahithophel',   name:'אחיתופל',   c:'#374151', ring:2, a:120},
+  {id:'abishai',      name:'אבישי',     c:'#5b21b6', ring:2, a:180},
+  {id:'ishbosheth',   name:'איש-בשת',   c:'#991b1b', ring:2, a:240},
+  {id:'bathshua',     name:'אמו של דוד', c:'#92400e', ring:2, a:300},
 ];
 
 // dir: 'fwd'=arrow from→to, 'bwd'=from←to, 'both'=bidirectional, 'none'=undirected
@@ -9530,6 +9549,37 @@ const REDGES = [
     note:'שבעת בני שאול נתלו על ידי הגבעונים. רצפה בת איה פרשה שק על הצור — ישבה יומם ולילה, חמישה חודשים, שמרה על הגופות מהעופות ומהחיות. דוד שמע ונרגש.'},
   {f:'david',      t:'rizpah',       type:'אבל',          dir:'fwd',  short:'שמע ונקבר',
     note:'כשדוד שמע על מעשה רצפה — נזכר בעצמות שאול ויונתן בגלעד. לקח אותן, ואסף גם את עצמות שבעת הנתלים, וקבר אותם בקבר קיש אביו. מסירות ומסירות יצרו קבורה.'},
+  // שמואל
+  {f:'samuel',     t:'saul',         type:'ביקורת',       dir:'fwd',  short:'חרטת המשיחה',
+    note:'"נחמתי כי המלכתי את שאול למלך כי שב מאחרי ולא הקים את דברי" — שמואל בכה על שאול כל הלילה לפני שנסע לדחותו. הביקורת שלו הייתה מלאת כאב, לא מלאת כעס.'},
+  {f:'samuel',     t:'david',        type:'כבוד',         dir:'fwd',  short:'משח אותו בחשאי',
+    note:'שמואל הלך לבית לחם בסוד, ראה את שבעת הבנים, ואף אחד לא היה הנבחר. "עוד שאר הקטן ורועה בצאן" — וה׳ אמר: "קום משחהו כי זה הוא". הרועה הקטן שנבחר מבין האחים.'},
+  {f:'david',      t:'samuel',       type:'הכרת טובה',   dir:'fwd',  short:'אבי הנבואה',
+    note:'שמואל היה הדמות שהעניקה לדוד לגיטימציה אלוהית. מותו הכה את דוד קשה — "ויתאבלו כל ישראל". דוד ירד לבקש את צלו דרך בעלת האוב בעין-דור.'},
+  // דואג
+  {f:'doeg',       t:'saul',         type:'נאמנות',       dir:'fwd',  short:'מלשין הארמי',
+    note:'דואג האדומי היה נאמן לשאול בנאמנות עיוורת. כשאף אחד מעבדי שאול לא רצה להרוג את כוהני נוב — דואג קם ועשה. "ויפן דואג האדומי ויפגע בכוהנים" — 85 כהנים בלילה אחד.'},
+  {f:'doeg',       t:'david',        type:'שנאה',         dir:'fwd',  short:'הלשין עליו לשאול',
+    note:'דואג ראה את אחימלך נותן לדוד את חרב גלית ולחם הפנים. הלשין לשאול. התוצאה: טבח כל עיר נוב — 85 כוהנים, נשים, ילדים ובהמות. דוד אמר: "אנכי סבותי בכל נפשות בית אביך".'},
+  {f:'saul',       t:'doeg',         type:'תלות',         dir:'fwd',  short:'רצח בידיים אחרות',
+    note:'שאול לא יכל לגרום לגרדמיו להרוג את הכוהנים. פנה לדואג. "ופגע אתה בכוהנים". דואג היה ידו הארוכה במה שידיו עצמן לא יכלו — או לא רצו — לעשות.'},
+  // אבנר
+  {f:'abner',      t:'saul',         type:'נאמנות',       dir:'fwd',  short:'שר הצבא הנאמן',
+    note:'אבנר בן נר היה שר הצבא של שאול ואחד מאדירי בית שאול. אחרי גלבוע — הוא שהמליך את איש-בשת, מנע קריסת הממלכה, ניסה לשמר את שושלת שאול מול עלייתו של דוד.'},
+  {f:'abner',      t:'david',        type:'ידידות',       dir:'fwd',  short:'הסכם שנגדע',
+    note:'אבנר פנה לדוד לאחד את ישראל תחתיו: "אקומה ואלכה ואקבצה אל אדוני המלך את כל ישראל". דוד קיבלו בשמחה ובסעודה. יואב הרגו מייד אחרי — על דם עשהאל ומתוך קנאה.'},
+  {f:'joab',       t:'abner',        type:'נקמה',         dir:'fwd',  short:'הרגו בשער חברון',
+    note:'יואב הרג את אבנר — "על דם עשהאל אחיו". קרא לו בצד, תקע לו בחמישי בדממה. דוד קונן: "הלא ידעתם כי שר וגדול נפל היום הזה בישראל?" אבל לא יכל להענישו.'},
+  // אבישי
+  {f:'abishai',    t:'joab',         type:'ידידות',       dir:'both', short:'אחים בנשק',
+    note:'אבישי ויואב היו אחים — בני צרויה אחות דוד. לחמו תמיד יחד. אבישי רצה להרוג את שאול בעין, את שמעי בבריחה, ואת הגיבור הפלשתי בגיא. יואב ריסן אותו — לפעמים.'},
+  {f:'abishai',    t:'david',        type:'נאמנות',       dir:'fwd',  short:'השומר הנאמן',
+    note:'אבישי הציל את דוד כשנלאה בקרב עם ישבי-בנוב הרפאי: "אז נשבעו אנשי דוד לו לאמר לא תצא עוד איתנו למלחמה". לחם לצידו תמיד, גם כשדוד היה חלש.'},
+  // איש-בשת
+  {f:'ishbosheth', t:'saul',         type:'אהבת אב',      dir:'fwd',  short:'ממשיך שאול',
+    note:'איש-בשת בן שאול הומלך על ידי אבנר — שבר הצבא — על ישראל, בעוד דוד מולך על יהודה בחברון. בן חסר כוח שהיה בובה בידי אבנר. "וַיִּרְפּוּ יָדָיו" כשנפל אבנר.'},
+  {f:'david',      t:'ishbosheth',   type:'כבוד',         dir:'fwd',  short:'לא נגע בו — הרוצחים נענשו',
+    note:'דוד לא פגע באיש-בשת. כשבאו רכב ובענה עם ראשו — דוד לא שמח. הוציא להורג את הרוצחים: "אנשים רשעים הרגו איש צדיק בביתו על משכבו". כיבד אויבו גם במותו.'},
 ];
 
 function rNodeById(id) { return RNODES.find(n => n.id===id); }
@@ -9538,14 +9588,15 @@ function drawRelations() {
   const svg = document.getElementById('rel-svg');
   svg.innerHTML = '';
   const ns = 'http://www.w3.org/2000/svg';
-  const W=1200, H=800, CX=600, CY=400, R0=240, R1=390;
+  const W=1300, H=900, CX=650, CY=450, R0=210, R1=360, R2=490;
   svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
   svg.style.minWidth = W + 'px';
+  svg.style.minHeight = H + 'px';
   svg.style.height = H + 'px';
 
   // Compute node positions
   RNODES.forEach(n => {
-    const r = n.ring===0 ? R0 : R1;
+    const r = n.ring===0 ? R0 : n.ring===1 ? R1 : R2;
     const rad = (n.a - 90) * Math.PI / 180;
     n.cx = Math.round(CX + r * Math.cos(rad));
     n.cy = Math.round(CY + r * Math.sin(rad));
@@ -9656,7 +9707,7 @@ function drawRelations() {
     });
     hitLine.addEventListener('click', (evt) => {
       evt.stopPropagation();
-      showEdgePanel(edge, info);
+      showEdgePanel(edge, info, svg, mx, my);
     });
 
     const g = mkEl('g', {
@@ -9680,7 +9731,7 @@ function drawRelations() {
   // Draw nodes (on top)
   RNODES.forEach(n => {
     const g = mkEl('g', {class:'rel-node', id:'rel-node-' + n.id, cursor:'pointer'});
-    const r = n.ring===0 ? 32 : 27;
+    const r = n.ring===0 ? 30 : n.ring===1 ? 26 : 22;
     const circle = mkEl('circle', {cx:n.cx, cy:n.cy, r, fill:n.c, stroke:'rgba(255,255,255,.25)', 'stroke-width':'1.5'});
     g.appendChild(circle);
 
@@ -9689,13 +9740,13 @@ function drawRelations() {
       words.forEach((w, i) => {
         const t = mkEl('text', {x:n.cx, y:n.cy - 5 + i*13,
           'text-anchor':'middle','font-family':'Arial,sans-serif',
-          'font-size': n.ring===0 ? '12':'10', fill:'#fff', 'font-weight':'bold','pointer-events':'none'});
+          'font-size': n.ring===0 ? '12': n.ring===1 ? '10':'9', fill:'#fff', 'font-weight':'bold','pointer-events':'none'});
         t.textContent = w; g.appendChild(t);
       });
     } else {
       const t = mkEl('text', {x:n.cx, y:n.cy+4,
         'text-anchor':'middle','font-family':'Arial,sans-serif',
-        'font-size': n.ring===0 ? '13':'11', fill:'#fff', 'font-weight':'bold','pointer-events':'none'});
+        'font-size': n.ring===0 ? '13': n.ring===1 ? '11':'9', fill:'#fff', 'font-weight':'bold','pointer-events':'none'});
       t.textContent = n.name; g.appendChild(t);
     }
 
@@ -9759,7 +9810,7 @@ function updateEdgeVisibility() {
   });
 }
 
-function showEdgePanel(edge, info) {
+function showEdgePanel(edge, info, svgEl, mx, my) {
   const a = rNodeById(edge.f), b = rNodeById(edge.t);
   const arrow = edge.dir==='both' ? '⟷' : edge.dir==='bwd' ? '←' : '→';
   const panel = document.getElementById('rel-panel');
@@ -9767,11 +9818,36 @@ function showEdgePanel(edge, info) {
     `<span style="color:${info.color}">${info.emoji} ${edge.type}</span>`;
   document.getElementById('rel-panel-chars').innerHTML = `
     <span class="rel-panel-char"><span class="rel-panel-char-dot" style="background:${a.c}"></span>${a.name}</span>
-    <span style="color:var(--fg3);font-size:1.2rem">${arrow}</span>
+    <span style="color:var(--fg3);font-size:1.1rem">${arrow}</span>
     <span class="rel-panel-char"><span class="rel-panel-char-dot" style="background:${b.c}"></span>${b.name}</span>
   `;
   document.getElementById('rel-panel-body').textContent = edge.note;
   panel.classList.add('open');
+
+  // Position popup near the edge midpoint, offset perpendicular to edge
+  if (svgEl && mx !== undefined && window.innerWidth > 600) {
+    const svgRect = svgEl.getBoundingClientRect();
+    const vb = svgEl.viewBox.baseVal;
+    const scaleX = svgRect.width / vb.width;
+    const scaleY = svgRect.height / vb.height;
+
+    // Convert SVG coords to screen coords
+    const screenX = svgRect.left + (mx - vb.x) * scaleX;
+    const screenY = svgRect.top  + (my - vb.y) * scaleY;
+
+    const pw = 285, ph = 180;
+    const margin = 12;
+    let left = screenX - pw / 2;
+    let top  = screenY - ph - 16; // above midpoint
+
+    left = Math.max(margin, Math.min(left, window.innerWidth - pw - margin));
+    top  = Math.max(margin, Math.min(top,  window.innerHeight - ph - margin));
+
+    panel.style.left = left + 'px';
+    panel.style.top  = top  + 'px';
+    panel.style.bottom = 'auto';
+    panel.style.right  = 'auto';
+  }
 }
 
 function closeRelPanel() {
