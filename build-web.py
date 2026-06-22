@@ -744,9 +744,15 @@ mark {{ background: #ffd70088; color: var(--fg); border-radius: 2px; }}
   border: 1px solid var(--border);
   padding: 12px;
 }}
-.rel-node {{ cursor: pointer; }}
-.rel-node circle {{ transition: r .15s, filter .15s; }}
-.rel-node:hover circle {{ filter: brightness(1.2); }}
+.rel-node {{ cursor: pointer; transition: opacity .2s; }}
+.rel-node circle {{ transition: r .15s, filter .15s, stroke-width .15s; }}
+.rel-node:hover circle {{ filter: brightness(1.25); }}
+.rel-node.dimmed {{ opacity: 0.08; pointer-events: none; }}
+.rel-node.selected circle {{ stroke: #fff !important; stroke-width: 4 !important; filter: brightness(1.35); }}
+.rel-edge-grp {{ transition: opacity .2s; cursor: pointer; }}
+.rel-edge-grp.dimmed {{ opacity: 0.05; pointer-events: none; }}
+.rel-edge-grp.highlighted path.rel-edge {{ stroke-width: 4 !important; opacity: 1 !important; }}
+.rel-edge-grp.highlighted {{ opacity: 1; }}
 #rel-tooltip {{
   position: fixed;
   background: var(--bg);
@@ -772,9 +778,52 @@ mark {{ background: #ffd70088; color: var(--fg); border-radius: 2px; }}
 .rel-filter-btn {{
   padding: 3px 10px; border-radius: 12px; border: 1px solid;
   cursor: pointer; font-family: var(--font-ui); font-size: .76rem;
-  transition: opacity .15s;
 }}
 .rel-filter-btn.off {{ opacity: .3; }}
+
+/* ── RELATION DETAIL PANEL ── */
+#rel-panel {{
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  background: var(--bg);
+  border-top: 2px solid var(--border);
+  border-radius: 16px 16px 0 0;
+  padding: 16px 20px 24px;
+  z-index: 250;
+  transform: translateY(100%);
+  transition: transform .3s cubic-bezier(.4,0,.2,1);
+  max-height: 55vh;
+  overflow-y: auto;
+  direction: rtl;
+  font-family: var(--font-ui);
+  box-shadow: 0 -4px 24px rgba(0,0,0,.18);
+}}
+#rel-panel.open {{ transform: translateY(0); }}
+#rel-panel-header {{
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 12px;
+}}
+#rel-panel-title {{ font-size: 1.05rem; font-weight: bold; }}
+#rel-panel-close {{
+  background: var(--bg3); border: none; border-radius: 50%;
+  width: 28px; height: 28px; cursor: pointer; font-size: 1rem;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--fg); flex-shrink: 0;
+}}
+#rel-panel-body {{ font-size: .9rem; line-height: 1.65; color: var(--fg); }}
+#rel-panel-chars {{
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 12px; flex-wrap: wrap;
+}}
+.rel-panel-char {{
+  display: flex; align-items: center; gap: 6px;
+  background: var(--bg2); border-radius: 20px;
+  padding: 4px 12px; font-weight: bold; font-size: .9rem;
+}}
+.rel-panel-char-dot {{
+  width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0;
+}}
+
 
 /* ── SCROLLBAR ── */
 #sidebar::-webkit-scrollbar, #main::-webkit-scrollbar {{ width: 6px; }}
@@ -1093,7 +1142,7 @@ mark {{ background: #ffd70088; color: var(--fg); border-radius: 2px; }}
            style="display:block;min-width:1100px;height:720px;"></svg>
     </div>
     <p style="text-align:center;color:var(--fg3);font-size:.76rem;margin-top:8px;font-family:var(--font-ui)">
-      לחץ על דמות לפרטים · לחץ על סוג קשר לסינון
+      לחץ על דמות להדגשת הקשרים שלה · לחץ על קו קשר לסיפור המלא · לחץ שוב להסרת ההדגשה
     </p>
   </div>
 
@@ -1103,6 +1152,16 @@ mark {{ background: #ffd70088; color: var(--fg); border-radius: 2px; }}
 <!-- TOOLTIP -->
 <div id="tree-tooltip"></div>
 <div id="rel-tooltip"></div>
+
+<!-- RELATION DETAIL PANEL -->
+<div id="rel-panel">
+  <div id="rel-panel-header">
+    <div id="rel-panel-title"></div>
+    <button id="rel-panel-close" onclick="closeRelPanel()">&#x2715;</button>
+  </div>
+  <div id="rel-panel-chars"></div>
+  <div id="rel-panel-body"></div>
+</div>
 
 <script>
 // ── DATA ──
@@ -1595,6 +1654,7 @@ function showViewWrapped(name) {{
 // ── RELATIONS GRAPH ──
 let relDrawn = false;
 let activeRelTypes = new Set();
+let selectedRelNode = null;
 
 const REL_TYPES = {{
   'אהבה':         {{color:'#ec4899', emoji:'💗'}},
@@ -1603,7 +1663,7 @@ const REL_TYPES = {{
   'קנאה':         {{color:'#f97316', emoji:'🔶'}},
   'שנאה':         {{color:'#dc2626', emoji:'🔴'}},
   'נקמה':         {{color:'#7f1d1d', emoji:'💢'}},
-  'בגידה':        {{color:'#111827', emoji:'🖤'}},
+  'בגידה':        {{color:'#374151', emoji:'🖤'}},
   'כבוד':         {{color:'#d97706', emoji:'🌟'}},
   'אשמה':         {{color:'#7c3aed', emoji:'😔'}},
   'תאווה':        {{color:'#db2777', emoji:'🔥'}},
@@ -1617,56 +1677,86 @@ const REL_TYPES = {{
   'תאווה→שנאה':  {{color:'#9f1239', emoji:'💔'}},
 }};
 
+// Two rings, David is just another node — no privileged center
 const RNODES = [
-  // ring:-1=center, ring:0=inner(r=210), ring:1=outer(r=340)
-  {{id:'david',        name:'דוד',       c:'#1d4ed8', ring:-1}},
+  // Inner ring (8 main characters)
+  {{id:'david',        name:'דוד',       c:'#1d4ed8', ring:0, a:0}},
+  {{id:'saul',         name:'שאול',      c:'#dc2626', ring:0, a:45}},
+  {{id:'jonathan',     name:'יונתן',     c:'#16a34a', ring:0, a:90}},
+  {{id:'michal',       name:'מיכל',      c:'#9333ea', ring:0, a:135}},
+  {{id:'absalom',      name:'אבשלום',    c:'#be123c', ring:0, a:180}},
+  {{id:'joab',         name:'יואב',      c:'#92400e', ring:0, a:225}},
   {{id:'nathan',       name:'נתן',       c:'#4338ca', ring:0, a:270}},
-  {{id:'saul',         name:'שאול',      c:'#dc2626', ring:0, a:315}},
-  {{id:'jonathan',     name:'יונתן',     c:'#16a34a', ring:0, a:0}},
-  {{id:'michal',       name:'מיכל',      c:'#9333ea', ring:0, a:45}},
-  {{id:'absalom',      name:'אבשלום',    c:'#be123c', ring:0, a:90}},
-  {{id:'joab',         name:'יואב',      c:'#92400e', ring:0, a:135}},
-  {{id:'ahithophel',   name:'אחיתופל',   c:'#1f2937', ring:0, a:180}},
-  {{id:'abigail',      name:'אביגיל',    c:'#ea580c', ring:0, a:225}},
-  {{id:'bathsheba',    name:'בת-שבע',    c:'#0891b2', ring:1, a:330}},
-  {{id:'uriah',        name:'אוריה',     c:'#44403c', ring:1, a:290}},
-  {{id:'amnon',        name:'אמנון',     c:'#854d0e', ring:1, a:30}},
-  {{id:'tamar',        name:'תמר',       c:'#86198f', ring:1, a:70}},
-  {{id:'mephibosheth', name:'מפיבושת',   c:'#065f46', ring:1, a:355}},
-  {{id:'shimei',       name:'שמעי',      c:'#78350f', ring:1, a:155}},
-  {{id:'rizpah',       name:'רצפה',      c:'#be185d', ring:1, a:200}},
+  {{id:'ahithophel',   name:'אחיתופל',   c:'#1f2937', ring:0, a:315}},
+  // Outer ring (8 secondary)
+  {{id:'abigail',      name:'אביגיל',    c:'#ea580c', ring:1, a:22}},
+  {{id:'bathsheba',    name:'בת-שבע',    c:'#0891b2', ring:1, a:67}},
+  {{id:'uriah',        name:'אוריה',     c:'#44403c', ring:1, a:112}},
+  {{id:'amnon',        name:'אמנון',     c:'#854d0e', ring:1, a:157}},
+  {{id:'tamar',        name:'תמר',       c:'#86198f', ring:1, a:202}},
+  {{id:'mephibosheth', name:'מפיבושת',   c:'#065f46', ring:1, a:247}},
+  {{id:'shimei',       name:'שמעי',      c:'#78350f', ring:1, a:292}},
+  {{id:'rizpah',       name:'רצפה',      c:'#be185d', ring:1, a:337}},
 ];
 
-// dir: 'fwd'=arrow from→to, 'bwd'=arrow to→from, 'both'=bidirectional, 'none'=undirected
+// dir: 'fwd'=arrow from→to, 'bwd'=from←to, 'both'=bidirectional, 'none'=undirected
 const REDGES = [
-  {{f:'david',      t:'jonathan',     type:'אהבה',        dir:'both', note:'ידידות עמוקה; יונתן ויתר על כתרו; "נפלאתה אהבתך לי"'}},
-  {{f:'david',      t:'saul',         type:'כבוד',         dir:'fwd',  note:'דוד לא נגע במשיח ה׳ גם כשיכל להורגו'}},
-  {{f:'saul',       t:'david',        type:'קנאה',         dir:'fwd',  note:'"שאול הכה באלפיו ודוד ברבבותיו" — הקנאה הרסה את שאול'}},
-  {{f:'david',      t:'michal',       type:'אהבה',         dir:'fwd',  note:'אהבה ראשונה; היא הצילה אותו מחלון; הוחזרה בכפייה'}},
-  {{f:'michal',     t:'david',        type:'בוז',          dir:'fwd',  note:'"ותבז לו בלבה" — בזה לו הרוקד לפני הארון; מתה עקרה'}},
-  {{f:'david',      t:'bathsheba',    type:'תאווה',        dir:'fwd',  note:'ראה אותה רוחצת; שלח ולקחה; "ותבוא אליו" — כפייה?'}},
-  {{f:'david',      t:'uriah',        type:'אשמה',         dir:'fwd',  note:'שלח בידיו את גזר דינו; "הדבר אשר עשה דוד רע"'}},
-  {{f:'uriah',      t:'david',        type:'נאמנות',       dir:'fwd',  note:'"לא ארד אל ביתי" — נאמן לחיל בעוד דוד בוגד בו'}},
-  {{f:'david',      t:'absalom',      type:'אהבת אב',      dir:'fwd',  note:'"בני בני אבשלום! מי יתן מותי אני תחתיך"'}},
-  {{f:'absalom',    t:'david',        type:'כעס',          dir:'fwd',  note:'2 שנים לא ראה פני המלך; שרף שדה יואב; מרד'}},
-  {{f:'david',      t:'joab',         type:'תלות',         dir:'fwd',  note:'יואב עשה את המלאכה המלוכלכת שדוד לא יכל לעשות'}},
-  {{f:'joab',       t:'david',        type:'נאמנות',       dir:'fwd',  note:'נאמנות קרה ומניפולטיבית — "אני מגן עליך גם ממך"'}},
-  {{f:'david',      t:'nathan',       type:'כבוד',         dir:'fwd',  note:'קיבל את ה"אתה האיש" בתשובה ולא בכעס'}},
-  {{f:'nathan',     t:'david',        type:'ביקורת',       dir:'fwd',  note:'משל האיש העני — ביקורת נבואית ישירה'}},
-  {{f:'david',      t:'abigail',      type:'אהבה',         dir:'both', note:'ראה בה חכמה; היא עצרה אותו מרצח; הוא שלח לה מייד'}},
-  {{f:'david',      t:'mephibosheth', type:'הכרת טובה',   dir:'fwd',  note:'חסד לזכר יונתן: "ויאכל תמיד על שולחן המלך"'}},
-  {{f:'mephibosheth',t:'david',       type:'הכרת טובה',   dir:'fwd',  note:'"כמלאך האלהים" — הכרת טובה עמוקה ויראה'}},
-  {{f:'saul',       t:'jonathan',     type:'כעס',          dir:'fwd',  note:'"בן נעוות המרדות!" — כעס על בחירת יונתן בדוד'}},
-  {{f:'jonathan',   t:'saul',         type:'אהבה',         dir:'fwd',  note:'אהב את אביו אבל בחר בדוד; מרד שקט מתוך אמונה'}},
-  {{f:'amnon',      t:'tamar',        type:'תאווה→שנאה',  dir:'fwd',  note:'"שנאה גדולה מאד" — אחרי האונס; מנגנון בושה'}},
-  {{f:'absalom',    t:'amnon',        type:'נקמה',         dir:'fwd',  note:'שתק שנתיים, הרג בחגיגת הגזזים; "כי אמנון שנא את תמר"'}},
-  {{f:'absalom',    t:'tamar',        type:'אהבת אב',      dir:'fwd',  note:'קרא לבתו תמר; "ישב שמם" — שמר עליה בביתו'}},
-  {{f:'ahithophel', t:'david',        type:'בגידה',        dir:'fwd',  note:'עבר לאבשלום; "עצת אחיתופל כשאל ה׳"'}},
-  {{f:'shimei',     t:'david',        type:'שנאה',         dir:'fwd',  note:'קילל, האבין, ואמר "צא צא איש הדמים"'}},
-  {{f:'david',      t:'shimei',       type:'כבוד',         dir:'fwd',  note:'"ה׳ אמר לו קלל" — קיבל את הקללה כגזרת שמים'}},
-  {{f:'joab',       t:'absalom',      type:'בוז',          dir:'fwd',  note:'הרג אותו בניגוד לפקודה; לא חשב לו לחטא'}},
-  {{f:'rizpah',     t:'saul',         type:'אהבה',         dir:'fwd',  note:'שמרה על גופות בניה — אהבת אם ופילגש; 5 חודשי שמירה'}},
-  {{f:'david',      t:'rizpah',       type:'אבל',          dir:'fwd',  note:'שמע על מסירותה ונרגש לקבור את שאול ויונתן'}},
+  {{f:'david',      t:'jonathan',     type:'אהבה',        dir:'both', short:'ידידות עמוקה',
+    note:'יונתן ויתר על כתרו למען דוד. "נפלאתה אהבתך לי מאהבת נשים". ברית אישית שנשמרה גם אחרי מות יונתן — דוד חיפש את בן בנו מפיבושת לשמור חסד לזכרו.'}},
+  {{f:'david',      t:'saul',         type:'כבוד',         dir:'fwd',  short:'לא נגע במשיח ה׳',
+    note:'דוד היה יכול להרוג את שאול פעמיים — במערה ובגבעת הכיה — ונמנע. "חי ה׳ כי אם ה׳ יגפנו". ראה בו משיח ה׳ ולא אויב אישי.'}},
+  {{f:'saul',       t:'david',        type:'קנאה',         dir:'fwd',  short:'"שאול הכה באלפיו"',
+    note:'"שאול הכה באלפיו ודוד ברבבותיו" — שיר הנשים הזה שבר את שאול. הקנאה הפכה לרדיפה בלתי פוסקת שהרסה אותו מבפנים יותר מכל אויב חיצוני.'}},
+  {{f:'david',      t:'michal',       type:'אהבה',         dir:'fwd',  short:'אהבה ראשונה שהתנפצה',
+    note:'מיכל אהבה את דוד ראשונה, הצילה אותו מחלון אביה, שלחה אותו בחלון בלילה. אחרי הגלות נמסרה לפלטיאל בן ליש. דוד דרש להחזירה — אבל האהבה כבר לא הייתה.'}},
+  {{f:'michal',     t:'david',        type:'בוז',          dir:'fwd',  short:'"ותבז לו בלבה"',
+    note:'כשדוד רקד לפני הארון — מיכל ראתה ממנה "את המלך דוד מפזז ומכרכר" ובזה לו. "ולמיכל בת שאול לא היה לה ולד עד יום מותה". בזיון שסגר דלת.'}},
+  {{f:'david',      t:'bathsheba',    type:'תאווה',        dir:'fwd',  short:'ראה אותה רוחצת',
+    note:'דוד ראה מגג ביתו אישה רוחצת. "ויברא אליו" — שלח להביאה. "ותבוא אליו" — כפייה? הסכמה? השתיקה בטקסט מרעישה. החטא לא היה רק חטא אחד אלא שרשרת.'}},
+  {{f:'david',      t:'uriah',        type:'אשמה',         dir:'fwd',  short:'שלח בידיו את גזר דינו',
+    note:'אחרי שלא הצליח לגרום לאוריה לחזור הביתה, דוד שלח מכתב ביד אוריה עצמו — המכתב שגזר את מותו. "הדבר אשר עשה דוד רע בעיני ה׳".'}},
+  {{f:'uriah',      t:'david',        type:'נאמנות',       dir:'fwd',  short:'לא ארד אל ביתי',
+    note:'"הארון וישראל ויהודה ישבים בסכות... ואני אבוא אל ביתי לאכול ולשתות?" — אוריה הכיתי, הגוי, מקיים צדק גבוה יותר מהמלך היהודי שגנב את אשתו.'}},
+  {{f:'david',      t:'absalom',      type:'אהבת אב',      dir:'fwd',  short:'"בני בני אבשלום"',
+    note:'"בני בני אבשלום — מי יתן מותי אני תחתיך!" — דוד בכה על בנו שמרד בו, שניסה להרגו. אהבת האב גברה על כל פצע. יואב נאלץ לנזוף בו כדי שיקום ויחיה.'}},
+  {{f:'absalom',    t:'david',        type:'כעס',          dir:'fwd',  short:'שנתיים ללא פגישה',
+    note:'שנתיים חי אבשלום בירושלים מבלי לראות את פני המלך אביו. שרף את שדה יואב כדי לכפות פגישה. הנשיקה שקיבל בסוף לא הייתה פיוס — הייתה פורקן אגרגת של כעס ובוז.'}},
+  {{f:'david',      t:'joab',         type:'תלות',         dir:'fwd',  short:'"עשה את המלאכה המלוכלכת"',
+    note:'יואב הרג את אבנר, הרג את אבשלום, הרג את עמשא — תמיד עשה מה שדוד רצה אבל לא יכל לעשות בעצמו. דוד תלה בו ושנא אותו על זה. "מה לי ולכם בני צרויה".'}},
+  {{f:'joab',       t:'david',        type:'נאמנות',       dir:'fwd',  short:'נאמנות קרה ומניפולטיבית',
+    note:'יואב שמר על דוד מפני עצמו. כשדוד בכה על אבשלום ולא יצא אל העם, יואב נזף בו בפומבי: "קום וצא ודבר על לב עבדיך". נאמנות שהיא שליטה.'}},
+  {{f:'david',      t:'nathan',       type:'כבוד',         dir:'fwd',  short:'קיבל את "אתה האיש"',
+    note:'נתן בא אל דוד במשל האיש העני — ודוד שפט בזעם את "האיש". כשנתן אמר "אתה האיש" — דוד לא כעס, לא הרג, לא הכחיש. "חטאתי לה׳". זו גדולתו.'}},
+  {{f:'nathan',     t:'david',        type:'ביקורת',       dir:'fwd',  short:'משל האיש העני',
+    note:'נבואת נתן: "לאמר מדוע בזית את דבר ה׳?" — לא חרה פניו, לא ביקש רחמים. הציג ראי ישיר. ואחרי התשובה — "גם ה׳ העביר חטאתך". ביקורת מתוך אהבה.'}},
+  {{f:'david',      t:'abigail',      type:'אהבה',         dir:'both', short:'עצרה אותו מרצח',
+    note:'אביגיל ירדה לקראת דוד עם מזון כשהוא בא להרוג את נבל ואת כל זכר ביתו. דיבורה עצרה את ידו. "ברוך טעמך וברוכה את". מיד אחרי מות נבל שלח דוד לקחתה.'}},
+  {{f:'david',      t:'mephibosheth', type:'הכרת טובה',   dir:'fwd',  short:'"ויאכל תמיד על שולחן המלך"',
+    note:'דוד חיפש מי נשאר מבית שאול לשמור חסד לזכר יונתן. מצא את מפיבושת, בן יונתן, נכה ברגליו, מסתתר בלו-דבר. "ואת כל שדות שאול נתתי לבן אדוניך".'}},
+  {{f:'mephibosheth',t:'david',       type:'הכרת טובה',   dir:'fwd',  short:'"כמלאך האלהים"',
+    note:'"אדוני המלך כמלאך האלהים" — מפיבושת לא גידל זקנו ולא רחץ בגדיו מיום צאת המלך ועד שובו. כשחזר דוד ושאל — מפיבושת לא טען לזכויות, רק הביע הודיה.'}},
+  {{f:'saul',       t:'jonathan',     type:'כעס',          dir:'fwd',  short:'"בן נעוות המרדות!"',
+    note:'"בן נעוות המרדות! הלא ידעתי כי בחר אתה לבן ישי לבשתך!" — שאול הבין שיונתן בחר בדוד על פניו. הכעס שלו היה כעס של מלך שחושש שבנו מוסר את מלכותו.'}},
+  {{f:'jonathan',   t:'saul',         type:'אהבה',         dir:'fwd',  short:'אהב ומרד בשקט',
+    note:'יונתן אהב את אביו שאול — אבל בחר בדוד. לא מרד בפעולה אלא בנפש. הגן על דוד, התריע בפניו, כרת ברית — ונפל בגלבוע לצד האב שניסה להרוג את ידידו.'}},
+  {{f:'amnon',      t:'tamar',        type:'תאווה→שנאה',  dir:'fwd',  short:'"שנאה גדולה מאד"',
+    note:'אמנון "חלה" מ"אהבה" לתמר אחיו. אנס אותה בחדרו. "ותאמר לו: אל תעשה את הנבלה הזאת". לאחר האונס: "שנאה גדולה מאד — גדולה השנאה אשר שנאה מהאהבה". נישא הבושה הופך לשנאה.'}},
+  {{f:'absalom',    t:'amnon',        type:'נקמה',         dir:'fwd',  short:'שתק שנתיים ואז הרג',
+    note:'אבשלום לא דיבר עם אמנון לא טוב ולא רע — שתיקה של שנתיים. בחגיגת גזזת הצאן בבעל-חצור הרג את אמנון בצו מחושב. "כי אמנון שנא את תמר אחותו".'}},
+  {{f:'absalom',    t:'tamar',        type:'אהבת אב',      dir:'fwd',  short:'שמר עליה בביתו',
+    note:'אחרי האונס — "ותשב שממה בית אבשלום אחיה". אבשלום קרא לבתו תמר על שמה. שמר על אחותו, שמע את שממתה, ונשא את הנקמה בלב עד שיכל לבצעה.'}},
+  {{f:'ahithophel', t:'david',        type:'בגידה',        dir:'fwd',  short:'עבר לאבשלום',
+    note:'"עצת אחיתופל אשר יעץ בימים ההם כאשר ישאל איש בדבר האלהים" — חכם בדרגת נביא. עבר לאבשלום. יש הטוענים שהיה סבה של בת-שבע — ובגידתו הייתה נקמה אישית.'}},
+  {{f:'shimei',     t:'david',        type:'שנאה',         dir:'fwd',  short:'"צא צא איש הדמים"',
+    note:'"ויקלל וישלח אבנים" — שמעי בן גרא מבכה ביתא קילל את דוד בשעת המנוסה: "צא צא איש הדמים ואיש הבלייעל!" אבישי רצה לכרות ראשו. דוד אמר — "הניחו לו".'}},
+  {{f:'david',      t:'shimei',       type:'כבוד',         dir:'fwd',  short:'"ה׳ אמר לו קלל"',
+    note:'דוד קיבל את הקללה כגזרת שמים: "אולי יראה ה׳ בעיני ויגמל לי ה׳ טובה תחת קללתו היום הזה". כשחזר, דוד מחל לשמעי — ויחל שלמה לסיים את החשבון.'}},
+  {{f:'joab',       t:'absalom',      type:'בוז',          dir:'fwd',  short:'הרג נגד פקודה',
+    note:'דוד ציווה: "שמרו לי לנער לאבשלום". יואב שמע שאבשלום תלוי בשערות ראשו — לקח שלושה שבטים ותקע בלב אבשלום. "לא אוחיל ככה לפניך". כלכול כחוד שלטוני.'}},
+  {{f:'rizpah',     t:'saul',         type:'אהבה',         dir:'fwd',  short:'חמש חודשי שמירה',
+    note:'שבעת בני שאול נתלו על ידי הגבעונים. רצפה בת איה פרשה שק על הצור — ישבה יומם ולילה, חמישה חודשים, שמרה על הגופות מהעופות ומהחיות. דוד שמע ונרגש.'}},
+  {{f:'david',      t:'rizpah',       type:'אבל',          dir:'fwd',  short:'שמע ונקבר',
+    note:'כשדוד שמע על מעשה רצפה — נזכר בעצמות שאול ויונתן בגלעד. לקח אותן, ואסף גם את עצמות שבעת הנתלים, וקבר אותם בקבר קיש אביו. מסירות ומסירות יצרו קבורה.'}},
 ];
 
 function rNodeById(id) {{ return RNODES.find(n => n.id===id); }}
@@ -1675,18 +1765,17 @@ function drawRelations() {{
   const svg = document.getElementById('rel-svg');
   svg.innerHTML = '';
   const ns = 'http://www.w3.org/2000/svg';
-  const W=1100, H=720, CX=550, CY=360, R0=210, R1=340;
+  const W=1200, H=800, CX=600, CY=400, R0=240, R1=390;
   svg.setAttribute('viewBox', `0 0 ${{W}} ${{H}}`);
+  svg.style.minWidth = W + 'px';
+  svg.style.height = H + 'px';
 
   // Compute node positions
   RNODES.forEach(n => {{
-    if (n.ring===-1) {{ n.cx=CX; n.cy=CY; }}
-    else {{
-      const r = n.ring===0 ? R0 : R1;
-      const rad = (n.a-90)*Math.PI/180;
-      n.cx = Math.round(CX + r*Math.cos(rad));
-      n.cy = Math.round(CY + r*Math.sin(rad));
-    }}
+    const r = n.ring===0 ? R0 : R1;
+    const rad = (n.a - 90) * Math.PI / 180;
+    n.cx = Math.round(CX + r * Math.cos(rad));
+    n.cy = Math.round(CY + r * Math.sin(rad));
   }});
 
   function mkEl(tag, attrs) {{
@@ -1704,12 +1793,10 @@ function drawRelations() {{
   typeSet.forEach(type => {{
     const info = REL_TYPES[type] || {{color:'#888', emoji:'•'}};
     activeRelTypes.add(type);
-    // legend
     const li = document.createElement('span');
     li.className = 'rel-legend-item';
     li.innerHTML = `<span class="rel-legend-dot" style="background:${{info.color}}"></span>${{info.emoji}} ${{type}}`;
     legend.appendChild(li);
-    // filter button
     const btn = document.createElement('button');
     btn.className = 'rel-filter-btn';
     btn.textContent = info.emoji + ' ' + type;
@@ -1726,62 +1813,84 @@ function drawRelations() {{
     filterBar.appendChild(btn);
   }});
 
-  // Track edge pairs for curve offset (to separate bidirectional)
+  // Track edge pairs for curve offset
   const pairCurve = {{}};
 
+  // Arrow markers
+  const defs = mkEl('defs', {{}});
+  svg.appendChild(defs);
+  typeSet.forEach(type => {{
+    const info = REL_TYPES[type] || {{color:'#888'}};
+    const m = mkEl('marker', {{id:`arr-${{type}}`, markerWidth:'8', markerHeight:'8', refX:'6', refY:'3', orient:'auto'}});
+    m.appendChild(mkEl('polygon', {{points:'0 0, 6 3, 0 6', fill:info.color}}));
+    defs.appendChild(m);
+    const m2 = mkEl('marker', {{id:`arr-rev-${{type}}`, markerWidth:'8', markerHeight:'8', refX:'0', refY:'3', orient:'auto-start-reverse'}});
+    m2.appendChild(mkEl('polygon', {{points:'0 0, 6 3, 0 6', fill:info.color}}));
+    defs.appendChild(m2);
+  }});
+
   // Draw edges
-  REDGES.forEach((edge, i) => {{
+  REDGES.forEach((edge) => {{
     const a = rNodeById(edge.f), b = rNodeById(edge.t);
     if (!a || !b) return;
     const info = REL_TYPES[edge.type] || {{color:'#888'}};
-    const key = [a.id,b.id].sort().join('|');
+    const key = [a.id, b.id].sort().join('|');
     if (!pairCurve[key]) pairCurve[key] = 0;
     const curveDir = pairCurve[key] % 2 === 0 ? 1 : -1;
     pairCurve[key]++;
 
-    const dx = b.cx-a.cx, dy = b.cy-a.cy;
-    const len = Math.sqrt(dx*dx+dy*dy);
+    const dx = b.cx - a.cx, dy = b.cy - a.cy;
+    const len = Math.sqrt(dx*dx + dy*dy);
     const nx = -dy/len, ny = dx/len;
-    const curve = curveDir * Math.min(40, len*0.25);
+    const curve = curveDir * Math.min(50, len * 0.22);
     const mx = (a.cx+b.cx)/2 + nx*curve;
     const my = (a.cy+b.cy)/2 + ny*curve;
 
-    // Path (quadratic bezier)
-    const path = mkEl('path', {{
-      d:`M ${{a.cx}} ${{a.cy}} Q ${{mx}} ${{my}} ${{b.cx}} ${{b.cy}}`,
-      stroke: info.color,
-      'stroke-width': '2.2',
-      fill: 'none',
-      opacity: '0.75',
-      'marker-end': edge.dir!=='bwd' ? `url(#arr-${{CSS.escape(edge.type)}})` : 'none',
-      'marker-start': edge.dir==='both' ? `url(#arr-rev-${{CSS.escape(edge.type)}})` : 'none',
-    }});
-    path.setAttribute('data-type', edge.type);
-    path.setAttribute('class', 'rel-edge');
+    const pathD = `M ${{a.cx}} ${{a.cy}} Q ${{mx}} ${{my}} ${{b.cx}} ${{b.cy}}`;
 
-    // Label at midpoint
+    const path = mkEl('path', {{
+      d: pathD,
+      stroke: info.color,
+      'stroke-width': '2',
+      fill: 'none',
+      opacity: '0.7',
+      'marker-end': edge.dir!=='bwd' ? `url(#arr-${{edge.type}})` : 'none',
+      'marker-start': edge.dir==='both' ? `url(#arr-rev-${{edge.type}})` : 'none',
+      class: 'rel-edge',
+      'data-type': edge.type,
+    }});
+
+    const lx = Math.round((a.cx+b.cx)/2 + nx*curve*0.5 + nx*10);
+    const ly = Math.round((a.cy+b.cy)/2 + ny*curve*0.5 + ny*10);
     const label = mkEl('text', {{
-      x: Math.round((a.cx+b.cx)/2 + nx*curve*0.5 + nx*12),
-      y: Math.round((a.cy+b.cy)/2 + ny*curve*0.5 + ny*12),
+      x: lx, y: ly,
       'text-anchor': 'middle',
       'font-family': 'Arial,sans-serif',
-      'font-size': '9.5',
+      'font-size': '9',
       fill: info.color,
-      'data-type': edge.type,
+      'pointer-events': 'none',
       class: 'rel-edge-label',
-    }}, edge.type);
-
-    // Hover for note
-    const g = mkEl('g', {{'data-type': edge.type, class:'rel-edge-grp'}});
-    // Invisible fat line for easier hover
-    const hitLine = mkEl('path', {{
-      d:`M ${{a.cx}} ${{a.cy}} Q ${{mx}} ${{my}} ${{b.cx}} ${{b.cy}}`,
-      stroke:'transparent', 'stroke-width':'14', fill:'none',
-      style:'cursor:pointer'
     }});
-    hitLine.addEventListener('mouseenter', (evt) => showRelTooltip(edge, info, evt));
-    hitLine.addEventListener('mouseleave', () => {{
-      document.getElementById('rel-tooltip').style.display='none';
+    label.textContent = edge.short || edge.type;
+
+    // Fat invisible hit area for click
+    const hitLine = mkEl('path', {{
+      d: pathD,
+      stroke: 'transparent',
+      'stroke-width': '16',
+      fill: 'none',
+      style: 'cursor:pointer',
+    }});
+    hitLine.addEventListener('click', (evt) => {{
+      evt.stopPropagation();
+      showEdgePanel(edge, info);
+    }});
+
+    const g = mkEl('g', {{
+      'data-type': edge.type,
+      'data-from': edge.f,
+      'data-to': edge.t,
+      class: 'rel-edge-grp',
     }});
     g.appendChild(path);
     g.appendChild(label);
@@ -1789,70 +1898,84 @@ function drawRelations() {{
     svg.appendChild(g);
   }});
 
-  // Arrow markers
-  typeSet.forEach(type => {{
-    const info = REL_TYPES[type] || {{color:'#888'}};
-    const defs = svg.querySelector('defs') || (() => {{
-      const d = mkEl('defs',{{}}); svg.insertBefore(d, svg.firstChild); return d;
-    }})();
-    // Forward arrow
-    const m = mkEl('marker', {{
-      id:`arr-${{type}}`, markerWidth:'8', markerHeight:'8',
-      refX:'6', refY:'3', orient:'auto'
-    }});
-    const poly = mkEl('polygon', {{points:'0 0, 6 3, 0 6', fill:info.color}});
-    m.appendChild(poly); defs.appendChild(m);
-    // Reverse arrow
-    const m2 = mkEl('marker', {{
-      id:`arr-rev-${{type}}`, markerWidth:'8', markerHeight:'8',
-      refX:'0', refY:'3', orient:'auto-start-reverse'
-    }});
-    const poly2 = mkEl('polygon', {{points:'0 0, 6 3, 0 6', fill:info.color}});
-    m2.appendChild(poly2); defs.appendChild(m2);
-  }});
+  // Ring labels
+  const ringLbl = mkEl('text', {{x:CX, y:CY-R0-14, 'text-anchor':'middle',
+    'font-family':'Arial,sans-serif','font-size':'11',fill:'#aaa','font-style':'italic'}});
+  ringLbl.textContent = 'דמויות מרכזיות — לחץ על דמות להדגשה, על קשר לפרטים';
+  svg.appendChild(ringLbl);
 
-  // Draw section ring labels
-  svg.appendChild((() => {{
-    const t = mkEl('text', {{x:CX, y:CY-R0-12, 'text-anchor':'middle',
-      'font-family':'Arial,sans-serif','font-size':'10',fill:'#bbb','font-style':'italic'}});
-    t.textContent='טבעת פנימית — דמויות מרכזיות';
-    return t;
-  }})());
-
-  // Draw nodes (on top of edges)
+  // Draw nodes (on top)
   RNODES.forEach(n => {{
-    const g = mkEl('g', {{class:'rel-node', cursor:'pointer'}});
-    const isMain = n.ring===-1;
-    const r = isMain ? 38 : (n.ring===0 ? 30 : 26);
-    const circle = mkEl('circle', {{
-      cx:n.cx, cy:n.cy, r, fill:n.c,
-      stroke: isMain ? '#fff' : n.c,
-      'stroke-width': isMain ? '3' : '1'
-    }});
+    const g = mkEl('g', {{class:'rel-node', id:'rel-node-' + n.id, cursor:'pointer'}});
+    const r = n.ring===0 ? 32 : 27;
+    const circle = mkEl('circle', {{cx:n.cx, cy:n.cy, r, fill:n.c, stroke:'rgba(255,255,255,.25)', 'stroke-width':'1.5'}});
     g.appendChild(circle);
-    // Name (split if long)
+
     const words = n.name.split('-');
     if (words.length > 1) {{
-      words.forEach((w,i) => {{
-        const t = mkEl('text', {{
-          x:n.cx, y:n.cy-5+(i*13),
+      words.forEach((w, i) => {{
+        const t = mkEl('text', {{x:n.cx, y:n.cy - 5 + i*13,
           'text-anchor':'middle','font-family':'Arial,sans-serif',
-          'font-size': isMain?'13':'11', fill:'#fff','font-weight':'bold'
-        }});
-        t.textContent=w;
-        g.appendChild(t);
+          'font-size': n.ring===0 ? '12':'10', fill:'#fff', 'font-weight':'bold','pointer-events':'none'}});
+        t.textContent = w; g.appendChild(t);
       }});
     }} else {{
-      const t = mkEl('text', {{
-        x:n.cx, y:n.cy+4,
+      const t = mkEl('text', {{x:n.cx, y:n.cy+4,
         'text-anchor':'middle','font-family':'Arial,sans-serif',
-        'font-size': isMain?'14':'12', fill:'#fff','font-weight':'bold'
-      }});
-      t.textContent=n.name;
-      g.appendChild(t);
+        'font-size': n.ring===0 ? '13':'11', fill:'#fff', 'font-weight':'bold','pointer-events':'none'}});
+      t.textContent = n.name; g.appendChild(t);
     }}
-    g.addEventListener('click', (e) => {{ e.stopPropagation(); showNodeRelations(n, e); }});
+
+    g.addEventListener('click', (e) => {{ e.stopPropagation(); toggleNodeHighlight(n); }});
     svg.appendChild(g);
+  }});
+}}
+
+function toggleNodeHighlight(n) {{
+  if (selectedRelNode && selectedRelNode.id === n.id) {{
+    clearRelHighlight();
+    return;
+  }}
+  selectedRelNode = n;
+  closeRelPanel();
+
+  // Find connected node IDs
+  const connectedIds = new Set([n.id]);
+  document.querySelectorAll('.rel-edge-grp').forEach(g => {{
+    const from = g.getAttribute('data-from');
+    const to = g.getAttribute('data-to');
+    if (from === n.id || to === n.id) {{
+      connectedIds.add(from); connectedIds.add(to);
+      g.classList.remove('dimmed'); g.classList.add('highlighted');
+    }} else {{
+      g.classList.add('dimmed'); g.classList.remove('highlighted');
+    }}
+  }});
+  // Check type filter
+  document.querySelectorAll('.rel-edge-grp').forEach(g => {{
+    const type = g.getAttribute('data-type');
+    if (!activeRelTypes.has(type)) {{ g.classList.add('dimmed'); g.classList.remove('highlighted'); }}
+  }});
+
+  // Dim/show nodes
+  document.querySelectorAll('.rel-node').forEach(g => {{
+    const id = g.id.replace('rel-node-', '');
+    if (connectedIds.has(id)) {{ g.classList.remove('dimmed'); }}
+    else {{ g.classList.add('dimmed'); }}
+    g.classList.toggle('selected', id === n.id);
+  }});
+}}
+
+function clearRelHighlight() {{
+  selectedRelNode = null;
+  document.querySelectorAll('.rel-edge-grp').forEach(g => {{
+    g.classList.remove('dimmed','highlighted');
+    const type = g.getAttribute('data-type');
+    if (!activeRelTypes.has(type)) g.style.display = 'none';
+    else g.style.display = '';
+  }});
+  document.querySelectorAll('.rel-node').forEach(g => {{
+    g.classList.remove('dimmed','selected');
   }});
 }}
 
@@ -1863,57 +1986,32 @@ function updateEdgeVisibility() {{
   }});
 }}
 
-function showRelTooltip(edge, info, evt) {{
-  const tt = document.getElementById('rel-tooltip');
+function showEdgePanel(edge, info) {{
   const a = rNodeById(edge.f), b = rNodeById(edge.t);
   const arrow = edge.dir==='both' ? '⟷' : edge.dir==='bwd' ? '←' : '→';
-  tt.innerHTML = `
-    <div style="font-weight:bold;color:${{info.color}};margin-bottom:4px">
-      ${{info.emoji}} ${{edge.type}}
-    </div>
-    <div style="font-size:.82rem;margin-bottom:6px">
-      ${{a?.name}} ${{arrow}} ${{b?.name}}
-    </div>
-    <div style="font-size:.85rem;line-height:1.5">${{edge.note}}</div>
+  const panel = document.getElementById('rel-panel');
+  document.getElementById('rel-panel-title').innerHTML =
+    `<span style="color:${{info.color}}">${{info.emoji}} ${{edge.type}}</span>`;
+  document.getElementById('rel-panel-chars').innerHTML = `
+    <span class="rel-panel-char"><span class="rel-panel-char-dot" style="background:${{a.c}}"></span>${{a.name}}</span>
+    <span style="color:var(--fg3);font-size:1.2rem">${{arrow}}</span>
+    <span class="rel-panel-char"><span class="rel-panel-char-dot" style="background:${{b.c}}"></span>${{b.name}}</span>
   `;
-  tt.style.display='block';
-  posTooltip(tt, evt);
+  document.getElementById('rel-panel-body').textContent = edge.note;
+  panel.classList.add('open');
 }}
 
-function showNodeRelations(n, evt) {{
-  const tt = document.getElementById('rel-tooltip');
-  const rels = REDGES.filter(e => e.f===n.id || e.t===n.id);
-  const lines = rels.map(e => {{
-    const info = REL_TYPES[e.type]||{{color:'#888',emoji:'•'}};
-    const other = rNodeById(e.f===n.id ? e.t : e.f);
-    const arrow = e.f===n.id ? '→' : '←';
-    return `<div style="font-size:.8rem;margin:3px 0">
-      <span style="color:${{info.color}}">${{info.emoji}} ${{e.type}}</span>
-      <span style="color:var(--fg2)"> ${{arrow}} ${{other?.name}}</span>
-    </div>`;
-  }}).join('');
-  tt.innerHTML = `
-    <div style="font-weight:bold;color:${{n.c}};font-size:1rem;margin-bottom:8px">${{n.name}}</div>
-    ${{lines || '<div style="color:var(--fg3)">אין קשרים מוגדרים</div>'}}
-  `;
-  tt.style.display='block';
-  posTooltip(tt, evt);
-}}
-
-function posTooltip(tt, evt) {{
-  const margin=16;
-  let top = (evt?.clientY||300)+12;
-  let left = (evt?.clientX||300)-150;
-  if (left<margin) left=margin;
-  if (left+300>window.innerWidth-margin) left=window.innerWidth-300-margin;
-  if (top+250>window.innerHeight-margin) top=(evt?.clientY||300)-260;
-  tt.style.top=top+'px'; tt.style.left=left+'px'; tt.style.right='auto';
+function closeRelPanel() {{
+  document.getElementById('rel-panel').classList.remove('open');
 }}
 
 document.addEventListener('click', e => {{
-  if (!e.target.closest('.rel-node') && !e.target.closest('#rel-tooltip') && !e.target.closest('.rel-edge-grp'))
-    document.getElementById('rel-tooltip').style.display='none';
+  if (!e.target.closest('.rel-node') && !e.target.closest('.rel-edge-grp') && !e.target.closest('#rel-panel'))
+    clearRelHighlight();
+  if (!e.target.closest('#rel-panel') && !e.target.closest('.rel-edge-grp'))
+    closeRelPanel();
 }});
+
 
 // ── SCROLL SPY ──
 const observer = new IntersectionObserver((entries) => {{
