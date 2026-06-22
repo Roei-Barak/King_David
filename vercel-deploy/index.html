@@ -77,7 +77,7 @@ body {
 #search-input:focus { outline: none; background: rgba(255,255,255,.25); }
 
 /* ── LAYOUT ── */
-#layout { display: flex; flex: 1; overflow: hidden; height: calc(100vh - 45px); }
+#layout { display: flex; flex: 1; min-height: 0; overflow: hidden; }
 
 /* ── SIDEBAR ── */
 #sidebar {
@@ -87,6 +87,10 @@ body {
   overflow-y: auto;
   flex-shrink: 0;
   padding: 8px 0;
+  position: sticky;
+  top: 0;
+  height: calc(100vh - 45px);
+  align-self: flex-start;
 }
 .sidebar-section {
   padding: 6px 12px 2px;
@@ -133,6 +137,7 @@ body {
 #main {
   flex: 1;
   overflow-y: auto;
+  height: calc(100vh - 45px);
   padding: 0;
 }
 
