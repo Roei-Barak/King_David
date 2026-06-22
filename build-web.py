@@ -50,7 +50,7 @@ BOOK = [
     (None, None, "scene-tzruya-david.md", "צרויה ודוד"),
     ("שירים", "נספח — שירים עצמאיים", None, None),
     (None, None, "song-01-opening.md", "שיר הפתיחה — ״אחת שאלתי״"),
-    (None, None, "song-14b-victory-reprise.md", "שיר הניצחון + רפריז — ״ויחי ה׳״"),
+    (None, None, "song-14b-victory-reprise.md", "שיר הניצחון + רפריז — ״חי ה׳״"),
 ]
 
 SONGS = ROOT / "songs"
