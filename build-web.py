@@ -1,0 +1,2199 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""בונה קובץ HTML יחיד עם כל המחזמר — לקריאה, הערות ואינטראקציה."""
+import re, json
+from pathlib import Path
+
+ROOT = Path("/home/user/King_David")
+SCENES = ROOT / "scenes"
+
+BOOK = [
+    ("חלק א'", "מַעֲרָכָה א — מִן הָרוֹעֶה לַמֶּלֶךְ", None, None),
+    (None, None, "prologue.md", "פרולוג"),
+    (None, None, "scene-01-05-full.md", "תמונות א–ה: מהרועה למלך"),
+    ("הרחבות", "הרחבות המדבר — לפי סדר מקראי", None, None),
+    (None, None, "scene-jonathan-farewell.md", "פרידת יונתן"),
+    (None, None, "scene-gath-madness.md", "שיגעון גת"),
+    (None, None, "scene-nob-massacre.md", "טבח נוב"),
+    (None, None, "scene-04-the-cave.md", "המערה"),
+    (None, None, "scene-04b-wilderness-additions.md", "הרחבות המדבר"),
+    (None, None, "scene-nabal-abigail.md", "נבל ואביגיל"),
+    (None, None, "scene-cave-hill.md", "המערה והגבעה"),
+    (None, None, "scene-05b-witch-endor.md", "אוב עין-דור"),
+    (None, None, "scene-ziklag.md", "צקלג"),
+    (None, None, "scene-philistines-reject.md", "פלשתים דוחים"),
+    (None, None, "scene-gilboa.md", "גלבוע"),
+    ("חלק ב'", "מַעֲרָכָה ב — הַמֶּלֶךְ", None, None),
+    (None, None, "scene-06-lament.md", "הקינה"),
+    (None, None, "scene-07-brothers-war.md", "מלחמת האחים"),
+    (None, None, "scene-ishbosheth.md", "מות איש-בשת"),
+    (None, None, "scene-jerusalem.md", "עיר דוד — כיבוש ירושלים"),
+    (None, None, "scene-08-dance.md", "הריקוד"),
+    (None, None, "scene-09-not-you.md", "לא אתה"),
+    (None, None, "scene-chr25-singers.md", "288 המשוררים"),
+    (None, None, "scene-10-mephibosheth.md", "מפיבושת"),
+    (None, None, "scene-10b-ammon-war.md", "מלחמת עמון"),
+    (None, None, "scene-bathsheba-uriah.md", "בת-שבע ואוריה"),
+    (None, None, "scene-bathhouse.md", "בית המרחץ"),
+    (None, None, "scene-13b-amnon-tamar.md", "אמנון ותמר"),
+    (None, None, "scene-13e-absalom-return.md", "שיבת אבשלום"),
+    (None, None, "scene-13c-revolt.md", "המרד"),
+    (None, None, "scene-13d-absalom.md", "מות אבשלום"),
+    (None, None, "scene-13f-david-return.md", "שיבת דוד"),
+    (None, None, "scene-sheva-bichri.md", "מרד שבע בן בכרי"),
+    (None, None, "scene-13g-rizpah.md", "רצפה"),
+    (None, None, "scene-water-libation.md", "ניסוך המים"),
+    (None, None, "scene-14-hallelujah.md", "הללויה"),
+    (None, None, "scene-22-23-david-song.md", "שיר דוד"),
+    (None, None, "scene-15-testament.md", "הצוואה"),
+    ("נספח", "נספח — תת-עלילות", None, None),
+    (None, None, "scene-tzruya-david.md", "צרויה ודוד"),
+    ("שירים", "נספח — שירים עצמאיים", None, None),
+    (None, None, "song-01-opening.md", "שיר הפתיחה — ״אחת שאלתי״"),
+    (None, None, "song-14b-victory-reprise.md", "שיר הניצחון + רפריז — ״חי ה׳״"),
+]
+
+SONGS = ROOT / "songs"
+
+CHARACTERS = {
+    "דוד": {"color": "#2563eb", "story": "רועה צאן שנמשח למלך על ידי שמואל הנביא, לוחם וסופר מזמורי תהילים. עלה לגדולה בעקבות ניצחונו על גוליית, ונס מפני שאול שנים רבות. מלך על כל ישראל ויהודה, ידוע כ\"חביב ה'\" אך נפל בחטא בת-שבע ואוריה.", "scenes": []},
+    "שאול": {"color": "#dc2626", "story": "המלך הראשון על ישראל, נבחר בגלל מראהו המלכותי. נדחה מהמלוכה בגלל חטאיו, ורדף אחרי דוד מתוך קנאה ופחד. נפל בגלבוע יחד עם שלושת בניו.", "scenes": []},
+    "יונתן": {"color": "#16a34a", "story": "בן שאול ואוהב נפש של דוד, אחד הלוחמים האמיצים ביותר. כרת ברית אהבה עם דוד שגברה על נאמנותו לאביו. נפל יחד עם אביו בגלבוע.", "scenes": []},
+    "מיכל": {"color": "#9333ea", "story": "בת שאול ואשתו הראשונה של דוד, שאהבה אותו. הצילה אותו מידי שאול אך נפרדה ממנו ונישאה לאחר. ביקרה את דוד בריקודו לפני הארון ומתה ללא ילדים.", "scenes": []},
+    "יואב": {"color": "#92400e", "story": "אחיין דוד ומפקד צבאו הנאמן אך הקשה. הרג את אבנר ועשהאל ואבשלום בניגוד לציווי דוד. גיבור מלחמה חסר רחמים שסייע לדוד בעלייתו ובמרד אבשלום.", "scenes": []},
+    "אביגיל": {"color": "#ea580c", "story": "אשה חכמה ויפה, אשתו של נבל הנבל. מנעה מדוד לשפוך דם בכעסו ולאחר מות נבל נשאה דוד לאשה. סמלה של חוכמה ומניעת מלחמת אחים.", "scenes": []},
+    "בת-שבע": {"color": "#0891b2", "story": "אשתו של אוריה החתי שדוד ראה רוחצת וחטא בגללה. לאחר מות אוריה נישאה לדוד, ובנה שלמה ירש את המלוכה. נביאת חסד ואם חכמה.", "scenes": []},
+    "נתן": {"color": "#4338ca", "story": "הנביא הגדול בחצר דוד, שהוכיח אותו על חטא בת-שבע במשל כבשת הרש. הבטיח לדוד בית נאמן לעולם (נבואת נתן). עמד לצד שלמה בהמלכתו.", "scenes": []},
+    "אבשלום": {"color": "#be123c", "story": "בן דוד היפה ביותר, שמרד באביו לאחר שדוד לא ענישו על אונס תמר. מרד כמעט הצליח אך נתלה בשיערו באלה ונהרג בידי יואב. דוד קונן עליו: \"בני אבשלום.\"", "scenes": []},
+    "אמנון": {"color": "#854d0e", "story": "בכור דוד שאנס את אחותו תמר מאוהבה. דוד לא ענשו ואבשלום נקם את דמה ורצח אותו. מותו הוא שורש המשבר המשפחתי ומרד אבשלום.", "scenes": []},
+    "תמר": {"color": "#86198f", "story": "בת דוד ואחות אבשלום, קורבן האונס של אמנון. ישבה שוממה בבית אחיה לאחר שדוד שתק. קולה הוא קול הדממה — \"אל תשלחני!\"", "scenes": []},
+    "מפיבושת": {"color": "#065f46", "story": "בן יונתן שנפגע ברגליו בילדותו בבריחה מגלבוע. דוד הושיבו לשולחנו לכבוד ברית יונתן. עמד בניסיון כשעבדו ציבא הכפיש אותו, ועמד אמין לדוד.", "scenes": []},
+    "שמואל": {"color": "#1e3a5f", "story": "הנביא האחרון מימי השופטים, שמשח את שאול ואחר כך את דוד. דחה את שאול מהמלוכה בשם ה'. מותו ציין קץ עידן השופטים.", "scenes": []},
+    "אוריה": {"color": "#374151", "story": "הלוחם החתי, בעלה של בת-שבע, לוחם אמיץ ונאמן לדוד. סרב לשוב לביתו בזמן שאחיו במלחמה. דוד שלחו לחזית להיהרג — חטא דוד הגדול.", "scenes": []},
+    "רצפה": {"color": "#be185d", "story": "פילגש שאול, שבניה הוצאו להורג ביד הגבעונים בתביעת נקם. שמרה על גופות בניה חודשים, יומם ולילה, עד שדוד שמע ולקחם לקבורה. סמל אהבת אם.", "scenes": []},
+}
+
+def md_to_html(text):
+    lines = text.split("\n")
+    out = []
+    in_code = False
+    for raw in lines:
+        line = raw.rstrip()
+        if line.strip().startswith("```"):
+            in_code = not in_code
+            continue
+        if in_code:
+            continue
+        if not line.strip():
+            out.append('<div class="spacer"></div>')
+            continue
+        if re.match(r"^\s*\|[-\s:|]+\|\s*$", line):
+            continue
+        m = re.match(r"^(#{1,6})\s+(.*)$", line)
+        if m:
+            level = len(m.group(1))
+            txt = inline_md(m.group(2))
+            tag = f"h{min(level+1,6)}"
+            out.append(f'<{tag} class="md-h{level}">{txt}</{tag}>')
+            continue
+        if line.strip().startswith(">"):
+            txt = inline_md(line.strip()[1:].strip())
+            out.append(f'<blockquote class="md-blockquote">{txt}</blockquote>')
+            continue
+        if re.match(r"^\s*\|", line):
+            cells = [c.strip() for c in line.strip().strip("|").split("|")]
+            row = " &nbsp;—&nbsp; ".join(f"<span>{inline_md(c)}</span>" for c in cells if c)
+            out.append(f'<p class="md-table-row">{row}</p>')
+            continue
+        if re.match(r"^\s*[-*]\s+", line):
+            txt = inline_md(re.sub(r"^\s*[-*]\s+","",line))
+            out.append(f'<li class="md-li">{txt}</li>')
+            continue
+        if re.match(r"^\s*---+\s*$", line):
+            out.append('<hr class="md-hr">')
+            continue
+        out.append(f'<p class="md-p">{inline_md(line)}</p>')
+    return "\n".join(out)
+
+def inline_md(s):
+    s = s.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
+    s = re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", s)
+    s = re.sub(r"(?<!\*)\*(?!\*)(.+?)(?<!\*)\*(?!\*)", r"<em>\1</em>", s)
+    s = re.sub(r"`(.+?)`", r"<code>\1</code>", s)
+    return s
+
+# Build scene data
+scenes_data = []
+scene_index = 0
+current_part = None
+
+for part, title, fname, label in BOOK:
+    if fname is None:
+        current_part = part or title
+        continue
+    fpath = SCENES / fname
+    if not fpath.exists():
+        fpath = SONGS / fname
+    if not fpath.exists():
+        continue
+    content = fpath.read_text(encoding="utf-8")
+    html = md_to_html(content)
+    chars_in_scene = [c for c in CHARACTERS if c in content]
+    sid = f"scene-{scene_index}"
+    scenes_data.append({
+        "id": sid,
+        "fname": fname,
+        "label": label,
+        "part": current_part,
+        "html": html,
+        "chars": chars_in_scene,
+        "raw": content[:500],
+    })
+    for c in chars_in_scene:
+        CHARACTERS[c]["scenes"].append(sid)
+    scene_index += 1
+
+scenes_json = json.dumps([{
+    "id": s["id"], "label": s["label"], "part": s["part"],
+    "chars": s["chars"], "preview": s["raw"][:200].replace('"', '\\"').replace('\n', ' ')
+} for s in scenes_data], ensure_ascii=False)
+
+chars_json = json.dumps(CHARACTERS, ensure_ascii=False)
+
+html_parts = []
+for s in scenes_data:
+    chars_attr = " ".join(s["chars"])
+    html_parts.append(f'''
+<article id="{s["id"]}" class="scene-article" data-chars="{chars_attr}" data-part="{s["part"] or ''}" data-label="{s["label"]}">
+  <div class="scene-header">
+    <h2 class="scene-title">{s["label"]}</h2>
+    <div class="scene-meta">
+      <span class="scene-part-badge">{s["part"] or ''}</span>
+      <div class="char-chips">{' '.join(f'<span class="char-chip" style="background:{CHARACTERS[c]["color"]}22;color:{CHARACTERS[c]["color"]};border-color:{CHARACTERS[c]["color"]}40">{c}</span>' for c in s["chars"])}</div>
+    </div>
+    <div class="scene-actions">
+      <button class="btn-icon" onclick="printScene('{s["id"]}')" title="הדפס סצנה">🖨</button>
+      <button class="btn-icon" onclick="toggleAnnotation('{s["id"]}')" title="הוסף הערה">✏️</button>
+    </div>
+  </div>
+  <div class="scene-content" dir="rtl">{s["html"]}</div>
+  <div class="annotation-box" id="ann-{s["id"]}" style="display:none">
+    <div class="annotation-label">הערות והצעות לסצנה זו:</div>
+    <textarea class="annotation-textarea" id="textarea-{s["id"]}"
+      oninput="saveAnnotation('{s["id"]}')"
+      placeholder="כתבו כאן את הערותיכם, הצעות לשינוי, שאלות למחבר..."></textarea>
+    <div class="annotation-saved" id="saved-{s["id"]}"></div>
+  </div>
+</article>''')
+
+all_scenes_html = "\n".join(html_parts)
+
+HTML = f'''<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj4KICA8ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImhnIiB4MT0iMCIgeTE9IjAiIHgyPSIxIiB5Mj0iMSI+CiAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjRkZENzAwIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNCODg2MEIiLz4KICA8L2xpbmVhckdyYWRpZW50PjwvZGVmcz4KICA8IS0tIE5lY2sgLS0+CiAgPHBhdGggZD0iTTIwIDg1IFExNSAzMCA0NSAxMCIgc3Ryb2tlPSJ1cmwoI2hnKSIgc3Ryb2tlLXdpZHRoPSI4IiBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICA8IS0tIFBpbGxhciAtLT4KICA8cGF0aCBkPSJNMjAgODUgUTU1IDk1IDgwIDc1IiBzdHJva2U9InVybCgjaGcpIiBzdHJva2Utd2lkdGg9IjgiIGZpbGw9Im5vbmUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogIDwhLS0gU291bmRib2FyZCAtLT4KICA8cGF0aCBkPSJNNDUgMTAgUTkwIDIwIDgwIDc1IiBzdHJva2U9InVybCgjaGcpIiBzdHJva2Utd2lkdGg9IjYiIGZpbGw9Im5vbmUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogIDwhLS0gU3RyaW5ncyAtLT4KICA8bGluZSB4MT0iNDgiIHkxPSIxNiIgeDI9Ijc4IiB5Mj0iNzAiIHN0cm9rZT0iI0ZGRTU1QyIgc3Ryb2tlLXdpZHRoPSIxLjgiLz4KICA8bGluZSB4MT0iNTIiIHkxPSIxNCIgeDI9Ijc5IiB5Mj0iNjUiIHN0cm9rZT0iI0ZGRTU1QyIgc3Ryb2tlLXdpZHRoPSIxLjgiLz4KICA8bGluZSB4MT0iNDIiIHkxPSIyMCIgeDI9Ijc2IiB5Mj0iNzUiIHN0cm9rZT0iI0I4ODYwQiIgc3Ryb2tlLXdpZHRoPSIxLjgiLz4KICA8bGluZSB4MT0iMzgiIHkxPSIyNyIgeDI9IjcyIiB5Mj0iNzgiIHN0cm9rZT0iI0I4ODYwQiIgc3Ryb2tlLXdpZHRoPSIxLjgiLz4KICA8bGluZSB4MT0iMzQiIHkxPSIzNiIgeDI9IjY3IiB5Mj0iODAiIHN0cm9rZT0iI0I4ODYwQiIgc3Ryb2tlLXdpZHRoPSIxLjgiLz4KICA8bGluZSB4MT0iMzAiIHkxPSI0OCIgeDI9IjYwIiB5Mj0iODIiIHN0cm9rZT0iI0ZGRDcwMCIgc3Ryb2tlLXdpZHRoPSIxLjgiLz4KICA8bGluZSB4MT0iMjYiIHkxPSI2MiIgeDI9IjUyIiB5Mj0iODMiIHN0cm9rZT0iI0ZGRDcwMCIgc3Ryb2tlLXdpZHRoPSIxLjgiLz4KPC9zdmc+">
+<title>מזמור לדוד — המחזמר המלא</title>
+<style>
+:root {{
+  --bg: #fafaf8;
+  --bg2: #f0ede6;
+  --bg3: #e8e4dc;
+  --fg: #1a1612;
+  --fg2: #4a4540;
+  --fg3: #7a7570;
+  --accent: #8b2500;
+  --accent2: #c44a00;
+  --border: #d4cfc8;
+  --sidebar-w: 280px;
+  --font-body: Arial, "Arial Hebrew", "Segoe UI", sans-serif;
+  --font-ui: Arial, "Arial Hebrew", "Segoe UI", sans-serif;
+}}
+[data-theme="dark"] {{
+  --bg: #18160f;
+  --bg2: #22201a;
+  --bg3: #2c2922;
+  --fg: #f0ede6;
+  --fg2: #c0bdb6;
+  --fg3: #8a8780;
+  --accent: #e08060;
+  --accent2: #f0a080;
+  --border: #3a3730;
+}}
+* {{ box-sizing: border-box; margin: 0; padding: 0; }}
+body {{
+  font-family: var(--font-body);
+  background: var(--bg);
+  color: var(--fg);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}}
+
+/* ── TOP BAR ── */
+#topbar {{
+  position: sticky; top: 0; z-index: 100;
+  background: var(--accent);
+  color: #fff;
+  display: flex; align-items: center; gap: 12px;
+  padding: 8px 16px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.3);
+}}
+#topbar h1 {{ font-size: 1.1rem; font-weight: bold; flex: 1; }}
+.topbar-btn {{
+  background: rgba(255,255,255,.15);
+  border: 1px solid rgba(255,255,255,.3);
+  color: #fff;
+  padding: 5px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-family: var(--font-ui);
+  font-size: .85rem;
+  white-space: nowrap;
+}}
+.topbar-btn:hover {{ background: rgba(255,255,255,.25); }}
+#search-input {{
+  background: rgba(255,255,255,.15);
+  border: 1px solid rgba(255,255,255,.3);
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 6px;
+  font-family: var(--font-body);
+  font-size: .9rem;
+  width: 180px;
+}}
+#search-input::placeholder {{ color: rgba(255,255,255,.6); }}
+#search-input:focus {{ outline: none; background: rgba(255,255,255,.25); }}
+
+/* ── LAYOUT ── */
+#layout {{ display: flex; flex: 1; min-height: 0; overflow: hidden; }}
+
+/* ── SIDEBAR ── */
+#sidebar {{
+  width: var(--sidebar-w);
+  background: var(--bg2);
+  border-left: 1px solid var(--border);
+  overflow-y: auto;
+  flex-shrink: 0;
+  padding: 8px 0;
+  position: sticky;
+  top: 0;
+  height: calc(100vh - 45px);
+  align-self: flex-start;
+}}
+.sidebar-section {{
+  padding: 6px 12px 2px;
+  font-size: .7rem;
+  font-family: var(--font-ui);
+  color: var(--fg3);
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  margin-top: 8px;
+}}
+.sidebar-item {{
+  display: block;
+  padding: 5px 16px;
+  font-size: .88rem;
+  color: var(--fg2);
+  cursor: pointer;
+  border-right: 3px solid transparent;
+  transition: all .15s;
+  font-family: var(--font-body);
+}}
+.sidebar-item:hover {{ background: var(--bg3); color: var(--fg); }}
+.sidebar-item.active {{
+  background: var(--bg3);
+  color: var(--accent);
+  border-right-color: var(--accent);
+  font-weight: bold;
+}}
+.sidebar-divider {{
+  height: 1px; background: var(--border);
+  margin: 8px 12px;
+}}
+.sidebar-special {{
+  display: block;
+  padding: 6px 16px;
+  font-size: .85rem;
+  color: var(--accent);
+  cursor: pointer;
+  font-family: var(--font-ui);
+}}
+.sidebar-special:hover {{ background: var(--bg3); }}
+.sidebar-special.active {{ background: var(--accent); color: #fff; font-weight: 600; }}
+
+/* ── MAIN ── */
+#main {{
+  flex: 1;
+  overflow-y: auto;
+  height: calc(100vh - 45px);
+  padding: 0;
+}}
+
+/* ── VIEWS ── */
+.view {{ display: none; }}
+.view.active {{ display: block; }}
+
+/* ── SCENES VIEW ── */
+#view-scenes {{ padding: 14px 20px; max-width: 820px; margin: 0 auto; }}
+
+.scene-article {{
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  margin-bottom: 14px;
+  overflow: hidden;
+  scroll-margin-top: 10px;
+}}
+.scene-article.hidden {{ display: none; }}
+.scene-header {{
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: 8px 14px 7px;
+  display: flex; flex-direction: column; gap: 3px;
+}}
+.scene-title {{
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: var(--accent);
+}}
+.scene-meta {{
+  display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+}}
+.scene-part-badge {{
+  background: var(--accent);
+  color: #fff;
+  font-size: .7rem;
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-family: var(--font-ui);
+}}
+.char-chips {{ display: flex; gap: 4px; flex-wrap: wrap; }}
+.char-chip {{
+  font-size: .72rem;
+  padding: 1px 7px;
+  border-radius: 10px;
+  border: 1px solid;
+  font-family: var(--font-ui);
+  cursor: pointer;
+}}
+.char-chip:hover {{ opacity: .8; }}
+.scene-actions {{
+  display: flex; gap: 6px; margin-top: 2px;
+}}
+.btn-icon {{
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 4px 10px;
+  cursor: pointer;
+  font-size: .9rem;
+  color: var(--fg2);
+}}
+.btn-icon:hover {{ background: var(--border); }}
+
+.scene-content {{
+  padding: 16px 24px;
+  line-height: 1.65;
+  font-size: .97rem;
+  text-align: right;
+}}
+.md-h1,.md-h2,.md-h3,.md-h4,.md-h5,.md-h6 {{
+  color: var(--accent); margin: .9em 0 .35em;
+  font-family: var(--font-body);
+  text-align: right;
+}}
+.md-h1 {{ font-size: 1.35rem; }}
+.md-h2 {{ font-size: 1.18rem; }}
+.md-h3 {{ font-size: 1.05rem; }}
+.md-h4 {{ font-size: .97rem; }}
+.md-p {{ margin: .25em 0; text-align: right; }}
+.md-blockquote {{
+  border-right: 3px solid var(--accent);
+  padding: .25em .8em;
+  margin: .4em 0;
+  color: var(--fg2);
+  font-style: italic;
+  background: var(--bg2);
+  border-radius: 0 6px 6px 0;
+  text-align: right;
+}}
+.md-li {{ margin: .15em 0 .15em 1em; list-style: none; text-align: right; }}
+.md-li::before {{ content: "•"; margin-left: .4em; color: var(--accent); }}
+.md-hr {{ border: none; border-top: 1px solid var(--border); margin: .7em 0; }}
+.md-table-row {{ color: var(--fg2); font-size: .88rem; margin: .15em 0; text-align: right; }}
+.spacer {{ height: .15em; }}
+code {{ background: var(--bg3); padding: 0 4px; border-radius: 3px; font-size: .85em; }}
+
+/* highlight search */
+mark {{ background: #ffd70088; color: var(--fg); border-radius: 2px; }}
+
+/* ── ANNOTATION ── */
+.annotation-box {{
+  border-top: 1px solid var(--border);
+  padding: 16px 20px;
+  background: var(--bg2);
+}}
+.annotation-label {{
+  font-size: .82rem;
+  color: var(--fg3);
+  margin-bottom: 8px;
+  font-family: var(--font-ui);
+}}
+.annotation-textarea {{
+  width: 100%;
+  min-height: 100px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px;
+  font-family: var(--font-body);
+  font-size: .95rem;
+  color: var(--fg);
+  resize: vertical;
+  direction: rtl;
+}}
+.annotation-textarea:focus {{ outline: 2px solid var(--accent); }}
+.annotation-saved {{
+  font-size: .75rem;
+  color: var(--fg3);
+  margin-top: 4px;
+  font-family: var(--font-ui);
+}}
+
+/* ── FAMILY TREE VIEW ── */
+#view-tree {{
+  padding: 16px;
+  overflow: auto;
+  min-height: 100%;
+  background: var(--bg);
+}}
+#view-tree h2 {{
+  font-size: 1.3rem;
+  color: var(--accent);
+  margin-bottom: 10px;
+  text-align: center;
+}}
+#tree-legend {{
+  display: flex; gap: 20px; justify-content: center;
+  margin-bottom: 12px; flex-wrap: wrap;
+  font-family: var(--font-ui); font-size: .8rem; color: var(--fg2);
+}}
+.legend-item {{ display: flex; align-items: center; gap: 6px; }}
+.legend-solid {{ display: inline-block; width: 30px; height: 2px; background: #888; }}
+.legend-dashed {{ display: inline-block; width: 30px; height: 2px; border-top: 2px dashed #9333ea; }}
+.legend-dotted {{ display: inline-block; width: 30px; height: 2px; border-top: 2px dotted #888; }}
+#tree-scroll {{
+  overflow-x: auto;
+  overflow-y: auto;
+  background: var(--bg2);
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  padding: 12px;
+}}
+.person-node {{ cursor: pointer; }}
+.person-node rect {{ transition: filter .15s; }}
+.person-node:hover rect {{ filter: brightness(1.2); }}
+#tree-tooltip {{
+  position: fixed;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px 16px;
+  font-family: var(--font-ui);
+  font-size: .88rem;
+  color: var(--fg);
+  z-index: 300;
+  max-width: 300px;
+  min-width: 200px;
+  display: none;
+  direction: rtl;
+  box-shadow: 0 4px 20px rgba(0,0,0,.2);
+  line-height: 1.5;
+}}
+
+/* ── STRUCTURE VIEW ── */
+#view-structure {{
+  padding: 28px 32px;
+  max-width: 960px;
+  margin: 0 auto;
+}}
+#view-structure h2 {{
+  font-size: 1.5rem;
+  color: var(--accent);
+  margin-bottom: 20px;
+}}
+.structure-intro {{
+  color: var(--fg2);
+  line-height: 1.7;
+  margin-bottom: 24px;
+  font-size: .95rem;
+}}
+.arc-grid {{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 28px;
+}}
+.arc-card {{
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px;
+}}
+.arc-card h3 {{
+  font-size: 1rem;
+  color: var(--accent);
+  margin-bottom: 8px;
+}}
+.arc-card .arc-work {{
+  font-weight: bold;
+  font-size: .9rem;
+  margin-bottom: 4px;
+}}
+.arc-card p {{
+  font-size: .85rem;
+  color: var(--fg2);
+  line-height: 1.5;
+}}
+.arc-comparison {{
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+}}
+.arc-comparison h3 {{
+  color: var(--accent);
+  margin-bottom: 12px;
+}}
+.compare-table {{
+  width: 100%;
+  border-collapse: collapse;
+  font-size: .88rem;
+}}
+.compare-table th {{
+  background: var(--bg3);
+  padding: 8px 12px;
+  text-align: right;
+  border: 1px solid var(--border);
+  color: var(--fg2);
+  font-family: var(--font-ui);
+  font-size: .8rem;
+}}
+.compare-table td {{
+  padding: 8px 12px;
+  border: 1px solid var(--border);
+  vertical-align: top;
+  line-height: 1.45;
+}}
+.compare-table tr:nth-child(even) td {{ background: var(--bg2); }}
+.highlight-row td {{ background: #8b250015 !important; color: var(--accent); font-weight: bold; }}
+
+.freytag {{
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+}}
+.freytag h3 {{ color: var(--accent); margin-bottom: 16px; }}
+.pyramid-svg {{ width: 100%; max-width: 700px; display: block; margin: 0 auto; }}
+
+/* ── PRINT ── */
+@media print {{
+  #topbar, #sidebar, .scene-actions, .annotation-box, .scene-meta {{ display: none !important; }}
+  #layout {{ height: auto; overflow: visible; }}
+  #main {{ overflow: visible; }}
+  .scene-article {{ page-break-after: always; border: none; }}
+  .scene-article.hidden {{ display: none; }}
+  .scene-content {{ padding: 0; }}
+}}
+
+/* ── MOBILE OVERLAY BACKDROP ── */
+#sidebar-overlay {{
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.45);
+  z-index: 149;
+}}
+#sidebar-overlay.visible {{ display: block; }}
+
+/* ── MOBILE ── */
+@media (max-width: 768px) {{
+  /* Topbar: hide desktop nav buttons, keep only hamburger + title + theme */
+  #topbar {{ padding: 8px 10px; gap: 8px; }}
+  #topbar h1 {{ font-size: .95rem; }}
+  #search-input {{ display: none; }}
+  .topbar-btn-desktop {{ display: none !important; }}
+  #btn-hamburger, #btn-theme {{ display: inline-flex !important; }}
+
+  /* Sidebar: fixed overlay from right (RTL) */
+  #sidebar {{
+    position: fixed;
+    top: 0; right: 0;
+    height: 100%;
+    width: 82vw;
+    max-width: 300px;
+    z-index: 150;
+    transform: translateX(100%);
+    transition: transform .25s ease;
+    box-shadow: -4px 0 20px rgba(0,0,0,.3);
+    overflow-y: auto;
+  }}
+  #sidebar.open {{
+    transform: translateX(0);
+  }}
+
+  /* Layout: single column */
+  #layout {{ flex-direction: column; height: auto; overflow: visible; }}
+  #main {{ height: auto; overflow: visible; }}
+
+  /* Scenes */
+  #view-scenes {{ padding: 10px 12px; }}
+  .scene-content {{ padding: 10px 4px; font-size: .95rem; line-height: 1.75; }}
+  .scene-meta {{ flex-direction: column; gap: 4px; }}
+
+  /* Scrollable SVG containers */
+  .svg-scroll-wrap, #tree-scroll, #rel-scroll {{
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 8px 0;
+  }}
+
+  /* Arc grid: 1 column */
+  .arc-grid {{ grid-template-columns: 1fr !important; }}
+
+  /* Structure tables */
+  #view-structure {{ padding: 10px 8px; }}
+  #view-structure table {{ font-size: .8rem; }}
+  #view-structure th, #view-structure td {{ padding: 4px 6px; }}
+
+  /* Char grid: 1 column */
+  .char-grid {{ grid-template-columns: 1fr !important; padding: 10px 8px; }}
+
+  /* Tree/relations */
+  #view-tree, #view-relations {{ padding: 10px 8px; }}
+
+  /* Annotation box */
+  .annotation-box {{ margin: 8px 0; }}
+  textarea {{ font-size: .9rem; }}
+}}
+
+/* ── CHAR FILTER BAR ── */
+#char-filter {{
+  position: sticky;
+  top: 0;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: 8px 16px;
+  display: none;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+  z-index: 50;
+}}
+#char-filter.visible {{ display: flex; }}
+#char-filter-label {{
+  font-size: .8rem;
+  color: var(--fg3);
+  font-family: var(--font-ui);
+  margin-left: 8px;
+}}
+.filter-chip {{
+  font-size: .78rem;
+  padding: 3px 10px;
+  border-radius: 12px;
+  border: 1px solid;
+  cursor: pointer;
+  font-family: var(--font-ui);
+  transition: all .15s;
+  opacity: .5;
+}}
+.filter-chip.on {{ opacity: 1; font-weight: bold; }}
+.filter-clear {{
+  font-size: .78rem;
+  padding: 3px 10px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  cursor: pointer;
+  font-family: var(--font-ui);
+  color: var(--fg3);
+  background: var(--bg3);
+}}
+
+/* ── RELATIONS VIEW ── */
+#view-relations {{
+  padding: 16px;
+  min-height: 100%;
+  background: var(--bg);
+}}
+#view-relations h2 {{
+  font-size: 1.3rem;
+  color: var(--accent);
+  margin-bottom: 10px;
+  text-align: center;
+}}
+#rel-legend {{
+  display: flex; gap: 10px; justify-content: center;
+  margin-bottom: 12px; flex-wrap: wrap;
+  font-family: var(--font-ui); font-size: .75rem; color: var(--fg2);
+}}
+.rel-legend-item {{
+  display: flex; align-items: center; gap: 4px;
+  background: var(--bg2); border: 1px solid var(--border);
+  border-radius: 10px; padding: 2px 8px;
+}}
+.rel-legend-dot {{
+  width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0;
+}}
+#rel-scroll {{
+  overflow: auto;
+  background: var(--bg2);
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  padding: 12px;
+}}
+.rel-node {{ cursor: pointer; transition: opacity .2s; }}
+.rel-node circle {{ transition: r .15s, filter .15s, stroke-width .15s; }}
+.rel-node:hover circle {{ filter: brightness(1.25); }}
+.rel-node.dimmed {{ opacity: 0.08; pointer-events: none; }}
+.rel-node.selected circle {{ stroke: #fff !important; stroke-width: 4 !important; filter: brightness(1.35); }}
+.rel-edge-grp {{ transition: opacity .2s; cursor: pointer; }}
+.rel-edge-grp.dimmed {{ opacity: 0.05; pointer-events: none; }}
+.rel-edge-grp.highlighted path.rel-edge {{ stroke-width: 4 !important; opacity: 1 !important; }}
+.rel-edge-grp.highlighted {{ opacity: 1; }}
+#rel-tooltip {{
+  position: fixed;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-family: var(--font-ui);
+  font-size: .85rem;
+  color: var(--fg);
+  z-index: 300;
+  max-width: 280px;
+  min-width: 180px;
+  display: none;
+  direction: rtl;
+  box-shadow: 0 4px 20px rgba(0,0,0,.2);
+  line-height: 1.5;
+}}
+.rel-filter-bar {{
+  display: flex; gap: 6px; justify-content: center;
+  margin-bottom: 10px; flex-wrap: wrap;
+  font-family: var(--font-ui); font-size: .78rem;
+}}
+.rel-filter-btn {{
+  padding: 3px 10px; border-radius: 12px; border: 1px solid;
+  cursor: pointer; font-family: var(--font-ui); font-size: .76rem;
+}}
+.rel-filter-btn.off {{ opacity: .3; }}
+
+/* ── RELATION DETAIL PANEL (floating popup near line) ── */
+#rel-panel {{
+  position: fixed;
+  background: var(--bg);
+  border: 1.5px solid var(--border);
+  border-radius: 14px;
+  padding: 14px 16px 16px;
+  z-index: 250;
+  pointer-events: auto;
+  display: none;
+  direction: rtl;
+  font-family: var(--font-ui);
+  box-shadow: 0 6px 28px rgba(0,0,0,.22);
+  max-width: 280px;
+  min-width: 200px;
+  transition: opacity .18s;
+}}
+#rel-panel.open {{ display: block; }}
+#rel-panel-header {{
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 8px; gap: 8px;
+}}
+#rel-panel-title {{ font-size: .95rem; font-weight: bold; }}
+#rel-panel-close {{
+  background: var(--bg3); border: none; border-radius: 50%;
+  width: 24px; height: 24px; cursor: pointer; font-size: .85rem;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--fg); flex-shrink: 0;
+}}
+#rel-panel-body {{ font-size: .82rem; line-height: 1.6; color: var(--fg); }}
+#rel-panel-chars {{
+  display: flex; align-items: center; gap: 8px;
+  margin-bottom: 10px; flex-wrap: wrap;
+}}
+.rel-panel-char {{
+  display: flex; align-items: center; gap: 5px;
+  background: var(--bg2); border-radius: 16px;
+  padding: 3px 10px; font-weight: bold; font-size: .82rem;
+}}
+.rel-panel-char-dot {{
+  width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0;
+}}
+/* Mobile: bottom sheet */
+@media (max-width: 600px) {{
+  #rel-panel {{
+    position: fixed !important;
+    bottom: 0 !important; left: 0 !important; right: 0 !important;
+    top: auto !important;
+    max-width: 100% !important;
+    border-radius: 16px 16px 0 0 !important;
+    border-bottom: none !important;
+  }}
+}}
+
+
+/* ── SCROLLBAR ── */
+#sidebar::-webkit-scrollbar, #main::-webkit-scrollbar {{ width: 6px; }}
+#sidebar::-webkit-scrollbar-track, #main::-webkit-scrollbar-track {{ background: transparent; }}
+#sidebar::-webkit-scrollbar-thumb, #main::-webkit-scrollbar-thumb {{ background: var(--border); border-radius: 3px; }}
+
+/* ── CHARACTERS VIEW ── */
+.char-grid {{ display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; padding: 16px; }}
+.char-card {{ background: var(--bg2); border-radius: 12px; padding: 20px; border-left: 4px solid var(--accent); cursor: pointer; transition: transform .15s; }}
+.char-card:hover {{ transform: translateY(-2px); box-shadow: 0 4px 16px rgba(0,0,0,.15); }}
+.char-card h3 {{ margin: 0 0 8px; font-size: 1.3rem; }}
+.char-card p {{ margin: 0 0 10px; font-size: .88rem; color: var(--fg2); line-height: 1.6; }}
+.char-scenes-label {{ font-size: .75rem; color: var(--fg3); }}
+.char-scenes-label span {{ display: inline-block; background: var(--bg3,#e5e7eb); border-radius: 4px; padding: 1px 6px; margin: 2px; font-size: .7rem; }}
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div id="topbar">
+  <button id="btn-hamburger" class="topbar-btn" onclick="toggleSidebar()">☰</button>
+  <h1>מזמור לדוד — המחזמר המלא</h1>
+  <input type="text" id="search-input" placeholder="חיפוש בטקסט..." oninput="doSearch(this.value)">
+  <button class="topbar-btn topbar-btn-desktop" onclick="showViewWrapped('scenes')">📜 סצנות</button>
+  <button class="topbar-btn topbar-btn-desktop" onclick="showViewWrapped('tree')">🌳 אילן יוחסין</button>
+  <button class="topbar-btn topbar-btn-desktop" onclick="showViewWrapped('structure')">🎭 מבנה דרמטי</button>
+  <button class="topbar-btn topbar-btn-desktop" onclick="showViewWrapped('relations')">🕸 גרף קשרים</button>
+  <button class="topbar-btn topbar-btn-desktop" onclick="showViewWrapped('chars')">👤 כרטיסי דמויות</button>
+  <button class="topbar-btn topbar-btn-desktop" onclick="toggleCharFilter()">🎭 דמויות</button>
+  <button id="btn-theme" class="topbar-btn" onclick="toggleTheme()">🌙</button>
+  <button class="topbar-btn topbar-btn-desktop" onclick="exportAnnotations()">💾 ייצוא הערות</button>
+</div>
+<div id="sidebar-overlay" onclick="closeSidebar()"></div>
+
+<!-- LAYOUT -->
+<div id="layout">
+
+<!-- SIDEBAR -->
+<nav id="sidebar">
+  <div class="sidebar-special" onclick="showViewWrapped('scenes')">📜 סצנות</div>
+  <div class="sidebar-special" onclick="showViewWrapped('chars')">👤 דמויות</div>
+  <div class="sidebar-special" onclick="showViewWrapped('tree')">🌳 אילן יוחסין</div>
+  <div class="sidebar-special" onclick="showViewWrapped('relations')">🕸 גרף קשרים</div>
+  <div class="sidebar-special" onclick="showViewWrapped('structure')">🎭 מבנה דרמטי</div>
+  <div class="sidebar-divider"></div>
+  <div id="sidebar-nav"></div>
+</nav>
+
+<!-- MAIN -->
+<main id="main">
+
+  <!-- CHARACTER FILTER BAR -->
+  <div id="char-filter">
+    <span id="char-filter-label">סנן לפי דמות:</span>
+  </div>
+
+  <!-- SCENES VIEW -->
+  <div id="view-scenes" class="view active">
+    {all_scenes_html}
+  </div>
+
+  <!-- FAMILY TREE VIEW -->
+  <div id="view-tree" class="view">
+    <h2>אילן יוחסין — דמויות המחזמר</h2>
+    <div id="tree-legend">
+      <span class="legend-item"><span class="legend-solid"></span> הורה / ילד</span>
+      <span class="legend-item"><span class="legend-dashed"></span> נישואים לדוד</span>
+      <span class="legend-item"><span class="legend-dotted"></span> נישואים קודמים</span>
+    </div>
+    <div id="tree-scroll">
+      <svg id="tree-svg" xmlns="http://www.w3.org/2000/svg"
+           style="display:block;min-width:2060px;height:660px;">
+        <!-- drawn by drawTree() in JS -->
+      </svg>
+    </div>
+    <p style="text-align:center;color:var(--fg3);font-size:.78rem;margin-top:8px;font-family:var(--font-ui)">
+      לחץ על כל דמות לסיפור קצר ולסצנות שבהן היא מופיעה
+    </p>
+  </div>
+
+  <!-- DRAMATIC STRUCTURE VIEW -->
+  <div id="view-structure" class="view">
+    <h2>מבנה דרמטי — מזמור לדוד בהקשר</h2>
+    <p class="structure-intro">
+      כל מחזמר גדול מסתמך על מבנה דרמטי שנוסה ונבחן לאורך מאות שנים.
+      הטבלה שלפניכם ממקמת את <strong>מזמור לדוד</strong> על פי עקרונות פרייטאג (1863)
+      וממשילה אותו ליצירות במה בנות ביצוע — שייקספיר, <em>מלך האריות</em>, <em>ביקור הפקידה</em>,
+      <em>Les Misérables</em> — כדי לזהות מה ייחודי ומה אוניברסלי.
+    </p>
+
+    <div class="freytag">
+      <h3>פירמידת פרייטאג — מבנה חמשת-שלבים</h3>
+      <svg class="pyramid-svg" viewBox="0 0 700 260" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="pygrad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" style="stop-color:#2563eb;stop-opacity:.7"/>
+            <stop offset="40%" style="stop-color:#8b2500;stop-opacity:.9"/>
+            <stop offset="100%" style="stop-color:#374151;stop-opacity:.7"/>
+          </linearGradient>
+        </defs>
+        <!-- Pyramid shape -->
+        <polygon points="20,220 350,40 680,220" fill="url(#pygrad)" opacity=".15" stroke="#8b2500" stroke-width="2"/>
+        <!-- Vertical dividers -->
+        <line x1="185" y1="130" x2="185" y2="220" stroke="#666" stroke-width="1" stroke-dasharray="4,3"/>
+        <line x1="350" y1="40" x2="350" y2="220" stroke="#666" stroke-width="1" stroke-dasharray="4,3"/>
+        <line x1="515" y1="130" x2="515" y2="220" stroke="#666" stroke-width="1" stroke-dasharray="4,3"/>
+        <!-- Labels top -->
+        <text x="95" y="25" text-anchor="middle" font-family="Arial" font-size="11" fill="#2563eb">① חשיפה</text>
+        <text x="268" y="25" text-anchor="middle" font-family="Arial" font-size="11" fill="#8b2500">② עלייה</text>
+        <text x="350" y="18" text-anchor="middle" font-family="Arial" font-size="13" fill="#8b2500" font-weight="bold">③ שיא</text>
+        <text x="435" y="25" text-anchor="middle" font-family="Arial" font-size="11" fill="#374151">④ ירידה</text>
+        <text x="605" y="25" text-anchor="middle" font-family="Arial" font-size="11" fill="#374151">⑤ סיום</text>
+        <!-- Play moments -->
+        <circle cx="95" cy="185" r="5" fill="#2563eb"/>
+        <text x="95" y="205" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#333">משיחת דוד</text>
+        <circle cx="185" cy="155" r="5" fill="#16a34a"/>
+        <text x="185" y="245" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#333">ברית יונתן</text>
+        <circle cx="268" cy="90" r="5" fill="#2563eb"/>
+        <text x="268" y="250" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#333">המלכת דוד</text>
+        <circle cx="350" cy="40" r="7" fill="#8b2500"/>
+        <text x="350" y="255" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#8b2500" font-weight="bold">בת-שבע/אוריה</text>
+        <circle cx="430" cy="90" r="5" fill="#be123c"/>
+        <text x="430" y="245" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#333">מרד אבשלום</text>
+        <circle cx="515" cy="145" r="5" fill="#374151"/>
+        <text x="515" y="250" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#333">מות אבשלום</text>
+        <circle cx="605" cy="185" r="5" fill="#047857"/>
+        <text x="605" y="205" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#333">צוואה/שלמה</text>
+      </svg>
+    </div>
+
+    <div class="arc-comparison">
+      <h3>השוואה למחזמרים ויצירות במה קלאסיות</h3>
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th>שלב דרמטי</th>
+            <th>מזמור לדוד</th>
+            <th>המלך ליר (שייקספיר)</th>
+            <th>מלך האריות</th>
+            <th>Les Misérables</th>
+            <th>ביקור הפקידה (דיירנמאט)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>① חשיפה / Exposition</td>
+            <td>דוד הרועה; משיחת שמואל; גלית</td>
+            <td>ליר מחלק ממלכתו; הרעה והטובה</td>
+            <td>סימבה כגור; מפלת מופסה</td>
+            <td>ז'אן-ואלז'אן יוצא מהכלא</td>
+            <td>העיר ממתינה לפקידה; עוני</td>
+          </tr>
+          <tr>
+            <td>② עלייה / Rising Action</td>
+            <td>ברית יונתן; בריחת שאול; המלכה בחברון</td>
+            <td>גורנריל ורגן מפשיטים את ליר; בורח לסערה</td>
+            <td>סימבה בגלות; חברות עם טימון ופומבה</td>
+            <td>ז'אן בונה עצמו; חיפוש קוזט</td>
+            <td>הפקידה מגיעה; מציעה כסף תמורת נקם</td>
+          </tr>
+          <tr class="highlight-row">
+            <td>③ שיא / Climax</td>
+            <td><strong>בת-שבע ואוריה — "עֲשֵׂה זֹאת"</strong></td>
+            <td>ליר בסערה; "גזרה-ה-עיניים"</td>
+            <td>סימבה מול סקאר</td>
+            <td>מחסום הבריקאדה; מות גברוש</td>
+            <td>הפקידה קונה ​את כל העיר</td>
+          </tr>
+          <tr>
+            <td>④ ירידה / Falling Action</td>
+            <td>קללת נתן; אמנון-תמר; מרד אבשלום; "בני אבשלום!"</td>
+            <td>מות קורדליה; ליר אוחז בגופה</td>
+            <td>קרב פוהארי; סקאר נחשף כרוצח</td>
+            <td>ז'אן בורח; ז'אבר מתאבד; לחם חסד</td>
+            <td>אלפרד איל נשפט ונהרג</td>
+          </tr>
+          <tr>
+            <td>⑤ סיום / Denouement</td>
+            <td>צוואת דוד; המלכת שלמה; "שיר לדוד"</td>
+            <td>ליר מת על גופת קורדליה; ממלכה חרבה</td>
+            <td>סימבה מולך; "Circle of Life"</td>
+            <td>מות ז'אן; אהבה-זיכרון; "Do you hear the people sing"</td>
+            <td>העיר מקבלת את הכסף ואת מותה</td>
+          </tr>
+          <tr>
+            <td>💡 הנושא המרכזי</td>
+            <td>אמונה דרך ייסורים; עצירת יד = כינור</td>
+            <td>גאווה → עיוורון → כאב → חסד מאוחר מדי</td>
+            <td>זהות; גאולה; מעגל החיים</td>
+            <td>חסד מול צדק; ניגאל מנשלט על ידי חוק</td>
+            <td>נקמה היא עסקה; הצדק עולה ביוקר</td>
+          </tr>
+          <tr>
+            <td>🎵 הרגע המוזיקלי הגדול</td>
+            <td>"הללויה"; "בני אבשלום"; תהילים מן הלב</td>
+            <td>"Blow winds and crack your cheeks" (פרוזה)</td>
+            <td>"Can you feel the love tonight"</td>
+            <td>"I Dreamed a Dream"; "One Day More"</td>
+            <td>(מחזה פרוזה, אין מוזיקה)</td>
+          </tr>
+          <tr>
+            <td>🔑 ייחוד מזמור לדוד</td>
+            <td colspan="5" style="color:var(--accent);font-weight:bold">
+              חוט הזהב שאין לו אח: הדמות הראשית <em>כותבת</em> את השירים שלה — תהילים צומח בזמן אמת מתוך הסבל.
+              הקהל יודע את הסוף (ספר תהילים) אבל לא יודע איך הגיעו לשם.
+              בשום מחזמר אחר המוזיקה <em>היא</em> המקור ולא רק ביטוי.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="arc-grid">
+      <div class="arc-card">
+        <h3>קשת דוד — גיבור שנופל ומתרומם</h3>
+        <div class="arc-work">ז'אן ואלז'אן / המלך ליר / סימבה</div>
+        <p>גיבור עם מתנה טבעית (אומץ/שיר/מלוכה) → חטא או ניסיון → גלות פנימית → חזרה מכוח ביטוי עמוק. ייחוד: דוד חוזר <em>דרך</em> תהילים, לא למרותם.</p>
+      </div>
+      <div class="arc-card">
+        <h3>קשת יואב — ה"ידיים הלכלכות"</h3>
+        <div class="arc-work">יאגו / מקבת / ז'אבר</div>
+        <p>הדמות הצדדית שעושה את המלאכה המלוכלכת — הורגת את אבנר, מחסלת את אבשלום. יואב מאמין שהוא שומר על דוד. זהו ויכוח על מוסר ושלטון.</p>
+      </div>
+      <div class="arc-card">
+        <h3>קשת אבשלום — הבן שלא מוכר</h3>
+        <div class="arc-work">האמלט / שיילוק / אספק</div>
+        <p>בן שנדחה, יופי ללא פנים, כעס שמבקש הכרה. ייחוד: דוד אוהב אותו עד הסוף — "בני בני אבשלום" — גם אחרי המרד. זה לא מנגנון של שנאה אלא של קרע.</p>
+      </div>
+    </div>
+
+    <div class="arc-comparison">
+      <h3>מבנה המחזמר — 15 תמונות לפי מעגל הרגשי</h3>
+      <table class="compare-table">
+        <thead>
+          <tr><th>#</th><th>תמונה</th><th>רגש מרכזי</th><th>מזמור</th><th>מקביל בעולם</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>א</td><td>המשיחה + גלית</td><td>תמימות ואמונה</td><td>כג</td><td>המילטון: "Alexander Hamilton" · ישעיה מב: "עבדי ישראל" · ספר בראשית: ביוגרפיה גיבור · Simba born</td></tr>
+          <tr><td>ב</td><td>יונתן + ברית</td><td>אהבה לא-רומנטית</td><td>נז</td><td>המילטון: "Young, Scrappy and Hungry" · לה מיזרבל: "Look Down" · ספר ג'ונגל: "I Just Can't Wait to Be King" · Frodo &amp; Sam</td></tr>
+          <tr><td>ג</td><td>בריחה מפני שאול</td><td>בדידות ואמונה</td><td>לד</td><td>המלט: קלאודיוס ועמלט · אריה מלך: סימבה וסקאר · ריצ'רד השלישי: עלייה ושפל · Les Mis Act I</td></tr>
+          <tr><td>ד</td><td>מות שאול + קינה</td><td>אבל על אויב</td><td>יח</td><td>אביזר (Wicked): "For Good" · מרילי וי רול אלונג: "Old Friends" · ברוכמן לאב: "I'll Cover You" · Lear/Cordelia</td></tr>
+          <tr><td>ה</td><td>מלחמת האחים</td><td>מחיר הכוח</td><td>—</td><td>המילטון: "The Battle of Yorktown" · לה מיזרבל: "One Day More" · ספרטקוס: מרד העבדים · Richard III rising</td></tr>
+          <tr><td>ו</td><td>הריקוד ומיכל</td><td>אקסטזה מול בושה</td><td>כד</td><td>אביזר: "Defying Gravity" · מלך ואני: "Shall We Dance" · אריה מלך: "Circle of Life" · Eliza Doolittle dancing</td></tr>
+          <tr class="highlight-row"><td>ז</td><td>"לא אתה תבנה"</td><td>קבלת מגבלה = חירות</td><td>קלה</td><td>המילטון: "The Room Where It Happens" · ריצ'רד השני: מלך מודח · המלך ואני: "A Puzzlement" · ייחוד מזמור לדוד</td></tr>
+          <tr><td>ח</td><td>בת-שבע ואוריה</td><td>תאווה ופשע</td><td>נא</td><td>המלט: אופליה ופולוניוס · מקבת: עלילת הרצח · דון ג'ובאני: פיתוי ומוות · Othello jealousy</td></tr>
+          <tr><td>ט</td><td>אמנון + תמר</td><td>פשע ודממה</td><td>—</td><td>ריגולטו: "Caro nome" · תיטוס אנדרוניקוס · פנטום האופרה: אובססיה ואלימות · Titus Andronicus</td></tr>
+          <tr><td>י</td><td>מרד אבשלום</td><td>קרע אב-בן</td><td>ג</td><td>המלט: נקמת לארטס · ליר: קורדליה ולאיר · אריה מלך: שיבת סימבה · King Lear</td></tr>
+          <tr><td>יא</td><td>מות אבשלום</td><td>אבל הגדול ביותר</td><td>—</td><td>ליר: "Blow, winds" + מות קורדליה · המילטון: "It's Quiet Uptown" · סוויני טוד: אובדן · Hamlet/Ophelia</td></tr>
+          <tr><td>יב</td><td>שיבה לירושלים</td><td>תיקון חלקי</td><td>קכו</td><td>המילטון: "The Election of 1800" · לה מיזרבל: "Do You Hear the People Sing" · ז'אן ולז'אן חוזר · Return of the King</td></tr>
+          <tr><td>יג</td><td>הללויה + שיר</td><td>כפרה דרך שיר</td><td>יח</td><td>המילטון: "Who Lives Who Dies Who Tells Your Story" · לה מיזרבל: "Do You Hear the People Sing" · אביזר: "For Good"</td></tr>
+          <tr><td>יד</td><td>הצוואה</td><td>ירושה מורכבת</td><td>עב</td><td>המילטון: "That Would Be Enough" + "Legacy" · הנרי הרביעי ח"ב · המלט: "The rest is silence"</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="arc-comparison" style="margin-top:2rem">
+      <h3>כיסוי פרקי התנ"ך במחזמר</h3>
+      <table class="compare-table">
+        <thead>
+          <tr><th>פרק תנ"ך</th><th>שם הסצנה</th><th>חלק במחזמר</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>ישעיה טז, מזמור עח</td><td>פרולוג</td><td>פרולוג</td></tr>
+          <tr><td>שמ"א א–ה (נעורים, שמואל, גוליית, חצר שאול)</td><td>scene-01-05-full</td><td>חלק א</td></tr>
+          <tr><td>שמ"א כג (פרידת יונתן)</td><td>scene-jonathan-farewell</td><td>חלק א</td></tr>
+          <tr><td>שמ"א כא (דוד בגת)</td><td>scene-gath-madness</td><td>חלק א</td></tr>
+          <tr><td>שמ"א כב (טבח נוב)</td><td>scene-nob-massacre</td><td>חלק א</td></tr>
+          <tr><td>שמ"א כד (מערת עין גדי)</td><td>scene-04-the-cave</td><td>חלק א</td></tr>
+          <tr><td>שמ"א כג–כו (המדבר)</td><td>scene-04b-wilderness-additions</td><td>חלק א</td></tr>
+          <tr><td>שמ"א כה (נבל ואביגיל)</td><td>scene-nabal-abigail</td><td>חלק א</td></tr>
+          <tr><td>שמ"א כד/כו (המערה והגבעה)</td><td>scene-cave-hill</td><td>חלק א</td></tr>
+          <tr><td>שמ"א כח (אוב עין דור)</td><td>scene-05b-witch-endor</td><td>חלק א</td></tr>
+          <tr><td>שמ"א כז, ל (צקלג)</td><td>scene-ziklag</td><td>חלק א</td></tr>
+          <tr><td>שמ"א כט (פלשתים דוחים)</td><td>scene-philistines-reject</td><td>חלק א</td></tr>
+          <tr><td>שמ"א לא (גלבוע)</td><td>scene-gilboa</td><td>חלק א</td></tr>
+          <tr><td>שמ"ב א (קינת דוד)</td><td>scene-06-lament</td><td>חלק ב</td></tr>
+          <tr><td>שמ"ב ב–ג (מלחמת האחים)</td><td>scene-07-brothers-war</td><td>חלק ב</td></tr>
+          <tr><td>שמ"ב ד (מות איש-בשת)</td><td>scene-ishbosheth</td><td>חלק ב</td></tr>
+          <tr><td>שמ"ב ה (כיבוש ירושלים)</td><td>scene-jerusalem</td><td>חלק ב</td></tr>
+          <tr><td>שמ"ב ו (הריקוד לפני הארון)</td><td>scene-08-dance</td><td>חלק ב</td></tr>
+          <tr><td>שמ"ב ז (לא אתה תבנה)</td><td>scene-09-not-you</td><td>חלק ב</td></tr>
+          <tr><td>דה"א כה (288 המשוררים)</td><td>scene-chr25-singers</td><td>חלק ב</td></tr>
+          <tr><td>שמ"ב ט (מפיבושת)</td><td>scene-10-mephibosheth</td><td>חלק ב</td></tr>
+          <tr><td>שמ"ב י (מלחמת עמון)</td><td>scene-10b-ammon-war</td><td>חלק ב</td></tr>
+          <tr><td>שמ"ב יא–יב (בת-שבע ואוריה)</td><td>scene-bathsheba-uriah</td><td>חלק ב</td></tr>
+          <tr><td>שמ"ב יא (בית המרחץ — מדרש)</td><td>bathhouse</td><td>חלק ב</td></tr>
+          <tr><td>שמ"ב יג (אמנון ותמר)</td><td>scene-13b-amnon-tamar</td><td>חלק ב</td></tr>
+          <tr><td>שמ"ב יד (שיבת אבשלום)</td><td>scene-13e-absalom-return</td><td>חלק ב</td></tr>
+          <tr><td>שמ"ב טו–יז (מרד אבשלום)</td><td>scene-13c-revolt</td><td>חלק ב</td></tr>
+          <tr><td>שמ"ב יח (מות אבשלום)</td><td>scene-13d-absalom</td><td>חלק ב</td></tr>
+          <tr><td>שמ"ב יט (שיבת דוד + ריב יהודה-ישראל)</td><td>scene-13f-david-return</td><td>חלק ב</td></tr>
+          <tr><td>שמ"ב כ (מרד שבע בן בכרי)</td><td>scene-sheva-bichri</td><td>חלק ב</td></tr>
+          <tr><td>שמ"ב כא (רצפה בת איה)</td><td>scene-13g-rizpah</td><td>חלק ב</td></tr>
+          <tr><td>שמ"ב כג (שפיכת המים)</td><td>scene-water-libation</td><td>חלק ב</td></tr>
+          <tr><td>שמ"ב כב (שיר דוד)</td><td>scene-14-hallelujah</td><td>חלק ב</td></tr>
+          <tr><td>שמ"ב כב–כג (שיר ומגיבורים)</td><td>scene-22-23-david-song</td><td>חלק ב</td></tr>
+          <tr><td>מל"א א–ב (הצוואה)</td><td>scene-15-testament</td><td>אפילוג</td></tr>
+          <tr><td>תת-עלילה (בני צרויה)</td><td>scene-tzruya-david</td><td>תת-עלילה</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- CHARACTERS VIEW -->
+  <div id="view-chars" class="view">
+    <h2 style="padding: 16px 16px 0; color: var(--accent);">דמויות המחזמר</h2>
+    <div class="char-grid" id="char-cards-grid"></div>
+  </div>
+
+  <!-- RELATIONS VIEW -->
+  <div id="view-relations" class="view">
+    <h2>גרף קשרים — רגשות בין דמויות</h2>
+    <div class="rel-filter-bar" id="rel-filter-bar"></div>
+    <div id="rel-legend"></div>
+    <div id="rel-scroll">
+      <svg id="rel-svg" xmlns="http://www.w3.org/2000/svg"
+           style="display:block;min-width:1100px;height:720px;"></svg>
+    </div>
+    <p style="text-align:center;color:var(--fg3);font-size:.76rem;margin-top:8px;font-family:var(--font-ui)">
+      לחץ על דמות להדגשת הקשרים שלה · לחץ על קו קשר לסיפור המלא · לחץ שוב להסרת ההדגשה
+    </p>
+  </div>
+
+</main>
+</div>
+
+<!-- TOOLTIP -->
+<div id="tree-tooltip"></div>
+<div id="rel-tooltip"></div>
+
+<!-- RELATION DETAIL PANEL -->
+<div id="rel-panel">
+  <div id="rel-panel-header">
+    <div id="rel-panel-title"></div>
+    <button id="rel-panel-close" onclick="closeRelPanel()">&#x2715;</button>
+  </div>
+  <div id="rel-panel-chars"></div>
+  <div id="rel-panel-body"></div>
+</div>
+
+<script>
+// ── DATA ──
+const SCENES = {scenes_json};
+const CHARS = {chars_json};
+
+// ── INIT ──
+let activeChar = null;
+let activeScene = null;
+let sidebarOpen = true;
+
+function init() {{
+  buildSidebar();
+  loadAllAnnotations();
+  loadTheme();
+}}
+
+function buildSidebar() {{
+  const nav = document.getElementById('sidebar-nav');
+  let currentPart = null;
+  SCENES.forEach(s => {{
+    if (s.part !== currentPart) {{
+      currentPart = s.part;
+      if (currentPart) {{
+        const div = document.createElement('div');
+        div.className = 'sidebar-section';
+        div.textContent = currentPart;
+        nav.appendChild(div);
+        const hr = document.createElement('div');
+        hr.className = 'sidebar-divider';
+        nav.appendChild(hr);
+      }}
+    }}
+    const a = document.createElement('a');
+    a.className = 'sidebar-item';
+    a.textContent = s.label;
+    a.href = '#';
+    a.onclick = (e) => {{ e.preventDefault(); jumpToScene(s.id); }};
+    a.id = 'nav-' + s.id;
+    nav.appendChild(a);
+  }});
+  buildCharFilter();
+  buildCharCards();
+}}
+
+function buildCharFilter() {{
+  const bar = document.getElementById('char-filter');
+  Object.entries(CHARS).forEach(([name, data]) => {{
+    const chip = document.createElement('button');
+    chip.className = 'filter-chip on';
+    chip.textContent = name;
+    chip.style.background = data.color + '22';
+    chip.style.color = data.color;
+    chip.style.borderColor = data.color + '60';
+    chip.onclick = () => filterByChar(name, chip);
+    bar.appendChild(chip);
+  }});
+  const clear = document.createElement('button');
+  clear.className = 'filter-clear';
+  clear.textContent = 'הצג הכל';
+  clear.onclick = clearFilter;
+  bar.appendChild(clear);
+}}
+
+function buildCharCards() {{
+  const grid = document.getElementById('char-cards-grid');
+  Object.entries(CHARS).forEach(([name, data]) => {{
+    const card = document.createElement('div');
+    card.className = 'char-card';
+    card.style.borderLeftColor = data.color;
+    const scenes = data.scenes || [];
+    const scenePills = scenes.length
+      ? scenes.map(s => `<span>${{s}}</span>`).join("")
+      : "<span>—</span>";
+    card.innerHTML = `<h3 style="color:${{data.color}}">${{name}}</h3><p>${{data.story || ""}}</p><div class="char-scenes-label">סצנות: ${{scenePills}}</div>`;
+    card.onclick = () => {{
+      showView('scenes');
+      document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('on'));
+      const chip = Array.from(document.querySelectorAll('.filter-chip')).find(c => c.textContent === name);
+      if (chip) chip.classList.add('on');
+      activeChar = name;
+      applyCharFilter();
+    }};
+    grid.appendChild(card);
+  }});
+}}
+
+// ── NAVIGATION ──
+function showView(name) {{
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  document.getElementById('view-' + name).classList.add('active');
+  document.querySelectorAll('.sidebar-special').forEach(b => b.classList.remove('active'));
+  const viewMap = {{'scenes':'📜 סצנות','chars':'👤 דמויות','tree':'🌳 אילן יוחסין','relations':'🕸 גרף קשרים','structure':'🎭 מבנה דרמטי'}};
+  document.querySelectorAll('.sidebar-special').forEach(b => {{
+    if (b.textContent.trim() === (viewMap[name]||'')) b.classList.add('active');
+  }});
+}}
+
+function jumpToScene(id) {{
+  showView('scenes');
+  document.querySelectorAll('.sidebar-item').forEach(a => a.classList.remove('active'));
+  const nav = document.getElementById('nav-' + id);
+  if (nav) nav.classList.add('active');
+  const el = document.getElementById(id);
+  if (el) el.scrollIntoView({{behavior:'smooth', block:'start'}});
+}}
+
+// ── SIDEBAR ──
+function isMobile() {{ return window.innerWidth <= 768; }}
+
+function toggleSidebar() {{
+  const sb = document.getElementById('sidebar');
+  const ov = document.getElementById('sidebar-overlay');
+  if (isMobile()) {{
+    const open = sb.classList.toggle('open');
+    ov.classList.toggle('visible', open);
+  }} else {{
+    sidebarOpen = !sidebarOpen;
+    sb.style.display = sidebarOpen ? '' : 'none';
+  }}
+}}
+
+function closeSidebar() {{
+  document.getElementById('sidebar').classList.remove('open');
+  document.getElementById('sidebar-overlay').classList.remove('visible');
+}}
+
+// ── SEARCH ──
+let searchTimeout;
+function doSearch(q) {{
+  clearTimeout(searchTimeout);
+  searchTimeout = setTimeout(() => applySearch(q.trim()), 300);
+}}
+
+function applySearch(q) {{
+  const articles = document.querySelectorAll('.scene-article');
+  // Remove old highlights
+  articles.forEach(a => {{
+    const content = a.querySelector('.scene-content');
+    content.innerHTML = content.innerHTML.replace(/<mark>(.*?)<\/mark>/gi, '$1');
+  }});
+  if (!q) {{
+    articles.forEach(a => a.classList.remove('hidden'));
+    return;
+  }}
+  const re = new RegExp(q.replace(/[.*+?^${{}}()|[\\]\\\\]/g, '\\\\$&'), 'gi');
+  articles.forEach(a => {{
+    const text = a.querySelector('.scene-content').textContent;
+    if (re.test(text)) {{
+      a.classList.remove('hidden');
+      const content = a.querySelector('.scene-content');
+      content.innerHTML = content.innerHTML.replace(re, m => `<mark>${{m}}</mark>`);
+    }} else {{
+      a.classList.add('hidden');
+    }}
+  }});
+}}
+
+// ── CHARACTER FILTER ──
+function toggleCharFilter() {{
+  const bar = document.getElementById('char-filter');
+  bar.classList.toggle('visible');
+}}
+
+function filterByChar(name, chip) {{
+  const isOn = chip.classList.contains('on');
+  if (isOn) {{
+    // Turn this one off, filter to only this char
+    document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('on'));
+    chip.classList.add('on');
+    activeChar = name;
+  }} else {{
+    chip.classList.add('on');
+    activeChar = null;
+  }}
+  applyCharFilter();
+}}
+
+function clearFilter() {{
+  document.querySelectorAll('.filter-chip').forEach(c => c.classList.add('on'));
+  activeChar = null;
+  applyCharFilter();
+}}
+
+function applyCharFilter() {{
+  document.querySelectorAll('.scene-article').forEach(a => {{
+    if (!activeChar) {{ a.classList.remove('hidden'); return; }}
+    const chars = a.dataset.chars || '';
+    if (chars.includes(activeChar)) a.classList.remove('hidden');
+    else a.classList.add('hidden');
+  }});
+}}
+
+// ── ANNOTATIONS ──
+function toggleAnnotation(id) {{
+  const box = document.getElementById('ann-' + id);
+  const ta = document.getElementById('textarea-' + id);
+  box.style.display = box.style.display === 'none' ? 'block' : 'none';
+  if (box.style.display === 'block') ta.focus();
+}}
+
+function saveAnnotation(id) {{
+  const ta = document.getElementById('textarea-' + id);
+  const key = 'ann_' + id;
+  localStorage.setItem(key, ta.value);
+  const saved = document.getElementById('saved-' + id);
+  saved.textContent = '✓ נשמר';
+  setTimeout(() => {{ saved.textContent = ''; }}, 1500);
+}}
+
+function loadAllAnnotations() {{
+  SCENES.forEach(s => {{
+    const val = localStorage.getItem('ann_' + s.id);
+    if (val) {{
+      const ta = document.getElementById('textarea-' + s.id);
+      if (ta) ta.value = val;
+    }}
+  }});
+}}
+
+function exportAnnotations() {{
+  const lines = [];
+  lines.push('הערות למחזמר מזמור לדוד');
+  lines.push('תאריך: ' + new Date().toLocaleDateString('he-IL'));
+  lines.push('');
+  SCENES.forEach(s => {{
+    const val = localStorage.getItem('ann_' + s.id);
+    if (val && val.trim()) {{
+      lines.push('=== ' + s.label + ' ===');
+      lines.push(val);
+      lines.push('');
+    }}
+  }});
+  if (lines.length <= 3) {{
+    alert('אין עדיין הערות שמורות.');
+    return;
+  }}
+  const blob = new Blob([lines.join('\\n')], {{type: 'text/plain;charset=utf-8'}});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'הערות-מזמור-לדוד.txt';
+  a.click();
+}}
+
+// ── PRINT ──
+function printScene(id) {{
+  // Hide all other scenes, print, restore
+  document.querySelectorAll('.scene-article').forEach(a => {{
+    if (a.id !== id) a.classList.add('hidden');
+  }});
+  window.print();
+  document.querySelectorAll('.scene-article').forEach(a => a.classList.remove('hidden'));
+  applyCharFilter();
+}}
+
+// ── THEME ──
+function toggleTheme() {{
+  const dark = document.documentElement.getAttribute('data-theme') === 'dark';
+  document.documentElement.setAttribute('data-theme', dark ? '' : 'dark');
+  localStorage.setItem('theme', dark ? 'light' : 'dark');
+}}
+function loadTheme() {{
+  const t = localStorage.getItem('theme');
+  if (t === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+}}
+
+// ── FAMILY TREE ──
+const TNODES = [
+  // Row 0 — ancestors y=55
+  {{id:'saul',    name:'שאול',      role:'מלך ישראל הראשון', cx:160,  cy:55,  c:'#dc2626', desc:'שאול בן קיש ממטה בנימין. נמשח ע"י שמואל, נדחה בגלל אי-ציות. רדף את דוד שנים רבות ונפל בגלבוע יחד עם יונתן בניו.'}},
+  {{id:'jesse',   name:'ישי',       role:'אבי דוד',           cx:830,  cy:55,  c:'#b45309', desc:'ישי בן עובד מבית לחם, מזרע רות ובועז. אבי שמונה בנים — דוד הצעיר נמשח למלך כאשר שמואל דחה את כולם לפניו.'}},
+  // Row 1 — main generation y=195
+  {{id:'jonathan',  name:'יונתן',    role:'בן שאול',                  cx:55,   cy:195, c:'#16a34a', desc:'יונתן בן שאול — יורש העצר שויתר על כתרו. כרת ברית אהבה עם דוד, ואמר לו: "ואתה תמלוך". נפל בגלבוע עם אביו. דוד קינן: "נפלאתה אהבתך לי מאהבת נשים".'}},
+  {{id:'michal',    name:'מיכל',     role:'בת שאול / אשת דוד',        cx:215,  cy:195, c:'#9333ea', desc:'מיכל בת שאול אהבה את דוד והצילה אותו דרך החלון. הוחזרה לדוד בכפייה, תוך שפלטיאל בעלה בוכה. בזה לדוד הרוקד לפני הארון — ומתה עקרה.'}},
+  {{id:'ishbosh',   name:'אישבושת',  role:'בן שאול',                  cx:375,  cy:195, c:'#64748b', desc:'אישבושת (מלכי-בושת) בן שאול. מלך על ישראל 7 שנים בתמיכת אבנר, עד שנרצח על ידי בענה ורכב. דוד לא ידע על הרצח, ועינה את הרוצחים.'}},
+  {{id:'merab',     name:'מרב',      role:'בת שאול',                  cx:525,  cy:195, c:'#78716c', desc:'מרב בת שאול — הובטחה לדוד אחרי גלית, אך נישאה לעדריאל המחלתי. חמישה מבניה נמסרו לגבעונים כפדיון דם.'}},
+  {{id:'rizpah',    name:'רצפה',     role:'פילגש שאול',               cx:670,  cy:195, c:'#be185d', desc:'רצפה בת איה, פילגש שאול. שמרה על גופות שני בניה שנמסרו לגבעונים — מיממת הגשמים של ניסן עד ירידת הגשמים. מעשה זה הרגיש את דוד לקבור את שאול ויונתן.'}},
+  {{id:'david',     name:'דוד המלך', role:'מלך יהודה וישראל',        cx:830,  cy:195, c:'#1d4ed8', desc:'דוד בן ישי — רועה שנמשח, גיבור, חוטא, מתחרט, משורר. מלך 40 שנה. כתב מזמורי תהילים מתוך כל שעה בחייו. חוט זהב: "כל עצירת יד מולידה כינור".',  main:true}},
+  {{id:'zeruiah',   name:'צרויה',    role:'אחות דוד',                 cx:1000, cy:195, c:'#6b7280', desc:'צרויה אחות דוד ואם שלושת הגיבורים — יואב, אבישי ועשהאל. דוד אמר "קשים בני צרויה ממני" — היא מייצגת את הכוח שדוד לא יכול לרסן.'}},
+  {{id:'ahinoam',   name:'אחינועם', role:'אשת דוד (א)',              cx:1180, cy:195, c:'#7c3aed', desc:'אחינועם היזרעאלית — אשתו הראשונה של דוד לאחר מיכל. ילדה לו את אמנון הבכור. הייתה עמו בגלות בגת ובצקלג.'}},
+  {{id:'abigail',   name:'אביגיל',  role:'אשת דוד (ב)',              cx:1360, cy:195, c:'#ea580c', desc:'אביגיל אשת נבל הכרמלי — חכמה, יפה, ובעלת לשון. עצרה את דוד מלשפוך דם נבל. לאחר מותו נישאה לדוד. "ברוך ה׳ אלהי ישראל אשר שלחך היום".'}},
+  {{id:'maacah',    name:'מעכה',    role:'אשת דוד (ג)',              cx:1550, cy:195, c:'#c026d3', desc:'מעכה בת תלמי מלך גשור, אשת דוד. ילדה לו את אבשלום ואת תמר. קשרי הנישואים לגשור אפשרו לאבשלום לברוח לשם אחרי רצח אמנון.'}},
+  {{id:'haggith',   name:'חגית',    role:'אשת דוד (ד)',              cx:1730, cy:195, c:'#b45309', desc:'חגית אשת דוד, אם אדוניה. כמעט בנה אדוניה מלך לפני שלמה — אך בת-שבע ונתן הנביא הקדימו אותו אצל דוד הזקן.'}},
+  {{id:'bathsheba', name:'בת-שבע',  role:'אשת דוד (ה)',              cx:1940, cy:195, c:'#0891b2', desc:'בת-שבע אשת אוריה החתי. נלקחה על ידי דוד שלח את אוריה למות. ילדה ארבעה בנים, מהם שלמה. נתן הנביא: "אתה האיש".'}},
+  // Row 2 — grandchildren/nephews y=370
+  {{id:'mephib',    name:'מפיבושת', role:'בן יונתן',                 cx:55,   cy:370, c:'#065f46', desc:'מפיבושת בן יונתן — נכה בשתי רגליו בגלל נפילה כשהיה בן חמש. דוד הזמינו לשלחנו לכל ימיו לזכות ברית יונתן. "ויאכל תמיד על שולחן המלך".'}},
+  {{id:'joab',      name:'יואב',    role:'שר הצבא',                  cx:930,  cy:370, c:'#92400e', desc:'יואב בן צרויה — שר הצבא החזק. הרג את אבנר נקמה, את אבשלום בניגוד לפקודה. דוד: "ה׳ ישיב דמו בראשו" — ציוה לשלמה להרגו.'}},
+  {{id:'abishai',   name:'אבישי',   role:'אח יואב',                  cx:1080, cy:370, c:'#78716c', desc:'אבישי בן צרויה — נאמן לדוד. רצה לשחוט את שמעי שקילל את דוד, אך דוד עצר אותו. הצילו מהפלשתי שרצה להכותו.'}},
+  {{id:'asahel',    name:'עשהאל',   role:'אח יואב',                  cx:1230, cy:370, c:'#a8a29e', desc:'עשהאל בן צרויה — קל ברגליים כצבי. רדף אחרי אבנר ונהרג על ידו. מותו הצית את נקמת יואב שהרג את אבנר שנים לאחר מכן.'}},
+  // Row 3 — David's children y=500
+  {{id:'amnon',     name:'אמנון',   role:'בכור דוד (מאחינועם)',      cx:1180, cy:500, c:'#854d0e', desc:'אמנון בכור דוד מאחינועם. אנס את תמר אחותו למחצה ואחר כן שנאה שנאה גדולה. אבשלום נקם את כבוד תמר ורצח אותו שנתיים לאחר מכן.'}},
+  {{id:'chileab',   name:'כלאב',    role:'בן דוד (מאביגיל)',         cx:1360, cy:500, c:'#7c6d5a', desc:'כלאב (דניאל בדה"א) בן דוד ואביגיל. כמעט לא מוזכר בכתוב — כנראה מת צעיר, או שהצניעות הגנה עליו מהמעורבות במאבקי הירושה.'}},
+  {{id:'absalom',   name:'אבשלום',  role:'בן דוד (ממעכה)',           cx:1510, cy:500, c:'#be123c', desc:'אבשלום בן דוד ומעכה — יפה תואר. נקם את תמר אחותו, גלה, חזר, מרד ושכב עם פילגשי דוד על הגג. נהרג ע"י יואב. דוד: "בני בני אבשלום! מי יתן מותי אני תחתיך".'}},
+  {{id:'tamar',     name:'תמר',     role:'בת דוד (ממעכה)',           cx:1660, cy:500, c:'#86198f', desc:'תמר בת דוד ומעכה — אחות אבשלום. נאנסה ע"י אמנון ואחר כך "ישבה שוממה בבית אבשלום אחיה". קולה נדם. אבשלום קרא לבתו "תמר" לזכרה.'}},
+  {{id:'adonijah',  name:'אדוניה',  role:'בן דוד (מחגית)',           cx:1800, cy:500, c:'#374151', desc:'אדוניה בן דוד מחגית, יפה תואר אחרי אבשלום. ניסה למלוך לפני שלמה, אך שלמה הומלך תחתיו. לאחר מכן ביקש את אבישג ונהרג ע"י שלמה.'}},
+  {{id:'solomon',   name:'שלמה',    role:'יורש המלכות (מבת-שבע)',    cx:1940, cy:500, c:'#047857', desc:'שלמה בן דוד ובת-שבע — יורש, בונה המקדש, המלך החכם. נתן הנביא קראו "ידידיה". שלמה = שלם = שלום. בנה את הבית שדוד חלם לבנות ולא הורשה.'}},
+  // Row 4 — secondary figures y=590
+  {{id:'samuel',    name:'שמואל',   role:'הנביא הגדול',              cx:150,  cy:590, c:'#1e3a5f', desc:'שמואל בן אלקנה — נביא ושופט. משח את שאול ואחר כך את דוד. ייצג את המעבר משופטים למלוכה. אפילו לאחר מותו קם מהאוב לנבא לשאול בעין-דור.'}},
+  {{id:'nathan',    name:'נתן',     role:'הנביא',                    cx:330,  cy:590, c:'#4338ca', desc:'נתן הנביא — שלח לדוד את משל האיש העני ואמר "אתה האיש". ייצג הצפן המוסרי של המחזמר. גם מינה את שלמה וסייע לבת-שבע.'}},
+  {{id:'doeg',      name:'דואג',    role:'עבד שאול / מלשין',         cx:505,  cy:590, c:'#7f1d1d', desc:'דואג האדומי, ראש רועי שאול. הלשין לשאול על אחימלך כהן נוב. שחט 85 כהנים. דוד כתב עליו תהילים נב: "מה תתהלל ברעה הגיבור — חסד ה׳ כל היום".'}},
+  {{id:'shimei',    name:'שמעי',    role:'בן גרא הבנימיני',          cx:680,  cy:590, c:'#78350f', desc:'שמעי בן גרא ממשפחת שאול. קילל את דוד ואבק אבנים בו בשעת הבריחה. דוד: "ה׳ אמר לו קלל". סלח לו בשובו — אך בצוואה ציוה לשלמה לשלם לו.'}},
+  {{id:'ahithophel',name:'אחיתופל',role:'היועץ הבוגד',               cx:1510, cy:590, c:'#1f2937', desc:'אחיתופל היועץ הנאמן שעבר לצד אבשלום. עצותיו נחשבו "כשאול ה׳". כשלא שמעו לו תלה עצמו. דוד ידע שבגד ואמר: "גם אתה אחיתופל" (תהילים נה).'}},
+  {{id:'uriah',     name:'אוריה',   role:'החתי / בעל בת-שבע',       cx:1940, cy:590, c:'#44403c', desc:'אוריה החתי — לוחם נאמן ומסור. סירב לישון עם אשתו בשעה שהחיל במדינה. דוד שלח בידיו את גזר דינו. "נפלו מעבדי דוד — ויגוע גם אוריה החתי".'}}
+];
+
+const TEDGES = [
+  // Saul → children (branch at y=125)
+  {{t:'branch', from:'saul',      branch_y:125, children:['jonathan','michal','ishbosh','merab','rizpah']}},
+  // Jesse → David + Zeruiah (branch at y=125)
+  {{t:'branch', from:'jesse',     branch_y:125, children:['david','zeruiah']}},
+  // Jonathan → Mephibosheth
+  {{t:'parent', from:'jonathan', to:'mephib'}},
+  // David ↔ Michal (marriage, dashed purple)
+  {{t:'marriage', from:'michal', to:'david', color:'#9333ea'}},
+  // David → wives (dashed from David up to each wife via line at y=155)
+  {{t:'wives', david_cx:830, wives:['ahinoam','abigail','maacah','haggith','bathsheba'], bar_y:155}},
+  // Zeruiah → sons
+  {{t:'branch', from:'zeruiah', branch_y:283, children:['joab','abishai','asahel']}},
+  // Children from each wife
+  {{t:'parent', from:'ahinoam',   to:'amnon'}},
+  {{t:'parent', from:'abigail',   to:'chileab'}},
+  {{t:'branch', from:'maacah',    branch_y:430, children:['absalom','tamar']}},
+  {{t:'parent', from:'haggith',   to:'adonijah'}},
+  {{t:'parent', from:'bathsheba', to:'solomon'}},
+];
+
+function nodeById(id) {{ return TNODES.find(n => n.id===id); }}
+
+function drawTree() {{
+  const svg = document.getElementById('tree-svg');
+  svg.innerHTML = '';
+  const ns = 'http://www.w3.org/2000/svg';
+  const W = 2060, H = 650;
+  svg.setAttribute('viewBox', `0 0 ${{W}} ${{H}}`);
+
+  function el(tag, attrs, text) {{
+    const e = document.createElementNS(ns, tag);
+    Object.entries(attrs).forEach(([k,v]) => e.setAttribute(k, v));
+    if (text !== undefined) e.textContent = text;
+    return e;
+  }}
+  function line(x1,y1,x2,y2,col,w,dash) {{
+    const l = el('line', {{x1,y1,x2,y2,stroke:col||'#888','stroke-width':w||1.5}});
+    if (dash) l.setAttribute('stroke-dasharray', dash);
+    svg.appendChild(l);
+  }}
+
+  // Draw edges first (behind nodes)
+  TEDGES.forEach(edge => {{
+    if (edge.t === 'branch') {{
+      const from = nodeById(edge.from);
+      if (!from) return;
+      const cxs = edge.children.map(id => nodeById(id)?.cx).filter(Boolean);
+      if (!cxs.length) return;
+      const minX = Math.min(...cxs), maxX = Math.max(...cxs);
+      // Stem from parent down to branch_y
+      line(from.cx, from.cy+22, from.cx, edge.branch_y, '#888', 2);
+      // Horizontal bar
+      line(minX, edge.branch_y, maxX, edge.branch_y, '#888', 1.5);
+      // Down to each child
+      edge.children.forEach(id => {{
+        const ch = nodeById(id);
+        if (ch) line(ch.cx, edge.branch_y, ch.cx, ch.cy-22, '#888', 1.5);
+      }});
+    }} else if (edge.t === 'parent') {{
+      const from = nodeById(edge.from), to = nodeById(edge.to);
+      if (!from || !to) return;
+      if (from.cx === to.cx) {{
+        line(from.cx, from.cy+22, to.cx, to.cy-22, '#888', 1.5);
+      }} else {{
+        // Elbow
+        const midY = (from.cy+22 + to.cy-22) / 2;
+        line(from.cx, from.cy+22, from.cx, midY, '#888', 1.5);
+        line(from.cx, midY, to.cx, midY, '#888', 1.5);
+        line(to.cx, midY, to.cx, to.cy-22, '#888', 1.5);
+      }}
+    }} else if (edge.t === 'marriage') {{
+      const a = nodeById(edge.from), b = nodeById(edge.to);
+      if (!a || !b) return;
+      const x1 = Math.min(a.cx,b.cx)+60, x2 = Math.max(a.cx,b.cx)-60;
+      const y = Math.min(a.cy,b.cy);
+      const l = el('line', {{x1,y1:y,x2,y2:y,stroke:edge.color||'#9333ea','stroke-width':2}});
+      l.setAttribute('stroke-dasharray','6,4');
+      svg.appendChild(l);
+    }} else if (edge.t === 'wives') {{
+      // Horizontal bar at bar_y, from David right to last wife
+      const lastWife = nodeById(edge.wives[edge.wives.length-1]);
+      if (!lastWife) return;
+      // Line from David top up to bar_y
+      line(edge.david_cx, 195-22, edge.david_cx, edge.bar_y, '#0891b2', 1.5, '6,4');
+      // Horizontal bar
+      const wL = el('line', {{x1:edge.david_cx, y1:edge.bar_y, x2:lastWife.cx, y2:edge.bar_y, stroke:'#0891b2','stroke-width':1.5}});
+      wL.setAttribute('stroke-dasharray','6,4');
+      svg.appendChild(wL);
+      // Down from bar to each wife
+      edge.wives.forEach(id => {{
+        const w = nodeById(id);
+        if (w) {{
+          const d = el('line', {{x1:w.cx, y1:edge.bar_y, x2:w.cx, y2:w.cy-22, stroke:'#0891b2','stroke-width':1.5}});
+          d.setAttribute('stroke-dasharray','6,4');
+          svg.appendChild(d);
+        }}
+      }});
+    }}
+  }});
+
+  // Draw section labels
+  [['שושלת שאול', 370, 16], ['משפחת ישי', 830, 16], ['נשות דוד', 1560, 16],
+   ['נביאים ויועצים', 415, 580]].forEach(([txt, x, y]) => {{
+    svg.appendChild(el('text', {{x, y, 'text-anchor':'middle', 'font-family':'Arial,sans-serif',
+      'font-size':'11', fill:'#aaa', 'font-style':'italic'}}, txt));
+  }});
+
+  // Draw nodes
+  TNODES.forEach(n => {{
+    const g = document.createElementNS(ns, 'g');
+    g.setAttribute('class','person-node');
+    g.setAttribute('cursor','pointer');
+    const w = n.main ? 150 : 120, h = 44;
+    const rx = n.main ? 10 : 7;
+    const rect = el('rect', {{
+      x: n.cx-w/2, y: n.cy-h/2, width:w, height:h,
+      fill: n.c, rx, ry:rx
+    }});
+    if (n.main) {{
+      rect.setAttribute('stroke', '#fff');
+      rect.setAttribute('stroke-width', '2');
+    }}
+    g.appendChild(rect);
+    g.appendChild(el('text', {{
+      x:n.cx, y:n.cy-5, 'text-anchor':'middle',
+      'font-family':'Arial,sans-serif', 'font-size': n.main ? '14':'13',
+      fill:'#fff', 'font-weight':'bold'
+    }}, n.name));
+    g.appendChild(el('text', {{
+      x:n.cx, y:n.cy+11, 'text-anchor':'middle',
+      'font-family':'Arial,sans-serif', 'font-size':'10',
+      fill:'#ffffffcc'
+    }}, n.role));
+    g.addEventListener('click', (e) => {{ e.stopPropagation(); personClick(n, e); }});
+    svg.appendChild(g);
+  }});
+}}
+
+function personClick(n, evt) {{
+  const tt = document.getElementById('tree-tooltip');
+  if (tt.style.display==='block' && tt.dataset.person===n.id) {{
+    tt.style.display='none'; return;
+  }}
+  const sceneList = CHARS[n.name] ? CHARS[n.name].scenes : [];
+  const sceneLinks = sceneList.map(id => {{
+    const s = SCENES.find(x => x.id===id);
+    return s ? `<a href="#" onclick="jumpToScene('${{id}}');return false" style="color:var(--accent)">${{s.label}}</a>` : '';
+  }}).filter(Boolean).join(', ');
+  tt.innerHTML = `
+    <div style="font-size:1rem;font-weight:bold;color:var(--accent);margin-bottom:4px">${{n.name}}</div>
+    <div style="font-size:.8rem;color:var(--fg3);margin-bottom:8px">${{n.role}}</div>
+    <div style="font-size:.88rem;line-height:1.55">${{n.desc}}</div>
+    ${{sceneLinks ? `<div style="font-size:.8rem;margin-top:8px;border-top:1px solid var(--border);padding-top:6px"><strong>מופיע/ה בסצנות:</strong> ${{sceneLinks}}</div>` : ''}}
+    <div style="font-size:.72rem;color:var(--fg3);margin-top:6px">לחץ שוב לסגירה</div>
+  `;
+  tt.style.display='block';
+  tt.dataset.person=n.id;
+  const margin = 16;
+  let top = (evt?.clientY || 300) + 10;
+  let left = (evt?.clientX || 400) - 150;
+  if (left < margin) left = margin;
+  if (left + 310 > window.innerWidth - margin) left = window.innerWidth - 310 - margin;
+  if (top + 250 > window.innerHeight - margin) top = (evt?.clientY || 300) - 260;
+  tt.style.top = top + 'px';
+  tt.style.left = left + 'px';
+  tt.style.right = 'auto';
+}}
+
+document.addEventListener('click', e => {{
+  const tt = document.getElementById('tree-tooltip');
+  if (!e.target.closest('.person-node') && !e.target.closest('#tree-tooltip')) {{
+    tt.style.display = 'none';
+  }}
+}});
+
+// Draw tree when view-tree becomes visible
+const _origShowView = showView;
+function showViewWrapped(name) {{
+  _origShowView(name);
+  if (name === 'tree') drawTree();
+  if (name === 'relations') {{ if (!relDrawn) drawRelations(); relDrawn=true; }}
+}}
+
+// ── RELATIONS GRAPH ──
+let relDrawn = false;
+let activeRelTypes = new Set();
+let selectedRelNode = null;
+
+const REL_TYPES = {{
+  'אהבה':         {{color:'#ec4899', emoji:'💗'}},
+  'אהבת אב':      {{color:'#8b5cf6', emoji:'💜'}},
+  'ידידות':       {{color:'#3b82f6', emoji:'🤝'}},
+  'קנאה':         {{color:'#f97316', emoji:'🔶'}},
+  'שנאה':         {{color:'#dc2626', emoji:'🔴'}},
+  'נקמה':         {{color:'#7f1d1d', emoji:'💢'}},
+  'בגידה':        {{color:'#374151', emoji:'🖤'}},
+  'כבוד':         {{color:'#d97706', emoji:'🌟'}},
+  'אשמה':         {{color:'#7c3aed', emoji:'😔'}},
+  'תאווה':        {{color:'#db2777', emoji:'🔥'}},
+  'הכרת טובה':   {{color:'#10b981', emoji:'🙏'}},
+  'נאמנות':       {{color:'#047857', emoji:'🛡'}},
+  'כעס':          {{color:'#b91c1c', emoji:'😠'}},
+  'תלות':         {{color:'#92400e', emoji:'⛓'}},
+  'ביקורת':       {{color:'#4338ca', emoji:'⚡'}},
+  'אבל':          {{color:'#6b7280', emoji:'😢'}},
+  'בוז':          {{color:'#78716c', emoji:'👎'}},
+  'תאווה→שנאה':  {{color:'#9f1239', emoji:'💔'}},
+}};
+
+// Manual cluster-based positions — groups keep related chars near each other
+// Canvas: 1400 x 920
+const RNODES = [
+  // ── דוד — מרכז ──
+  {{id:'david',        name:'דוד',        c:'#1d4ed8', cx:690, cy:460}},
+
+  // ── בית שאול (top-right) ──
+  {{id:'saul',         name:'שאול',       c:'#dc2626', cx:1000, cy:220}},
+  {{id:'jonathan',     name:'יונתן',      c:'#16a34a', cx:1130, cy:330}},
+  {{id:'michal',       name:'מיכל',       c:'#9333ea', cx:1080, cy:130}},
+  {{id:'ishbosheth',   name:'איש-בשת',    c:'#991b1b', cx:880,  cy:120}},
+  {{id:'doeg',         name:'דואג',       c:'#7f1d1d', cx:1200, cy:180}},
+
+  // ── נביאים / יועצים (top-left) ──
+  {{id:'samuel',       name:'שמואל',      c:'#0f766e', cx:380,  cy:150}},
+  {{id:'nathan',       name:'נתן',        c:'#4338ca', cx:260,  cy:300}},
+  {{id:'ahithophel',   name:'אחיתופל',    c:'#374151', cx:430,  cy:640}},
+
+  // ── צבאי (left) ──
+  {{id:'joab',         name:'יואב',       c:'#92400e', cx:200,  cy:460}},
+  {{id:'abishai',      name:'אבישי',      c:'#5b21b6', cx:200,  cy:600}},
+  {{id:'abner',        name:'אבנר',       c:'#1e3a5f', cx:280,  cy:200}},
+
+  // ── נשות דוד / פרשת בת-שבע (right) ──
+  {{id:'bathsheba',    name:'בת-שבע',     c:'#0891b2', cx:1200, cy:460}},
+  {{id:'uriah',        name:'אוריה',      c:'#44403c', cx:1230, cy:580}},
+  {{id:'abigail',      name:'אביגיל',     c:'#ea580c', cx:1180, cy:340}},
+
+  // ── ילדי דוד (bottom-center) ──
+  {{id:'absalom',      name:'אבשלום',     c:'#be123c', cx:690,  cy:760}},
+  {{id:'amnon',        name:'אמנון',      c:'#854d0e', cx:930,  cy:760}},
+  {{id:'tamar',        name:'תמר',        c:'#86198f', cx:830,  cy:870}},
+
+  // ── שאר (bottom-left) ──
+  {{id:'mephibosheth', name:'מפיבושת',    c:'#065f46', cx:200,  cy:750}},
+  {{id:'shimei',       name:'שמעי',       c:'#78350f', cx:450,  cy:830}},
+  {{id:'rizpah',       name:'רצפה',       c:'#be185d', cx:160,  cy:160}},
+];
+
+const REDGES = [
+  // דוד ← יונתן
+  {{f:'david',      t:'jonathan',     type:'אהבה',        dir:'both',
+    short:'ידידות עמוקה',
+    note:'יונתן ויתר על כתרו למען דוד. "נפלאתה אהבתך לי מאהבת נשים". ברית אישית שנשמרה גם אחרי מות יונתן.',
+    scenes:['scene-01-05-full','scene-04b-wilderness-additions']}},
+  {{f:'david',      t:'saul',         type:'כבוד',         dir:'fwd',
+    short:'לא נגע במשיח ה׳',
+    note:'דוד היה יכול להרוג את שאול פעמיים — במערה ובגבעת הכיה — ונמנע. "חי ה׳ כי אם ה׳ יגפנו". ראה בו משיח ה׳ ולא אויב.',
+    scenes:['scene-04-the-cave','scene-cave-hill']}},
+  {{f:'saul',       t:'david',        type:'קנאה',         dir:'fwd',
+    short:'"שאול הכה באלפיו"',
+    note:'"שאול הכה באלפיו ודוד ברבבותיו" — הקנאה הפכה לרדיפה בלתי פוסקת שהרסה את שאול מבפנים.',
+    scenes:['scene-01-05-full','scene-04-the-cave']}},
+  {{f:'david',      t:'michal',       type:'אהבה',         dir:'fwd',
+    short:'אהבה ראשונה שהתנפצה',
+    note:'מיכל אהבה את דוד ראשונה, הצילה אותו מחלון אביה, שלחה אותו בחלון. אחרי הגלות נמסרה לפלטיאל ולבסוף הוחזרה — אבל האהבה כבר נגמרה.',
+    scenes:['scene-01-05-full']}},
+  {{f:'michal',     t:'david',        type:'בוז',          dir:'fwd',
+    short:'"ותבז לו בלבה"',
+    note:'כשדוד רקד לפני הארון — מיכל ראתה אותו "מפזז ומכרכר" ובזה לו. "ולמיכל בת שאול לא היה לה ולד עד יום מותה".',
+    scenes:[]}},
+  {{f:'david',      t:'bathsheba',    type:'תאווה',        dir:'fwd',
+    short:'ראה אותה רוחצת',
+    note:'דוד ראה מגג ביתו אישה רוחצת. שלח להביאה. "ותבוא אליו" — כפייה? הסכמה? השתיקה בטקסט מרעישה. שרשרת חטאים שהחלה ברגע אחד.',
+    scenes:['scene-bathsheba-uriah']}},
+  {{f:'david',      t:'uriah',        type:'אשמה',         dir:'fwd',
+    short:'שלח בידיו את גזר דינו',
+    note:'אחרי שלא הצליח לגרום לאוריה לחזור הביתה, דוד שלח מכתב ביד אוריה עצמו — המכתב שגזר את מותו. "הדבר אשר עשה דוד רע בעיני ה׳".',
+    scenes:['scene-bathsheba-uriah']}},
+  {{f:'uriah',      t:'david',        type:'נאמנות',       dir:'fwd',
+    short:'לא ארד אל ביתי',
+    note:'"הארון וישראל ויהודה ישבים בסכות... ואני אבוא אל ביתי לאכול ולשתות?" — הגוי הנאמן מקיים צדק גבוה יותר מהמלך שגנב את אשתו.',
+    scenes:['scene-bathsheba-uriah']}},
+  {{f:'david',      t:'absalom',      type:'אהבת אב',      dir:'fwd',
+    short:'"בני בני אבשלום"',
+    note:'"בני בני אבשלום — מי יתן מותי אני תחתיך!" — דוד בכה על בנו שמרד בו. אהבת האב גברה על כל פצע. יואב נאלץ לנזוף בו כדי שיקום.',
+    scenes:['scene-13c-revolt','scene-13f-david-return','scene-absalom-return']}},
+  {{f:'absalom',    t:'david',        type:'כעס',          dir:'fwd',
+    short:'שנתיים ללא פגישה',
+    note:'שנתיים חי אבשלום בירושלים מבלי לראות את פני המלך. שרף את שדה יואב לכפות פגישה. הנשיקה שקיבל בסוף לא הייתה פיוס.',
+    scenes:['scene-absalom-return','scene-13c-revolt']}},
+  {{f:'david',      t:'joab',         type:'תלות',         dir:'fwd',
+    short:'"עשה את המלאכה המלוכלכת"',
+    note:'יואב הרג את אבנר, הרג את אבשלום, הרג את עמשא — תמיד עשה מה שדוד רצה אבל לא יכל בעצמו. "מה לי ולכם בני צרויה".',
+    scenes:['scene-13c-revolt','scene-13f-david-return','scene-sheva-bichri']}},
+  {{f:'joab',       t:'david',        type:'נאמנות',       dir:'fwd',
+    short:'נאמנות קרה ומניפולטיבית',
+    note:'יואב שמר על דוד מפני עצמו. כשדוד בכה על אבשלום ולא יצא אל העם, יואב נזף בו בפומבי. נאמנות שהיא שליטה.',
+    scenes:['scene-13f-david-return']}},
+  {{f:'david',      t:'nathan',       type:'כבוד',         dir:'fwd',
+    short:'קיבל את "אתה האיש"',
+    note:'נתן בא במשל האיש העני — ודוד שפט בזעם. כשנתן אמר "אתה האיש" — דוד לא כעס ולא הכחיש. "חטאתי לה׳". זו גדולתו.',
+    scenes:['scene-bathsheba-uriah']}},
+  {{f:'nathan',     t:'david',        type:'ביקורת',       dir:'fwd',
+    short:'משל האיש העני',
+    note:'"לאמר מדוע בזית את דבר ה׳?" — ביקורת ישירה. ואחרי התשובה — "גם ה׳ העביר חטאתך". ביקורת מתוך אהבה.',
+    scenes:['scene-bathsheba-uriah']}},
+  {{f:'david',      t:'abigail',      type:'אהבה',         dir:'both',
+    short:'עצרה אותו מרצח',
+    note:'אביגיל ירדה לקראת דוד כשבא להרוג את נבל. דיבורה עצרה את ידו. "ברוך טעמך וברוכה את". מייד אחרי מות נבל שלח דוד לקחתה.',
+    scenes:['scene-nabal-abigail']}},
+  {{f:'david',      t:'mephibosheth', type:'הכרת טובה',   dir:'fwd',
+    short:'"ויאכל תמיד על שולחן המלך"',
+    note:'דוד חיפש מי נשאר מבית שאול לשמור חסד לזכר יונתן. מצא את מפיבושת נכה ברגליו בלו-דבר. "ואת כל שדות שאול נתתי לבן אדוניך".',
+    scenes:['scene-13f-david-return']}},
+  {{f:'mephibosheth',t:'david',       type:'הכרת טובה',   dir:'fwd',
+    short:'"כמלאך האלהים"',
+    note:'"אדוני המלך כמלאך האלהים" — לא גידל זקנו ולא רחץ בגדיו מיום צאת המלך עד שובו. כשחזר דוד — מפיבושת לא טען לזכויות, רק הביע הודיה.',
+    scenes:['scene-13f-david-return']}},
+  {{f:'saul',       t:'jonathan',     type:'כעס',          dir:'fwd',
+    short:'"בן נעוות המרדות!"',
+    note:'"בן נעוות המרדות! הלא ידעתי כי בחר אתה לבן ישי לבשתך!" — שאול הבין שיונתן בחר בדוד על פניו.',
+    scenes:['scene-01-05-full']}},
+  {{f:'jonathan',   t:'saul',         type:'אהבה',         dir:'fwd',
+    short:'אהב ומרד בשקט',
+    note:'יונתן אהב את אביו — אבל בחר בדוד. לא מרד בפעולה אלא בנפש. הגן על דוד, התריע בפניו, ונפל בגלבוע לצד האב שניסה להרוג את ידידו.',
+    scenes:['scene-gilboa']}},
+  {{f:'amnon',      t:'tamar',        type:'תאווה→שנאה',  dir:'fwd',
+    short:'"שנאה גדולה מאד"',
+    note:'אמנון "חלה" מ"אהבה" לתמר אחיו. אנס אותה. "שנאה גדולה מאד — גדולה השנאה אשר שנאה מהאהבה". נישא הבושה הופך לשנאה.',
+    scenes:[]}},
+  {{f:'absalom',    t:'amnon',        type:'נקמה',         dir:'fwd',
+    short:'שתק שנתיים ואז הרג',
+    note:'אבשלום לא דיבר עם אמנון לא טוב ולא רע — שתיקה של שנתיים. בחגיגת גזזת הצאן הרג את אמנון בצו מחושב.',
+    scenes:[]}},
+  {{f:'absalom',    t:'tamar',        type:'אהבת אב',      dir:'fwd',
+    short:'שמר עליה בביתו',
+    note:'אחרי האונס — "ותשב שממה בית אבשלום אחיה". אבשלום קרא לבתו תמר על שמה. שמר עליה ונשא את הנקמה בלב.',
+    scenes:[]}},
+  {{f:'ahithophel', t:'david',        type:'בגידה',        dir:'fwd',
+    short:'עבר לאבשלום',
+    note:'"עצת אחיתופל כאשר ישאל איש בדבר האלהים" — חכם בדרגת נביא. עבר לאבשלום. יש הטוענים שהיה סבה של בת-שבע — ובגידתו הייתה נקמה אישית.',
+    scenes:['scene-13c-revolt']}},
+  {{f:'shimei',     t:'david',        type:'שנאה',         dir:'fwd',
+    short:'"צא צא איש הדמים"',
+    note:'"ויקלל וישלח אבנים" — שמעי קילל את דוד בשעת המנוסה. אבישי רצה לכרות ראשו. דוד אמר — "הניחו לו".',
+    scenes:['scene-13c-revolt','scene-13f-david-return']}},
+  {{f:'david',      t:'shimei',       type:'כבוד',         dir:'fwd',
+    short:'"ה׳ אמר לו קלל"',
+    note:'דוד קיבל את הקללה כגזרת שמים. כשחזר — מחל לשמעי. "ולא אמות ביום הזה".',
+    scenes:['scene-13f-david-return']}},
+  {{f:'joab',       t:'absalom',      type:'בוז',          dir:'fwd',
+    short:'הרג נגד פקודה',
+    note:'דוד ציווה "שמרו לי לנער לאבשלום". יואב שמע שאבשלום תלוי בשערות ראשו — לקח שלושה שבטים ותקע בלב אבשלום.',
+    scenes:['scene-13c-revolt']}},
+  {{f:'rizpah',     t:'saul',         type:'אהבה',         dir:'fwd',
+    short:'חמישה חודשי שמירה',
+    note:'שבעת בני שאול נתלו. רצפה פרשה שק על הצור — ישבה יומם ולילה, חמישה חודשים, שמרה על הגופות. דוד שמע ונרגש.',
+    scenes:['scene-rizpah']}},
+  {{f:'david',      t:'rizpah',       type:'אבל',          dir:'fwd',
+    short:'שמע ונקבר',
+    note:'כשדוד שמע על מעשה רצפה — נזכר בעצמות שאול ויונתן בגלעד. לקח אותן ואסף גם את עצמות השבעה הנתלים.',
+    scenes:['scene-rizpah']}},
+  // שמואל
+  {{f:'samuel',     t:'saul',         type:'ביקורת',       dir:'fwd',
+    short:'חרטת המשיחה',
+    note:'"נחמתי כי המלכתי את שאול" — שמואל בכה על שאול כל הלילה לפני שנסע לדחותו. הביקורת שלו הייתה מלאת כאב.',
+    scenes:[]}},
+  {{f:'samuel',     t:'david',        type:'כבוד',         dir:'fwd',
+    short:'משח אותו בחשאי',
+    note:'שמואל הלך לבית לחם בסוד, ראה שבעה בנים, ואף אחד לא היה הנבחר. "עוד שאר הקטן ורועה בצאן" — "קום משחהו כי זה הוא".',
+    scenes:['scene-01-05-full']}},
+  {{f:'david',      t:'samuel',       type:'הכרת טובה',   dir:'fwd',
+    short:'אבי הנבואה',
+    note:'שמואל היה הדמות שהעניקה לדוד לגיטימציה אלוהית. מותו הכה את דוד קשה — "ויתאבלו כל ישראל".',
+    scenes:['scene-01-05-full']}},
+  // דואג
+  {{f:'doeg',       t:'saul',         type:'נאמנות',       dir:'fwd',
+    short:'מלשין האדומי',
+    note:'דואג האדומי היה נאמן לשאול בנאמנות עיוורת. כשאף אחד לא רצה להרוג את כוהני נוב — דואג קם ועשה. 85 כוהנים בלילה אחד.',
+    scenes:['scene-nob-massacre']}},
+  {{f:'doeg',       t:'david',        type:'שנאה',         dir:'fwd',
+    short:'הלשין עליו לשאול',
+    note:'דואג ראה את אחימלך נותן לדוד לחם וחרב. הלשין לשאול. התוצאה: טבח כל עיר נוב. דוד אמר: "אנכי סבותי בכל נפשות בית אביך".',
+    scenes:['scene-nob-massacre']}},
+  {{f:'saul',       t:'doeg',         type:'תלות',         dir:'fwd',
+    short:'רצח בידיים אחרות',
+    note:'שאול לא יכל לגרום לגרדמיו להרוג כוהנים. פנה לדואג. דואג היה ידו הארוכה במה שידיו עצמן לא רצו לעשות.',
+    scenes:['scene-nob-massacre']}},
+  // אבנר
+  {{f:'abner',      t:'saul',         type:'נאמנות',       dir:'fwd',
+    short:'שר הצבא הנאמן',
+    note:'אבנר בן נר שמר על בית שאול. אחרי גלבוע — הוא שהמליך את איש-בשת, מנע קריסת הממלכה מול דוד.',
+    scenes:[]}},
+  {{f:'abner',      t:'david',        type:'ידידות',       dir:'fwd',
+    short:'הסכם שנגדע',
+    note:'אבנר פנה לדוד לאחד את ישראל: "אקומה ואלכה ואקבצה אל אדוני המלך". דוד קיבלו בשמחה ובסעודה. יואב הרגו מייד אחרי.',
+    scenes:['scene-ishbosheth']}},
+  {{f:'joab',       t:'abner',        type:'נקמה',         dir:'fwd',
+    short:'הרגו בשער חברון',
+    note:'יואב הרג את אבנר — "על דם עשהאל אחיו". קרא לו בצד, תקע לו בחמישי. דוד קונן: "שר וגדול נפל היום הזה בישראל".',
+    scenes:['scene-ishbosheth']}},
+  // אבישי
+  {{f:'abishai',    t:'joab',         type:'ידידות',       dir:'both',
+    short:'אחים בנשק',
+    note:'אבישי ויואב היו אחים — בני צרויה אחות דוד. לחמו תמיד יחד. אבישי רצה להרוג את שאול ואת שמעי. יואב ריסן אותו — לפעמים.',
+    scenes:[]}},
+  {{f:'abishai',    t:'david',        type:'נאמנות',       dir:'fwd',
+    short:'השומר הנאמן',
+    note:'אבישי הציל את דוד כשנלאה בקרב עם ישבי-בנוב. "אז נשבעו אנשי דוד לו לאמר לא תצא עוד איתנו למלחמה".',
+    scenes:[]}},
+  // איש-בשת
+  {{f:'ishbosheth', t:'saul',         type:'אהבת אב',      dir:'fwd',
+    short:'ממשיך שאול',
+    note:'איש-בשת הומלך על ידי אבנר על ישראל, בעוד דוד מולך על יהודה. בן חסר כוח שהיה בובה בידי אבנר. "וַיִּרְפּוּ יָדָיו" כשנפל אבנר.',
+    scenes:['scene-ishbosheth']}},
+  {{f:'david',      t:'ishbosheth',   type:'כבוד',         dir:'fwd',
+    short:'כיבד אויבו במותו',
+    note:'דוד לא פגע באיש-בשת. כשבאו רכב ובענה עם ראשו — הוציא להורג את הרוצחים: "אנשים רשעים הרגו איש צדיק בביתו על משכבו".',
+    scenes:['scene-ishbosheth']}},
+];
+
+function rNodeById(id) {{ return RNODES.find(n => n.id===id); }}
+
+function drawRelations() {{
+  const svg = document.getElementById('rel-svg');
+  svg.innerHTML = '';
+  const ns = 'http://www.w3.org/2000/svg';
+  const W=1400, H=940;
+  svg.setAttribute('viewBox', `0 0 ${{W}} ${{H}}`);
+  svg.style.minWidth = W + 'px';
+  svg.style.minHeight = H + 'px';
+  svg.style.height = H + 'px';
+
+  function mkEl(tag, attrs) {{
+    const e = document.createElementNS(ns, tag);
+    Object.entries(attrs).forEach(([k,v]) => e.setAttribute(k,v));
+    return e;
+  }}
+
+  // Legend + filter
+  const legend = document.getElementById('rel-legend');
+  const filterBar = document.getElementById('rel-filter-bar');
+  legend.innerHTML = '';
+  filterBar.innerHTML = '';
+  const typeSet = new Set(REDGES.map(e=>e.type));
+  typeSet.forEach(type => {{
+    const info = REL_TYPES[type] || {{color:'#888', emoji:'•'}};
+    activeRelTypes.add(type);
+    const li = document.createElement('span');
+    li.className = 'rel-legend-item';
+    li.innerHTML = `<span class="rel-legend-dot" style="background:${{info.color}}"></span>${{info.emoji}} ${{type}}`;
+    legend.appendChild(li);
+    const btn = document.createElement('button');
+    btn.className = 'rel-filter-btn';
+    btn.textContent = info.emoji + ' ' + type;
+    btn.style.borderColor = info.color;
+    btn.style.color = info.color;
+    btn.style.background = info.color + '15';
+    btn.dataset.type = type;
+    btn.onclick = () => {{
+      if (activeRelTypes.has(type)) activeRelTypes.delete(type);
+      else activeRelTypes.add(type);
+      btn.classList.toggle('off', !activeRelTypes.has(type));
+      updateEdgeVisibility();
+    }};
+    filterBar.appendChild(btn);
+  }});
+
+  // Arrow markers
+  const defs = mkEl('defs', {{}});
+  svg.appendChild(defs);
+  typeSet.forEach(type => {{
+    const info = REL_TYPES[type] || {{color:'#888'}};
+    const m = mkEl('marker', {{id:`arr-${{type}}`, markerWidth:'7', markerHeight:'7', refX:'5', refY:'3', orient:'auto'}});
+    m.appendChild(mkEl('polygon', {{points:'0 0, 6 3, 0 6', fill:info.color}}));
+    defs.appendChild(m);
+    const m2 = mkEl('marker', {{id:`arr-rev-${{type}}`, markerWidth:'7', markerHeight:'7', refX:'0', refY:'3', orient:'auto-start-reverse'}});
+    m2.appendChild(mkEl('polygon', {{points:'0 0, 6 3, 0 6', fill:info.color}}));
+    defs.appendChild(m2);
+  }});
+
+  // Cluster zone labels
+  const zones = [
+    {{x:960, y:60,  label:'בית שאול'}},
+    {{x:250, y:100, label:'נביאים'}},
+    {{x:120, y:420, label:'צבאי'}},
+    {{x:1250,y:400, label:'נשות דוד'}},
+    {{x:820, y:830, label:'ילדי דוד'}},
+    {{x:150, y:820, label:'שאר'}},
+  ];
+  zones.forEach(z => {{
+    const t = mkEl('text', {{x:z.x, y:z.y, 'text-anchor':'middle',
+      'font-family':'Arial,sans-serif','font-size':'12',fill:'#ccc','font-style':'italic'}});
+    t.textContent = z.label;
+    svg.appendChild(t);
+  }});
+
+  // Draw edges (no text labels on them — only in popup)
+  const pairCurve = {{}};
+  REDGES.forEach(edge => {{
+    const a = rNodeById(edge.f), b = rNodeById(edge.t);
+    if (!a || !b) return;
+    const info = REL_TYPES[edge.type] || {{color:'#888'}};
+    const key = [a.id, b.id].sort().join('|');
+    if (!pairCurve[key]) pairCurve[key] = 0;
+    const curveDir = pairCurve[key] % 2 === 0 ? 1 : -1;
+    pairCurve[key]++;
+
+    const dx = b.cx - a.cx, dy = b.cy - a.cy;
+    const len = Math.sqrt(dx*dx + dy*dy);
+    const nx = -dy/len, ny = dx/len;
+    const curve = curveDir * Math.min(55, len * 0.2);
+    const mx = (a.cx+b.cx)/2 + nx*curve;
+    const my = (a.cy+b.cy)/2 + ny*curve;
+
+    const pathD = `M ${{a.cx}} ${{a.cy}} Q ${{mx}} ${{my}} ${{b.cx}} ${{b.cy}}`;
+
+    const path = mkEl('path', {{
+      d: pathD, stroke: info.color, 'stroke-width': '1.8',
+      fill: 'none', opacity: '0.6',
+      'marker-end': edge.dir!=='bwd' ? `url(#arr-${{edge.type}})` : 'none',
+      'marker-start': edge.dir==='both' ? `url(#arr-rev-${{edge.type}})` : 'none',
+      class: 'rel-edge', 'data-type': edge.type,
+    }});
+
+    const hitLine = mkEl('path', {{
+      d: pathD, stroke: 'transparent', 'stroke-width': '18',
+      fill: 'none', style: 'cursor:pointer',
+    }});
+    hitLine.addEventListener('click', evt => {{
+      evt.stopPropagation();
+      showEdgePanel(edge, info, svg, mx, my);
+    }});
+
+    const g = mkEl('g', {{
+      'data-type': edge.type, 'data-from': edge.f, 'data-to': edge.t,
+      class: 'rel-edge-grp',
+    }});
+    g.appendChild(path);
+    g.appendChild(hitLine);
+    svg.appendChild(g);
+  }});
+
+  // Draw nodes (on top)
+  RNODES.forEach(n => {{
+    const isDavid = n.id === 'david';
+    const r = isDavid ? 36 : 28;
+    const g = mkEl('g', {{class:'rel-node', id:'rel-node-' + n.id, cursor:'pointer'}});
+    const circle = mkEl('circle', {{cx:n.cx, cy:n.cy, r, fill:n.c,
+      stroke: isDavid ? '#fff' : 'rgba(255,255,255,.2)', 'stroke-width': isDavid ? '3' : '1.5'}});
+    g.appendChild(circle);
+    const words = n.name.split('-');
+    if (words.length > 1) {{
+      words.forEach((w, i) => {{
+        const t = mkEl('text', {{x:n.cx, y:n.cy-4+(i*13), 'text-anchor':'middle',
+          'font-family':'Arial,sans-serif', 'font-size': isDavid?'14':'11',
+          fill:'#fff', 'font-weight':'bold', 'pointer-events':'none'}});
+        t.textContent = w; g.appendChild(t);
+      }});
+    }} else {{
+      const t = mkEl('text', {{x:n.cx, y:n.cy+4, 'text-anchor':'middle',
+        'font-family':'Arial,sans-serif', 'font-size': isDavid?'15':'12',
+        fill:'#fff', 'font-weight':'bold', 'pointer-events':'none'}});
+      t.textContent = n.name; g.appendChild(t);
+    }}
+    g.addEventListener('click', e => {{ e.stopPropagation(); toggleNodeHighlight(n); }});
+    svg.appendChild(g);
+  }});
+}}
+
+function toggleNodeHighlight(n) {{
+  if (selectedRelNode && selectedRelNode.id === n.id) {{
+    clearRelHighlight(); return;
+  }}
+  selectedRelNode = n;
+  closeRelPanel();
+  const connectedIds = new Set([n.id]);
+  document.querySelectorAll('.rel-edge-grp').forEach(g => {{
+    const from = g.getAttribute('data-from');
+    const to = g.getAttribute('data-to');
+    if ((from===n.id || to===n.id) && activeRelTypes.has(g.getAttribute('data-type'))) {{
+      connectedIds.add(from); connectedIds.add(to);
+      g.classList.remove('dimmed'); g.classList.add('highlighted');
+    }} else {{
+      g.classList.add('dimmed'); g.classList.remove('highlighted');
+    }}
+  }});
+  document.querySelectorAll('.rel-node').forEach(g => {{
+    const id = g.id.replace('rel-node-', '');
+    g.classList.toggle('dimmed', !connectedIds.has(id));
+    g.classList.toggle('selected', id === n.id);
+  }});
+}}
+
+function clearRelHighlight() {{
+  selectedRelNode = null;
+  document.querySelectorAll('.rel-edge-grp').forEach(g => {{
+    g.classList.remove('dimmed','highlighted');
+    g.style.display = activeRelTypes.has(g.getAttribute('data-type')) ? '' : 'none';
+  }});
+  document.querySelectorAll('.rel-node').forEach(g => g.classList.remove('dimmed','selected'));
+}}
+
+function updateEdgeVisibility() {{
+  document.querySelectorAll('.rel-edge-grp').forEach(g => {{
+    const type = g.getAttribute('data-type');
+    g.style.display = activeRelTypes.has(type) ? '' : 'none';
+  }});
+}}
+
+function showEdgePanel(edge, info, svgEl, mx, my) {{
+  const a = rNodeById(edge.f), b = rNodeById(edge.t);
+  const arrow = edge.dir==='both' ? '⟷' : edge.dir==='bwd' ? '←' : '→';
+  const panel = document.getElementById('rel-panel');
+
+  document.getElementById('rel-panel-title').innerHTML =
+    `<span style="color:${{info.color}}">${{info.emoji}} ${{edge.type}}</span>`;
+  document.getElementById('rel-panel-chars').innerHTML = `
+    <span class="rel-panel-char"><span class="rel-panel-char-dot" style="background:${{a.c}}"></span>${{a.name}}</span>
+    <span style="color:var(--fg3);font-size:1rem">${{arrow}}</span>
+    <span class="rel-panel-char"><span class="rel-panel-char-dot" style="background:${{b.c}}"></span>${{b.name}}</span>
+  `;
+
+  // Scene links
+  let scenesHtml = '';
+  if (edge.scenes && edge.scenes.length > 0 && typeof SCENES !== 'undefined') {{
+    const matches = SCENES.filter(s => edge.scenes.includes(s.id));
+    if (matches.length > 0) {{
+      scenesHtml = `<div style="margin-top:8px;border-top:1px solid var(--border);padding-top:8px">
+        <div style="font-size:.75rem;color:var(--fg3);margin-bottom:4px">📜 סצנות יחד:</div>
+        ${{matches.map(s=>`<div style="font-size:.8rem;margin:2px 0">
+          <a href="#" onclick="event.preventDefault();jumpToScene('${{s.id}}');closeRelPanel()" 
+             style="color:var(--accent);text-decoration:none">› ${{s.label}}</a>
+        </div>`).join('')}}
+      </div>`;
+    }}
+  }}
+
+  document.getElementById('rel-panel-body').innerHTML =
+    `<div style="margin-bottom:6px">${{edge.note}}</div>${{scenesHtml}}`;
+
+  panel.classList.add('open');
+
+  // Position near edge midpoint
+  if (svgEl && mx !== undefined && window.innerWidth > 600) {{
+    const svgRect = svgEl.getBoundingClientRect();
+    const vb = svgEl.viewBox.baseVal;
+    const scaleX = svgRect.width / vb.width;
+    const scaleY = svgRect.height / vb.height;
+    const screenX = svgRect.left + mx * scaleX;
+    const screenY = svgRect.top  + my * scaleY;
+    const pw = 290, ph = 200;
+    const margin = 14;
+    let left = screenX - pw/2;
+    let top  = screenY - ph - 20;
+    left = Math.max(margin, Math.min(left, window.innerWidth - pw - margin));
+    top  = Math.max(margin, Math.min(top,  window.innerHeight - ph - margin));
+    panel.style.left = left + 'px';
+    panel.style.top  = top  + 'px';
+    panel.style.bottom = 'auto'; panel.style.right = 'auto';
+  }}
+}}
+
+function closeRelPanel() {{
+  document.getElementById('rel-panel').classList.remove('open');
+}}
+
+document.addEventListener('click', e => {{
+  if (!e.target.closest('.rel-node') && !e.target.closest('.rel-edge-grp') && !e.target.closest('#rel-panel'))
+    clearRelHighlight();
+  if (!e.target.closest('#rel-panel') && !e.target.closest('.rel-edge-grp'))
+    closeRelPanel();
+}});
+
+
+
+// ── SCROLL SPY ──
+const observer = new IntersectionObserver((entries) => {{
+  entries.forEach(entry => {{
+    if (entry.isIntersecting) {{
+      const id = entry.target.id;
+      document.querySelectorAll('.sidebar-item').forEach(a => a.classList.remove('active'));
+      const nav = document.getElementById('nav-' + id);
+      if (nav) {{
+        nav.classList.add('active');
+        nav.scrollIntoView({{block:'nearest'}});
+      }}
+    }}
+  }});
+}}, {{threshold: 0.1, rootMargin: '-10% 0px -80% 0px'}});
+
+document.querySelectorAll('.scene-article').forEach(el => observer.observe(el));
+
+init();
+</script>
+</body>
+</html>'''
+
+out = ROOT / "מזמור-לדוד-web.html"
+out.write_text(HTML, encoding="utf-8")
+size = out.stat().st_size
+print(f"נשמר: {out}")
+print(f"גודל: {size:,} bytes ({size//1024} KB)")
