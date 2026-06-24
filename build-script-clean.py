@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-מחלץ מלל נקי מהמחזה — דיאלוג + שירים בלבד, ללא הוראות במאי.
+מחלץ מלל נקי מהמחזה — דיאלוג + שירים בלבד.
+ללא הוראות במאי, ללא מקורות, ללא כותרות-ביניים ארגוניות.
 """
 import re
 from pathlib import Path
@@ -52,292 +53,246 @@ SCENE_ORDER = [
     "scene-tzruya-david.md",
 ]
 
-# ---- helpers ----
+# ---- ניקוי טקסט ----
 
-def is_stage_direction(line):
-    """שורה שהיא רק הוראת במאי — לא מלל"""
-    s = line.strip()
-    # שורה שכולה *(...)*
-    if re.match(r'^\*\([^)]*\)\*\.?\s*$', s):
-        return True
-    # הערות > שהן לא שירה (מזוהות בהמשך בנפרד)
-    return False
-
-def clean_inline(text):
-    """מסיר *(...)* inline, **bold**, [לאמת...], [מ-...] אבל שומר טקסט"""
-    # הסר הוראות במאי inline: *(...)*
+def clean_text(text):
+    """מסיר מטא-אלמנטים מתוך שורה"""
+    # הוראות במאי inline *(...)*
     text = re.sub(r'\s*\*\([^)]*\)\*', '', text)
-    # הסר [לאמת...] ו[מ-...]
+    # מקורות *(שמ"א ...)* / *(תה' ...)* וכד'
+    text = re.sub(r'\s*\*\([^)]*\)\*', '', text)
+    # סוגריים עם מקור מקראי: (שמ"א כ, ד) / (תהילים כב) וכד'
+    text = re.sub(r'\s*\([^)]*(?:שמ|תה|מל|דב|בר|שו|עמ|יר|יש|יח|זכ|דה|נח|יו|רו|אי|מש|קה|שה|יב|בם|עז|נח)\s*[״"\']*[א-ת]*[^)]*\)', '', text)
+    # [לאמת...] [מ-...]
     text = re.sub(r'\[[^\]]*\]', '', text)
-    # הסר bold markers
+    # bold / italic markers
     text = re.sub(r'\*\*([^*]+)\*\*', r'\1', text)
-    # הסר single * italic
-    text = re.sub(r'(?<!\*)\*(?!\*)([^*]+)(?<!\*)\*(?!\*)', r'\1', text)
-    # הסר backtick
+    text = re.sub(r'(?<!\*)\*(?!\*)([^*\n]+)(?<!\*)\*(?!\*)', r'\1', text)
+    # backtick
     text = re.sub(r'`([^`]+)`', r'\1', text)
+    # רווחים כפולים
+    text = re.sub(r'  +', ' ', text)
     return text.strip()
 
-def extract_speaker_line(line):
-    """
-    מחלץ שם דובר ותוכן מ: **שם** [*(תנועה)*]: "טקסט"
-    מחזיר (speaker, content) או None
-    """
-    # **SPEAKER** *(opt)*: content
+def is_scene_title(line, level):
+    """כותרת # ראשית = שם סצנה (רמה 1 בלבד)"""
+    return level == 1
+
+def is_sub_heading(line, level):
+    """כותרת ##+ — רק אם היא שם חלק עלילתי (לא ארגוני)"""
+    if level < 2:
+        return False
+    s = re.sub(r'^#+\s*', '', line).strip()
+    # כותרות ארגוניות/מטא — לדלג
+    skip_words = [
+        'חלק', 'פרק', 'שלב', 'סיכום', 'מקורות', 'מבנה', 'הוראות', 'שכבה',
+        'תפקיד', 'טבלה', 'דרמטי', 'מוזיקה', 'תאורה', 'מפרט', 'רקע',
+        'composer', 'brief', 'director', 'notes', 'פתיחה', 'פתיח',
+        'גשר', 'כיסוי', 'source', 'מקור', 'שורש', 'אקספוז',
+        'הערה', 'ז\'אנר', 'beat', 'transition', 'מעבר',
+    ]
+    sl = s.lower()
+    for w in skip_words:
+        if w in sl:
+            return False
+    # כותרת שיר / מונולוג — כן
+    for w in ['שיר', 'מזמור', 'מונולוג', 'קינה', 'תפילה', '🎵', '🎭', 'דואט', 'פזמון']:
+        if w in s:
+            return True
+    # כותרת קצרה שמזכירה שם דמות / מקום — כן
+    return False
+
+def extract_dialogue(line):
+    """מחלץ (שם_דובר, תוכן) משורת דיאלוג **שם**: "..."  """
     m = re.match(r'^\*\*([^*]+)\*\*\s*(?:\*\([^)]*\)\*)?\s*[:：]\s*(.*)', line)
     if m:
         speaker = m.group(1).strip()
-        content = m.group(2).strip()
-        # נקה מ content הוראות במאי inline
-        content = clean_inline(content)
+        # דלג על "דובר" שהוא הוראת במאי
+        if speaker.startswith('*(') or speaker.lower() in ['הוראות', 'notes']:
+            return None
+        content = clean_text(m.group(2))
         return speaker, content
     return None
 
 def is_song_line(line):
-    """שורת שיר — מתחילה ב-> ואינה הוראת במאי"""
     s = line.strip()
-    if s.startswith('>'):
-        inner = s[1:].strip()
-        # הוראת במאי בתוך ציטוט
-        if re.match(r'^\*\([^)]*\)\*\s*$', inner):
-            return False
-        return True
-    return False
+    if not s.startswith('>'):
+        return False
+    inner = s[1:].strip()
+    # הוראת במאי בתוך >
+    if re.match(r'^\*\([^)]*\)\*\s*$', inner):
+        return False
+    if not inner:
+        return False
+    return True
 
-def is_heading(line):
-    return re.match(r'^#{1,6}\s+', line)
-
-def skip_heading(line):
-    """כותרות מטא שאינן שמות סצנות"""
-    s = line.strip()
-    # טבלאות סיכום, מקורות, מבנה, הוראות
-    for pat in ['סיכום', 'מקורות', 'מבנה', 'הוראות', 'שכבה', 'תפקיד', 'טבלה',
-                'דרמטי', 'מחזמר', 'ז\'אנר', 'ז"אנר', 'מוזיקה', 'תאורה',
-                'composer', 'brief', 'director', 'notes']:
-        if pat.lower() in s.lower():
-            return True
-    return False
-
-def should_skip_block(line):
-    """האם זו שורה שצריך לדלג עליה לגמרי"""
+def skip_line(line):
     s = line.strip()
     if not s:
         return False
-    # טבלאות markdown
-    if s.startswith('|'):
-        return True
-    # bullet lists שהן הוראות
-    if re.match(r'^[-*+]\s+', s) and not re.match(r'^\*\*[^*]+\*\*', s):
-        return True
-    # שורות קוד
-    if s.startswith('```'):
-        return True
-    # שורה שהיא הוראת במאי טהורה
-    if re.match(r'^\*\([^)]*\)\*\.?\s*$', s):
-        return True
-    # הוראות במאי בנטייה
-    if re.match(r'^\*[^*].*\*\s*$', s) and not re.match(r'^\*\*', s):
-        return True
+    if s.startswith('|'):          return True   # טבלה
+    if s.startswith('```'):        return True   # קוד
+    if re.match(r'^>\s*$', s):    return True   # > ריק
+    # הוראת במאי טהורה
+    if re.match(r'^\*\([^)]*\)\*\.?\s*$', s):  return True
+    if re.match(r'^\*[^*].*[^*]\*\s*$', s) and not re.match(r'^\*\*', s): return True
+    # bullet list
+    if re.match(r'^[-*+]\s+\S', s) and not re.match(r'^\*\*[^*]+\*\*', s): return True
+    # שורות מקור בלבד
+    if re.match(r'^[>*\s]*\*?\((?:שמ|תה|מל|דב|בר|שו|עמ|יר|יש|יח|זכ|דה|נח|יו|רו|אי|מש|קה|שה|יב|בם|עז)', s): return True
+    # ### עם תוכן מטא
     return False
 
-# ---- document setup ----
+# ---- document ----
 
 doc = Document()
-for s in doc.sections:
-    s.top_margin = Inches(1.0); s.bottom_margin = Inches(1.0)
-    s.left_margin = Inches(1.2); s.right_margin = Inches(1.2)
+for sec in doc.sections:
+    sec.top_margin = Inches(1.0); sec.bottom_margin = Inches(1.0)
+    sec.left_margin = Inches(1.2); sec.right_margin = Inches(1.2)
 
 style = doc.styles["Normal"]
-style.font.name = FONT
-style.font.size = Pt(11)
+style.font.name = FONT; style.font.size = Pt(11)
 style._element.rPr.rFonts.set(qn("w:cs"), FONT)
 style.paragraph_format.space_after = Pt(0)
 
-def set_rtl(p):
+def rtl(p):
     pPr = p._p.get_or_add_pPr()
     pPr.append(OxmlElement("w:bidi"))
-    p.alignment = WD_ALIGN_PARAGRAPH.RIGHT
 
-def add_par(text, size=11, bold=False, italic=False, color=None,
-            center=False, sb=0, sa=3, indent=0.0):
-    if not text or not text.strip():
-        return
-    p = doc.add_paragraph(); set_rtl(p)
-    if center:
-        p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+def par(text, size=11, bold=False, italic=False, color=None,
+        center=False, sb=0, sa=2, ls=1.45):
+    if not text or not text.strip(): return
+    p = doc.add_paragraph(); rtl(p)
+    p.alignment = WD_ALIGN_PARAGRAPH.CENTER if center else WD_ALIGN_PARAGRAPH.RIGHT
     p.paragraph_format.space_before = Pt(sb)
-    p.paragraph_format.space_after = Pt(sa)
-    p.paragraph_format.line_spacing = Pt(size * 1.5)
-    if indent:
-        p.paragraph_format.left_indent = Inches(indent)
-    run = p.add_run(text)
-    run.font.size = Pt(size); run.bold = bold; run.italic = italic
-    run.font.name = FONT
-    run.font._element.rPr.rFonts.set(qn("w:cs"), FONT)
-    if color:
-        run.font.color.rgb = color
+    p.paragraph_format.space_after  = Pt(sa)
+    p.paragraph_format.line_spacing = Pt(size * ls)
+    r = p.add_run(text)
+    r.font.size = Pt(size); r.bold = bold; r.italic = italic
+    r.font.name = FONT; r.font._element.rPr.rFonts.set(qn("w:cs"), FONT)
+    if color: r.font.color.rgb = color
     return p
 
-def add_dialogue(speaker, content):
-    """שורת דיאלוג: **שם** — תוכן"""
-    if not content:
-        return
-    p = doc.add_paragraph(); set_rtl(p)
-    p.paragraph_format.space_before = Pt(1)
-    p.paragraph_format.space_after = Pt(1)
-    p.paragraph_format.line_spacing = Pt(11 * 1.5)
-    # שם הדובר
-    r1 = p.add_run(speaker + ": ")
+def dlg(speaker, content):
+    if not content: return
+    p = doc.add_paragraph(); rtl(p)
+    p.alignment = WD_ALIGN_PARAGRAPH.RIGHT
+    p.paragraph_format.space_before = Pt(0)
+    p.paragraph_format.space_after  = Pt(2)
+    p.paragraph_format.line_spacing = Pt(11 * 1.45)
+    r1 = p.add_run(speaker + ":  ")
     r1.bold = True; r1.font.size = Pt(11)
     r1.font.name = FONT; r1.font._element.rPr.rFonts.set(qn("w:cs"), FONT)
     r1.font.color.rgb = RGBColor(0x22, 0x22, 0x66)
-    # תוכן
     r2 = p.add_run(content)
     r2.font.size = Pt(11)
     r2.font.name = FONT; r2.font._element.rPr.rFonts.set(qn("w:cs"), FONT)
 
-def add_song_line(text):
-    add_par(text, size=11, italic=True, center=True, sa=1,
-            color=RGBColor(0x2a, 0x2a, 0x55))
+def song_line(text):
+    par(text, size=11, italic=True, center=True, sa=1, color=RGBColor(0x2a,0x2a,0x55))
 
-# ---- title page ----
-
+# שער
 for _ in range(4): doc.add_paragraph()
-add_par("מִזְמוֹר לְדָוִד", size=36, bold=True, center=True, sa=10)
-add_par("מחזמר — מלל נקי", size=16, italic=True, center=True, sa=6)
-add_par("דיאלוג ושירים בלבד", size=12, center=True,
-        color=RGBColor(0x66, 0x66, 0x66))
+par("מִזְמוֹר לְדָוִד", size=34, bold=True, center=True, sa=10)
+par("מחזמר — מלל", size=15, italic=True, center=True, sa=4)
 doc.add_page_break()
 
-# ---- parse and render ----
+# ---- עיבוד סצנה ----
 
-def render_scene(path):
-    text = path.read_text(encoding="utf-8")
-    lines = text.split("\n")
-
-    in_code_block = False
-    in_table_block = False
-    skip_meta = False   # דילוג על כותרת-מטא וה"גוף" שלה
+def render(path):
+    lines = path.read_text(encoding="utf-8").split("\n")
+    in_code = False
+    skip_block = False   # אחרי כותרת מטא
     song_buf = []
+    last_was_dialogue = False
 
     def flush_song():
         nonlocal song_buf
         if song_buf:
             doc.add_paragraph()
-            for sl in song_buf:
-                add_song_line(sl)
+            for sl in song_buf: song_line(sl)
             doc.add_paragraph()
         song_buf = []
 
     for raw in lines:
         line = raw.rstrip()
 
-        # בלוק קוד
         if line.strip().startswith("```"):
-            in_code_block = not in_code_block
-            continue
-        if in_code_block:
-            continue
+            in_code = not in_code; continue
+        if in_code: continue
 
-        # שורה ריקה
         if not line.strip():
             flush_song()
             continue
 
         # כותרות
-        hm = is_heading(line)
+        hm = re.match(r'^(#{1,6})\s+(.*)', line)
         if hm:
             flush_song()
-            level = len(re.match(r'^(#+)', line).group(1))
-            htitle = re.sub(r'^#+\s*', '', line).strip()
-            htitle = clean_inline(htitle)
+            level = len(hm.group(1))
+            title_raw = hm.group(2).strip()
+            title = clean_text(title_raw)
 
-            if skip_heading(line):
-                skip_meta = True
-                continue
-
-            skip_meta = False
-
-            if level == 1:
+            if is_scene_title(line, level):
+                # שם הסצנה — כותרת עמוד
                 doc.add_page_break()
-                add_par(htitle, size=18, bold=True, center=True, sb=12, sa=10)
-            elif level == 2:
-                add_par(htitle, size=13, bold=True, sb=8, sa=4,
-                        color=RGBColor(0x33, 0x33, 0x66))
+                par(title, size=16, bold=True, center=True, sb=8, sa=8)
+                skip_block = False
+            elif is_sub_heading(line, level):
+                par(title, size=12, bold=True, sb=6, sa=3,
+                    color=RGBColor(0x33,0x33,0x66))
+                skip_block = False
             else:
-                add_par(htitle, size=11, bold=True, sb=5, sa=2,
-                        color=RGBColor(0x55, 0x55, 0x55))
+                # כותרת ארגונית — דלג עליה ועל תוכנה
+                skip_block = False   # לא בולעים תוכן אחריה, רק מדלגים על הכותרת עצמה
             continue
 
-        if skip_meta:
-            continue
+        if skip_block: continue
+        if skip_line(line): continue
 
-        # טבלאות
-        if line.strip().startswith('|'):
-            continue
-
-        # הוראות במאי / bullet meta
-        if should_skip_block(line):
-            continue
-
-        # מפריד
-        if re.match(r'^\s*(---+|\*\s*\*\s*\*|⸻)\s*$', line):
-            flush_song()
-            add_par("— — —", center=True, size=10,
-                    color=RGBColor(0xbb, 0xbb, 0xbb), sb=4, sa=4)
-            continue
-
-        # שורת שיר (ציטוט >)
+        # שיר
         if is_song_line(line):
-            inner = line.strip()[1:].strip()
-            inner = clean_inline(inner)
-            if inner:
-                song_buf.append(inner)
+            inner = clean_text(line.strip()[1:])
+            if inner: song_buf.append(inner)
             continue
 
         # דיאלוג
-        result = extract_speaker_line(line)
-        if result:
+        d = extract_dialogue(line)
+        if d:
             flush_song()
-            speaker, content = result
+            speaker, content = d
             if content:
-                add_dialogue(speaker, content)
-            # המשך שורות תוכן (שורות נוספות ב"") — יטופלו בלולאה
+                dlg(speaker, content)
+                last_was_dialogue = True
             continue
 
-        # שורה נוספת אחרי דיאלוג (המשך ציטוט ב"")
-        # שורות שמתחילות ב-" ואינן הוראה
-        if line.strip().startswith('"') or line.strip().startswith('״'):
-            flush_song()
-            content = clean_inline(line.strip())
+        # המשך ציטוט בשורה חדשה (מרכאות פותחות)
+        s = line.strip()
+        if (s.startswith('"') or s.startswith('״') or s.startswith('"')) and last_was_dialogue:
+            content = clean_text(s)
             if content:
-                add_par(content, indent=0.3, sb=0, sa=1)
+                p = doc.add_paragraph(); rtl(p)
+                p.alignment = WD_ALIGN_PARAGRAPH.RIGHT
+                p.paragraph_format.space_after = Pt(2)
+                p.paragraph_format.line_spacing = Pt(11*1.45)
+                p.paragraph_format.left_indent = Inches(0.25)
+                r = p.add_run(content)
+                r.font.size = Pt(11); r.font.name = FONT
+                r.font._element.rPr.rFonts.set(qn("w:cs"), FONT)
             continue
 
-        # כל שאר — מדלגים (הוראות, מטא, פסקאות רקע)
-        continue
+        last_was_dialogue = False
 
     flush_song()
 
-# ---- עבד סצנות ----
-
-processed = set()
+# ריצה
 for fname in SCENE_ORDER:
     fpath = SCENES_DIR / fname
     if not fpath.exists():
-        print(f"  חסר: {fname}")
-        continue
+        print(f"  חסר: {fname}"); continue
     print(f"  + {fname}")
-    render_scene(fpath)
-    processed.add(fname)
-
-# סצנות שלא ברשימה
-extras = sorted(SCENES_DIR.glob("scene-*.md"))
-for f in extras:
-    if f.name not in processed and f.name not in ("scene-midrashim.md", "new-scenes.md"):
-        print(f"  + (extra) {f.name}")
-        render_scene(f)
+    render(fpath)
 
 out = ROOT / "מזמור-לדוד-מלל-נקי.docx"
 doc.save(out)
-print(f"\nנשמר: {out}")
-print(f"פסקאות: {len(doc.paragraphs)}")
+print(f"\nנשמר: {out}  ({len(doc.paragraphs)} פסקאות)")
