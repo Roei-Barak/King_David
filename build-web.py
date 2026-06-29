@@ -19,6 +19,7 @@ BOOK = [
     (None, None, "scene-04b-wilderness-additions.md", "הרחבות המדבר"),
     (None, None, "scene-nabal-abigail.md", "נבל ואביגיל"),
     (None, None, "scene-cave-hill.md", "המערה והגבעה"),
+    (None, None, "scene-gibeat-hachila-full.md", "גבעת החכילה — המתח המלא"),
     (None, None, "scene-05b-witch-endor.md", "אוב עין-דור"),
     (None, None, "scene-ziklag.md", "צקלג"),
     (None, None, "scene-philistines-reject.md", "פלשתים דוחים"),
@@ -2194,6 +2195,9 @@ init();
 
 out = ROOT / "מזמור-לדוד-web.html"
 out.write_text(HTML, encoding="utf-8")
+vercel_out = ROOT / "vercel-deploy" / "index.html"
+vercel_out.write_text(HTML, encoding="utf-8")
 size = out.stat().st_size
 print(f"נשמר: {out}")
+print(f"נשמר: {vercel_out}")
 print(f"גודל: {size:,} bytes ({size//1024} KB)")
