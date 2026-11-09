@@ -1,0 +1,32 @@
+{
+  "project": "מזמור לדוד",
+  "date": "2026-11-08",
+  "type": "textual-export-from-docx",
+  "source_word_files_in_repository": false,
+  "files": [
+    {
+      "source_name": "מזמור לדוד — המחזה המלא — טיוטה ראשונה — 08.11.2026(1).docx",
+      "sha256": "11508dbc1840f5887846cc9b7c3ffd217f58136ae157167d49d442f02db9931a",
+      "bytes": 327911,
+      "export_path": "01-first-draft.md"
+    },
+    {
+      "source_name": "מזמור לדוד — טיוטה שנייה — עיבוד בימתי ומוזיקלי.docx",
+      "sha256": "90a7388ada67fe48a35317c64f76bf7af63639d6f08fb7a077017dbd620072dc",
+      "bytes": 349784,
+      "export_path": "02-stage-and-music.md"
+    },
+    {
+      "source_name": "מזמור לדוד — טיוטה שלישית — עריכה דרמטורגית.docx",
+      "sha256": "62dab0b43443e21bf5dfb389e3034fd558d69ae232ca59080404e5773d838f4c",
+      "bytes": 354596,
+      "export_path": "03-dramaturgical-edit.md"
+    },
+    {
+      "source_name": "מזמור לדוד — מפת עריכה ל־52 התמונות.docx",
+      "sha256": "8e73a701b8af8560381efbc5c37edb0f5710b3b5b9ce1f8dffa10bcb6eb41d04",
+      "bytes": 43634,
+      "export_path": "04-scene-edit-map.md"
+    }
+  ]
+}
