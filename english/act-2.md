@@ -661,4 +661,1014 @@ I am sent with a name.
 
 ---
 
-*[CONTINUATION POINT: Scene 38 — Tamar: The First Paralysis (2 Samuel 13:1–22).]*
+## Scene 38 — Tamar: The First Paralysis
+
+*Years on. The king's sons are grown. AMNON's house: AMNON, the firstborn, lying on his bed, to all appearances ill. DAVID has come to see him — a father at a sickbed.*
+
+**DAVID**
+You have eaten nothing. They tell me three days.
+
+**AMNON**
+I cannot. Everything they bring turns in my mouth.
+
+*(A beat.)*
+
+"Let my sister Tamar come, and make a couple of cakes in my sight, and I will eat from her hand."
+
+**DAVID**
+*(relieved to be asked for something he can give)* Is that all?
+
+*(To a servant.)*
+
+To Tamar, at her house: "Go to your brother Amnon's house, and make food for him." Say that her father asks it.
+
+*(He lays his hand on AMNON's forehead, and goes.)*
+
+*TAMAR comes — the king's daughter, in the long robe with sleeves that the king's unmarried daughters wear. She takes dough; she kneads; she shapes the cakes in his sight; she bakes them. It takes the time it takes. She sets the pan before him.*
+
+**AMNON**
+"Send everyone out from me."
+
+*(They go.)*
+
+"Bring the food into the inner room. I will eat from your hand."
+
+*(She takes the cakes and brings them in. He takes hold of her.)*
+
+**AMNON**
+"Come. Lie with me, my sister."
+
+**TAMAR**
+"No, my brother. Do not force me. Such a thing is not done in Israel. Do not do this vile thing."
+
+*(She is thinking as fast and as clearly as she can; she is fighting for both of them.)*
+
+"And I — where would I carry my shame? And you — you would be as one of the base men in Israel."
+
+"Speak to the king. Please. He will not keep me from you."
+
+*(He will not listen to her voice. Dark.)*
+
+*Light. The same door — from outside. AMNON's voice, changed; the hatred is greater than the love was.*
+
+**AMNON**
+*(off)* "Get up. Go."
+
+**TAMAR**
+*(off)* "No! This wrong — sending me away — is greater than the other that you did to me."
+
+**AMNON**
+*(off; to his servant)* "Put this woman out, away from me. And bolt the door after her."
+
+*(TAMAR is put out. The bolt goes home behind her.)*
+
+*(She stands in the street. She stoops; takes ashes; puts them on her head. She takes hold of the long robe with sleeves, and tears it. She lays her hand on her head. And she walks — through the city, in every person's sight — crying aloud as she goes. She does not hide it. She does not go quietly.)*
+
+*(ABSALOM meets her: her full brother; the most beautiful man in Israel. He sees the robe. He knows at once.)*
+
+**ABSALOM**
+"Has Amnon your brother been with you?"
+
+*(She does not need to answer.)*
+
+"Now, my sister — be silent. He is your brother. Do not take this thing to heart."
+
+*(She looks at him. Whatever he intends by it — and he intends a great deal — she has been told to be silent. He brings her into his house. The door closes on the city. She remains standing inside it: we still see her.)*
+
+*The king's house. A SERVANT has told DAVID. DAVID is on his feet — white with anger.*
+
+**DAVID**
+I sent her. With my own mouth. I said: your father asks it.
+
+*(He turns on the SERVANT.)*
+
+Call Amnon. Now.
+
+*(The SERVANT turns to go.)*
+
+Bring him to —
+
+*(He has lifted his hand toward the judgment seat — the seat he came down from, on the day Nathan stood here. His eyes are on it. The sentence does not finish.)*
+
+*(The hand stays in the air. The SERVANT waits, half-turned, for the rest of the order. It does not come. DAVID's mouth is open. Nothing.)*
+
+*(A long time. The SERVANT does not dare to move. The hand, at last, comes down — not in a gesture; it simply falls. DAVID has not sat in the seat. He has not sent for his son. The SERVANT is still waiting when the light leaves the king's house.)*
+
+*(It does not leave TAMAR. She is standing in ABSALOM's house, in the torn robe, the ashes on her hair, exactly as she was. Only when the king's side is fully dark does she — by her own choice — sit down.)*
+
+*(ABSALOM sits beside his sister. Across the stage AMNON passes, well again. ABSALOM watches him go by. He does not speak to AMNON — neither bad nor good.)*
+
+**A VOICE**
+"And Tamar remained, desolate, in the house of Absalom her brother."
+
+---
+
+## Scene 39 — Amnon: The Second Paralysis
+
+*Two full years. The king's house. ABSALOM before DAVID — easy, smiling, a prince asking a favor.*
+
+**ABSALOM**
+Your servant has shearers at Baal-hazor. It is a feast. "Let the king come, and his servants, with your servant."
+
+**DAVID**
+"No, my son. Let us not all go, and be a weight upon you."
+
+**ABSALOM**
+The king would honor it.
+
+**DAVID**
+The king would eat you out of your flocks.
+
+*(He blesses him. ABSALOM does not go.)*
+
+**ABSALOM**
+"If not — then let my brother Amnon go with us."
+
+*(A small silence. DAVID looks at his son's open, pleasant face.)*
+
+**DAVID**
+"Why should he go with you?"
+
+**ABSALOM**
+He is the eldest. If the king cannot come, let the king's firstborn sit at the head of my table. Let all Israel see the king's sons eat together.
+
+*(It is exactly what a father wants to hear. DAVID wants to hear it. He searches the face a moment longer — and finds nothing.)*
+
+**DAVID**
+You have not spoken to him in two years.
+
+**ABSALOM**
+Then it is time.
+
+*(DAVID gives way.)*
+
+**DAVID**
+Let him go. Let all the king's sons go.
+
+*(ABSALOM bows, and goes. DAVID looks after him. His hand has half risen, as if to call him back. It falls.)*
+
+*Baal-hazor — seen only as ABSALOM, aside, with his servants.*
+
+**ABSALOM**
+"Watch. When Amnon's heart is merry with wine, and I say to you: Strike Amnon — then kill him. Do not be afraid. Is it not I who command you? Be strong. Be men."
+
+*The king's house. A RUNNER, wild.*
+
+**RUNNER**
+"Absalom has struck down all the king's sons! Not one of them is left!"
+
+*(DAVID rises; tears his garments; falls to the ground. All his servants stand by with their clothes torn. JONADAB — the king's nephew, a very clever man — bends over him.)*
+
+**JONADAB**
+"Let my lord not say that they have killed all the young men, the king's sons. Amnon alone is dead."
+
+*(Smoothly.)*
+
+"It has been set on Absalom's mouth since the day he forced his sister Tamar."
+
+*(DAVID lifts his head and looks at JONADAB: that this was known; that it was sayable; that two years went by.)*
+
+*(The WATCHMAN cries out. The king's sons come in by the road — on their mules, weeping. DAVID goes to them. He counts them with his eyes, one by one, as he used to count; he holds each. Then the king and all his servants weep, very bitterly.)*
+
+**DAVID**
+And Absalom?
+
+**RUNNER**
+Fled. To Geshur — to Talmai, his mother's father.
+
+*(DAVID stands. A son of his has murdered a son of his. He is the king; there is one thing for a king to do. He turns to the captain of the guard, and lifts his hand.)*
+
+**DAVID**
+Send —
+
+*(The hand in the air. The captain waiting. It is the same hand, the same height, the same silence. He cannot say after whom, or to do what. He could not judge the first son. He cannot now judge the second for doing what he left undone.)*
+
+*(The hand comes down.)*
+
+*(In ABSALOM's house, TAMAR — who has heard the news through the wall — sits as she sat. She does not rejoice. Her brother is gone as well.)*
+
+**A VOICE**
+"And David mourned for his son all the days. And Absalom fled to Geshur, and was there three years. And the soul of King David longed to go out to Absalom."
+
+---
+
+## Scene 40 — The Return That Is Not a Meeting
+
+*JOAB, watching the king across a room: DAVID is looking out of a window, north-east, toward Geshur. He has been looking that way for three years.*
+
+*A WOMAN of Tekoa is brought before DAVID in the garments of a mourner. She falls on her face.*
+
+**WOMAN OF TEKOA**
+"Help, O king!"
+
+**DAVID**
+What troubles you?
+
+**WOMAN OF TEKOA**
+"Truly, I am a widow; my husband is dead. And your servant had two sons. The two of them fought in the field, and there was no one to part them. And the one struck the other, and killed him."
+
+*(DAVID is entirely attentive.)*
+
+"And now the whole clan has risen against your servant. They say: Give up the one who struck his brother, and we will put him to death for the life of the brother he killed — and destroy the heir as well. They would quench my one coal that is left. They would leave my husband neither name nor remnant on the face of the earth."
+
+**DAVID**
+Go to your house. I will give orders about you.
+
+**WOMAN OF TEKOA**
+On me be the guilt, my lord the king, and on my father's house. The king and his throne are innocent.
+
+**DAVID**
+If anyone says a word to you, bring him to me. He will not touch you again.
+
+**WOMAN OF TEKOA**
+Let the king swear it. By the LORD. That the avenger of blood shall not destroy further — that they shall not destroy my son.
+
+**DAVID**
+"As the LORD lives — not one hair of your son shall fall to the ground."
+
+*(She has him. She lifts her face.)*
+
+**WOMAN OF TEKOA**
+Let your servant speak one word more to my lord the king.
+
+**DAVID**
+Speak.
+
+**WOMAN OF TEKOA**
+"Why, then, have you planned such a thing against the people of God? In saying this, the king convicts himself — for the king does not bring home his own banished one."
+
+*(DAVID is very still.)*
+
+"For we must surely die. We are like water spilled on the ground, which cannot be gathered up again. Yet God does not take away a life; He devises means, so that the one who is banished may not stay banished from Him."
+
+*(A silence.)*
+
+**DAVID**
+Do not hide from me the thing that I am going to ask you.
+
+**WOMAN OF TEKOA**
+Let my lord the king speak.
+
+**DAVID**
+"Is the hand of Joab with you in all this?"
+
+**WOMAN OF TEKOA**
+*(almost with relief)* As you live, my lord the king — no one can turn right or left from anything the king says. Your servant Joab commanded me. He put every one of these words in my mouth.
+
+*(JOAB comes forward. DAVID looks at him — not angry.)*
+
+**DAVID**
+You could have asked me.
+
+**JOAB**
+I have been asking you for three years. You look out of that window.
+
+*(DAVID nearly smiles.)*
+
+**DAVID**
+"See, now: I have done this thing. Go. Bring back the young man — Absalom."
+
+*(JOAB bows to the ground. He is going. DAVID's voice stops him.)*
+
+"Let him go round to his own house. My face he shall not see."
+
+**JOAB**
+My lord —
+
+**DAVID**
+His own house.
+
+*Jerusalem. ABSALOM is home — and is not. A door: the king's. He passes it. He passes it again; the light changes; he passes it again. Two full years. He sends to JOAB; JOAB does not come. He sends again. JOAB does not come.*
+
+**ABSALOM**
+*(to his servants)* Joab's field is next to mine. He has barley in it. Set it on fire.
+
+*(A glow. JOAB arrives at a run, furious.)*
+
+**JOAB**
+Why have your servants set my field on fire?
+
+**ABSALOM**
+Because now you are here.
+
+"Why did I come from Geshur? It would be better for me if I were still there. Now let me see the king's face. And if there is guilt in me — let him kill me."
+
+*(JOAB looks at him: he has heard a sentence very like it before, from another young man, about another king. He goes in to DAVID.)*
+
+*The door opens. ABSALOM enters. He comes before the king and bows with his face to the ground. DAVID raises him — and kisses him.*
+
+*(They stand. The kiss has been given. Each is waiting for the other to say the next thing.)*
+
+**ABSALOM**
+Two years I have stood by that door.
+
+**DAVID**
+Now you have come in.
+
+**ABSALOM**
+Yes.
+
+*(Silence.)*
+
+Is there something the king wishes to ask me?
+
+*(DAVID looks at him. There are five years of things.)*
+
+Ask it. I would answer. I have had a long time to make the answer ready.
+
+**DAVID**
+*(with difficulty)* Is your sister well?
+
+*(It is not what ABSALOM expected. For an instant his face is a boy's.)*
+
+**ABSALOM**
+She lives in my house. She does not go out. I have a daughter now. I named her Tamar.
+
+**DAVID**
+Tamar.
+
+**ABSALOM**
+It is the first time I have heard you say the name.
+
+*(DAVID receives it. He opens his mouth to say more — what he should have done; what he could not; that he longed for this son every day of the three years. None of it comes. The mouth closes.)*
+
+*(ABSALOM waits. He gives it a full breath longer than courtesy requires. Then he bows — correctly — and goes out by the door he waited at. DAVID is left with his hand a little way out from his side.)*
+
+---
+
+## Scene 41 — The Gate
+
+*The gate of Jerusalem, early. The road by which people come up to the king for judgment. A chariot stands there, and horses, and fifty men to run before it: ABSALOM's. He himself is on foot, among the people, and has been since before light.*
+
+*(A NORTHERNER, with the dust of days on him, a document in his hand.)*
+
+**ABSALOM**
+You have come a long way. Which town?
+
+**NORTHERNER**
+Your servant is of Dan. The tribe of Dan.
+
+**ABSALOM**
+Dan. That is five days. Sit. Give him water. What is the matter?
+
+**NORTHERNER**
+A boundary stone, my lord. My neighbor moved it in my father's time, and his son says it was always so. I have the old deed. I have been at this gate four mornings.
+
+**ABSALOM**
+Four.
+
+*(He takes the deed; reads it — really reads it.)*
+
+"See: your claim is good and right."
+
+*(He gives it back.)*
+
+"But there is no one from the king to hear you."
+
+**NORTHERNER**
+They say the king is —
+
+**ABSALOM**
+The king is my father, and a great man. He has a great deal to carry.
+
+*(Quietly; the man leans in to hear it.)*
+
+I know what it is to wait at a door.
+
+*(A WIDOW approaches, sees who it is, and begins to go down on her knees. ABSALOM is there before she reaches the ground: he puts out his hand, raises her, and kisses her cheek, like a kinsman.)*
+
+**ABSALOM**
+No. Not to me. What is your name, mother?
+
+*(She tells him. He repeats it. He will know it tomorrow.)*
+
+**ABSALOM**
+*(to those gathering — not a speech; a sigh, overheard)*
+"Oh, that someone would make me judge in the land! Every man who had a suit or a cause would come to me — and I would see that he got justice."
+
+*(More come. The same thing, with other faces: the hand out before the bow; the kiss; the name. Morning after morning.)*
+
+**A VOICE**
+"So Absalom stole the hearts of the men of Israel."
+
+*The king's house. ABSALOM before DAVID.*
+
+**ABSALOM**
+"Let me go, please, and pay my vow, which I vowed to the LORD, in Hebron. For your servant made a vow while I lived at Geshur: If the LORD brings me back to Jerusalem, I will serve the LORD."
+
+*(DAVID is moved. It is the first thing this son has asked him for in years.)*
+
+**DAVID**
+"Go in peace."
+
+*(ABSALOM bows, and goes. They are the last words DAVID will ever say to him.)*
+
+*(A ram's horn, far to the south. Then voices, from every side at once:)*
+
+**VOICES**
+"Absalom is king in Hebron!"
+
+*(A RUNNER to DAVID.)*
+
+**RUNNER**
+Ahithophel has gone to him. From your own council. "The hearts of the men of Israel are after Absalom."
+
+*(DAVID stands up from his seat. JOAB, ABISHAI, the household.)*
+
+**DAVID**
+"Rise. Let us flee — or there will be no escape for us from Absalom. Hurry, or he will overtake us quickly, and bring evil down on us, and put the city to the sword."
+
+**JOAB**
+Flee? We have the walls. We have the guard. Let him come and break his teeth on Jerusalem.
+
+**DAVID**
+On whom?
+
+*(JOAB does not follow.)*
+
+Who will be on the wall, Joab? Judah. And who will be under it? Judah, and Benjamin, and Dan — a man I have never met, with a deed in his hand. I have spent my life keeping Israel from killing Israel. I will not make this city the place where it is done.
+
+**ABISHAI**
+He is a rebel.
+
+**DAVID**
+He is my son. And they are my people. Both.
+
+*(To the household.)*
+
+Take what can be carried.
+
+*(They gather it. Ten women of his house are left behind, to keep it. The king goes out, and all his household after him. Around the going of the king, Jerusalem empties.)*
+
+---
+
+## Scene 42 — On the Way Out
+
+*The last house of the city. DAVID stands and lets the people pass before him: his servants; the guard; and six hundred men of Gath who followed him years ago, with their families. Their captain: ITTAI the Gittite.*
+
+**DAVID**
+"Why should you come with us as well? Go back. Stay with the king" — whoever sits there. "You are a foreigner; an exile from your own place. You came only yesterday. Shall I make you wander with us today — when I am going I do not know where? Go back. Take your brothers with you. Kindness and truth go with you."
+
+**ITTAI**
+"As the LORD lives, and as my lord the king lives: in whatever place my lord the king shall be — for death or for life — there your servant will be."
+
+*(DAVID looks at this Philistine; at the children behind him.)*
+
+**DAVID**
+Then cross.
+
+*(ITTAI and his little ones pass. All the land is weeping aloud as the people go over. And now ZADOK the priest, and ABIATHAR, and the Levites with them — carrying the Ark of the Covenant of God. They set it down.)*
+
+*(DAVID stops. He looks at it: the thing he danced before; the thing he was not allowed to house.)*
+
+**DAVID**
+"Carry the Ark of God back into the city."
+
+**ZADOK**
+My lord — it should go with the king.
+
+**DAVID**
+It is not mine, to carry about for my protection.
+
+"If I find favor in the eyes of the LORD, He will bring me back, and let me see it, and the place where it dwells."
+
+*(He steadies himself.)*
+
+"And if He says: I have no delight in you — here I am. Let Him do to me as seems good in His eyes."
+
+**ABIATHAR**
+*(who came to him once with nothing but an ephod)* And you?
+
+**DAVID**
+"See — I will wait at the fords of the wilderness, until word comes from you." You have two sons who can run. Go back in peace.
+
+*(The Ark is lifted, and carried back toward the city. DAVID watches it go. Then he turns his face to the hill.)*
+
+*The ascent of the Mount of Olives. DAVID goes up — weeping as he goes; his head covered; barefoot. All the people with him cover their heads, and go up weeping. It is not a march.*
+
+**[MUSICAL CUE: PSALM 3 — then "MIMA'AMAKIM" (Psalm 130). Version of the song still to be settled.**
+**Who begins:** DAVID, on the climb, without stopping.
+**Addressed to:** God.
+**Physical action:** bare feet on stone; the column climbing; later, stones falling near him.
+**Why song, here:** it changes his breathing, not his duty to keep the column moving.
+**What changes:** the others' steps and voices come in under his; the music is built out of the walking.
+**Note:** Psalm 3 carries this flight in its own heading. Psalm 130 is a theatrical use; it is not attributed to this moment.]**
+
+**DAVID**
+*(climbing)*
+"LORD, how many are my foes.
+Many are rising against me.
+Many are saying of my soul:
+There is no salvation for him in God."
+
+*(The column climbs. His voice joins their steps.)*
+
+"But You, LORD, are a shield about me —
+my glory, and the lifter of my head."
+
+*(At the summit, where one bows down to God, a man comes to meet him: HUSHAI the Archite, the king's friend — an old man; coat torn, earth on his head.)*
+
+**HUSHAI**
+I am coming with you.
+
+**DAVID**
+"If you cross over with me, you will be a burden to me."
+
+*(HUSHAI is stricken. DAVID grips his arm.)*
+
+Listen. Ahithophel is with him. You know what Ahithophel's counsel is worth. Go back to the city. Say to Absalom: I will be your servant, O king; as I was your father's servant, so now I am yours. And undo Ahithophel for me. Zadok and Abiathar are there; whatever you hear in the king's house, tell them. Their sons will run it to me.
+
+**HUSHAI**
+You are asking me to go and bow to him.
+
+**DAVID**
+I am asking you to buy me a night.
+
+*(HUSHAI embraces him; cannot let go; lets go. He goes down toward the city.)*
+
+*(A little past the summit, ZIBA — the servant of Mephibosheth — with a pair of saddled donkeys: two hundred loaves, raisins, summer fruit, a skin of wine.)*
+
+**DAVID**
+Where is your master's son?
+
+**ZIBA**
+"He is staying in Jerusalem. For he said: Today the house of Israel will give me back the kingdom of my father."
+
+*(DAVID closes his eyes. The seat at his table.)*
+
+**DAVID**
+"Then all that was Mephibosheth's is yours."
+
+*(ZIBA bows low. The column goes on.)*
+
+*Bahurim. On the ridge above the road, keeping pace: a man of the house of Saul — SHIMEI son of Gera. He is cursing as he comes, and throwing stones.*
+
+**SHIMEI**
+"Get out! Get out! Man of blood! Worthless man!"
+
+*(A stone strikes near DAVID.)*
+
+"The LORD has brought back on you all the blood of the house of Saul, in whose place you have reigned! And the LORD has given the kingdom into the hand of Absalom your son! Look at you — in your own evil! For you are a man of blood!"
+
+*(ABISHAI has stopped. His hand is on his sword.)*
+
+**ABISHAI**
+"Why should this dead dog curse my lord the king? Let me go over, and take off his head."
+
+**DAVID**
+"What have I to do with you, sons of Zeruiah?"
+
+*(Not in anger; in a great weariness. He has been saying this to Abishai, in one form or another, since a cave.)*
+
+"If he curses — and if the LORD has said to him: Curse David — who is to say: Why have you done so?"
+
+*(To ABISHAI, and to all of them.)*
+
+"Look. My own son — who came out of my own body — is seeking my life. How much more, now, this man of Benjamin? Let him alone. Let him curse."
+
+"It may be that the LORD will look upon my affliction — and that the LORD will repay me good for his cursing this day."
+
+*(ABISHAI takes his hand from the hilt. He falls in again. The stones go on falling; the dust. DAVID walks. Barefoot, without halting the column, he begins:)*
+
+**DAVID**
+*(sung, walking)*
+"Out of the depths I call to You, LORD.
+Lord, hear my voice."
+
+*(A stone. ABISHAI starts toward the ridge; DAVID's arm bars his way without his breaking stride. Voices in the column take it up.)*
+
+**DAVID AND THE PEOPLE**
+"Out of the depths I call to You, LORD.
+Lord, hear my voice.
+Let Your ears be attentive
+to the voice of my pleading."
+
+*(They come, exhausted, to the fords. There, for an hour, he breathes.)*
+
+---
+
+## Scene 43 — Counsel, and a Night
+
+*Jerusalem. The king's hall. ABSALOM sits in his father's seat. AHITHOPHEL at his right hand — spare, exact, unhurried. The elders of Israel. HUSHAI enters, and bows to the ground.*
+
+**HUSHAI**
+"Long live the king! Long live the king!"
+
+**ABSALOM**
+*(amused; and not a fool)* "Is this your loyalty to your friend? Why did you not go with your friend?"
+
+**HUSHAI**
+"No. The one whom the LORD has chosen, and this people, and all the men of Israel — his I will be, and with him I will stay." And besides: whom should I serve? Should it not be his son? As I served in your father's presence, so I shall be in yours.
+
+*(ABSALOM studies him. He lets him stay. He turns to AHITHOPHEL.)*
+
+**ABSALOM**
+Give your counsel. What shall we do?
+
+**A VOICE**
+"And Ahithophel said to Absalom: Go in to your father's concubines, whom he left to keep the house. And all Israel will hear that you have made yourself hateful to your father; and the hands of all who are with you will be strengthened. So they pitched a tent for Absalom on the roof. And it was done before the eyes of all Israel."
+
+*(It is not shown. HUSHAI hears it; an old man keeping his face still. Somewhere, far off, a prophet's sentence: "before all Israel, and before the sun.")*
+
+**AHITHOPHEL**
+*(quick, cold, complete)*
+"Let me choose twelve thousand men. I will rise and pursue David — tonight. I will come upon him while he is weary, and his hands are slack. I will throw him into panic. All the people with him will run. And I will strike down the king — alone."
+
+*(He lets the last word stand.)*
+
+"Then I will bring all the people back to you. The man you seek is worth the return of them all. One death; and all the people will have peace."
+
+*(It is good counsel. Everyone in the room knows it. ABSALOM is opening his mouth to say so —)*
+
+**ABSALOM**
+"Call Hushai the Archite as well. Let us hear what is in his mouth, too."
+
+*(HUSHAI comes forward. He does not hurry. He will not hurry once in the whole of what follows.)*
+
+**HUSHAI**
+"The counsel that Ahithophel has given is not good — this time."
+
+*(A stir. AHITHOPHEL does not move.)*
+
+"You know your father. You know his men. They are warriors. And they are bitter of soul — like a bear in the field that has been robbed of her cubs."
+
+*(He lets ABSALOM see the bear.)*
+
+"And your father is a man of war. He will not spend the night with the people. Even now he is hidden — in one of the pits; in one of the places. And when some of ours fall at the first onset, whoever hears it will say: There has been a slaughter among the people who follow Absalom. And then even the brave man — the man with the heart of a lion — will melt. For all Israel knows that your father is a mighty man."
+
+*(On the far side of the stage, in darkness: DAVID's people, lying where they dropped by the fords.)*
+
+"So this is my counsel. Let all Israel be gathered to you — from Dan to Beersheba — like the sand that is by the sea, for multitude."
+
+*(Slowly; to the young man in his father's chair.)*
+
+"And you. Your own presence. Going into the battle."
+
+**ABSALOM**
+*(seeing it)* I will ride at their head.
+
+**HUSHAI**
+"We shall come upon him in whatever place he is found. We shall settle on him as the dew falls on the ground. And of him and of all the men with him, not one will be left. And if he withdraws into a city — all Israel will bring ropes to that city, and we shall drag it down into the valley, until not a pebble of it is found there."
+
+*(Silence. It is a picture. ABSALOM is inside it.)*
+
+**ABSALOM AND THE ELDERS**
+"The counsel of Hushai the Archite is better than the counsel of Ahithophel."
+
+*(AHITHOPHEL looks at the young man. He has seen the end of this as clearly as he sees everything. He rises; bows to no one; gathers his cloak; and goes out.)*
+
+**A VOICE**
+"And when Ahithophel saw that his counsel was not followed, he saddled his donkey, and went home, to his own city. He set his house in order. And he hanged himself."
+
+*(HUSHAI, leaving the hall — not fast; never fast — until he is out of sight of it. Then he runs. ZADOK and ABIATHAR; a serving-girl; two young men at a spring, who run; pursuers; a well in a courtyard at Bahurim, a cloth spread over its mouth and grain scattered on the cloth; the pursuers pass.)*
+
+*The fords. Night. DAVID's people asleep. Two young men come in, soaked and filthy: AHIMAAZ son of Zadok, and another.*
+
+**DAVID**
+Who are you?
+
+**YOUNG MAN**
+Jonathan —
+
+*(DAVID's head comes up.)*
+
+— son of Abiathar, my lord.
+
+*(A beat. DAVID nods. Of course.)*
+
+**AHIMAAZ**
+"Rise, and cross the water quickly. Do not spend this night at the fords of the wilderness." Ahithophel counselled them to fall on you tonight. Hushai has bought you until they gather. No longer.
+
+*(DAVID makes no speech. He goes among the sleepers, waking them with a hand. He picks up a child who will not wake, carries it to the water, puts it into its father's arms. Family by family they go over. By the light of morning there is not one left who has not crossed the Jordan. DAVID goes into the water after the last of them.)*
+
+---
+
+## Scene 44 — "Deal Gently"
+
+*Mahanaim, beyond the Jordan. The people come in, starving. Three men meet them with loaded animals: SHOBI of Ammon; MACHIR of Lo-debar — in whose house a lame boy once was hidden; and BARZILLAI the Gileadite, eighty years old.*
+
+**BARZILLAI**
+Beds. Basins. Clay pots. Wheat, barley, flour, roasted grain; beans, lentils; honey, curds, sheep, cheese.
+
+*(To DAVID, gruff.)*
+
+"The people are hungry, and weary, and thirsty in the wilderness."
+
+*(For the first time since Jerusalem, heads are laid down on something. DAVID watches them eat.)*
+
+*Morning. The gate of Mahanaim. DAVID numbers his people and sets captains over them, in three bodies: JOAB; ABISHAI; ITTAI the Gittite.*
+
+**DAVID**
+"I will surely go out with you myself."
+
+**A SOLDIER**
+"You shall not go out."
+
+*(Others take it up; they are not being courteous.)*
+
+"If we run, they will not care about us. If half of us die, they will not care about us. But you are worth ten thousand of us. It is better that you be ready to help us from the city."
+
+*(DAVID looks at them. It is hard for him. He was always first down the hill.)*
+
+**DAVID**
+"What seems good in your eyes, I will do."
+
+*(He stands at the side of the gate. The companies begin to go out, by hundreds and by thousands. JOAB comes to him for his orders.)*
+
+**JOAB**
+Well?
+
+**DAVID**
+End it. Today, if you can. Break them and scatter them, and let them go home to their tents.
+
+**JOAB**
+And him?
+
+*(DAVID does not answer at once.)*
+
+You are sending twenty thousand men into a forest to fight for you. Some of them will not come out. And you want me to tell them that the one man who caused it is to be kept safe.
+
+**DAVID**
+I am asking them to end a rebellion. I am not asking them to kill my son.
+
+**JOAB**
+It may come to the same thing.
+
+**DAVID**
+Then find the difference. You are my commander. Finding it is what I keep you for.
+
+*(JOAB looks at him. He promises nothing. DAVID turns from him, and speaks — to the three commanders; but loudly, so that every man passing through the gate will hear it.)*
+
+**DAVID**
+"Deal gently, for my sake, with the young man — with Absalom."
+
+*(The soldiers go through the gate with those words in their ears: "the young man." "Absalom." JOAB goes out without having answered.)*
+
+*The forest of Ephraim. The battle comes apart among the trees into a hundred pursuits. The forest devours more that day than the sword.*
+
+*(ABSALOM, riding a mule, alone, meets servants of DAVID. The mule goes in under the thick branches of a great oak. His head is caught fast in the oak. The mule goes on from under him. He hangs between heaven and earth.)*
+
+*(A SOLDIER sees it. He stops. He runs — to JOAB.)*
+
+**SOLDIER**
+"I saw Absalom — hanging in an oak."
+
+**JOAB**
+"You saw him! Then why did you not strike him to the ground, there? I would have owed you ten pieces of silver and a belt."
+
+**SOLDIER**
+"If I were weighing a thousand pieces of silver in my hand, I would not put out my hand against the king's son. In our hearing the king commanded you, and Abishai, and Ittai: Watch over the young man, Absalom, for my sake."
+
+*(JOAB says nothing.)*
+
+And if I had done it behind his back — nothing is hidden from the king — you yourself would have stood aside and let me answer for it.
+
+**JOAB**
+And if he goes back in at that gate alive? What happens then?
+
+**SOLDIER**
+What the king ordered. The young man is kept.
+
+**JOAB**
+The king kisses him. Again. And in three years I am standing in another forest, counting another twenty thousand, for the same head of hair.
+
+*(He looks at the SOLDIER a long moment. He has understood the order perfectly. He is deciding to break it.)*
+
+I have buried enough of Israel for that boy.
+
+"I will not wait here like this in front of you."
+
+*(He takes three darts in his hand. He goes. What follows is sound and movement, not anatomy: three blows; then ten young men, his armor-bearers, closing in. Then JOAB lifts the ram's horn — as he did at Gibeon, long ago — and blows.)*
+
+**JOAB**
+Call the people back from the pursuit! Spare them!
+
+*(The soldiers halt. They take ABSALOM down, and cast him into a great pit in the forest, and raise over him a very great heap of stones. All Israel flees, every man to his tent.)*
+
+*(AHIMAAZ son of Zadok — young, the fastest runner in the host — comes to JOAB.)*
+
+**AHIMAAZ**
+"Let me run, and carry the news to the king: that the LORD has judged for him against his enemies."
+
+**JOAB**
+"You are not the man to carry news today. Another day you shall carry it. Today you shall carry none — for the king's son is dead."
+
+*(To a CUSHITE.)*
+
+Go. Tell the king what you have seen.
+
+*(The CUSHITE bows, and runs.)*
+
+**AHIMAAZ**
+Whatever comes of it — let me run too.
+
+**JOAB**
+Why, my son? There is no reward in this news.
+
+**AHIMAAZ**
+Whatever comes of it — let me run.
+
+**JOAB**
+*(tired)* Run.
+
+*(AHIMAAZ runs — by the way of the plain. He overtakes the CUSHITE.)*
+
+---
+
+## Scene 45 — Two Runners
+
+*Mahanaim. DAVID is sitting between the two gates — the inner and the outer. Above him, on the roof of the gate, a WATCHMAN. A stair goes up to the chamber over the gate.*
+
+**WATCHMAN**
+A man! Running alone!
+
+**DAVID**
+"If he is alone, there is news in his mouth."
+
+*(If it were a rout, there would be many. He holds on to that. The man comes on. The WATCHMAN shades his eyes.)*
+
+**WATCHMAN**
+Another man! Running alone!
+
+**DAVID**
+He too brings news.
+
+**WATCHMAN**
+"The running of the first looks to me like the running of Ahimaaz son of Zadok."
+
+**DAVID**
+"He is a good man. He comes with good news."
+
+*(AHIMAAZ arrives — and cries out before he has his breath.)*
+
+**AHIMAAZ**
+"Peace!"
+
+*(He falls on his face before the king.)*
+
+"Blessed is the LORD your God, who has delivered up the men who lifted their hand against my lord the king."
+
+**DAVID**
+"Is it well with the young man — with Absalom?"
+
+*(AHIMAAZ looks up at the king's face. He ran all this way to say it. He cannot.)*
+
+**AHIMAAZ**
+"I saw a great tumult, when Joab sent the king's servant, and me, your servant. I did not know what it was."
+
+**DAVID**
+"Turn aside. Stand here."
+
+*(AHIMAAZ stands aside. The CUSHITE comes in.)*
+
+**CUSHITE**
+"Let my lord the king receive good news. For the LORD has judged for you this day against all who rose up against you."
+
+**DAVID**
+"Is it well with the young man — with Absalom?"
+
+**CUSHITE**
+*(he believes he is saying a gracious thing)*
+"May the enemies of my lord the king — and all who rise against you for evil — be as that young man is."
+
+*(DAVID does not cry out. He looks about him, as a man looks for something to hold. He turns to the stair that goes up to the chamber over the gate. He begins to climb. Halfway up, his body stops.)*
+
+**[MUSICAL CUE: "AVSHALOM" / "BNI AVSHALOM" — the setting associated with Moti Fleisher is the working reference; version to be chosen. No protected lyric is used. The verse itself, 2 Samuel 19:1, is the text.**
+**Who begins:** DAVID, on the stair.
+**Addressed to:** his son.
+**Physical action:** the climb breaks off; the first sentence breaks off with it. He takes hold of the rail and tries to go on up.
+**Why song, here:** speech fails in the middle of a step.
+**What changes:** nothing is resolved. If the song widens, he gains one more stair and loses his voice again — while, below, the returning soldiers come nearer.
+**Exit:** the ending must leave him able to make the descent in the next scene.]**
+
+**DAVID**
+"My son —"
+
+*(Nothing more comes. He hauls himself up one stair.)*
+
+"My son, Absalom. My son, my son, Absalom."
+
+*(He is weeping as he goes.)*
+
+"Would that I had died instead of you —
+Absalom, my son, my son."
+
+*(Below, the army is coming home. They have won. They hear the voice from over the gate. One by one they cover their faces. They come into the city by stealth, as men steal in who are ashamed, having fled from a battle. A soldier holds a bandage ready for his wounded comrade, and stands at the foot of the stair, not knowing whether he may come in.)*
+
+---
+
+## Scene 46 — The Gate, and the Return
+
+*The chamber over the gate. DAVID, his face covered. From below: the shuffle of men going quietly to their tents. JOAB comes up the stair. He does not bow. There are no court manners in what follows.*
+
+**JOAB**
+"Today you have covered with shame the faces of all your servants — who today saved your life, and the lives of your sons and your daughters, and the lives of your wives."
+
+*(DAVID does not uncover his face.)*
+
+"By loving those who hate you — and hating those who love you. For you have made it plain today that captains and servants are nothing to you. For today I know: if Absalom were alive, and all of us were dead this day — then it would be right in your eyes."
+
+**DAVID**
+*(uncovering his face)* I gave an order. In the gate.
+
+**JOAB**
+You did.
+
+**DAVID**
+It was heard.
+
+**JOAB**
+It was heard.
+
+*(They look at each other. JOAB does not explain. He does not deny. DAVID knows.)*
+
+**DAVID**
+My son is dead.
+
+**JOAB**
+I know it.
+
+**DAVID**
+And they are asking me to mourn as though he had not been my son.
+
+**JOAB**
+No one can take your mourning from you. Mourn him all your life; I would not respect you if you did not. But your men are standing in that gate. They walked out of it this morning to die for you, and they have come back into it tonight like thieves — and they do not know whether you wish to see their faces.
+
+*(DAVID looks toward the sound of them.)*
+
+"Now. Rise. Go out. And speak to the heart of your servants. For I swear by the LORD: if you do not go out, not one man will stay with you this night. And that will be worse for you than all the evil that has come upon you from your youth until now."
+
+*(DAVID tries to answer. He cannot. His hand closes on the mourning-cloth at his breast. JOAB does not withdraw, and does not press. Below, the footsteps are getting fewer.)*
+
+*(DAVID hears that. He stands. He does not agree with JOAB; he never will. He goes down the stair — the stair he could not climb — one step, and another, to the gate. He sits down in the king's place. JOAB stays above until he is seated.)*
+
+**A MAN**
+*(below; passing it on)* The king is sitting in the gate.
+
+*(It runs through the camp. The people come before the king. DAVID looks at them. He makes no speech. He sees the wounded man hanging back at the foot of the stair with his comrade — and moves along the bench, and makes room. That is the beginning of his coming back to them.)*
+
+*The road home. The Jordan. The tribes are quarrelling over who shall bring the king back; DAVID sends to Judah.*
+
+**DAVID**
+*(to a messenger)* And say to Amasa — my sister Abigail's son, who led Absalom's host: "Are you not my bone and my flesh? God do so to me, and more, if you are not captain of my army from now on — in place of Joab."
+
+*(JOAB, at the edge of the scene, hears it. His face does not change.)*
+
+*(The ford. A man throws himself down before the king as he is about to cross: SHIMEI — with a thousand men of Benjamin behind him.)*
+
+**SHIMEI**
+"Let my lord not hold me guilty. Do not remember the wrong your servant did, on the day my lord the king went out from Jerusalem. For your servant knows that I have sinned. See — I have come today, the first of all the house of Joseph, to go down to meet my lord the king."
+
+**ABISHAI**
+"Shall Shimei not be put to death for this? He cursed the LORD's anointed."
+
+**DAVID**
+"What have I to do with you, sons of Zeruiah — that you should be my adversary today?"
+
+"Shall any man be put to death in Israel today? Do I not know that today I am king over Israel?"
+
+*(To SHIMEI.)*
+
+"You shall not die."
+
+*(MEPHIBOSHETH comes down to meet the king. He has not cared for his feet, nor trimmed his beard, nor washed his clothes, from the day the king went away. DAVID sees him. It is hard for DAVID to speak.)*
+
+**DAVID**
+"Why did you not go with me, Mephibosheth?"
+
+**MEPHIBOSHETH**
+"My lord the king — my servant deceived me. For your servant said: I will saddle a donkey, and ride on it, and go with the king — for your servant is lame. And he has slandered your servant to my lord the king."
+
+*(DAVID looks at ZIBA, standing by with his fifteen sons. He looks at the unwashed man in front of him. He cannot tell.)*
+
+"But my lord the king is like an angel of God. Do what is good in your eyes. All my father's house were nothing but dead men before my lord the king — and you set your servant among those who eat at your table. What right have I left, to cry out any more to the king?"
+
+*(It is the table. DAVID has not the strength, this day, to find out the truth of it.)*
+
+**DAVID**
+"Why go on speaking of your affairs? I have said it: you and Ziba shall divide the land."
+
+*(A silence. MEPHIBOSHETH looks at him.)*
+
+**MEPHIBOSHETH**
+"Let him take all of it — now that my lord the king has come home in peace."
+
+*(DAVID looks at Jonathan's son. MEPHIBOSHETH, to get down the bank to the road, needs a hand. He holds his out. DAVID gives him his own.)*
+
+*(BARZILLAI the Gileadite has come down to see the king over the Jordan.)*
+
+**DAVID**
+Cross over with me. I will provide for you beside me in Jerusalem.
+
+**BARZILLAI**
+"How many are the days of the years of my life, that I should go up with the king to Jerusalem? I am eighty years old today. Can I tell good from bad? Can your servant taste what I eat or what I drink? Can I still hear the voice of singing men and singing women?"
+
+*(DAVID — who is a singer — takes that in.)*
+
+"Let your servant turn back, and die in my own city, by the grave of my father and my mother. But here is your servant Chimham. Let him cross over with my lord the king."
+
+*(DAVID kisses BARZILLAI, and blesses him. The old man turns back to his own place. The king crosses over — and all the people cross with him.)*
+
+---
+
+*[CONTINUATION POINT: Scene 47 — Another Breach, Another City (2 Samuel 19:41–20:22).]*
