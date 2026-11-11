@@ -102,9 +102,78 @@ These notes stay outside the performed text.
 
 ---
 
-## Open verification list (carried forward)
+## Scenes 4–52 — condensed notes
+
+Format: **biblical basis** · adaptation choices already in Roei's drafts (ADAPT) · new proposals in this English draft (NEW). Quoted lines in the script are original renderings of the verses in the chapters cited.
+
+### Act I
+
+| Sc. | Biblical basis | ADAPT (from Roei's drafts / brief) | NEW in this draft — flag for Roei |
+|---|---|---|---|
+| 4 | 1 Sam 17:12–31. Title phrase: Gen 37:16 (Joseph) — a borrowed line, theatrical. | David meets the camp and a soldier before Eliab. | The soldier's argument ("he sells Israel"); "hold the hill" (deliberate echo of a defensive posture); Eliab's private fear for the family secret. |
+| 5 | 1 Sam 17:32–40, 55. Biblical reason for removing the armor kept verbatim: "I have never tried them" (17:39). | Saul dresses David himself; the impression of a transfer of kingship; "I came to bring him down" (initiative vs. defensive dependence — thematic reading, not the biblical reason). | "A king is not his own to wager"; "No one has worn it but me"; Saul's question to Abner (17:55) played as a question beyond lineage — Saul knows David. |
+| 6 | 1 Sam 17:40–52; Ps 23:4; Ps 18:38. "Zochreni Na": Judg 16:28 (Samson) — borrowed. | **"Wall" and "dome of iron" are deliberate contemporary echoes** (the source says bronze helmet; the shield's material is not given). The shield-bearer opening the armor for the promise of **a wife from Israel** — tradition cited by Alshich on 2 Sam (he notes he did not find it written); **identifying him as Uriah, and as the shield-bearer, is an adaptation choice, not explicit in Samuel.** The promise is of *a* woman of Israel — not Bathsheba. | — |
+| 7 | 1 Sam 17:57–18:4. | The lineage question is not forgetfulness; covenant dialogue. | "The house of Jesse is free in Israel" (from the promise in 17:25); Jonathan's Michmash speech (1 Sam 14:6); "When I am king" and David's silence. |
+| 8 | 1 Sam 18:6–16. | "Lema'an Achai" returns as an echo. | David carries the thrown spear back to Saul (stages "twice", 18:11); "Do not come unless I send"; Michal glimpsed. |
+| 9 | 1 Sam 18:17–29. | **Saul's talk of sending a suspected threat on a lethal mission is a dramatic parallel to the Uriah letter — not an established historical procedure.** | The Old Servant as objector; "forgiven by a boy"; the first Michal–David exchange (dignity, royal bearing). |
+| 10 | 1 Sam 19:1–7. | A real reconciliation. | Jonathan's added arguments; Saul's hand on David's head. |
+| 11 | 1 Sam 19:9–17. | Michal's words to Saul are not presented as a real threat by David. | "I would rather have a husband"; "Stand straight"; Michal starts with the truth and switches. |
+| 12 | 1 Sam 19:18–24. No prophetic text invented. Royal garments: Rashi ad loc. (**to verify**). | Three parties kept. | Samuel–David dialogue ("Stay alive. And do not touch him"); Samuel's reference to Gilgal (1 Sam 13); "I will stay with him." Note the tension with 1 Sam 15:35. |
+| 13 | 1 Sam 20. | "Then I will not ask you to come back." | Jonathan says it himself so David need not break his word; Saul's "I am doing this for you"; "It is both — and I will carry both." |
+| 14 | 1 Sam 21:2–10. | Ahimelech helps in good faith. | The invitation to stay the night; David's discomfort at lying in the house he longs for. |
+| 15 | 1 Sam 21:11–16; Ps 34:5, 7, 2–3 (heading links the psalm to this episode; "Abimelech"/Achish — Rashi, **to verify**). | Ps 34 after Gath. Not comic. | — |
+| 16 | 1 Sam 22:1–5. | Water and watch as first acts of command. | Eliab's "tell me where to stand"; introduction of Zeruiah's three sons (they are not named in ch. 22); the Debtor and the Bitter Man as recurring voices; Jesse's lines. |
+| 17 | 1 Sam 22:6–23; Ps 52:3–5, 10–11. | Ps 52 after the news of Nob. No Keilah. | Abiathar's "nearly the last thing he said"; "Which of the three…?" |
+| 18 | 1 Sam 24; Ps 54:3–4, 6, 8–9. | **Ps 54 at the END of the cave** (moved from the Ziphite heading by Roei's decision; no Ziphite storyline). "We will not become the hunters." | Abishai's presence (not named in ch. 24); the arguments about a king made by a knife and about Benjamin; Saul's "I asked you where he was standing." |
+| 19 | 1 Sam 25:1–35. | The convoy on the road. | "Will you spend on a fool what you would not spend on Saul?"; Abishai's "Now this I understand." |
+| 20 | 1 Sam 25:36–44. | Ahinoam kept distinct from Abigail; nothing invented about how David met her. The foot-washing line kept for the later echo. | Ahinoam's two speeches (water); David and Abigail on Michal. |
+| 21 | 1 Sam 26. | The second test deepens the first; the spear as access to the leader. | Abishai's offer to bear the guilt; "what they would become"; "I have stopped asking when"; David ignores "Come back." |
+| 22 | 1 Sam 27:1–28:2. | The home built on stage; no oath to fight Israel added. | Joab suggests Gath; David's "I do not know yet." The raids (27:8–11) are compressed to the reports to Achish. |
+| 23 | 1 Sam 28:3–25; 29. | "At Endor" carried by another voice; Samuel's words as a VOICE, not a divine voice. | "Say nothing to Jonathan." |
+| 24 | 1 Sam 30. **The captives are all recovered; no one was killed (30:2, 19).** | **Deliberate resonance with October 7.** | David's plain prayer "I do not know where they are. You know."; the toy as the recurring object. |
+| 25 | 1 Sam 31:1–4; 2 Sam 1. The Amalekite's story is his claim; ch. 31 has Saul fall on his own sword — both are shown as such. | "Eretz Tzvi" as reference; the crown untouched. | Abishai's look. |
+| 26 | 2 Sam 2. | The space between the brothers. | Zeruiah: "Do not say anything true to me today." |
+| 27 | 2 Sam 3. David's "too hard for me" kept. | Joab/David confrontation. | The Michal–David exchange on her return; Abner at the feast; Joab's and David's added arguments. |
+| 28 | 2 Sam 4–5. | Zeruiah in Jerusalem (a proposal in Roei's draft); David in the line of builders. | The callback "Nothing. Neither did Saul." |
+| 29 | 2 Sam 6. Uzzah not skipped. | Two distinct processions. | Michal's argument about the crown as trust; "the only hour… I was not carrying anything." No reconciliation. |
+| 30 | 2 Sam 7. No reason given for the refusal (1 Chr 22:8 deliberately not put in Nathan's mouth). | The plan laid up, not torn. | The drawn plan and the "doorkeeper's bench" (cf. Ps 84:11, not quoted); "You did not say I may not gather the cedar" (cf. 1 Chr 22:2–5). |
+| 31 | 2 Sam 9. | Intermission here. The chair. | "Dead dog" recognised from 1 Sam 24:15; David's account of Jonathan; Michal giving her arm. |
+
+### Act II
+
+| Sc. | Biblical basis | ADAPT | NEW — flag for Roei |
+|---|---|---|---|
+| 32 | 2 Sam 10:1–11:1. | The envoys as people. | **The scribe at the gate and the soldiers' writs** — staging of the tradition that those who went out to the wars of the house of David wrote a bill of divorce for their wives (Shabbat 56a — **to verify wording**; whether conditional or absolute is disputed; the script leaves it as "a writ"). Uriah among David's thirty: 2 Sam 23:39. |
+| 33 | 2 Sam 11:1–6. | **Rabbi Eyal Vered's reading (as recorded in `sources/station-10…`):** Bathsheba is free; the inquiry is public ("vayidrosh"); "vayikacheha" is marriage; the hope for the son who will build (1 Chr 22:9). Not presented as consensus. | All of Bathsheba's dialogue; "my grandfather sits in your council" (inference from 2 Sam 11:3 + 23:34; traditional identification — **to verify**); "by the front gate, at noon." |
+| 34 | 2 Sam 11:6–13. Uriah's speech (11:11) verbatim. | Vered: "wash your feet" = end the former bond; Uriah's words heard as public defiance and accusation. Uriah gives **no** confession of motive. | David's explicit explanation to Uriah; **the Scribe urging an open trial and David refusing** — dramatizes "you should have judged him in the Sanhedrin" (Shabbat 56a, **to verify**) and Vered's point that the indirect route produced the desecration of God's name. |
+| 35 | 2 Sam 11:14–27. Other soldiers fall too (11:17). | The letter's text is heard, not spoken to Uriah; the echo of Saul's gesture. "Mayim LeDavid" deferred. | Bathsheba's mourning speech and her report of the rumour (the public consequence, in her mouth). |
+| 36 | 2 Sam 12:1–14; Ps 51:3, 6, 12–13. | Vered: David first hears the parable as his own injury (Saul and Michal; "a poor man", 1 Sam 18:23). No acquittal; no debate. | David's hand on the chest and its withdrawal; "I have known a man like that." "Given the enemies of the LORD cause to pour contempt" renders 12:14. |
+| 37 | 2 Sam 12:15–25; Ps 51:19. | The first child unnamed; no explanation of the death. | The David–Bathsheba dialogue; Bathsheba asks the name. |
+| 38 | 2 Sam 13:1–22. Tamar's words are hers (13:12–13, 16). The assault is not shown. | **David's stopping is Roei's theatrical interpretation; the text says only that he was very angry (13:21).** Expressed in performance alone — no accusing voice. | David's own errand sends Tamar (13:7); the look toward the judgment seat. |
+| 39 | 2 Sam 13:23–39. | The second paralysis, same shape. | David's unease at the invitation. |
+| 40 | 2 Sam 14. | The kiss without resolution; "Two years I stood by that door." | "Is your sister well?" / the daughter named Tamar (14:27). |
+| 41 | 2 Sam 15:1–16. | Petitioners are not caricatures. | "I know what it is to wait at a door"; David's reasons for leaving the city. |
+| 42 | 2 Sam 15:19–16:13; Ps 3:2–4; Ps 130:1–2 (theatrical). | "Mima'amakim" in the walking. Shimei's charges are his own. | "It is not mine, to carry about for my protection." |
+| 43 | 2 Sam 16:15–17:23. The concubines: reported, not shown. | "I will ride at their head." | "Jonathan — son of Abiathar" (a different Jonathan; 17:17). Ahithophel is given no stated motive. |
+| 44 | 2 Sam 17:27–18:23. | The soldier's objection; Joab decides to break the order. | The Joab–David exchange before the gate; "I have buried enough of Israel for that boy." |
+| 45 | 2 Sam 18:24–19:5. | The stair; the wounded soldier. | — |
+| 46 | 2 Sam 19:6–40. | "My son is dead." / "No one can take your mourning from you." Ziba is not declared right. | "It was heard." — Joab neither confesses nor denies. |
+| 47 | 2 Sam 19:42–20:22. Amasa: son of David's sister Abigail (17:25; 1 Chr 2:16–17), Joab's cousin. | Provisional scene. | The closing Joab–David exchange. |
+| 48 | 2 Sam 21:1–14. Two different men named Mephibosheth. | Provisional scene; date within the reign unstated; no justifying speech. | "They have names." The strain with the oath of 1 Sam 24:22 is shown, not resolved. |
+| 49 | 2 Sam 23:13–17; 22:2–3, 29 (two separate passages). | A signalled recollection. | The well and his mother; "It cost too much to go down one man's throat"; the old king's last line. |
+| 50 | 2 Sam 24:1–17. Samuel's version followed; figures from Chronicles are not mixed in (the famine is given as an unnumbered "famine" for that reason). **No motive is stated for David.** | The blank tablet and seal; the ensemble as the flock. | Joab's speech ("You used to know them") is Joab's view only. |
+| 51 | 2 Sam 24:18–25 (fifty shekels of silver; not merged with 1 Chr 21:25); 1 Chr 22:1; Ps 27:4. | Solomon as a sign of the future; "Here?" "Here." No coronation, no built Temple. | **The altar of names**; handing over the plan; "Does that grieve you?" |
+| 52 | Ps 150. | Cohen's melody as reference; none of his lyric. The company returns as ensemble, not as the dead. | — |
+
+---
+
+## Open verification list
 1. Yalkut HaMakhiri on Ps 118 — text, attribution, Jesse's motive, the servant woman's role.
 2. Yevamot 76b–77a — exact form of the ruling and its attribution to Samuel's court.
-3. Rashi on 1 Sam 17:55.
+3. Rashi on 1 Sam 17:55; on 1 Sam 19:24; on the heading of Ps 34.
 4. The mother's name (Bava Batra 91a) — whether Roei wants it used.
-5. `sources/station-10-bathsheba-uriah-chilul-hashem.md` is credited to "הרב אירן"; its content matches what the drafts attribute to Rabbi Eyal Vered. **Roei to confirm** it is the Vered transcript before Act II attributes detailed claims to him.
+5. `sources/station-10-bathsheba-uriah-chilul-hashem.md` is credited to "הרב אירן"; its content matches what the drafts attribute to Rabbi Eyal Vered. **Roei to confirm** it is the Vered transcript.
+6. Shabbat 56a — the soldiers' bills of divorce; "you should have judged him in the Sanhedrin."
+7. Alshich on 2 Sam 11–12 — the shield-bearer tradition.
+8. Bathsheba as Ahithophel's granddaughter — source for the identification.
+9. Every English rendering should be read against the Hebrew verse before publication.

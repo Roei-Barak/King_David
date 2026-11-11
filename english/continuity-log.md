@@ -1,10 +1,12 @@
 # A Psalm of David — Continuity and Unresolved-Decisions Log
 
 ## Status
-- **Written:** Act I, Scenes 1–3 (`act-1.md`).
-- **Continuation point:** Scene 4 — "Et Achai Anochi Mevakesh" (1 Sam 17:12–30): Jesse sends David to the camp at Elah with provisions.
-- **Basis:** Roei's brief (governing) → `drafts/2026-11-08/03-dramaturgical-edit.md` + `04-scene-edit-map.md` → sources. Older 15-scene documents (`outline/master-structure.md`, `outline/decisions.md`) are not followed where they conflict.
-- Hebrew files are untouched.
+- **English script complete:** Act I, Scenes 1–31 (`act-1.md`, ~28,000 words); Act II, Scenes 32–52 (`act-2.md`, ~16,000 words).
+- **Next:** Hebrew translation in `hebrew/`.
+- **Basis:** Roei's brief (governing) → `drafts/2026-11-08/03-dramaturgical-edit.md` + `04-scene-edit-map.md` → sources. Older 15-scene documents are not followed where they conflict.
+- Existing Hebrew files are untouched.
+- Scenes 47 and 48 are marked provisional in the script; Scene 49 is written as a signalled recollection.
+- Not followed from Hebrew draft 3: the "voice from the king's house" in Scenes 38–39 (the brief removed explanatory court voices; the paralysis is performed only).
 
 ## Working defaults adopted (Roei may overturn)
 1. **Bible text:** original English renderings, labeled in `source-notes.md`; no published translation quoted.
@@ -30,18 +32,26 @@
 - "Come when I do not send." / "I will come."
 - The lion and the bear have **not** been mentioned yet (held for the armor scene).
 
-## Flags for Roei (new proposals — not approved decisions)
-| # | Scene | Proposal | Why flagged |
-|---|-------|----------|-------------|
-| 1 | 1 | Eliab overhears "rejected" | New motive for Eliab's later anger |
-| 2 | 2 | David learns the reason for his exclusion only now; the brothers always assumed it | Shapes the whole family backstory |
-| 3 | 2 | The mother's reason for silence | A hidden motive not given in the Hebrew draft |
-| 4 | 2 | Samuel says "king" aloud and binds the family to secrecy | Explicit announcement is not in 1 Sam 16 |
-| 5 | 2 | The meal: seven places, an eighth bowl, "Beside me" | New closing image before the song |
-| 6 | 3 | Saul tells David the story of his own anointing | New; makes David's silence costly |
-| 7 | 3 | The night of the spear; David nearly speaks | New scene inside the musical passage |
-| 8 | 3 | David removes the spear | Pre-echo of Hachilah — keep or cut |
-| 9 | 3 | Saul sends his armor-bearer home at the outbreak of war | Bridges 16:21 and 17:15 |
+## Flags for Roei
+Every new proposal is listed scene by scene in the "NEW" column of `source-notes.md`. The ones that shape more than their own scene:
+
+| # | Proposal | Runs through |
+|---|---|---|
+| 1 | David learns the reason for his exclusion only at the anointing; his mother kept silent to protect Jesse | 2, 16 |
+| 2 | Samuel says "king" aloud; the family is sworn to silence; David may tell no one | 2–13 |
+| 3 | Saul tells David his own anointing story; quotes "your neighbor" to him; "where is he standing?" | 3, 8, 18, 23 |
+| 4 | The spear: taken from the sleeping hand (3), carried back (8), drawn from the ground (21) | 3, 8, 21 |
+| 5 | "Come when I do not send" → "Do not come unless I send" → "I sent, and you came" → the unanswered "Come back" | 3, 8, 10, 21 |
+| 6 | Michal: "Stand straight"; "not any longer"; dignity as a trust; her arm for Mephibosheth | 9, 11, 27, 29, 31 |
+| 7 | Jonathan speaks the truth himself so David need not break his oath | 7, 13 |
+| 8 | The Debtor and the Bitter Man as the recurring voices of David's men | 16–25 |
+| 9 | "Dead dog": David (18) → Mephibosheth (31) → Abishai of Shimei (42) | 18, 31, 42 |
+| 10 | The Scribe, the writs at the gate, and the refused open trial | 32–36 |
+| 11 | Bathsheba's terms ("front gate, at noon") and her report of the rumour | 33, 35 |
+| 12 | "Is your sister well?" — the first time David says Tamar's name to Absalom | 40 |
+| 13 | The drawn plan with a doorkeeper's bench, handed to Solomon | 30, 33, 37, 51 |
+| 14 | The altar of names | 51 |
+| 15 | The child's wooden toy (Ziklag built, burned, restored; the plague) | 22, 24, 50 |
 
 ## Unresolved (inherited)
 - The "I Want" song — Roei to write; requirements are in the cue in Sc. 2 and in `music-map.md`.
@@ -54,4 +64,5 @@
 ## Change record
 | Date | Change |
 |------|--------|
+| 2026-11-11 | Scenes 4–52 written; English script complete; music map, source notes and this log extended to the whole play. |
 | 2026-11-11 | Created `english/`. Scenes 1–3 written from Hebrew draft 3 (ll. 41–262), substantially expanded per brief §13. Removed from the Hebrew: David's line explaining that he protects the weak from the big (brief §7: no speech explaining the correspondence) — replaced by the practical "So I am the one in the gate." |
