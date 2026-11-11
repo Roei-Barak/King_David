@@ -2415,4 +2415,1071 @@ He is my father. He will go out to war again, and when he does I will be at his 
 
 ---
 
-*[CONTINUATION POINT: Scene 14 — Nob. David, alone and hungry, comes to Ahimelech the priest (1 Samuel 21:2–10).]*
+## Scene 14 — Nob
+
+*Nob, the town of the priests. The tent of the LORD. PRIESTS at their work: one trims a lamp; two carry out a table of bread and carry in another. DAVID stands at the edge, alone, hungry, watching — a man looking at the one place he ever wanted to be.*
+
+*AHIMELECH the priest sees him and comes quickly. He is alarmed.*
+
+**AHIMELECH**
+"Why are you alone, and no one with you?"
+
+*(DAVID has to decide what he is going to be in this place. He decides.)*
+
+**DAVID**
+"The king has charged me with a matter." He said: let no one know anything of the errand on which I send you. My young men I have appointed to meet me at a certain place.
+
+*(It comes out smoothly. He hates that it does.)*
+
+"Now — what have you at hand? Give me five loaves of bread. Or whatever there is."
+
+**AHIMELECH**
+The king's son-in-law, on the king's business, without a crust in his bag.
+
+*(He believes it; it only worries him.)*
+
+"There is no common bread at hand. There is only holy bread." The bread of the Presence — it was taken from before the LORD this morning, when the fresh was set down. If your young men have at least kept themselves from women —
+
+**DAVID**
+"Women have been kept from us, as always when I go out."
+
+*(AHIMELECH brings the bread, wrapped. He puts it into DAVID's hands himself.)*
+
+**AHIMELECH**
+You will stay the night. You are grey with the road.
+
+**DAVID**
+I cannot.
+
+**AHIMELECH**
+One night. You may sit at the door of the tent. I have heard that you play.
+
+*(DAVID looks at the tent; the lamp; the door at which he might sit.)*
+
+**DAVID**
+There is nothing in the world I should like better.
+
+*(He sees, then, a man standing apart by the wall: DOEG the Edomite, chief of Saul's herdsmen, detained here before the LORD. DOEG is looking at him. Their eyes meet. DOEG says nothing at all.)*
+
+**DAVID**
+*(turning back; quickly now)* Is there a spear here, or a sword, under your hand? "I brought neither my sword nor my weapons with me. The king's business was urgent."
+
+**AHIMELECH**
+"The sword of Goliath the Philistine, whom you struck down in the Valley of Elah — it is here, wrapped in a cloth, behind the ephod. If you will take that, take it. There is no other here."
+
+*(He uncovers it. DAVID lays his hand on the blade — the day at Elah, whole, in his palm.)*
+
+**DAVID**
+"There is none like it. Give it to me."
+
+*(AHIMELECH gives it. DAVID stands with the bread of the LORD in one hand and the giant's sword in the other.)*
+
+**AHIMELECH**
+The LORD prosper the king's errand.
+
+*(DAVID cannot answer that. He bows — deeply, to the priest — and goes. DOEG's eyes follow the bread and the sword out of sight. AHIMELECH goes back to his lamps.)*
+
+---
+
+## Scene 15 — Gath
+
+*The gate of Gath — Goliath's town. DAVID comes in off the road, hooded, the long sword wrapped on his back. The SERVANTS OF ACHISH are on him almost at once. One pulls back the hood. One finds the sword.*
+
+**FIRST SERVANT**
+It is he.
+
+**SECOND SERVANT**
+*(the sword)* And look what he carries into Gath.
+
+**FIRST SERVANT**
+"Is this not David, the king of the land? Is this not the one they sing to in their dances —"
+
+**SERVANTS**
+*(mocking; they know the tune)*
+"Saul has struck down his thousands,
+and David his ten thousands!"
+
+*(The song that made him, in his enemies' mouths. DAVID looks for the way out. There is none. He is very much afraid. They haul him before ACHISH, king of Gath.)*
+
+**FIRST SERVANT**
+Speak. The king is before you.
+
+*(DAVID looks at ACHISH. Something leaves his eyes. His jaw goes slack. He turns away from the king as if the king were not there, goes to the doors of the gate, and begins to scratch marks on them with his nails — carefully, absorbed. A servant takes his shoulder; he slides out from under the hand and goes back to the door. Spittle runs down into his beard.)*
+
+*(It is not comic. It is exact.)*
+
+**ACHISH**
+"Look at him. The man is mad. Why do you bring him to me?"
+
+**FIRST SERVANT**
+My lord, this is the man who —
+
+**ACHISH**
+"Am I short of madmen, that you have brought this one to rave in front of me? Is this to come into my house?"
+
+*(They throw him out of the gate. DAVID goes on — the dragging foot, the scrabbling hand — down the road, until the gate is small behind him. Only then does it begin to leave him: the hands first; then the back; then the face. He wipes his beard on his sleeve. He stands in the road getting his breath.)*
+
+**[MUSICAL CUE: PSALM 34.**
+**Who begins:** DAVID, alone on the road outside Gath.
+**Addressed to:** God — and then to anyone poor enough to need it.
+**Physical action:** his body comes back under his own command. He sits; looks at his hands; gets up; gathers his things.
+**Why song, here:** it starts as broken speech, the pulse still racing; the tune arrives only as the breathing steadies.
+**What changes:** no orchestra announces a victory. He got out alive. That is the whole of it — and he blesses.]**
+
+**DAVID**
+*(spoken, in pieces)*
+"I sought the LORD, and He answered me,
+and delivered me from all my terrors."
+
+*(He sits down at the side of the road. He looks at his hands — the nails that scratched the door.)*
+
+"This poor man called, and the LORD heard,
+and saved him out of all his troubles."
+
+*(The breath is steady now. The line finds its tune.)*
+
+*(sung)*
+"I will bless the LORD at all times;
+His praise shall be always in my mouth."
+
+*(He stands. Takes up the sword.)*
+
+"My soul shall glory in the LORD;
+the humble shall hear it, and be glad."
+
+*(He goes.)*
+
+---
+
+## Scene 16 — Adullam
+
+*The cave of Adullam. DAVID alone at its mouth. Up the path comes his FATHER'S HOUSE — JESSE, DAVID'S MOTHER, ELIAB and the brothers, carrying what could be carried.*
+
+**DAVID**
+Come in. Come in out of the light. Is this everyone?
+
+**ELIAB**
+Everyone.
+
+*(DAVID takes the bundle from his father's back. He makes a place for his parents against the wall.)*
+
+**JESSE**
+The king's men came asking at the gate. We did not wait for them to ask twice.
+
+*(ELIAB and DAVID are left facing each other.)*
+
+**ELIAB**
+I said to you on the ridge: if the king looks at you twice.
+
+**DAVID**
+You did.
+
+**ELIAB**
+I am not saying it to be right.
+
+*(It is the hardest thing he has ever said.)*
+
+I am saying: tell me where you want me to stand.
+
+*(DAVID looks at his eldest brother. Then he points.)*
+
+**DAVID**
+The mouth of the cave. You have a soldier's eye. Nobody comes up that path without your seeing him first.
+
+*(ELIAB nods, and goes to stand there. Up the path: ZERUIAH, and behind her three young men — JOAB, ABISHAI, ASAHEL.)*
+
+**ZERUIAH**
+I have brought you my sons. They eat a great deal. They do not frighten.
+
+**JOAB**
+*(already looking the cave over)* One way in. Good for holding; bad for leaving. Is there water?
+
+**DAVID**
+A seep at the back. Not enough.
+
+**JOAB**
+Then that is the first thing.
+
+**ABISHAI**
+The first thing is: when do we go and get him?
+
+**DAVID**
+Get whom?
+
+**ABISHAI**
+Saul.
+
+**DAVID**
+We do not.
+
+*(ABISHAI stares. ASAHEL — the youngest, light on his feet — grins.)*
+
+**ASAHEL**
+I told him you would say that. Uncle, I can outrun anything on these hills. Send me for the water.
+
+**DAVID**
+Take a skin. Take two. Come back before dark.
+
+*(ASAHEL is gone. Others are coming up the path now: ragged, wary — the DEBTOR; the BITTER MAN; more behind them.)*
+
+**DEBTOR**
+Is David son of Jesse here?
+
+**DAVID**
+What do you want of him?
+
+**DEBTOR**
+A place to stay.
+
+**DAVID**
+Who is behind you?
+
+**DEBTOR**
+The man I owe. He has my ox and my cloak. He will have my sons next.
+
+**DAVID**
+Come in. Sit.
+
+**BITTER MAN**
+*(not sitting)* I had a field. The king's officer wanted a field. Now the king's officer has one. They say you are the one Saul is afraid of.
+
+**DAVID**
+They say many things.
+
+**BITTER MAN**
+Are you going to fight him?
+
+**DAVID**
+No.
+
+*(A murmur among those arriving.)*
+
+**BITTER MAN**
+Then what is this? What are we all climbing up here for?
+
+*(DAVID looks at them: the men in distress, the men in debt, the men bitter of soul. He does not make a speech. He answers the question.)*
+
+**DAVID**
+To stay alive. To keep one another alive. There are Philistine raiders in these hills and nobody is coming down from Gibeah to stop them; so we will. I cannot give you back your field. I can give you a place at the fire, and a share of whatever there is, and my word that I will not send you anywhere I do not go first.
+
+**BITTER MAN**
+And Saul?
+
+**DAVID**
+Saul is the king of Israel. If that is not what you came to hear, the path goes down as well as up.
+
+*(Nobody goes down. The BITTER MAN, slowly, sits.)*
+
+**A MAN**
+There is not enough water for all of these.
+
+**DAVID**
+How much is left? — A boy has gone for more. Until he is back, share it out. Children first; then the old; then the rest of us.
+
+*(JESSE, by the wall, looks up at that.)*
+
+**ANOTHER**
+And who watches the road?
+
+**DAVID**
+My brother has the mouth of the cave. Two more below him, where the path turns. I will relieve you before night.
+
+*(They move to do it. Without anyone having said so, he is their captain. About four hundred men.)*
+
+*(DAVID goes to his parents.)*
+
+**DAVID**
+You cannot stay here. This is no place for —
+
+**JESSE**
+For the old. Say it. You fed them second, as I recall.
+
+*(DAVID is caught; he laughs. So, almost, does JESSE.)*
+
+**DAVID**
+I will take you across to Moab. The king there will not turn away the house of Ruth.
+
+**JESSE**
+Moab.
+
+*(Dry.)*
+
+My grandmother walked out of it. I am to walk back in.
+
+*Mizpeh of Moab. DAVID, his parents behind him, before the KING OF MOAB.*
+
+**DAVID**
+"Let my father and my mother come and stay with you — until I know what God will do for me."
+
+*(The KING OF MOAB inclines his head. DAVID turns to them. JESSE grips his arm; it is not a thing he does easily. DAVID'S MOTHER takes her son's face in her hands.)*
+
+**DAVID'S MOTHER**
+David.
+
+*(That is all she says. He hears every morning of it. They go in.)*
+
+*The stronghold. GAD the prophet comes to DAVID.*
+
+**GAD**
+"Do not stay in the stronghold. Go — get yourself into the land of Judah."
+
+*(DAVID does not ask why.)*
+
+**DAVID**
+*(to the men)* Gather what you have. We are going back into Judah.
+
+---
+
+## Scene 17 — Abiathar
+
+*Gibeah. SAUL sits under the tamarisk on the height, the spear in his hand, his servants standing round him — men of his own tribe.*
+
+**SAUL**
+"Hear me, men of Benjamin. Will the son of Jesse give every one of you fields and vineyards? Will he make you all captains of thousands and captains of hundreds?"
+
+*(No one answers.)*
+
+"For all of you have conspired against me. No one tells me when my own son makes a covenant with the son of Jesse. Not one of you is sorry for me."
+
+*(A silence in which men look at their feet. Then DOEG steps forward.)*
+
+**DOEG**
+"I saw the son of Jesse come to Nob, to Ahimelech son of Ahitub. He inquired of the LORD for him. He gave him provisions. And he gave him the sword of Goliath the Philistine."
+
+*(AHIMELECH and the PRIESTS of his father's house are brought — linen ephods, empty hands.)*
+
+**SAUL**
+"Why have you conspired against me, you and the son of Jesse? You gave him bread and a sword, and inquired of God for him, so that he might rise against me and lie in wait — as he does this day."
+
+**AHIMELECH**
+*(astonished; and then, simply, truthful)*
+"And who among all your servants is as faithful as David? The king's son-in-law. Captain of your guard. Honored in your house."
+
+*(SAUL's face. AHIMELECH does not see the danger; he sees only that the king has been misinformed.)*
+
+"Was that the first day I inquired of God for him? God forbid. Let the king lay nothing to his servant's charge, or to all my father's house. Your servant knew nothing of all this — nothing, small or great."
+
+**SAUL**
+"You shall die, Ahimelech. You, and all your father's house."
+
+*(To the RUNNERS at his side.)*
+
+Turn and kill the priests of the LORD. Their hand is with David. They knew he was running, and did not tell me.
+
+*(The RUNNERS do not move. Not one hand goes to a sword. It is the only mutiny of SAUL's reign, and it is silent.)*
+
+**SAUL**
+*(to DOEG)* "You. Turn, and fall upon the priests."
+
+*(DOEG draws, and walks toward the white linen. The light leaves before he arrives.)*
+
+*DAVID's camp. A young man comes in running, falls, is caught: ABIATHAR. He is clutching something to his chest — an ephod. Around the fire: DAVID, ABISHAI, the BITTER MAN, others.*
+
+**DAVID**
+Who are you?
+
+**ABIATHAR**
+Abiathar. Son of Ahimelech. Of Nob.
+
+*(DAVID has gone very still.)*
+
+The king sent for my father and all the priests. Doeg killed them. Eighty-five men. Then Nob — he put Nob to the sword. The women. The children. The infants. The oxen and the donkeys.
+
+**DAVID**
+Your father.
+
+*(ABIATHAR shakes his head. Someone brings water. He cannot hold it.)*
+
+**ABIATHAR**
+I was with the flock on the far hill. I took this from the tent, and I ran.
+
+*(DAVID lowers himself to sit on the ground, facing him.)*
+
+**DAVID**
+"I knew it that day. Doeg the Edomite was there, and I knew that he would surely tell Saul."
+
+*(He does not look away.)*
+
+"I am the cause of every death in your father's house."
+
+**ABIATHAR**
+You —
+
+**DAVID**
+Your father asked me why I was alone. I told him the king had sent me. I lied to him, in that place, and he believed me, and he gave me bread from the LORD's table with his own hands.
+
+*(ABIATHAR looks at him. It might be hatred.)*
+
+**ABIATHAR**
+The king asked him why he had helped you. Do you know what he said? He said: "Who among all your servants is as faithful as David?" It was nearly the last thing he said.
+
+*(DAVID takes it. He does not defend himself.)*
+
+**ABISHAI**
+*(on his feet)* Now. Now will you let us?
+
+**BITTER MAN**
+Eighty-five priests.
+
+**ABISHAI**
+He has murdered the LORD's priests in the LORD's linen. What is left to wait for?
+
+**DAVID**
+*(not rising)* Doeg did it. Saul commanded it. And I began it. Which of the three would you like to put your sword through first?
+
+*(ABISHAI has no answer. He sits down, hard.)*
+
+*(DAVID, to ABIATHAR:)*
+
+"Stay with me. Do not be afraid. The one who seeks my life seeks yours. With me you are in safekeeping."
+
+*(ABIATHAR does not answer. He does not leave. After a time, he takes the water.)*
+
+*(DAVID's eyes go to the sword of Goliath, lying where he set it down — AHIMELECH's gift. He speaks to it.)*
+
+**[MUSICAL CUE: PSALM 52.**
+**Who begins:** DAVID, spoken, to the sword.
+**Addressed to:** the "mighty man" — the informer; then, at the turn, to God, with ABIATHAR in his sight.
+**Physical action:** at "a green olive tree" he turns his body from the sword to the survivor.
+**What changes:** from indictment to the choice to shelter the one who is left. If set to music, the setting must show that turn, not only the denunciation.]**
+
+**DAVID**
+"Why do you boast of evil, mighty man?
+The kindness of God lasts all the day.
+Your tongue plots ruin;
+like a sharpened razor, worker of deceit.
+You love evil more than good,
+a lie more than speaking what is right."
+
+*(He turns from the sword to ABIATHAR.)*
+
+"But I am like a green olive tree in the house of God.
+I trust in the kindness of God, forever and ever.
+I will thank You forever, for what You have done;
+and I will wait on Your name — for it is good —
+in the presence of those who love You."
+
+*(ABIATHAR, the ephod in his lap, at DAVID's fire.)*
+
+---
+
+## Scene 18 — The Cave
+
+*The wilderness of En-gedi. The back of a deep cave: DAVID and his men pressed into the dark — ABISHAI, the BITTER MAN, the DEBTOR, ABIATHAR, others. A lookout creeps back from the mouth.*
+
+**LOOKOUT**
+*(a breath)* Saul's men. Three thousand. On the goat-rocks.
+
+*(They shrink further in. At the mouth of the cave a tall figure appears against the light — alone. SAUL. He comes a little way in, lays his robe aside on a rock, and goes to relieve himself, his back to the dark. He has no idea.)*
+
+*(In the dark, everything is whispered. It is no less fierce for that.)*
+
+**BITTER MAN**
+"This is the day of which the LORD said to you: I am giving your enemy into your hand, and you shall do to him as seems good to you."
+
+**ABISHAI**
+There is no one with him. No one.
+
+**DEBTOR**
+One stroke. And we go home.
+
+*(DAVID draws his sword. He goes forward, soundless. He stands over the robe — over SAUL's turned back, an arm's length away. The blade comes down — and cuts the corner from the robe. He comes back with the cloth in his hand.)*
+
+*(He looks at it. His own heart strikes him.)*
+
+**BITTER MAN**
+Why have you come back? He is still there.
+
+*(ABISHAI is already rising. DAVID's hand on his chest.)*
+
+**DAVID**
+"The LORD forbid that I should do this thing to my lord, to the LORD's anointed — to put out my hand against him. He is the anointed of the LORD."
+
+**ABISHAI**
+He is hunting you.
+
+**DAVID**
+I know.
+
+**ABISHAI**
+My mother has not slept under a roof in two years. Asahel has grown his beard in caves. That man —
+
+*(He points with his whole arm.)*
+
+— that man had eighty-five priests cut down for a loaf of bread. Ask the priest whether he is the anointed of the LORD.
+
+*(They all look at ABIATHAR. ABIATHAR looks at the back of the king. He says nothing. It is worse than if he spoke.)*
+
+**DEBTOR**
+You are anointed too. We know it; all Judah knows it. One stroke — and Israel has one king, and no war.
+
+**DAVID**
+And how did he become king?
+
+**DEBTOR**
+What?
+
+**DAVID**
+The one king. When they ask it in the gate. How did the son of Jesse come by the seat?
+
+*(No one answers.)*
+
+With a knife. In a cave. While the old king had his robe off. And then every man in Israel who has a knife and knows of a cave is a king. I should sit in that seat for the rest of my days, watching you.
+
+**BITTER MAN**
+We would never —
+
+**DAVID**
+You are asking me to, now.
+
+*(A beat.)*
+
+And Benjamin. Do you think Benjamin follows the man who butchered their kinsman? You would not have one king. You would have Judah burying Benjamin and Benjamin burying Judah for a generation, and the Philistines sitting in Gath, patient, waiting to see what is left.
+
+**ABISHAI**
+So we go on running.
+
+**DAVID**
+I do not promise you that the hunt ends today.
+
+**BITTER MAN**
+Then what can you promise us?
+
+**DAVID**
+That we will not become the hunters.
+
+*(One man lets his hand fall from his sword. Another keeps his where it is. They are not all persuaded. DAVID sees that.)*
+
+You will not rise against him.
+
+*(It is an order. ABISHAI sits back on his heels.)*
+
+*(SAUL takes up his robe, puts it on without looking at it, and goes out into the light. DAVID waits; then follows, to the mouth of the cave, into the sun.)*
+
+**DAVID**
+"My lord the king!"
+
+*(SAUL turns. DAVID bows, his face to the ground.)*
+
+"Why do you listen to the words of men who say: David is seeking your harm? Today your own eyes have seen it. The LORD gave you into my hand in the cave. They told me to kill you. And I spared you. I said: I will not put out my hand against my lord, for he is the LORD's anointed."
+
+*(He holds up the cloth.)*
+
+"And see, my father — look. See the corner of your robe in my hand."
+
+*(SAUL's hand goes to the hem. Finds the place.)*
+
+"I cut the corner from your robe, and I did not kill you. Know, and see: there is no evil in my hand, and no rebellion. I have not sinned against you — and you are hunting my life, to take it."
+
+"After whom has the king of Israel come out? Whom are you pursuing? A dead dog. A single flea."
+
+"The LORD shall judge between me and you. The LORD may avenge me upon you. But my hand shall not be against you."
+
+*(Silence. The wind on the rocks.)*
+
+**SAUL**
+"Is that your voice — my son David?"
+
+*(He lifts up his voice, and weeps.)*
+
+"You are more righteous than I. For you have repaid me good, and I have repaid you evil. When a man finds his enemy, does he send him safely on his way?"
+
+*(He comes a step nearer.)*
+
+I asked you once. In my hall, in the night. I asked you where he was standing.
+
+**DAVID**
+I remember.
+
+**SAUL**
+You said you would play until it was light.
+
+**DAVID**
+I played until it was light, my lord.
+
+*(SAUL nods slowly. He has his answer; he has had it for years.)*
+
+**SAUL**
+"And now — I know that you will surely be king, and that the kingdom of Israel will stand firm in your hand."
+
+*(It is said. The men at the cave's mouth hear it.)*
+
+"Swear to me, then, by the LORD: that you will not cut off my seed after me. That you will not wipe out my name from my father's house."
+
+**DAVID**
+I have sworn it already. To your son. I swear it to you.
+
+*(SAUL looks at him a last moment — and turns, and goes down toward his three thousand. He does not say "Come home." DAVID does not ask.)*
+
+*(DAVID stands in the mouth of the cave with the corner of the robe in his hand.)*
+
+**[MUSICAL CUE: PSALM 54 — here, at the END of the cave, and not before.**
+**Who begins:** DAVID, alone in the cave's mouth.
+**Addressed to:** God.
+**Physical action:** his men file out past him and wait. He walks behind them, up toward the stronghold. He folds the cloth and keeps it.
+**Why song, here:** only after the decision has been made and has cost what it costs does prayer come back to him.
+**What changes:** nothing outside him. They are still fugitives. He gives thanks anyway.]**
+
+**DAVID**
+"God, by Your name, save me;
+by Your might, judge my cause.
+God, hear my prayer;
+give ear to the words of my mouth."
+
+*(The men come out, one by one. ABISHAI last. He looks at the cloth. He looks at DAVID. He goes on.)*
+
+"See — God is my helper;
+the LORD is with those who hold up my life."
+
+*(He folds the cloth.)*
+
+"Freely I will sacrifice to You;
+I will thank Your name, LORD, for it is good.
+For He has delivered me out of every trouble."
+
+*(They climb toward the stronghold.)*
+
+---
+
+## Scene 19 — Nabal and Abigail
+
+*DAVID's camp. A RUNNER.*
+
+**RUNNER**
+Samuel is dead.
+
+*(DAVID sits down where he is. The camp goes quiet around him.)*
+
+**A VOICE**
+"And Samuel died. And all Israel gathered and mourned for him, and they buried him at his home in Ramah."
+
+*(DAVID cannot go to Ramah. He sits facing that way. After a while:)*
+
+**DAVID**
+He told me I should have to walk it without a prophet.
+
+*(He gets up.)*
+
+*The wilderness of Paran, near Carmel. Shearing time: far off, the noise of a feast. DAVID with ten YOUNG MEN.*
+
+**DAVID**
+Go up to Carmel, to Nabal. He is shearing three thousand sheep, and there is not one missing, because all winter we stood between his shepherds and the raiders and took nothing. Greet him in my name. "Say: Long life to you. Peace to you, and peace to your house, and peace to all that is yours." It is a feast day. "Give, please, whatever comes to your hand — to your servants, and to your son David."
+
+*(The YOUNG MEN go.)*
+
+*NABAL's shearing-feast. NABAL — rich, loud, his cup in his hand. The YOUNG MEN deliver it, and wait.*
+
+**NABAL**
+"Who is David? And who is the son of Jesse? There are a great many servants nowadays breaking away from their masters."
+
+*(Laughter at his table.)*
+
+"Shall I take my bread, and my water, and my meat that I have slaughtered for my shearers — and give it to men who come from I do not know where?"
+
+*DAVID's camp.*
+
+**DAVID**
+What did he give?
+
+**YOUNG MAN**
+Nothing.
+
+**DAVID**
+What did he say?
+
+**YOUNG MAN**
+*(reluctant)* "Who is David, and who is the son of Jesse." He said there are many servants nowadays who break away from their masters.
+
+*(A long silence. It is the thing Saul's court says. It is the thing he will not let himself be. DAVID's face has changed in a way his men have not seen.)*
+
+**DAVID**
+"Every man: gird on his sword."
+
+*(They do. DAVID girds on his own. ABISHAI is beside him at once, alight.)*
+
+**ABISHAI**
+Now *this* I understand.
+
+*(Four hundred go; two hundred stay with the baggage.)*
+
+*NABAL's house. A SHEPHERD runs to ABIGAIL.*
+
+**SHEPHERD**
+Mistress. David sent messengers out of the wilderness to greet our master, and he flew at them. And those men were very good to us. We lost nothing, all the time we were in the fields. "They were a wall around us, by night and by day." Now think what you will do — for harm is settled on our master and on all his house. And he is such a brute that no one can speak to him.
+
+*(ABIGAIL does not waste one breath on dismay.)*
+
+**ABIGAIL**
+How many are with him?
+
+**SHEPHERD**
+Hundreds.
+
+**ABIGAIL**
+How long?
+
+**SHEPHERD**
+They will be on the mountain road by now.
+
+**ABIGAIL**
+Two hundred loaves. Two skins of wine. The five sheep that are dressed. Five measures of roasted grain. A hundred clusters of raisins, two hundred cakes of figs. On the donkeys — now.
+
+*(Servants run.)*
+
+Go ahead of me. I am coming behind you.
+
+**SHEPHERD**
+And the master?
+
+**ABIGAIL**
+Tell him nothing.
+
+*The mountain road, a covert of the hill. DAVID coming down at the head of four hundred armed men.*
+
+**DAVID**
+"For nothing I guarded everything this man has in the wilderness. Not one thing of his went missing. And he has paid me evil for good."
+
+"God do so to me, and more — if by morning I leave alive one male of all who are his."
+
+**A MAN**
+There is a train of donkeys on the road ahead. Do we go round?
+
+**DAVID**
+Keep to the road.
+
+*(The donkeys. Then ABIGAIL, riding. She sees the blades — none of them is sheathed. She gets down quickly, and comes through the armed men, and falls at DAVID's feet with her face to the ground.)*
+
+**ABIGAIL**
+"On me, my lord — on me be the guilt. Let your servant speak in your hearing. And hear the words of your servant."
+
+**DAVID**
+Who are you?
+
+**ABIGAIL**
+Abigail. Nabal's wife.
+
+*(His hand tightens on the hilt. She goes on, quickly — she has perhaps thirty breaths.)*
+
+"Let my lord pay no mind to this worthless man, Nabal. He is what his name is. Fool is his name, and folly goes with him. And I, your servant — I did not see the young men my lord sent."
+
+**DAVID**
+I do not make war on women. Stand aside.
+
+**ABIGAIL**
+I know you do not. That is why I am standing here.
+
+*(She gestures: the donkeys.)*
+
+This is a gift your servant has brought to my lord. Let it be given to the young men who walk behind you. They are hungry. I can see it from here.
+
+*(The men look at the bread. DAVID does not.)*
+
+**DAVID**
+He called me a runaway slave.
+
+**ABIGAIL**
+He did. And tomorrow, when he is sober, he will not remember that he said it. Will you remember that you killed for it?
+
+*(That reaches him. She sees it reach him, and changes her ground: she is not pleading now; she is telling him who he is.)*
+
+"The LORD will surely make my lord a lasting house — for my lord is fighting the battles of the LORD, and no evil has been found in you all your days."
+
+They tell a thing about you in Carmel. That a king stood in a cave with his back to you, and you cut his robe, and would not cut him.
+
+*(ABISHAI looks away.)*
+
+Is it true?
+
+**DAVID**
+It is true.
+
+**ABIGAIL**
+Then will you spend on a fool what you would not spend on Saul?
+
+*(Silence on the road.)*
+
+"If a man rises to pursue you and seek your life, the life of my lord shall be bound up in the bundle of the living with the LORD your God. And the lives of your enemies He shall sling out, as from the hollow of a sling."
+
+*(The sling. He hears it.)*
+
+"And when the LORD has done for my lord all the good He has spoken of you, and has appointed you prince over Israel — let this not be a stumbling for you, or a grief of heart to my lord: to have shed blood without cause. For my lord to have saved himself with his own hand."
+
+*(She has said it. She bows her head.)*
+
+"And when the LORD has dealt well with my lord — remember your servant."
+
+*(DAVID's hand comes off the hilt. Four hundred men see it.)*
+
+**DAVID**
+"Blessed is the LORD, the God of Israel, who sent you this day to meet me. And blessed is your good sense. And blessed are you — who have kept me this day from coming into blood, and from saving myself with my own hand."
+
+*(He lets out a breath that is nearly a laugh — at himself.)*
+
+As the LORD lives: if you had not hurried, by the light of morning there would not have been one left to Nabal.
+
+*(To the men.)*
+
+Take what she has brought.
+
+*(They sheathe their swords to carry bread. ABISHAI, last and slowest.)*
+
+"Go up in peace to your house. See — I have listened to your voice. I have granted your request."
+
+*(ABIGAIL rises, and goes. DAVID watches her out of sight.)*
+
+---
+
+## Scene 20 — Until the Morning Light
+
+*NABAL's house. The feast — "like the feast of a king." NABAL very drunk, very merry. ABIGAIL comes in from the road. She looks at him. She says nothing, small or great, until the morning light.*
+
+*Morning. NABAL, grey, the wine gone out of him. ABIGAIL standing.*
+
+**ABIGAIL**
+Yesterday David was on the road to this house. Four hundred men, with their swords drawn. I went out to him with bread. He listened to me, and turned back.
+
+*(NABAL does not move. His heart dies within him. He becomes like a stone.)*
+
+*(The house takes up its work again around a man who sits and does not stir. About ten days. Then they carry him out.)*
+
+*DAVID's camp. The news.*
+
+**DAVID**
+"Blessed is the LORD, who has pleaded my cause against the insult I had from Nabal — and has held back His servant from evil."
+
+*(He is quiet a moment.)*
+
+I was an hour from it.
+
+*(To his servants.)*
+
+Go to Carmel. To Abigail.
+
+*NABAL's house — hers now. DAVID's SERVANTS before ABIGAIL.*
+
+**SERVANT**
+David has sent us to you, to take you to him as his wife.
+
+*(ABIGAIL rises. She bows, her face to the ground.)*
+
+**ABIGAIL**
+"See — your handmaid is a servant, to wash the feet of my lord's servants."
+
+*(She gets up, and does not wait to be led: she lifts her own bundle. Five young women follow her.)*
+
+*DAVID's camp. ABIGAIL arrives. A woman meets her at the edge of the firelight with a jar: AHINOAM of Jezreel — DAVID's wife, plain-spoken, a woman of the valley.*
+
+**AHINOAM**
+You will be the one from Carmel.
+
+**ABIGAIL**
+Abigail.
+
+**AHINOAM**
+Ahinoam. Of Jezreel. There is water. In this camp everyone carries their own; I thought, the first night, I would carry yours.
+
+*(ABIGAIL takes it as it is meant.)*
+
+**ABIGAIL**
+Thank you.
+
+**AHINOAM**
+He is over there. He has had news from Gibeah, and he will not want anyone. I should go to him anyway, if I were you.
+
+*(ABIGAIL goes to DAVID. He is sitting apart.)*
+
+**ABIGAIL**
+My lord.
+
+**DAVID**
+You came.
+
+**ABIGAIL**
+You sent.
+
+*(She waits.)*
+
+What is the news from Gibeah?
+
+**DAVID**
+Saul has given his daughter Michal to another man. Palti, son of Laish.
+
+*(ABIGAIL takes that in without flinching.)*
+
+She let me down from a window on a knotted cloth. She stayed in the room, to answer for it.
+
+**ABIGAIL**
+Then she is someone I should like to have known.
+
+*(DAVID looks up at her. She sits down — not close; near.)*
+
+---
+
+## Scene 21 — "Once — I Will Not Strike Twice"
+
+*Night. The hill of Hachilah. Below, SAUL's camp: three thousand men asleep in their circles; the king in the midst. DAVID on the height, looking down, with ABISHAI and AHIMELECH the Hittite.*
+
+**DAVID**
+He wept. At En-gedi. He called me his son. He said the kingdom would stand in my hand.
+
+**ABISHAI**
+And there he is. With three thousand.
+
+*(DAVID says nothing. He is counting fires.)*
+
+**DAVID**
+"Who will go down with me to Saul, into the camp?"
+
+**ABISHAI**
+"I will go down with you."
+
+*(DAVID looks at him — measuring exactly what he is taking with him.)*
+
+**DAVID**
+Come, then. My sister's son. Quietly.
+
+*(They go down. They walk among the sleepers; no one stirs — a deep sleep lies on the whole camp. In the center: SAUL, asleep. His spear stands driven into the ground at his head. A jar of water beside it. ABNER sleeps an arm's length away.)*
+
+*(They stand over the king. He is older than at the cave. He sleeps badly, even now.)*
+
+**ABISHAI**
+*(a whisper; reverent, almost)* "God has shut your enemy into your hand today."
+
+*(He lays hold of the king's own spear.)*
+
+"Let me pin him to the earth with the spear. Once. I will not strike him twice."
+
+**DAVID**
+"Do not destroy him. Who can put out his hand against the LORD's anointed, and be innocent?"
+
+**ABISHAI**
+You said that in the cave.
+
+**DAVID**
+I did.
+
+**ABISHAI**
+In the cave you did not know what it would buy. Now you know. It bought this.
+
+*(His arm takes in the three thousand.)*
+
+You spared him, and he wept, and he came again. How many times is a man allowed to weep?
+
+**DAVID**
+I do not know.
+
+**ABISHAI**
+Uncle. Listen to me. I am not the men in the cave. I do not want a field. I am your blood. I have watched you carry six hundred people from rock to rock for years, and I have never once seen you sleep the night through. Let me do it. Your hand will not be on him. Mine will. Let it be on me — the guilt, the name of it, all of it. You can weep for him afterward. You can tear your clothes and curse me in front of all Israel; I will stand there and be cursed. Only let it end.
+
+*(It is love. DAVID knows that it is. He puts himself between ABISHAI and the sleeping man.)*
+
+**DAVID**
+And when I have cursed you in front of all Israel — who will believe me?
+
+*(ABISHAI is silent.)*
+
+If your hand does it, it is my hand. You are my sister's son; you came down this hill at my side. There is no one in Israel who would not know whose spear that was.
+
+*(He looks down at SAUL.)*
+
+In the cave, I was afraid of what I should become. I am not afraid of that tonight. Tonight I am afraid of what they would become.
+
+*(The sleepers; the tribes.)*
+
+That is Benjamin, lying there. Tomorrow they wake, and their king is nailed to the ground, and they come up this hill for us. And the day after, Judah comes for them. And it does not stop, Abishai. Brothers do not stop. A stranger you can beat and send home. A brother has nowhere to go.
+
+**ABISHAI**
+So he goes on living. And we go on —
+
+**DAVID**
+"As the LORD lives: the LORD Himself will strike him. Or his day will come, and he will die. Or he will go down into battle, and be swept away."
+
+**ABISHAI**
+When?
+
+**DAVID**
+I do not know. I have stopped asking when.
+
+*(This is what is new, and what it has cost.)*
+
+It may be that I grow old on these rocks. It may be that there is never any house, for me or for you. I have looked at that. I am telling you I have looked at it.
+
+"The LORD forbid that I should put out my hand against the LORD's anointed."
+
+*(He draws the spear out of the ground himself — the spear that was thrown at him three times; that was thrown at Jonathan; that he once took from this same sleeping hand, and once carried back. He holds it.)*
+
+Take the jar of water. We are going.
+
+*(ABISHAI looks at SAUL. He looks at DAVID. He bends, and takes the jar. They go up through the sleeping army, and no one sees, and no one knows, and no one wakes.)*
+
+*The far hilltop. A wide space between. DAVID stands with the spear, and shouts.*
+
+**DAVID**
+"Abner! Will you not answer, Abner?"
+
+*(Below: confusion; torches.)*
+
+**ABNER**
+"Who are you, that calls out to the king?"
+
+**DAVID**
+"Are you not a man? Who is like you in Israel? Then why did you not guard your lord the king? One of the people came in to destroy the king, your lord. It is not good, this thing you have done."
+
+"Look — where is the king's spear? And the jar of water that was at his head?"
+
+*(ABNER looks. The hole in the ground. SAUL is on his feet.)*
+
+**SAUL**
+"Is that your voice — my son David?"
+
+**DAVID**
+"It is my voice, my lord the king."
+
+"Why does my lord pursue his servant? What have I done? What evil is in my hand?"
+
+*(And now what he could not say at the cave — what the years have added.)*
+
+"If it is the LORD who has stirred you against me, let Him accept an offering. But if it is men — cursed are they before the LORD. For they have driven me out this day from any share in the inheritance of the LORD. They say to me: Go. Serve other gods."
+
+*(It is the worst thing that has been done to him, and he has never said it aloud.)*
+
+"Do not let my blood fall to the earth far from the presence of the LORD. For the king of Israel has come out to hunt a single flea — as one chases a partridge in the mountains."
+
+**SAUL**
+"I have sinned."
+
+*(Across the dark.)*
+
+"Come back, my son David. I will do you no more harm — because my life was precious in your eyes this day. I have been a fool. I have erred, very greatly."
+
+*(DAVID hears "Come back." He does not answer it. He holds up the spear.)*
+
+**DAVID**
+"Here is the king's spear. Let one of the young men cross over, and take it."
+
+"The LORD will repay each man his righteousness and his faithfulness. The LORD gave you into my hand today, and I would not put out my hand against the LORD's anointed. As your life was great in my eyes this day — so may my life be great in the eyes of the LORD. May He deliver me out of every trouble."
+
+*(A YOUNG MAN crosses the space. DAVID puts the spear into his hands. It goes back down the hill to SAUL.)*
+
+**SAUL**
+"Blessed are you, my son David. You will do great things. And you will surely prevail."
+
+*(They look at each other across the valley — the tall old man with his spear; the fugitive with his empty hands. It is the last time. Neither knows it. SAUL turns back to his place. DAVID goes his way.)*
+
+**ABISHAI**
+*(when they are far)* He will come again.
+
+**DAVID**
+Yes.
+
+**ABISHAI**
+We shall have to go on running.
+
+*(DAVID looks back once at the fires.)*
+
+**DAVID**
+Then we go.
+
+---
+
+*[CONTINUATION POINT: Scene 22 — Ziklag and the House of Achish (1 Samuel 27).]*
