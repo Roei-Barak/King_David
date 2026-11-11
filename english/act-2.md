@@ -1671,4 +1671,533 @@ Cross over with me. I will provide for you beside me in Jerusalem.
 
 ---
 
-*[CONTINUATION POINT: Scene 47 — Another Breach, Another City (2 Samuel 19:41–20:22).]*
+## Scene 47 — Another Breach, Another City
+
+*[Provisional scene — retained pending Roei's review.]*
+
+*Gilgal. The king has come home across the Jordan — and the homecoming has turned, within the hour, into a quarrel. MEN OF ISRAEL on one side of him; MEN OF JUDAH on the other.*
+
+**MAN OF ISRAEL**
+"Why have our brothers, the men of Judah, stolen you away — and brought the king and his household over the Jordan?"
+
+**MAN OF JUDAH**
+"Because the king is our near kinsman. Why be angry over this? Have we eaten at the king's cost? Has he given us any gift?"
+
+**MAN OF ISRAEL**
+"We have ten shares in the king. In David, too, we have more than you. Why did you treat us with contempt? Was it not our word, first, to bring back our king?"
+
+*(DAVID, between them, lifts his hands. Neither side is looking at him. The words of the men of Judah are harsher than the words of the men of Israel.)*
+
+*(A ram's horn. A man of Benjamin has leapt onto a rock: SHEBA son of Bichri.)*
+
+**SHEBA**
+"We have no share in David! We have no inheritance in the son of Jesse! Every man to his tents, Israel!"
+
+*(And they go. Just like that: all the men of Israel peel away from behind DAVID and follow SHEBA. Only Judah clings to its king. DAVID looks at the road that was full a moment ago.)*
+
+*Jerusalem. DAVID; AMASA, the new captain; ABISHAI. JOAB stands among the officers, without a command.*
+
+**DAVID**
+*(to AMASA)* "Call out the men of Judah for me. Three days. And be here yourself."
+
+*(AMASA goes. Three days pass over the stage. He has not come.)*
+
+**DAVID**
+*(to ABISHAI)* "Now Sheba son of Bichri will do us more harm than Absalom did. Take your lord's servants and pursue him — before he finds himself walled cities, and tears out our eye."
+
+*(ABISHAI goes out. JOAB's men go out after him — and JOAB with them, though no one has told him to.)*
+
+*The great stone at Gibeon. AMASA — late; hurrying — comes to meet them. JOAB steps forward, in his soldier's tunic, a sword belted over it.*
+
+**JOAB**
+"Is it well with you, my brother?"
+
+*(His right hand takes AMASA by the beard, to kiss him. AMASA is not watching the other hand. The blow is hidden between their bodies. They part. AMASA falls.)*
+
+*(JOAB does not strike twice. He and ABISHAI go on after SHEBA. One of JOAB's young men stands over the body.)*
+
+**YOUNG MAN**
+"Whoever favors Joab, and whoever is for David — follow Joab!"
+
+*(But AMASA lies in the middle of the highway, and every man who comes up stops. So the YOUNG MAN drags him off the road into the field, and throws a garment over him. Then they pass. No one blesses the deed.)*
+
+*Abel of Beth-maacah, far to the north. Siege: a ramp against the wall; the ram swinging. A woman's voice, from above — before we see her.*
+
+**WISE WOMAN**
+"Listen! Listen! Say to Joab: Come near, so that I may speak to you."
+
+*(The ram stops. JOAB comes near. She is on the wall.)*
+
+**WISE WOMAN**
+"Are you Joab?"
+
+**JOAB**
+"I am."
+
+**WISE WOMAN**
+"Listen to the words of your servant."
+
+**JOAB**
+"I am listening."
+
+**WISE WOMAN**
+"In the old days they used to say: Let them ask at Abel. And so a matter was ended. I am one of the peaceable and the faithful in Israel. You are seeking to destroy a city — and a mother in Israel. Why would you swallow up the inheritance of the LORD?"
+
+**JOAB**
+*(and for once it is torn out of him; he means it)*
+"Far be it — far be it from me, that I should swallow up or destroy. That is not the matter. A man of the hill country of Ephraim — Sheba son of Bichri is his name — has lifted his hand against the king, against David. Give him up, him alone, and I will go from the city."
+
+**WISE WOMAN**
+"His head shall be thrown to you over the wall."
+
+*(She turns from the parapet to her own people. What she says to them, in her wisdom, we do not hear; what they decide is done out of sight. Something is thrown over the wall. JOAB blows the ram's horn. The siege comes apart; every man to his tent. On the wall, the WOMAN stays until the last soldier is gone.)*
+
+*Jerusalem. JOAB before DAVID.*
+
+**JOAB**
+The revolt is over. One head. A city is standing that would not be.
+
+**DAVID**
+And Amasa?
+
+**JOAB**
+Amasa was three days late.
+
+**DAVID**
+He was my sister's son. As you are.
+
+*(JOAB says nothing. DAVID looks at him for a long time — the man who buried Asahel; who killed Abner in a gate, and Absalom in an oak, and Amasa on a road; who brought back Absalom; who has just spared a city because a woman asked him to. Who is, once more, captain of the host.)*
+
+**DAVID**
+*(low; to himself, as once before)* Too hard for me.
+
+---
+
+## Scene 48 — Rizpah
+
+*[Provisional scene — retained pending Roei's review. Its date within the reign is not given in the source; it is placed here without a claim that it follows Sheba.]*
+
+*A bare rock. A woman sits beside a spread of sackcloth: RIZPAH daughter of Aiah — once the concubine of Saul. She will not move from this place for the whole of the scene. Around her, light and weather and other people change.*
+
+*Elsewhere: the people, thin.*
+
+**A MAN OF THE PEOPLE**
+The third year. No rain.
+
+*(DAVID, seeking the face of the LORD. GAD, or the priest with the ephod, gives the answer that is given.)*
+
+**A VOICE**
+"It is on account of Saul, and of his house of blood — because he put the Gibeonites to death."
+
+*(The GIBEONITES are called: a remnant, not of Israel, to whom Israel once swore.)*
+
+**DAVID**
+"What shall I do for you? With what shall I make atonement — so that you may bless the inheritance of the LORD?"
+
+**GIBEONITE**
+"It is not a matter of silver or gold between us and Saul, or his house. And it is not for us to put any man to death in Israel."
+
+**DAVID**
+What you say, I will do.
+
+**GIBEONITE**
+"The man who consumed us, and planned to destroy us — let seven men of his sons be given to us."
+
+*(It hangs in the air. DAVID is thinking of a cave's mouth, and a weeping king: Swear to me that you will not cut off my seed. And of a field, and an arrow.)*
+
+**DAVID**
+"I will give them."
+
+*(No music. He spares MEPHIBOSHETH son of Jonathan, because of the oath of the LORD that was between them. Seven are given. Among them: the two sons of RIZPAH.)*
+
+*(It is not shown. The light comes back to the rock. The sackcloth; RIZPAH. It is the beginning of the barley harvest: heat. A bird's shadow crosses her; she rises, drives it off, sits. Night: something moves at the edge of the dark; she rises, drives it off, sits. People come — with water, with a cloak; they try, gently, to lead her away. She does not go. The season turns over her.)*
+
+*The king's house.*
+
+**MESSENGER**
+Rizpah daughter of Aiah has not left them. From the first of the harvest. By day she keeps the birds of the sky from them, and by night the beasts of the field.
+
+*(DAVID rises. He goes out himself.)*
+
+*The rock. DAVID stands before RIZPAH. She does not rise for the king.*
+
+**DAVID**
+Rizpah, daughter of Aiah.
+
+*(Nothing.)*
+
+I have come for them. For all seven. And I have sent to Jabesh in Gilead, for the bones of Saul, and of Jonathan his son. They will lie together, in the land of Benjamin, in the tomb of Kish.
+
+*(She looks at him, then — for the first time.)*
+
+**RIZPAH**
+They have names.
+
+**DAVID**
+Tell me.
+
+**RIZPAH**
+Armoni. And Mephibosheth.
+
+*(The same name as the man at his table. DAVID bows his head.)*
+
+**DAVID**
+Armoni. And Mephibosheth.
+
+*(He kneels at the edge of the sackcloth, and with his own hands begins to gather what is there. After a moment, she helps him. The cloth is folded at last. The families walk behind. And as they go — the sound of rain.)*
+
+**A VOICE**
+"And after that, God let Himself be entreated for the land."
+
+---
+
+## Scene 49 — Water from Bethlehem
+
+*[A recollection — not the next event. It should be unmistakable that we have stepped back in time.]*
+
+*The king's table. DAVID, old now. A servant is pouring water into a cup. DAVID hears the sound of it — and holds up his hand. The pouring stops. The light changes: the lamps of the palace give way to a cave-fire. Out of the shadows of the standing courtiers step THREE YOUNG WARRIORS, in the gear of long ago. DAVID straightens; years fall off him.*
+
+*The stronghold of Adullam. Harvest heat. Below, in the valley of Rephaim, the Philistines; and a Philistine garrison is sitting in Bethlehem.*
+
+**FIRST WARRIOR**
+There is water in the skin.
+
+**DAVID**
+It is warm, and it tastes of goat.
+
+*(He is looking south — toward a town he can nearly see.)*
+
+There is a well by the gate at Bethlehem. Cut down through the rock, so the water comes up cold on the hottest day of the harvest. My mother sent me to it every evening with the jar. I used to put my whole face in.
+
+*(Half to himself; a homesick man, not a commander.)*
+
+"Oh, that someone would give me a drink of water from the well of Bethlehem — the one by the gate!"
+
+*(He turns back to his work. He does not see the THREE look at one another; or see them go.)*
+
+*(A passage of danger, swift: three men through a sleeping camp; a gate; a rope; a shout; running. They are back — filthy, bleeding, grinning. One of them holds out a vessel in a gashed hand.)*
+
+**FIRST WARRIOR**
+From Bethlehem.
+
+**SECOND WARRIOR**
+By the gate.
+
+**THIRD WARRIOR**
+It is still cold.
+
+*(DAVID takes it. He is overcome. He lifts it to his mouth — and sees the hand that gave it: the blood running down the wrist. He stops.)*
+
+**DAVID**
+You went through their camp.
+
+**FIRST WARRIOR**
+There and back.
+
+**DAVID**
+For a drink of water.
+
+**SECOND WARRIOR**
+You asked for it.
+
+**DAVID**
+I did not ask. I wished. A man should be careful what he wishes aloud, when there are men who love him standing by.
+
+*(He lowers the vessel.)*
+
+"Far be it from me, LORD, that I should do this. Is it not the blood of the men who went at the risk of their lives?"
+
+*(He will not drink it.)*
+
+**THIRD WARRIOR**
+*(stung)* We brought it for you.
+
+**DAVID**
+I know. That is why I cannot. It cost too much to go down one man's throat.
+
+*(He looks at the three of them.)*
+
+There is only One it is fit to be given to.
+
+*(He pours it out, slowly, onto the ground — before the LORD. The THREE watch their water sink into the dust. Then they understand what has been done with their gift. One by one, they kneel.)*
+
+**[MUSICAL CUE: "MAYIM LEDAVID HAMELECH" — proposed placement; adaptation to be made to fit this version; no existing lyric used here. Under it, verses from David's song, 2 Samuel 22 (two separate passages, not one continuous quotation).**
+**Who begins:** DAVID, as the water is poured.
+**Addressed to:** God; and to the men around him.
+**Physical action:** the pouring lasts the whole of the passage. The THREE carry the vessel; DAVID pours.
+**What changes:** a gift refused becomes an offering shared. The action stays concrete; it is never a comic number.]**
+
+**DAVID**
+"The LORD is my rock, and my fortress, and my deliverer.
+My God, my rock — in Him I take refuge."
+
+**DAVID AND THE THREE**
+"For You are my lamp, LORD;
+and the LORD lights up my darkness."
+
+*(The cave-fire fades. The THREE step back into the shadows and are courtiers again. DAVID, old, at his table, the cup of water untouched in front of him.)*
+
+**DAVID**
+*(quietly)* Men have been going to the wall for me all my life.
+
+*(He does not drink.)*
+
+---
+
+## Scene 50 — The Census
+
+*The same table. The cup is cleared; in its place the business of a kingdom at its height: lists of towns; the heads of tribes; tallies. JOAB, grey; the SCRIBES.*
+
+**DAVID**
+"Go through all the tribes of Israel — from Dan to Beersheba — and number the people. I would know the number of the people."
+
+*(The SCRIBES take up their pens. JOAB does not move.)*
+
+**JOAB**
+"May the LORD your God add to the people a hundred times as many as they are — and may the eyes of my lord the king see it."
+
+*(Bluntly.)*
+
+"But why does my lord the king want this thing?"
+
+*(DAVID does not answer. JOAB — of all men — presses.)*
+
+You have never counted them. You have led them out and brought them in for forty years, and you never once asked how many. You used to know them. Now you want them on a tablet.
+
+*(He takes a blank tablet from a SCRIBE and lays it on the table in front of the king.)*
+
+I have done a great many things for you that you did not order. I am asking you not to order this.
+
+*(DAVID looks at the blank tablet. He gives no reason. He takes the king's seal, and sets it on the tablet.)*
+
+**DAVID**
+Number them.
+
+*(JOAB holds his eyes a moment longer. The king's word stands. JOAB bows, and goes out, and the captains of the host with him.)*
+
+*(Nine months and twenty days. The voices of the SCRIBES, overlapping, passing place-names from mouth to mouth: Aroer… Gilead… Dan… round to Sidon… the fortress of Tyre… the south of Judah… Beersheba. Across the stage, the ENSEMBLE — the people — walk past a scribe one at a time. Each says a name. Each is given a number. The names stop being heard; only the numbers.)*
+
+*(JOAB returns, and lays the sum before the king. DAVID looks at it. He is alone with the tablets. His own heart strikes him.)*
+
+**DAVID**
+"I have sinned greatly in what I have done. And now, LORD — take away, I pray, the guilt of Your servant. For I have acted very foolishly."
+
+*Morning. GAD the prophet, David's seer.*
+
+**GAD**
+"Thus says the LORD: Three things I hold over you. Choose one of them, and I will do it to you."
+
+*(DAVID waits.)*
+
+"Shall famine come to you in your land? Or will you flee three months before your foes, while they pursue you? Or shall there be three days' pestilence in your land? Now consider, and see what answer I shall return to Him who sent me."
+
+**DAVID**
+"I am in great distress."
+
+*(He is. But he does not hesitate over this.)*
+
+"Let us fall into the hand of the LORD — for His mercies are great. Into the hand of man let me not fall."
+
+*(The pestilence passes through the people — from Dan to Beersheba. It is given without spectacle.)*
+
+**A VOICE**
+"And there died of the people, from Dan to Beersheba, seventy thousand men."
+
+*(The ENSEMBLE come back to the table. They do not carry tablets. One lays down a sandal. One a shawl. One a child's wooden toy. A mat. A water jar. The table of numbers fills with the things of particular people. DAVID stands over it. He sees them: one, and one, and one.)*
+
+*(He comes down from the place where he gave the order.)*
+
+*(The ENSEMBLE draw near him and stand — as the lambs stood, at the very beginning, pressing toward the gap. This time he has nothing in his hands to give them. He stands in front of them. He lifts his face.)*
+
+**DAVID**
+"See — it is I who have sinned. It is I who have done wrong. But these — the sheep — what have they done?"
+
+*(He opens his arms: in the gap.)*
+
+"Let Your hand be against me — and against my father's house."
+
+---
+
+## Scene 51 — The Threshing Floor
+
+*The table is carried away. What is left is a floor: flat rock, on a height above the city. Sledges; a yoke of oxen; a heap of wheat. A Jebusite farmer at his threshing, and his sons: ARAUNAH. This is where the plague stopped.*
+
+*GAD comes to DAVID.*
+
+**GAD**
+"Go up. Raise an altar to the LORD on the threshing floor of Araunah the Jebusite."
+
+*(DAVID goes up, as the LORD commanded. ARAUNAH looks down, sees the king and his servants climbing toward him, and comes out, and bows with his face to the ground.)*
+
+**ARAUNAH**
+"Why has my lord the king come to his servant?"
+
+**DAVID**
+"To buy the threshing floor from you — to build an altar to the LORD — so that the plague may be held back from the people."
+
+**ARAUNAH**
+*(at once; generous; a stranger who has watched his neighbors die)*
+"Let my lord the king take it, and offer up whatever is good in his eyes. See: the oxen, for the burnt offering. The threshing sledges and the yokes of the oxen, for the wood."
+
+"All of it, O king, Araunah gives to the king."
+
+*(He means every word.)*
+
+"May the LORD your God accept you."
+
+**DAVID**
+"No."
+
+*(Gently. He has learned this somewhere — beside a brook; on a road near Carmel; over a cup of water.)*
+
+"I will buy it from you, at a price. I will not offer to the LORD my God burnt offerings that cost me nothing."
+
+*(He weighs out the silver into ARAUNAH's hand. ARAUNAH opens his palm, to give it back. DAVID does not put out his hand again. Instead he stoops, and takes up a stone from the floor.)*
+
+*(He builds the altar himself. The sledges are moved; the wheat is cleared; it is all done by hand, and nothing about it looks like a palace. And as he sets each stone, he says a name — not loudly; to the stone, and to God.)*
+
+**DAVID**
+Samuel.
+
+*(A stone.)*
+
+Saul.
+
+Jonathan.
+
+*(His hand rests on that one.)*
+
+Ahimelech, and the house of his father.
+
+Asahel. Abner.
+
+Uriah.
+
+*(A stone with no name; he holds it a moment before he sets it.)*
+
+The child.
+
+Amnon.
+
+Absalom. My son.
+
+Amasa.
+
+Armoni. Mephibosheth.
+
+*(And the last, the largest: he needs both hands.)*
+
+Seventy thousand, whose names I did not learn.
+
+*(He offers burnt offerings and peace offerings. And the LORD lets Himself be entreated for the land; and the plague is held back from Israel.)*
+
+*(Quiet. DAVID stands on the threshing floor, and looks at where he is.)*
+
+**DAVID**
+"This is the house of the LORD God. And this is the altar of burnt offering for Israel."
+
+*(A boy has come up the hill behind him: SOLOMON. He sees no temple. He sees a floor, an altar of rough stones, and his father.)*
+
+**SOLOMON**
+Here?
+
+**DAVID**
+Here.
+
+**SOLOMON**
+There is nothing here.
+
+**DAVID**
+No.
+
+**SOLOMON**
+It is a floor. For threshing.
+
+**DAVID**
+It is where it stopped.
+
+*(He makes room for the boy beside him. He does not sit; there is no throne here; he puts no crown on anyone. From inside his robe he takes the rolled plan — tied, as he tied it. He holds it a moment. He gives it to his son.)*
+
+I drew it once. A long time ago. There is a mark by the door; you will see it. A bench. You need not keep the bench.
+
+**SOLOMON**
+*(unrolling a little)* You will not build it.
+
+**DAVID**
+No.
+
+**SOLOMON**
+Will you see it?
+
+**DAVID**
+No.
+
+*(The boy looks up at him.)*
+
+**SOLOMON**
+Does that grieve you?
+
+**DAVID**
+Yes.
+
+*(He looks at the altar; at the names in it; at the bare rock all round.)*
+
+And I have never stood so near to it.
+
+*(He speaks it as he spoke it in his father's courtyard, with the oil running into his eyes — but he is not looking now at a prophet, or at a horn. He is looking at a threshing floor and a child.)*
+
+"One thing I have asked of the LORD,
+that one thing I will seek:
+to dwell in the house of the LORD all the days of my life,
+to gaze on the sweetness of the LORD
+and to come early to His sanctuary."
+
+*(The boy who asked for that wanted to live in the house of the LORD. The king does not see the house standing. He is standing in the place where it will begin.)*
+
+---
+
+## Scene 52 — Hallelujah
+
+*DAVID stays where he is, on the threshing floor. There is still work to do: tools lying about the altar; the sledges; the yoke. He bends to it.*
+
+*And music comes back — at first almost without sound. A single string. DAVID, working, listens. He straightens.*
+
+**DAVID**
+"Let everything that has breath praise the LORD."
+
+**[MUSICAL FINALE: PSALM 150 — sung to the melody of Leonard Cohen's "Hallelujah," the chosen musical reference. None of Cohen's lyric is used. The distribution of the text, the meter, and the fitting of the psalm to the melody remain to be made, by singing it.**
+**Who begins:** DAVID — one voice.
+**Who joins:** the whole company, a few at a time. They return as the ENSEMBLE of the theatre — outside the time of the story. No one who has died comes back to life.
+**Physical action:** while they sing, they clear the tools from around the altar, passing them from hand to hand, until there is an open place at the heart of the threshing floor. DAVID works with them. He and SOLOMON look at one another. He sings among them, and he listens.
+**What changes:** the place where one man stood alone fills with voices. The climax is people meeting — not a coronation, and not a temple.]**
+
+**DAVID**
+"Hallelujah.
+Praise God in His holy place;
+praise Him in the vault of His power."
+
+**DAVID AND OTHERS**
+"Praise Him for His mighty acts;
+praise Him for His abundant greatness."
+
+**MORE VOICES**
+"Praise Him with the blast of the ram's horn;
+praise Him with harp and lyre."
+
+*(A lyre, somewhere. A timbrel — women's hands, as on the road from Elah.)*
+
+"Praise Him with timbrel and dance;
+praise Him with strings and pipe."
+
+**ALL**
+"Praise Him with sounding cymbals;
+praise Him with crashing cymbals."
+
+*(The floor is clear. The altar stands in it, made of names. DAVID is one voice among the many; he has stopped leading; he is listening to them carry it.)*
+
+"Let everything that has breath praise the LORD.
+Hallelujah."
+
+*(No words follow the song. Light holds on the open floor, the rough altar, the old man and the boy, and the people singing. Then it goes.)*
+
+**THE END**
