@@ -971,4 +971,1448 @@ My lord —
 
 ---
 
-*[CONTINUATION POINT: Scene 4 — "Et Achai Anochi Mevakesh" / "I Am Looking for My Brothers." Jesse sends David to the camp in the Valley of Elah with provisions for his brothers (1 Samuel 17:12–30).]*
+## Scene 4 — I Am Looking for My Brothers
+
+*Bethlehem, before dawn. JESSE is packing a sack. DAVID comes down from the hill.*
+
+**JESSE**
+Forty days, and no word. Three sons in that valley and I hear more from the crows than from the king's camp.
+
+*(He ties the sack.)*
+
+Roasted grain. Ten loaves. Run them down to your brothers. And these ten cheeses are for the captain of their thousand — put them in his hand yourself, and let him see whose son brings them.
+
+**DAVID**
+I will go at first light.
+
+**JESSE**
+"See how your brothers are faring, and bring me some token from them."
+
+*(A beat.)*
+
+David. A token. Not a story. You go, you look at their faces, you come back.
+
+**DAVID**
+And the flock?
+
+**JESSE**
+I kept sheep before you were born.
+
+*(DAVID almost smiles. He shoulders the sack.)*
+
+**DAVID**
+There is a boy who knows the gap. I will leave them with him.
+
+*(He goes. JESSE watches the road after he has gone from it.)*
+
+*The Valley of Elah. The camp of Israel on its ridge. Men sitting. A man mending a strap that does not need mending. A man looking at the valley. Nobody speaks above a murmur.*
+
+**[MUSICAL CUE: "ET ACHAI ANOCHI MEVAKESH" — "It is my brothers I am looking for." Version to be identified.**
+**Who begins:** DAVID, humming, the sack on his shoulder — a boy on an errand.
+**Addressed to:** no one; then, more and more, to the camp that does not answer.
+**Physical action:** he walks the lines the way a shepherd counts a flock, looking into each face.
+**What changes:** the tune is easy while he is sure he will find them. It thins as he understands what he is walking through.
+**Exit:** GOLIATH's voice cuts it in the middle of a breath. It does not come back.]**
+
+**DAVID**
+*(to a soldier)* Peace to you. The sons of Jesse, of Bethlehem — Eliab, Abinadab, Shammah?
+
+*(The soldier lifts a hand vaguely along the ridge and lets it fall.)*
+
+*(To another.)* The thousand of Judah?
+
+*(Nothing. He walks on. He slows. A voice comes up out of the valley — enormous, unhurried, bored.)*
+
+**GOLIATH**
+*(off)* "Choose yourselves a man, and let him come down to me!"
+
+*(The humming stops. Along the ridge, men draw back from the edge without standing up. DAVID gives the sack to the KEEPER OF THE BAGGAGE and goes to where he can hear.)*
+
+**GOLIATH**
+*(off)* "I defy the ranks of Israel this day. Give me a man, and we will fight it out together!"
+
+*(Silence. DAVID looks at the men. He crouches beside a SOLDIER who sits with his spear across his knees.)*
+
+**DAVID**
+Why is nobody doing anything?
+
+**SOLDIER**
+Have you seen him?
+
+**DAVID**
+I heard him.
+
+**SOLDIER**
+We have heard him for forty days. Morning and evening. You could set the watch by him.
+
+**DAVID**
+What does he want?
+
+**SOLDIER**
+One man. If our man kills him, they serve us. If he kills our man, we serve them — all of us, and our sons. That is the bargain.
+
+**DAVID**
+And nobody has gone.
+
+**SOLDIER**
+*(turning on him)* Listen, boy. I am not afraid to die. I have a wife in Tekoa and two children, and I have stood in the line against Philistines before, and I will again. But the man who goes down there and loses does not only die. He sells Israel. By his own hand. Who wants to be that man?
+
+*(DAVID has no quick answer. He looks at the ridge.)*
+
+**DAVID**
+So you hold the hill.
+
+**SOLDIER**
+It is a good hill. He cannot come up it. The king says hold.
+
+**DAVID**
+For how long?
+
+**SOLDIER**
+Until something changes.
+
+**DAVID**
+He is the only thing changing. Every day he comes a little nearer, and every day you are a little more used to him.
+
+*(The SOLDIER does not deny it.)*
+
+**SOLDIER**
+The king has promised: whoever strikes him down, the king will make rich, and give him his daughter, and his father's house will go free in Israel.
+
+**DAVID**
+And still nobody.
+
+**SOLDIER**
+And still nobody.
+
+*(DAVID stands.)*
+
+**DAVID**
+"Who is this uncircumcised Philistine, that he should defy the ranks of the living God?"
+
+*(He has not lowered his voice. Heads turn.)*
+
+**SOLDIER**
+Boy. That is Goliath of Gath.
+
+**DAVID**
+And we are Israel.
+
+**SOLDIER**
+Would you go down to him?
+
+**DAVID**
+Yes.
+
+*(A stir runs along the line. A man shifts to let DAVID see the valley. Behind him:)*
+
+**ELIAB**
+"Why have you come down? And with whom have you left those few sheep in the wilderness?"
+
+**DAVID**
+*(turning, glad)* Eliab! Father sent me. I have brought you —
+
+**ELIAB**
+"I know your insolence, and the wickedness of your heart. You came down to watch the battle."
+
+*(The soldiers go quiet. ELIAB takes DAVID by the arm and walks him three steps off. Low, fast:)*
+
+You were told. Not in the gate, not in the camp. And you stand on the king's ridge with your voice up, and every man in Judah's thousand looking at you. Do you know what becomes of our father's house if the king looks at you twice?
+
+**DAVID**
+He has looked at me. I have slept on his floor.
+
+**ELIAB**
+As a harper. Let him go on thinking so.
+
+*(A beat. This is harder to say.)*
+
+I stood in front of that old man and he looked through me like water. I have not said a word. Not one. I am asking you for the same.
+
+**DAVID**
+"What have I done now? It was only a word."
+
+**ELIAB**
+With you it is never only a word.
+
+*(DAVID looks at his brother; then past him, at the valley.)*
+
+**DAVID**
+There is bread in the sack. And grain. Father wants a token that you are well.
+
+*(He turns back to the SOLDIER.)*
+
+Where is the king?
+
+*(ELIAB lets his hand fall. A KING'S MAN comes along the line.)*
+
+**KING'S MAN**
+Which of you is the one who has been talking? The king has heard of it. He will see you.
+
+*(DAVID goes with him. ELIAB is left among the soldiers, who are looking at him now.)*
+
+---
+
+## Scene 5 — The King's Armor
+
+*SAUL's tent on the ridge. His armor hangs on its stand. ABNER beside him. DAVID is brought in. SAUL looks up — and knows him at once.*
+
+**SAUL**
+Son of Jesse.
+
+*(Almost angry with relief.)*
+
+I sent you home.
+
+**DAVID**
+My father sent me back, my lord. With bread.
+
+**SAUL**
+And they tell me you have been making speeches on my ridge. That you mean to go down to the Philistine.
+
+**DAVID**
+"Let no man's heart fail because of him. Your servant will go and fight this Philistine."
+
+**ABNER**
+My lord. The terms. If the boy falls, we are their slaves by our own agreement.
+
+**SAUL**
+I know the terms, Abner.
+
+*(To DAVID; gently, as to someone he does not want to lose.)*
+
+David. I have heard you play. I know what is in your hands. This is a different thing. "You cannot go against this Philistine to fight him. You are a boy, and he has been a man of war since his youth."
+
+**DAVID**
+"Your servant has been a shepherd of his father's flock. When a lion came, or a bear, and carried off a lamb from the flock, I went out after it, and struck it, and pulled the lamb out of its mouth."
+
+*(SAUL is listening.)*
+
+"And when it rose against me, I took it by the beard, and struck it, and killed it."
+
+**SAUL**
+You went after a lion. For one lamb.
+
+**DAVID**
+It was in my keeping.
+
+*(A silence. ABNER looks at the boy again.)*
+
+"Your servant has killed both the lion and the bear. This uncircumcised Philistine will be like one of them, for he has defied the ranks of the living God. The LORD, who saved me from the paw of the lion and the paw of the bear — He will save me from the hand of this Philistine."
+
+**SAUL**
+*(quietly)* Forty days I have waited for a man to say that to me.
+
+**DAVID**
+My lord — may I ask a thing?
+
+**SAUL**
+Ask.
+
+**DAVID**
+Why has no one gone?
+
+*(ABNER stiffens. SAUL does not.)*
+
+**SAUL**
+You mean: why have I not gone. I am a head taller than any man on this hill.
+
+**DAVID**
+I did not say it.
+
+**SAUL**
+You are the first who has not. If I go down and fall, Israel has no king by evening, and the Philistines are in Gibeah by morning. A king is not his own to wager. I have sat here forty days learning that.
+
+*(DAVID bows his head. He accepts it entirely.)*
+
+**DAVID**
+Then send one who is his own.
+
+**SAUL**
+You are not your own either. You are Jesse's. And you are mine.
+
+*(He stands.)*
+
+I cannot go down to him in your place. But you will not ask me to send you out like this, with nothing, and do nothing to cover you. Bring my armor.
+
+*(DAVID has his sling in his hand. He looks at it; lays it down. Only then does SAUL go to the stand.)*
+
+*(SAUL dresses DAVID himself, without haste — it is nearly a rite. The coat of mail. The bronze helmet. Last, he girds his own sword over the armor. He steps back.)*
+
+*(The tent has gone silent. ABNER, the guards — all are looking at the same thing: the shepherd, standing in the armor of the king.)*
+
+**SAUL**
+No one has worn it but me.
+
+*(He does not hear what he has said. ABNER does.)*
+
+Now. Walk.
+
+*(DAVID tries. One step. Another. He stops.)*
+
+**DAVID**
+"I cannot walk in these. I have never tried them."
+
+*(He lifts off the helmet and puts it into SAUL's hands. Unbuckles the sword; into SAUL's hands. The coat of mail. Piece by piece the king receives his armor back, until they stand face to face, and only one of them is armed.)*
+
+**SAUL**
+And how will you stand against him?
+
+*(DAVID picks up the sling. His staff. The shepherd's bag.)*
+
+**DAVID**
+I did not come to stand against him, my lord. I came to bring him down.
+
+*(SAUL looks at him for a long moment.)*
+
+**SAUL**
+"Go. And the LORD be with you."
+
+*(DAVID goes. SAUL stands holding his own sword. He watches the boy walk down toward the valley.)*
+
+"Abner. Whose son is that boy?"
+
+**ABNER**
+Jesse's, my lord. Of Bethlehem. He has played in your hall a hundred nights.
+
+**SAUL**
+I know his father's name. I asked whose son he is.
+
+*(ABNER looks at the king; at the armor in his arms; at the small figure on the slope.)*
+
+**ABNER**
+"By your life, O king — I do not know."
+
+---
+
+## Scene 6 — Goliath and Uriah
+
+*The valley floor. A brook. The two armies are far apart on their hills, small; the distance between them is the whole stage. DAVID kneels at the water.*
+
+**[MUSICAL CUE: "ZOCHRENI NA" — "Remember me." Version and lyric to be settled.**
+**Who begins:** DAVID, kneeling, half-voiced.
+**Addressed to:** God.
+**Physical action:** he chooses five smooth stones from the brook, one at a time, weighing each, and puts them in the shepherd's bag. He is not set facing the audience to sing; the song *is* the choosing.
+**Why song, here:** the noise of both camps has fallen away; this is the last moment he is alone.
+**What changes:** on the fifth stone he stands.
+**Exit:** he walks into GOLIATH's sight; the music stops when the giant sees him.**
+**Note:** the title phrase is Samson's (Judges 16:28). It is a borrowed prayer, used theatrically; not presented as David's recorded words.]**
+
+*(GOLIATH, armored from head to shin. Before him walks his SHIELD-BEARER with the great shield. GOLIATH sees the boy, the staff, the sling — and motions. The SHIELD-BEARER plants the shield in front of him.)*
+
+**GOLIATH**
+A stone? You have come to fight me with a stone?
+
+*(He raps the shield.)*
+
+This is a wall. You will not breach it.
+
+*(He knocks on his helmet.)*
+
+And over my head — a dome of iron. No stone comes through it.
+
+*(He looks at the staff.)*
+
+"Am I a dog, that you come at me with sticks?"
+
+**DAVID**
+"You come against me with sword and spear and javelin. I come against you in the name of the LORD of hosts, the God of the ranks of Israel, whom you have defied."
+
+**GOLIATH**
+"Come here to me, and I will give your flesh to the birds of the sky and the beasts of the field."
+
+**DAVID**
+"And all the earth shall know that there is a God in Israel. And all this assembly shall know that the LORD does not save by sword and spear. For the battle is the LORD's — and He will give you into our hands."
+
+*(GOLIATH comes on, slowly, behind his wall. DAVID does not wait for him. He runs.)*
+
+**[MUSICAL CUE: PSALM 23:4 — "GAM KI ELECH."**
+**Who begins:** DAVID, on the run.
+**Addressed to:** God — "You are with me."
+**Physical action:** the walk becomes a run; a stone goes from the bag to his palm to the sling; the sling begins to turn.
+**What changes:** the words stop before the release. The stone flies in complete silence.]**
+
+**DAVID**
+*(sung, running)*
+"Though I walk through the valley of the shadow of death,
+I will fear no evil —
+for You are with me —"
+
+*(The sling opens. Silence. The stone strikes under the rim of the helmet. GOLIATH stands a moment longer. Then he falls on his face, and the ground takes it.)*
+
+*(Nobody moves on either hill. DAVID runs to the body. He has no sword. He hauls at the giant's own — it is pinned. He goes for the neck: the collar of the armor is laced shut. His fingers cannot find the way in.)*
+
+*(The SHIELD-BEARER has not run. He is standing with the shield in his hands, looking at the man it was supposed to cover.)*
+
+**SHIELD-BEARER**
+Not from there.
+
+*(DAVID looks up.)*
+
+**DAVID**
+You know how it opens?
+
+**SHIELD-BEARER**
+He said no stone would get through.
+
+**DAVID**
+Where is the knot?
+
+**SHIELD-BEARER**
+*(not moving)* If I help you — will you give me a wife from Israel?
+
+*(On the far hill, the Philistine line is beginning to understand. There is no time.)*
+
+**DAVID**
+Yes. Open it.
+
+*(The SHIELD-BEARER lets the great shield fall. He kneels, reaches under the collar, and frees the lacing with one pull.)*
+
+**DAVID**
+What is your name?
+
+**SHIELD-BEARER**
+Uriah.
+
+*(DAVID drags GOLIATH's sword out of its sheath, and with it cuts off his head. He lifts it. From the Philistine hill, a sound like a wall coming down: they break, and run.)*
+
+**[MUSICAL CUE: PSALM 18:38 — "I PURSUE MY ENEMIES."**
+**Who begins:** DAVID, facing the fleeing Philistines — forward, not out front.
+**Second voice:** the SOLDIER from the ridge. Then, phrase by phrase, the camp.
+**Physical action:** men get to their feet for the first time in forty days and come down the hill.
+**What changes:** one man's charge becomes an army's. By the end DAVID is not alone at the center; all Israel is moving.
+**Exit:** the pursuit carries the stage empty.]**
+
+**DAVID**
+*(sung)*
+"I pursue my enemies and overtake them —"
+
+**SOLDIER**
+*(rising, his spear in his hand at last)*
+"— and I do not turn back until they are finished!"
+
+**THE CAMP**
+"I pursue my enemies and overtake them,
+and I do not turn back until they are finished!"
+
+*(Israel pours down into the valley. URIAH stands where he was, beside the fallen shield, and watches them pass.)*
+
+---
+
+## Scene 7 — Covenant
+
+*Evening. The ridge. ABNER brings DAVID before SAUL; the Philistine's head is still in the boy's hand, wrapped in his cloak. JONATHAN stands at his father's side. Soldiers crowd behind.*
+
+**SAUL**
+*(for all to hear)* "Whose son are you, young man?"
+
+*(DAVID understands that it is being asked for the army.)*
+
+**DAVID**
+"The son of your servant Jesse, of Bethlehem."
+
+**SAUL**
+Then let it be heard in the camp: the house of Jesse of Bethlehem is free in Israel.
+
+*(A roar. Somewhere in it, ELIAB's face.)*
+
+Today you stay with us. You do not go back to your father's house.
+
+**DAVID**
+My father is waiting to hear that I am alive.
+
+**SAUL**
+I will send to him. He has had enough of you; it is my turn.
+
+*(He grips DAVID's shoulder — the old warmth, whole — and is drawn away by ABNER and the captains. The crowd goes with the king. JONATHAN does not.)*
+
+**JONATHAN**
+I am Jonathan.
+
+**DAVID**
+The king's son.
+
+**JONATHAN**
+Yes.
+
+*(He is a soldier; he does not know how to begin.)*
+
+I watched you walk down. I kept waiting for you to stop.
+
+**DAVID**
+I kept waiting for someone to go.
+
+**JONATHAN**
+And when no one did?
+
+**DAVID**
+I could not go on listening to him.
+
+*(JONATHAN nods. It lands somewhere sore.)*
+
+**JONATHAN**
+I heard him for forty days. I want you to know that I am not a man who is frightened of a hill. At Michmash I climbed a cliff on my hands and knees, with one boy to carry my shield, and we took a Philistine post between us, because I said to him: nothing stops the LORD from saving, by many or by few.
+
+**DAVID**
+I know. In Bethlehem we sing it.
+
+**JONATHAN**
+Then where was I these forty days?
+
+*(DAVID waits.)*
+
+My father forbade it. The heir is not his own to wager. I obeyed him. Every morning that voice came up the valley, and I obeyed my father, and I told myself that obeying was the harder thing.
+
+**DAVID**
+It may have been.
+
+**JONATHAN**
+Do not be kind to me. I said the words at Michmash. You did them here.
+
+**DAVID**
+You said them first. I only had to remember them.
+
+*(JONATHAN looks at him — and laughs; he has his father's laugh.)*
+
+**JONATHAN**
+They told me you were careful in your speech.
+
+*(He unfastens his robe and holds it out.)*
+
+**DAVID**
+That is yours.
+
+**JONATHAN**
+I am giving it to you.
+
+**DAVID**
+I gave your father's armor back to him this morning.
+
+**JONATHAN**
+I saw. His was lent. This is given.
+
+*(He puts the robe on DAVID's shoulders. Then his tunic of mail; his sword; his bow; his belt. He stands in his shirt. They both take in the sight: the shepherd dressed as the prince, the prince unarmored.)*
+
+Does it fit?
+
+**DAVID**
+Nobody has asked me to walk in it yet.
+
+**JONATHAN**
+Walk.
+
+*(DAVID walks. It fits.)*
+
+Let us make a covenant, David. You and I, before the LORD. Whatever comes to you comes to me. When I am king in Israel —
+
+*(DAVID's face changes. JONATHAN sees it and misreads it.)*
+
+— no, hear me — when I am king, you will stand at my right hand, and no one will say again that the king's house sat on a hill while a boy went down.
+
+*(DAVID opens his mouth. The oil; the oath in the courtyard; this man's father. He cannot.)*
+
+**DAVID**
+Jonathan —
+
+**JONATHAN**
+What?
+
+**DAVID**
+Whatever comes — I will not be the one who breaks it. Not with you. Not with your house after you.
+
+**JONATHAN**
+*(lightly; he does not know what he has been given)* My house can look after itself.
+
+*(He holds out his hand. DAVID takes it.)*
+
+**JONATHAN**
+Covenant.
+
+**DAVID**
+Covenant.
+
+---
+
+## Scene 8 — Thousands and Ten Thousands
+
+*The road home. Out of every town the WOMEN come with timbrels and dancing to meet the army. SAUL at the head; DAVID behind, among the captains, in JONATHAN's robe. At the edge of the dance, MICHAL — the king's younger daughter — is watching one man.*
+
+**[MUSICAL CUE: THE WOMEN'S SONG — 1 Samuel 18:7.**
+**Who begins:** the WOMEN, to the whole returning army.
+**Physical action:** one circle of dancing, king and soldiers alike inside it.
+**What changes:** on the repeat, the circle divides in two without anyone deciding it. The music does not stop when SAUL steps out of it.]**
+
+**WOMEN**
+"Saul has struck down his thousands —"
+
+*(SAUL lifts his head, smiling.)*
+
+"— and David his ten thousands!"
+
+*(The soldiers cheer. JONATHAN pulls DAVID into the dance. DAVID, laughing, protests; dances. The women take it up again, louder.)*
+
+"Saul has struck down his thousands,
+and David his ten thousands!"
+
+*(SAUL has slowed. The dance flows past him and closes around DAVID. He is standing alone at the side of the road.)*
+
+**SAUL**
+"To David they have given ten thousands. To me they have given the thousands."
+
+*(He watches the boy in his son's robe.)*
+
+"What more can he have — but the kingdom?"
+
+*(The song goes on, distant. SAUL does not take his eyes from DAVID. Light closes to:)*
+
+*The next day. The hall at Gibeah. SAUL in his seat, the spear in his hand. DAVID enters with the lyre and goes, as always, to the nearer place. SAUL lifts a finger.*
+
+**SAUL**
+Stand there.
+
+*(The far place. The first night's distance. DAVID goes to it.)*
+
+Play.
+
+*(DAVID plays the phrase — "Lema'an Achai." It does not do what it used to do.)*
+
+"For the sake of my brothers and my friends." The women have a new song. Have you heard it?
+
+**DAVID**
+I heard it, my lord. I did not ask them to sing it.
+
+**SAUL**
+No. You never ask for anything. You wanted to carry water in the house of the LORD.
+
+*(A beat.)*
+
+Ten thousands.
+
+**DAVID**
+They were counting Philistines, my lord. Not kings.
+
+**SAUL**
+They were counting.
+
+*(DAVID plays. SAUL's hand opens and closes on the shaft.)*
+
+I told you a thing once, in this room, at night. Do you remember it?
+
+**DAVID**
+I remember everything the king has told me.
+
+**SAUL**
+"Your neighbor, who is better than you." I asked you where he was standing.
+
+*(DAVID's hands go on. His face does not move.)*
+
+You said you would play until it was light.
+
+**DAVID**
+I will play until it is light, my lord.
+
+**SAUL**
+Enough.
+
+*(DAVID stops.)*
+
+**DAVID**
+Would the king have something else?
+
+*(SAUL throws the spear. DAVID twists aside. The spear stands quivering in the wall where his chest was.)*
+
+*(Neither man moves. The servants are stone. DAVID is breathing hard. He looks at the spear; at the king. He goes to the wall and pulls the spear free.)*
+
+*(He carries it back across the hall and lays it on the floor at SAUL's feet. He returns to his place. He picks up the lyre. He plays.)*
+
+*(SAUL stares at him. Something in his face is close to breaking — toward the boy, or against him; for a breath it could be either. Then he snatches up the spear and throws it again.)*
+
+*(DAVID evades it. This time he does not go to the wall. He stands with the lyre hanging from his hand.)*
+
+**DAVID**
+*(very quietly)* My lord. I do not know what I have done.
+
+**SAUL**
+*(not looking at him)* Nothing. You have done nothing. That is what I cannot —
+
+*(He masters himself. When he speaks again it is the king, cold.)*
+
+You wanted to carry my armor in the field. You will do better. I give you a thousand men. You will go out and come in at their head.
+
+**DAVID**
+As the king commands.
+
+**SAUL**
+And David.
+
+*(DAVID turns at the door.)*
+
+Do not come unless I send.
+
+*(It goes into DAVID like the spear did not. He bows, and goes.)*
+
+*(Outside: the thousand. DAVID walks out to them in JONATHAN's robe and they close around him, asking, listening, laughing at something he says. He goes out; he comes in; they follow. From the door of the hall SAUL watches all of it, with the spear in the wall behind him.)*
+
+---
+
+## Scene 9 — A Mission No One Returns From
+
+*Two places, seen by turns. SAUL's chamber, where things are planned. The gate of the camp, where DAVID receives them. The audience hears both. DAVID hears only his own.*
+
+*CHAMBER. SAUL. DAVID before him, a captain now, dust on Jonathan's robe.*
+
+**SAUL**
+"Here is my elder daughter, Merab. I will give her to you as a wife. Only be a man of valor for me, and fight the LORD's battles."
+
+**DAVID**
+"Who am I, and what is my life, or my father's family in Israel, that I should be son-in-law to the king?"
+
+**SAUL**
+You are the man who killed the Philistine. It was promised.
+
+**DAVID**
+I did not go down for a promise, my lord.
+
+**SAUL**
+No. That is what troubles everyone.
+
+*(DAVID bows and goes. SAUL, alone:)*
+
+"Let my hand not be on him. Let the hand of the Philistines be on him."
+
+*(The OLD SERVANT enters.)*
+
+**OLD SERVANT**
+My lord. The day came for the wedding, and Merab has been given to Adriel of Meholah — as you ordered. The son of Jesse said nothing. He went out with his thousand the same morning.
+
+**SAUL**
+And came back.
+
+**OLD SERVANT**
+He comes back, my lord. Every time.
+
+*(A beat.)*
+
+There is another thing. Your daughter Michal. The women say she loves him.
+
+*(SAUL is very still. Then something like pleasure.)*
+
+**SAUL**
+Does she.
+
+"I will give her to him, and she shall be a snare to him."
+
+Go to him quietly. Say: the king delights in you, all his servants love you; become the king's son-in-law.
+
+*GATE. The OLD SERVANT and another find DAVID among his men.*
+
+**OLD SERVANT**
+The king delights in you, son of Jesse. The whole house loves you. He offers you Michal.
+
+**DAVID**
+"Is it a small thing in your eyes, to become the king's son-in-law? I am a poor man, and of no account."
+
+**OLD SERVANT**
+He means it.
+
+**DAVID**
+He meant Merab. I have no bride-price for a king's daughter. I have a lyre and a sling. Tell him so, with my thanks.
+
+*CHAMBER.*
+
+**OLD SERVANT**
+He says he has nothing to give for her.
+
+**SAUL**
+Nothing in silver.
+
+**OLD SERVANT**
+My lord — may I speak as one who was in the room the night he first played?
+
+**SAUL**
+You will whether I permit it or not.
+
+**OLD SERVANT**
+He went to war in your name. He still calls you "my lord the king" when no one is listening. I have heard him. And the day you threw the spear, he carried it back and laid it at your feet.
+
+**SAUL**
+Yes.
+
+*(Low.)*
+
+Do you know what it is, to be forgiven by a boy? In your own hall, with your servants watching?
+
+*(The OLD SERVANT understands: they are no longer speaking of David's loyalty, but of Saul's fear.)*
+
+**SAUL**
+He has no silver. He has a sword. I gave him a command to be rid of him, and the men love him for it. The women sing his name louder than mine. A little longer, and they will say the seat is owed to him as well.
+
+**OLD SERVANT**
+What does the king command?
+
+**SAUL**
+When a man endangers the kingdom, there is no need to put him to death in the courtyard. You send him where the enemy will do it.
+
+**OLD SERVANT**
+David?
+
+**SAUL**
+If he lifts his eyes to the king's seat, let him show how faithful he is to the king.
+
+**OLD SERVANT**
+And the errand?
+
+**SAUL**
+"The king wants no bride-price but a hundred foreskins of the Philistines."
+
+**OLD SERVANT**
+For Michal.
+
+**SAUL**
+That is what you will tell him.
+
+**OLD SERVANT**
+A hundred. He would have to go in among them a hundred times, and bring proof of each.
+
+**SAUL**
+Yes.
+
+**OLD SERVANT**
+And if he returns?
+
+*(SAUL does not answer that.)*
+
+**SAUL**
+Before him — not a word of this.
+
+*GATE.*
+
+**OLD SERVANT**
+The king asks no silver. He asks a hundred Philistines. Proof of each.
+
+**DAVID**
+A hundred.
+
+**OLD SERVANT**
+*(he cannot help it)* It is a great many, son of Jesse. No one would think less of you —
+
+**DAVID**
+Tell the king I will bring them.
+
+*(He turns to his men. The OLD SERVANT watches him go, and says nothing.)*
+
+*(Battle and return, swift: a passage of drums; men going out, fewer coming in; DAVID among them.)*
+
+*CHAMBER — the two places are now one. DAVID stands before SAUL, straight from the field. The OLD SERVANT has counted.*
+
+**SAUL**
+You have brought a hundred?
+
+**DAVID**
+Two hundred, my lord the king.
+
+*(SAUL looks to the OLD SERVANT.)*
+
+**OLD SERVANT**
+Two hundred.
+
+*(A long silence. SAUL looks at the man he sent to die.)*
+
+**SAUL**
+Call Michal.
+
+*(MICHAL enters — every inch a king's daughter. SAUL joins their hands, briefly, and leaves them; he cannot stay in the room. They are alone. She looks him over.)*
+
+**MICHAL**
+You were asked for a hundred.
+
+**DAVID**
+I did not want the king to think I had counted closely.
+
+**MICHAL**
+A king's son-in-law should not look as if he counts at all.
+
+*(She comes closer. She straightens the robe on his shoulders.)*
+
+That is my brother's. It hangs better on him. Stand straighter.
+
+*(He does. She steps back to see.)*
+
+You came to my father's hall with the road still on you.
+
+**DAVID**
+I came the moment I was back.
+
+**MICHAL**
+I know. Everyone will know. Next time, wash first. Let them wait an hour for the king's son-in-law. They will respect it.
+
+**DAVID**
+*(amused)* And you? Would you have waited an hour?
+
+**MICHAL**
+No.
+
+*(It is the only unguarded thing she has said. She hears it; lifts her chin.)*
+
+I watched you dance on the road from Elah. Like a shepherd at a shearing.
+
+**DAVID**
+I am a shepherd.
+
+**MICHAL**
+Not any longer. That is what I am telling you.
+
+*(She holds out her hand. He takes it. From the doorway, unseen, SAUL watches: his daughter's face.)*
+
+---
+
+## Scene 10 — "As the LORD Lives, He Shall Not Die"
+
+*The hall. SAUL, JONATHAN, the servants. DAVID's place is empty.*
+
+**SAUL**
+*(to all of them)* The son of Jesse is to be put to death.
+
+*(Nobody speaks.)*
+
+**JONATHAN**
+What has he done?
+
+**SAUL**
+You have heard me.
+
+*(He goes. JONATHAN stands a moment, then leaves by the other door — fast.)*
+
+*Outside. JONATHAN finds DAVID.*
+
+**JONATHAN**
+"My father Saul is seeking to kill you." He has said it before the whole house. Tomorrow do not come before him. "Stay in a secret place, and hide."
+
+**DAVID**
+And you?
+
+**JONATHAN**
+I will speak to him.
+
+**DAVID**
+He said it before the whole house, and you will speak to him.
+
+**JONATHAN**
+He is my father. He has thrown things at me since I was a boy, and the next morning walked the fields with me as if he had dreamed it. I know which hour to choose.
+
+*(He grips DAVID's arm.)*
+
+Hide. Where I can find you.
+
+*Morning. A field. SAUL walking; JONATHAN beside him. The attendants fall back out of hearing.*
+
+**JONATHAN**
+The barley is early this year.
+
+**SAUL**
+You did not come out here to talk about barley.
+
+**JONATHAN**
+No.
+
+*(He takes a breath.)*
+
+"Let the king not sin against his servant David. He has not sinned against you. Everything he has done has been greatly to your good."
+
+**SAUL**
+To my good.
+
+**JONATHAN**
+"He took his life in his hand and struck down the Philistine, and the LORD worked a great deliverance for all Israel. You saw it — and you rejoiced."
+
+*(SAUL stops walking.)*
+
+**SAUL**
+I rejoiced.
+
+**JONATHAN**
+I was standing beside you. You wept. You took him by the shoulder, and you said: it is my turn.
+
+**SAUL**
+And since then? You have heard the roads. You have seen the men follow him out of the gate like sheep.
+
+**JONATHAN**
+They follow him because you set him over them. He goes out because you send him. Father — he brought you two hundred when you asked a hundred, and never asked why you asked.
+
+*(SAUL looks at his son sharply. JONATHAN holds it.)*
+
+I am not a fool. Neither is he. And he came back to your hall, and bowed.
+
+**SAUL**
+The whole house is talking about the spear.
+
+**JONATHAN**
+The whole house is talking about how he carried it back.
+
+*(Silence.)*
+
+I am asking you as your son. I have fought for you since I could lift a sword. I have never asked you for anything. Do not make me the son of a man who killed the innocent. "Why would you sin against innocent blood, and put David to death for nothing?"
+
+*(SAUL looks out over the barley for a long time. Something in him comes up out of deep water.)*
+
+**SAUL**
+"As the LORD lives — he shall not be put to death."
+
+**JONATHAN**
+May I bring him to you?
+
+*(SAUL nods. He cannot speak.)*
+
+*The hall. JONATHAN brings DAVID in. DAVID stops at the far place. SAUL sees where he has stopped.*
+
+**SAUL**
+Come closer.
+
+*(DAVID comes — to the near place, the old one. They look at each other.)*
+
+I sent. And you came.
+
+**DAVID**
+You sent, my lord.
+
+*(SAUL puts out a hand; lays it, for a moment, on the boy's head, as a father would. JONATHAN watches the two of them. He lets out his breath.)*
+
+*(DAVID sits at the king's feet, and takes up the lyre. The phrase begins again. For a little while it is as it was.)*
+
+---
+
+## Scene 11 — The Window
+
+*The hall, another night. War again; DAVID has returned from it victorious — it is in the way the servants look at him. SAUL in his seat, the spear in his hand. DAVID playing.*
+
+*(Without a word, SAUL throws. The spear drives into the wall. DAVID is already gone — out the door, running.)*
+
+**SAUL**
+*(to his men; flat)* To his house. Watch it through the night. In the morning, kill him.
+
+*DAVID's house. MICHAL. DAVID comes in and shuts the door behind him and stands against it.*
+
+**MICHAL**
+What has happened?
+
+**DAVID**
+He threw the spear.
+
+**MICHAL**
+Again.
+
+**DAVID**
+He did not say a word first. Before, there was always a word.
+
+*(MICHAL goes to the window, stands to one side of it, looks down.)*
+
+**MICHAL**
+My father's men. Two at the gate. More in the lane.
+
+*(She turns.)*
+
+"If you do not save your life tonight, tomorrow you will be dead."
+
+**DAVID**
+He swore. To Jonathan. "As the LORD lives."
+
+**MICHAL**
+I am his daughter. I know how long his oaths hold. Until the evening.
+
+**DAVID**
+If I go out by a window in the night, I am what he says I am. A man with something to run from.
+
+**MICHAL**
+And if you stay, you are a dead man with a clear name. I would rather have a husband.
+
+*(She is already moving: bolting the door, clearing the sill.)*
+
+**DAVID**
+Michal. If I go, I cannot come back for you. Not tomorrow. I do not know when.
+
+**MICHAL**
+I know that.
+
+**DAVID**
+They will come up in the morning, and it will be you standing here.
+
+**MICHAL**
+Yes.
+
+**DAVID**
+They will ask you where I am.
+
+**MICHAL**
+Let me answer them. I have been answering my father all my life.
+
+*(She opens the window. Knots a cloth to the frame.)*
+
+Now. Down.
+
+*(DAVID looks at her. He takes her face in his hands.)*
+
+**DAVID**
+Stand straight.
+
+**MICHAL**
+*(nearly a laugh; nearly not)* Go.
+
+*(He goes over the sill. She pays out the cloth, bracing against the wall, until the weight leaves it. She looks down into the dark; one moment only.)*
+
+*(Then she works. She drags the household image to the bed and lays it in; a net of goat's hair where the head would be; a garment over all. She steps back. In the dim light, a man is sleeping there.)*
+
+*(She sits down beside it, and waits for morning.)*
+
+*Morning. Pounding at the door.*
+
+**MESSENGER**
+*(off)* Open, in the king's name! The king sends for David!
+
+**MICHAL**
+*(not rising)* "He is ill."
+
+*(Footsteps go. Silence. Footsteps return — more of them.)*
+
+**MESSENGER**
+*(off)* The king says: "Bring him up to me in his bed."
+
+*(The door gives. They come in, go to the bed, pull back the garment. The image. The goat's hair.)*
+
+*The hall. MICHAL before SAUL.*
+
+**SAUL**
+"Why have you deceived me like this — and let my enemy go, so that he has escaped?"
+
+**MICHAL**
+Your enemy. He is my husband. You gave me to him with your own —
+
+*(She sees his face: he is past hearing that. She is alone in this room, and she knows what is true of it. She changes course, without a tremor.)*
+
+"He said to me: Let me go. Why should I kill you?"
+
+*(SAUL looks at her. He chooses to believe it.)*
+
+---
+
+## Scene 12 — Naioth
+
+*Ramah. SAMUEL — much older than at Bethlehem. DAVID arrives on foot, with nothing.*
+
+**DAVID**
+My lord.
+
+*(SAMUEL looks at him: no robe, no sword, no lyre.)*
+
+**SAMUEL**
+Sit. Tell me.
+
+**DAVID**
+Saul is seeking my life. Jonathan spoke to him, and he swore, and I went back to him. I went out to war for him. When I came home I sat down to play, as I always do. I saw him lift the spear. Then he sent men to my house. Michal let me down from the window.
+
+**SAMUEL**
+She stayed.
+
+**DAVID**
+Yes. I have no way back to her.
+
+*(SAMUEL lets him come to the end of it.)*
+
+**SAMUEL**
+What have you come to ask me?
+
+**DAVID**
+You told me I did not need to know everything that day. I know less now than I did then.
+
+*(He is not accusing; he is trying to understand his orders.)*
+
+You said: do not raise your hand against him. I have not. When he threw the spear, I carried it back to him. I have gone where he sent me. I have called him my lord and meant it. And now he wants me dead, and I may not touch him, and I may not stand still. What is left for a man to do?
+
+**SAMUEL**
+Stay alive. And do not touch him.
+
+**DAVID**
+That is not an answer.
+
+**SAMUEL**
+It is all I have.
+
+*(Gently.)*
+
+I am not being hard with you. I was given one sentence in Bethlehem and I spent it. I was not given this road. I think you will have to walk it without a prophet telling you where to put your feet.
+
+**DAVID**
+For how long?
+
+**SAMUEL**
+I do not know.
+
+*(A beat.)*
+
+I can tell you what I have seen. I have seen a man made king who could not bear to wait seven days for me at Gilgal. He was afraid the people would scatter, so he did not wait. You — wait.
+
+**DAVID**
+I am not asking for the kingdom. I am asking where to sleep tonight.
+
+**SAMUEL**
+*(rising, with difficulty)* That I can answer. Come with me.
+
+*Naioth. A company of PROPHETS, prophesying — movement, breath, sound without words. SAMUEL stands over them. DAVID near him.*
+
+*SAUL's hall.*
+
+**INFORMER**
+"David is at Naioth, in Ramah."
+
+**SAUL**
+Bring him.
+
+*(A FIRST PARTY of messengers comes up the path to Naioth. Their leader sees DAVID; then the prophets.)*
+
+**FIRST MESSENGER**
+David son of Jesse, in the king's name —
+
+*(It stops in his mouth. The spirit comes on him and on his men. They are drawn into the movement. No one lays a hand on DAVID.)*
+
+**SAUL**
+*(hall)* Where is David?
+
+**INFORMER**
+At Naioth.
+
+**SAUL**
+And my men?
+
+**INFORMER**
+Prophesying, my lord.
+
+**SAUL**
+All of them?
+
+*(To others.)* You. Go.
+
+*(A SECOND PARTY: the same path, the same stride. They halt a little further on. The same.)*
+
+**SAUL**
+*(to a THIRD PARTY; spacing each word)* David. Him. You will bring him to me.
+
+*(The THIRD PARTY: the same path. A little further still. The same.)*
+
+*(SAUL stands. He goes himself. He walks the same path, alone. At the great cistern in Secu he stops a MAN.)*
+
+**SAUL**
+"Where are Samuel and David?"
+
+**MAN**
+"At Naioth, in Ramah."
+
+*(He goes on. While he is still walking, it comes on him too: his stride changes; he goes prophesying up the path. Before SAMUEL he strips off the royal garments — robe, belt, band — and stands in a plain shirt, like any of the young men. He falls. He lies there.)*
+
+*(DAVID looks at the king on the ground. The king's clothes are at his feet. The king's men are scattered about the hill like sleepers. No one is between them.)*
+
+*(DAVID takes one step toward SAUL. SAMUEL's hand on his arm.)*
+
+**SAMUEL**
+Go.
+
+**DAVID**
+He is lying in the cold.
+
+**SAMUEL**
+A door has been opened for you. Do not stand in it. Go now, while he lies there.
+
+**DAVID**
+And you?
+
+**SAMUEL**
+I will stay with him.
+
+*(DAVID looks at the old man — who anointed them both. He bows to SAMUEL; and then, lower, to the man on the ground. He goes.)*
+
+*(SAMUEL lowers himself, slowly, to sit beside SAUL. A day passes over them, and a night.)*
+
+**A VOICE**
+"Is Saul, too, among the prophets?"
+
+---
+
+## Scene 13 — Tomorrow Is the New Moon
+
+*A field outside Gibeah. A heap of stones. DAVID comes on JONATHAN before JONATHAN has seen him.*
+
+**DAVID**
+"What have I done? What is my guilt, and what is my sin before your father, that he is seeking my life?"
+
+**JONATHAN**
+"God forbid! You shall not die."
+
+**DAVID**
+His men stood round my house all night.
+
+**JONATHAN**
+I will speak to him again. "My father does nothing, great or small, without telling me." Why would he hide this from me?
+
+**DAVID**
+Because he knows you love me. He says to himself: let Jonathan not know, or it will grieve him.
+
+"As the LORD lives, and as you live — there is one step between me and death."
+
+*(JONATHAN looks at him. He has not seen him afraid before.)*
+
+**JONATHAN**
+"Whatever you say, I will do for you."
+
+**DAVID**
+Tomorrow is the new moon. My place is at the king's table. I will not be in it. I will hide in this field. If he asks, say: David begged leave to run to Bethlehem; his family has its yearly sacrifice. If he says "Good" — I can come home. If he burns — you will know that he has settled on it.
+
+*(Then, hardest:)*
+
+"And if there is guilt in me — kill me yourself. Why bring me to your father?"
+
+**JONATHAN**
+"God forbid." If I learn that my father means you harm, would I not tell you?
+
+**DAVID**
+And if you learn it?
+
+*(JONATHAN does not answer at once.)*
+
+**JONATHAN**
+Then I will not ask you to come back to his house.
+
+*(They both hear what that would be. JONATHAN walks a few steps into the field.)*
+
+Come out here. Where no one hears.
+
+*(DAVID follows.)*
+
+On the hill, the day you killed the Philistine. I said: "When I am king." And your face changed.
+
+**DAVID**
+Jonathan —
+
+**JONATHAN**
+I have thought about that face for a long time. Through every feast where they sang your name. Through every night my father could not sleep.
+
+**DAVID**
+I gave my word that I would not —
+
+**JONATHAN**
+Then do not. If you tell me, I shall have to carry it to my father's table and look at him over the bread. Let me say it instead.
+
+*(He turns to face him.)*
+
+"The LORD be with you, as He was with my father."
+
+*(DAVID cannot speak.)*
+
+That is all. I have said it, and I am still standing. I thought it would be harder.
+
+*(A breath. It was hard.)*
+
+Now hear what I ask. "If I am still alive — show me the kindness of the LORD, that I may not die. And do not cut off your kindness from my house, ever. Not even when the LORD has cut off every one of David's enemies from the face of the earth."
+
+**DAVID**
+I will not cut it off.
+
+**JONATHAN**
+Swear it.
+
+**DAVID**
+By the LORD. To you, and to your house after you.
+
+**JONATHAN**
+You said that on the hill. I thought you were being courteous.
+
+*(He nearly smiles. Then, practical — a soldier laying out a signal.)*
+
+On the third day, come down to this place and stay behind the stone. I will shoot three arrows to the side of it, as if at a mark, and send the boy for them. If I call to him, "The arrows are on this side of you — bring them," then come: it is peace. If I say, "The arrows are beyond you" — go. The LORD has sent you away.
+
+"And for the word we have spoken, you and I — the LORD is between me and you forever."
+
+*The king's table. New moon. SAUL in his seat by the wall; ABNER at his side; JONATHAN. DAVID's place — empty. SAUL looks at it, and says nothing.*
+
+**SAUL**
+*(to himself)* Something has befallen him. He is not clean. Surely he is not clean.
+
+*The second day. The same table. The same empty place.*
+
+**SAUL**
+"Why has the son of Jesse not come to the meal — not yesterday, not today?"
+
+**JONATHAN**
+He begged leave of me to go to Bethlehem. His family has a sacrifice in the town; his brother summoned him. He said: let me slip away and see my brothers. So he has not come to the king's table.
+
+*(SAUL puts down his cup.)*
+
+**SAUL**
+"You son of a perverse, rebellious woman!"
+
+*(The table freezes.)*
+
+"Do I not know that you have chosen the son of Jesse — to your own shame, and the shame of your mother who bore you?"
+
+**JONATHAN**
+Father —
+
+**SAUL**
+"For as long as the son of Jesse lives on the earth, you will not stand — not you, and not your kingdom."
+
+*(He is on his feet. And under the rage, for those who can hear it: he is pleading.)*
+
+Do you hear me? *Your* kingdom. Not mine. I am an old man; I have had mine. It is your seat he is sitting in. I am doing this for *you* — and you carry his messages to my table!
+
+"Now send, and bring him to me. He is a dead man."
+
+**JONATHAN**
+"Why should he die? What has he done?"
+
+*(SAUL seizes the spear and throws it — at his son. JONATHAN twists aside. It stands in the wall.)*
+
+*(Silence. ABNER has half risen. SAUL is looking at his own hand.)*
+
+*(JONATHAN rises from the table. He has not touched the bread. He looks at his father — grief, not anger, though it is burning. He walks out.)*
+
+*Morning. The field. DAVID behind the stones. JONATHAN comes with his bow, and a small BOY.*
+
+**JONATHAN**
+"Run. Find the arrows I am going to shoot."
+
+*(The BOY runs. JONATHAN shoots — far beyond him. He calls. His voice is steady because he makes it so.)*
+
+"Is the arrow not beyond you?"
+
+*(Behind the stones, DAVID closes his eyes.)*
+
+"Quick! Hurry! Do not stand there!"
+
+*(The BOY gathers the arrows and brings them, knowing nothing. JONATHAN gives him the bow and quiver.)*
+
+Take these back to the town.
+
+*(The BOY goes. When he is out of sight, DAVID comes out from behind the stones. He falls with his face to the ground and bows, three times. JONATHAN pulls him up. They hold each other and weep. JONATHAN is the first to try to let go. DAVID cannot.)*
+
+**DAVID**
+Then I cannot come back.
+
+*(JONATHAN shakes his head.)*
+
+Come with me.
+
+**JONATHAN**
+No.
+
+**DAVID**
+He threw a spear at you.
+
+**JONATHAN**
+He is my father. He will go out to war again, and when he does I will be at his side. That is where I belong. It was never one or the other, David. It is both — and I will carry both.
+
+*(He holds him off at arm's length, to look at him.)*
+
+"Go in peace. For we have sworn, the two of us, in the name of the LORD: the LORD shall be between me and you, and between my children and your children, forever."
+
+*(DAVID goes. JONATHAN stays where he is until he can no longer see him. Then he turns, and walks back toward the town.)*
+
+---
+
+*[CONTINUATION POINT: Scene 14 — Nob. David, alone and hungry, comes to Ahimelech the priest (1 Samuel 21:2–10).]*
