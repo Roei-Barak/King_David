@@ -2,7 +2,7 @@
 
 ## Status
 - **English script complete:** Act I, Scenes 1–31 (`act-1.md`, ~28,000 words); Act II, Scenes 32–52 (`act-2.md`, ~16,000 words).
-- **Next:** Hebrew translation in `hebrew/`.
+- **Hebrew translation complete:** `hebrew/act-1.md`, `hebrew/act-2.md` (scene-for-scene), with Hebrew music map, source notes and log. Hebrew verse quotations were written without access to an online text and must be proofread against the Masoretic text.
 - **Basis:** Roei's brief (governing) → `drafts/2026-11-08/03-dramaturgical-edit.md` + `04-scene-edit-map.md` → sources. Older 15-scene documents are not followed where they conflict.
 - Existing Hebrew files are untouched.
 - Scenes 47 and 48 are marked provisional in the script; Scene 49 is written as a signalled recollection.
